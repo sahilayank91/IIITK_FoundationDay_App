@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "372414035709",
+    "firebase_url": "https://iiitkfoundationdayapp.firebaseio.com",
+    "project_id": "iiitkfoundationdayapp",
+    "storage_bucket": "iiitkfoundationdayapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:372414035709:android:c37a998d313a0d95",
+        "android_client_info": {
+          "package_name": "sahil.iiitk_foundationday_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "372414035709-tfkf8ilq17l4i0m57q8ktitlqqs1dup7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "sahil.iiitk_foundationday_app",
+            "certificate_hash": "eed433714f18d8668f6ad7ee08c1532e90c26fe3"
+          }
+        },
+        {
+          "client_id": "372414035709-d41db9mrvd7csl25f21b2nlpm5fm4p0a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB59LVOvmWI7eOSDz9kuPFhjrhjOy8AZDM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "372414035709-d41db9mrvd7csl25f21b2nlpm5fm4p0a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
