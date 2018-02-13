@@ -82,6 +82,7 @@ public class Login extends AppCompatActivity {
                 extras.putString("phone",personPhone);
                 intent.putExtras(extras);
                 startActivity(intent);
+                finish();    //so that user cannot go to login screen by pressing back button
             }
 
             @Override
@@ -186,6 +187,7 @@ public class Login extends AppCompatActivity {
                 extras.putString("email",personEmail);
                 intent.putExtras(extras);
                 startActivity(intent);
+                finish();    //so that user cannot go to login screen by pressing back button
             }
         } catch (ApiException e) {
             // The ApiException status code indicates the detailed failure reason.
