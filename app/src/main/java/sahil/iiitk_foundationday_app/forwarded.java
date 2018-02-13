@@ -15,6 +15,7 @@ public class forwarded extends AppCompatActivity {
         if (extras!=null){
             String details="Name: " +extras.getString("name");
             details=details+"\nEmail: "+extras.getString("email");
+            details=details+"\nPhone:"+extras.getString("phone");
             text.setText(details);
         }
 
