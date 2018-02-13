@@ -4,16 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="sahil.iiitk_foundationday_app.MainActivity">
+    tools:context="sahil.iiitk_foundationday_app.forwarded">
 
-    <Button
-        android:id="@+id/button2"
+    <TextView
+        android:id="@+id/text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="20sp"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="Button"
-        tools:layout_editor_absoluteX="135dp"
-        tools:layout_editor_absoluteY="218dp"
-        android:onClick="gotoLogin"/>
+        android:layout_marginTop="40dp"
+        />
 </RelativeLayout>
