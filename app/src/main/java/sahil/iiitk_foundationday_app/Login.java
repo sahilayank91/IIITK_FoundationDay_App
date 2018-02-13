@@ -1,14 +1,9 @@
 package sahil.iiitk_foundationday_app;
 
-import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.InputType;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,10 +17,6 @@ import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
-import com.google.firebase.FirebaseTooManyRequestsException;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
 
@@ -42,15 +33,8 @@ public class Login extends AppCompatActivity {
     String personName;
     String personEmail;
     String personPhone;
-    private FirebaseAuth mAuth;
 
     private static final String KEY_VERIFY_IN_PROGRESS = "key_verify_in_progress";
-    private static final int STATE_INITIALIZED = 1;
-    private static final int STATE_CODE_SENT = 2;
-    private static final int STATE_VERIFY_FAILED = 3;
-    private static final int STATE_VERIFY_SUCCESS = 4;
-    private static final int STATE_SIGNIN_FAILED = 5;
-    private static final int STATE_SIGNIN_SUCCESS = 6;
     private boolean mVerificationInProgress = false;
     private String mVerificationId;
     private PhoneAuthProvider.ForceResendingToken mResendToken;
@@ -64,7 +48,6 @@ public class Login extends AppCompatActivity {
         if (savedInstanceState != null) {
             onRestoreInstanceState(savedInstanceState);
         }
-        mAuth = FirebaseAuth.getInstance();
         //initialising the google signin process
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
@@ -92,7 +75,8 @@ public class Login extends AppCompatActivity {
                 // 2 - Auto-retrieval. On some devices Google Play services can automatically
                 //     detect the incoming verification SMS and perform verification without
                 //     user action.
-                Toast.makeText(getApplicationContext(),"Verified",Toast.LENGTH_SHORT).show();
+                mVerificationInProgress=false;
+                Toast.makeText(getApplicationContext(),"OTP Verified",Toast.LENGTH_SHORT).show();
                 Intent intent=new Intent(getApplicationContext(),forwarded.class);
                 Bundle  extras=new Bundle();
                 extras.putString("phone",personPhone);
@@ -104,17 +88,7 @@ public class Login extends AppCompatActivity {
             public void onVerificationFailed(FirebaseException e) {
                 // This callback is invoked in an invalid request for verification is made,
                 // for instance if the the phone number format is not valid.
-
-                if (e instanceof FirebaseAuthInvalidCredentialsException) {
-                    // Invalid request
-                    // ...
-                } else if (e instanceof FirebaseTooManyRequestsException) {
-                    // The SMS quota for the project has been exceeded
-                    // ...
-                }
-                Toast.makeText(getApplicationContext(),"Failed: "+e.getLocalizedMessage(),Toast.LENGTH_SHORT).show();
-                // Show a message and update the UI
-                // ...
+                Toast.makeText(getApplicationContext(),"Verification Failed: "+e.getLocalizedMessage(),Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -123,11 +97,18 @@ public class Login extends AppCompatActivity {
                 // The SMS verification code has been sent to the provided phone number, we
                 // now need to ask the user to enter the code and then construct a credential
                 // by combining the code with a verification ID.
-                Log.d(TAG, "onCodeSent:" + verificationId);
                 // Save verification ID and resending token so we can use them later
                 mVerificationId = verificationId;
                 mResendToken = token;
-                Toast.makeText(getApplicationContext(),"Code sent",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),"OTP sent",Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onCodeAutoRetrievalTimeOut(String s) {
+                super.onCodeAutoRetrievalTimeOut(s);
+                Toast.makeText(getApplicationContext(),"OTP detection timeout. Try resending OTP",Toast.LENGTH_SHORT).show();
+                phoneButton.setText("Resend OTP");
+                phoneButton.setEnabled(true);
             }
         };
     }
@@ -135,19 +116,13 @@ public class Login extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
-        // Check for existing Google Sign In account, if the user is already signed in
-        // the GoogleSignInAccount will be non-null.
-        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
-
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        if (mVerificationInProgress && validatePhoneNumber()) {
+        if (mVerificationInProgress && validatePhoneNumber(phoneField.getText().toString())) {
             startPhoneNumberVerification(phoneField.getText().toString());
         }
     }
-    private boolean validatePhoneNumber() {
-        String phoneNumber = phoneField.getText().toString();
-        if (TextUtils.isEmpty(phoneNumber) && phoneField.getText().length()>9) {
-            phoneField.setError("Invalid phone number.");
+    private boolean validatePhoneNumber(String num) {
+        if (TextUtils.isEmpty(num) || num.length()<10) {
+            phoneField.setError("Invalid phone number");
             return false;
         }
         return true;
@@ -166,33 +141,20 @@ public class Login extends AppCompatActivity {
     //to handle login by otp verification
     public void phoneLogin(View view){
         personPhone=phoneField.getText().toString();
-        if (validatePhoneNumber()){
+        if (validatePhoneNumber(personPhone)){
             startPhoneNumberVerification(personPhone);
-        }else{
+            phoneButton.setEnabled(false);
+            phoneButton.setText("Waiting for OTP ...");
         }
-
     }
     private void startPhoneNumberVerification(String phoneNumber) {
-        // [START start_phone_auth]
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
                 phoneNumber,        // Phone number to verify
                 60,                 // Timeout duration
                 TimeUnit.SECONDS,   // Unit of timeout
                 this,               // Activity (for callback binding)
-                mCallbacks);        // OnVerificationStateChangedCallbacks
-        // [END start_phone_auth]
-
+                mCallbacks);        // OnVerificationStateChangedCallback
         mVerificationInProgress = true;
-    }
-    private void resendVerificationCode(String phoneNumber,
-                                        PhoneAuthProvider.ForceResendingToken token) {
-        PhoneAuthProvider.getInstance().verifyPhoneNumber(
-                phoneNumber,        // Phone number to verify
-                60,                 // Timeout duration
-                TimeUnit.SECONDS,   // Unit of timeout
-                this,               // Activity (for callback binding)
-                mCallbacks,         // OnVerificationStateChangedCallbacks
-                token);             // ForceResendingToken from callbacks
     }
 
     //to handle signin by otp verification
@@ -215,8 +177,8 @@ public class Login extends AppCompatActivity {
             // Signed in successfully, show authenticated UI.
             GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
             if (acct != null) {
-                personName = acct.getDisplayName();
-                personEmail = acct.getEmail();
+                personName = account.getDisplayName();
+                personEmail = account.getEmail();
                // Launching landing activity for registration
                 Intent intent=new Intent(this,forwarded.class);
                 Bundle extras=new Bundle();
