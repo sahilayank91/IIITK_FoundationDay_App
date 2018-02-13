@@ -25,7 +25,6 @@ import java.util.concurrent.TimeUnit;
 public class Login extends AppCompatActivity {
 
     GoogleSignInClient mGoogleSignInClient;
-    private static final String TAG = "PhoneAuthActivity";
     SignInButton signInButton;
     Button phoneButton;
     EditText phoneField;
