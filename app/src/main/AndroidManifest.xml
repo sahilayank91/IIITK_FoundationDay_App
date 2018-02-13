@@ -16,10 +16,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"></activity>
-        <activity android:name=".views.Login_Screen"></activity>
-        <activity android:name=".Login" />
-        <activity android:name=".forwarded"></activity>
+        <activity android:name=".views.Login_Screen" />
+        <activity android:name=".views.Login" />
+        <activity android:name=".views.forwarded" />
     </application>
 
 </manifest>

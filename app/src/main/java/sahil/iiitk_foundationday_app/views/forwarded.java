@@ -1,8 +1,10 @@
-package sahil.iiitk_foundationday_app;
+package sahil.iiitk_foundationday_app.views;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
+
+import sahil.iiitk_foundationday_app.R;
 
 public class forwarded extends AppCompatActivity {
 
@@ -18,6 +20,5 @@ public class forwarded extends AppCompatActivity {
             details=details+"\nPhone:"+extras.getString("phone");
             text.setText(details);
         }
-
     }
 }
