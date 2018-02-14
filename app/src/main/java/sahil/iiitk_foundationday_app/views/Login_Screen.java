@@ -32,6 +32,7 @@ import sahil.iiitk_foundationday_app.R;
 
 public class Login_Screen extends AppCompatActivity
 {
+    Button register;
     ImageView inb;
     Button submit;
     EditText id;
@@ -55,9 +56,6 @@ public class Login_Screen extends AppCompatActivity
     private boolean backPressedToExitOnce = false;
     private Toast toast = null;
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -79,6 +77,7 @@ public class Login_Screen extends AppCompatActivity
         mGoogleSignInClient = GoogleSignIn.getClient(this,gso);
         signInButton=(SignInButton) findViewById(R.id.sign_in_button);
         signInButton.setSize(SignInButton.SIZE_STANDARD);
+        register=(Button) findViewById(R.id.button6);
         phoneButton=(Button)findViewById(R.id.phonebutton);
         signInButton.setOnClickListener(
                 new View.OnClickListener() {
@@ -112,6 +111,8 @@ public class Login_Screen extends AppCompatActivity
                     }
                 }
         );
+
+
 
     }
     private void callLogInDialog()
