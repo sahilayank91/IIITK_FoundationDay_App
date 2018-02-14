@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
+import sahil.iiitk_foundationday_app.views.Login;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -12,8 +14,5 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
-    public void gotoLogin(View view){
-        Intent intent=new Intent(this,Login.class);
-        this.startActivity(intent);
-    }
+
 }

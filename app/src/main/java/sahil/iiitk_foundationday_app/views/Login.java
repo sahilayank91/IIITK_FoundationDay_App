@@ -1,4 +1,4 @@
-package sahil.iiitk_foundationday_app;
+package sahil.iiitk_foundationday_app.views;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -21,6 +21,8 @@ import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
 
 import java.util.concurrent.TimeUnit;
+
+import sahil.iiitk_foundationday_app.R;
 
 public class Login extends AppCompatActivity {
 
@@ -157,7 +159,7 @@ public class Login extends AppCompatActivity {
         mVerificationInProgress = true;
     }
 
-    //to handle signin by otp verification
+    //to handle signin by google verification
     public void gSignIn(){
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_SIGN_IN);

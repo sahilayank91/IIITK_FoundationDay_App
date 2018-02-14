@@ -4,12 +4,9 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Window;
-import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
@@ -27,12 +24,10 @@ public class Splash_Activity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_);
+
         // hide Action Bar
-
-
         ActionBar action = getSupportActionBar();
         action.hide();
-
         action.setBackgroundDrawable(new ColorDrawable(Color.BLACK));
         tv = (TextView) findViewById(R.id.tv);
         iv = (ImageView) findViewById(R.id.iv);
@@ -46,7 +41,7 @@ public class Splash_Activity extends AppCompatActivity
             {
                 try{
                     sleep(4000);
-                    Intent i = new Intent(getApplicationContext(),Login_Screen.class);
+                    Intent i = new Intent(getApplicationContext(),Login.class);
                     startActivity(i);
                     finish();
                 }

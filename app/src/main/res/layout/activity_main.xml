@@ -6,14 +6,4 @@
     android:layout_height="match_parent"
     tools:context="sahil.iiitk_foundationday_app.MainActivity">
 
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="Button"
-        tools:layout_editor_absoluteX="135dp"
-        tools:layout_editor_absoluteY="218dp"
-        android:onClick="gotoLogin"/>
 </RelativeLayout>

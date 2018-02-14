@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="sahil.iiitk_foundationday_app.forwarded">
+    tools:context="sahil.iiitk_foundationday_app.views.forwarded">
 
     <TextView
         android:id="@+id/text"
@@ -15,4 +15,23 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp"
         />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:text="GET REGISTRATION ID"
+        android:onClick="getFFid"
+        android:textColor="@color/colorPrimaryDark"
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="280dp"
+        android:layout_centerHorizontal="true"
+        android:text="Send email"
+        android:onClick="sendEmail"
+        android:textColor="@color/colorPrimaryDark"
+        />
+
 </RelativeLayout>

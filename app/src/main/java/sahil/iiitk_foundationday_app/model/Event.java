@@ -9,7 +9,7 @@ public class Event {
 
     private long event_id;
     private String name,date,start_time,end_time,photo,details,coordinator,location;
-    private int prize,max_players;
+    private int prize,max_members;
 
     public void Event(){
     }
@@ -27,7 +27,7 @@ public class Event {
         if (object.has("coordinator")) this.coordinator=object.getString("coordinator");
         if (object.has("location")) this.location=object.getString("location");
         if (object.has("prize")) this.prize=object.getInt("prize");
-        if (object.has("max_players")) this.max_players=object.getInt("max_players");
+        if (object.has("max_members")) this.max_members=object.getInt("max_members");
     }
 
     @Override
@@ -118,11 +118,11 @@ public class Event {
         this.prize = prize;
     }
 
-    public int getMax_players() {
-        return max_players;
+    public int getMax_members() {
+        return max_members;
     }
 
-    public void setMax_players(int max_players) {
-        this.max_players = max_players;
+    public void setMax_members(int max_members) {
+        this.max_members = max_members;
     }
 }
