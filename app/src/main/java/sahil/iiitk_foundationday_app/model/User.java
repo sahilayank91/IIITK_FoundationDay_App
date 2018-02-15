@@ -9,7 +9,7 @@ import org.json.JSONObject;
 public class User {
 
 	private long user_id;
-	private String name,email,password,salt,phone,otp,department,college,collegeid;
+	private String name,email,password,salt,phone,otp,department,college,collegeid, gender;
 	private int account_level;
 
 
@@ -27,7 +27,7 @@ public class User {
 		if(author.has("department"))this.department = author.getString("department");
 		if(author.has("college"))this.college = author.getString("college");
 		if(author.has("collegeid"))this.collegeid = author.getString("collegeid");
-
+		if(author.has("gender"))this.gender = author.getString("gender");
 	}
 
 	public User(Context context){
@@ -80,6 +80,9 @@ public class User {
 	}
 	public String getOTP(){ return otp;}
 	public void setOtp(String otp){this.otp = otp; }
+
+	public String getGender(){ return gender;}
+	public void setGender(String gender){this.gender = gender; }
 
 	public String getDepartment(){return this.department;}
 	public void setDepartment(String department){this.department = department;}
