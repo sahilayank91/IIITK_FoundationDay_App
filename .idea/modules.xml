@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/IIITK_FoundationDay_App.iml" filepath="$PROJECT_DIR$/IIITK_FoundationDay_App.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Flair_fiesta.iml" filepath="$PROJECT_DIR$/Flair_fiesta.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

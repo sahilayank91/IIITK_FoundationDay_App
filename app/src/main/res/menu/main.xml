@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/logoutInside"
+        android:orderInCategory="101"
+        android:title="LOGOUT"
+        android:visible="true"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/bell"
+        android:icon="@drawable/ic_add_alert_black_24dp"
+        android:orderInCategory="11"
+        android:title="bell"
+        android:visible="true"
+        app:showAsAction="always" />
+
+</menu>
+
