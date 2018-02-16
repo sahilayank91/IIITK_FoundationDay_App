@@ -2,16 +2,19 @@ package sahil.iiitk_foundationday_app;
 
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.graphics.Color;
 import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.util.Patterns;
 
@@ -74,15 +77,29 @@ public class Register extends AppCompatActivity {
             phone.setText(bundle_phone);
         }
 
-        String[] arraySpinner = new String[] {
+        final String[] arraySpinner = new String[] {
                 "1", "2", "3", "4"
         };
-        Spinner s = (Spinner) findViewById(R.id.Year);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, arraySpinner);
+        final Spinner s = (Spinner) findViewById(R.id.Year);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.spinner_item,arraySpinner);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         s.setAdapter(adapter);
-        year = s.getSelectedItem().toString();
+
+        s.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                int pos = adapterView.getSelectedItemPosition();
+                year = arraySpinner[pos];
+            }
+
+            public void onNothingSelected(AdapterView<?> adapterView){
+                TextView errorText = (TextView)s.getSelectedView();
+                errorText.setError("");
+                errorText.setTextColor(Color.RED);//just to highlight that this is an error
+                errorText.setText("Please enter the Year");//changes the selected item text to this
+            }
+        });
     }
 
 
