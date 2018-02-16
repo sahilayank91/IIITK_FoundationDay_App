@@ -107,13 +107,45 @@
             android:textColor="@color/offwhite"
             android:textColorHint="@color/offwhite" />
 
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="35dp"
+            android:layout_below="@id/email_input"
+            android:id="@+id/textyear"
+            android:textColor="@color/offwhite"
+            android:paddingStart="5dp"
+            android:text="@string/year"
+            android:textSize="20dp"/>
+
+        <Spinner
+            android:id="@+id/Year"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:layout_alignEnd="@+id/submit"
+            android:layout_alignTop="@+id/textyear"
+            android:backgroundTint="@color/offwhite"
+            android:paddingStart="150dp"
+            android:textAlignment="center"
+            android:spinnerMode="dialog"/>
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="35dp"
+            android:layout_below="@id/Year"
+            android:id="@+id/gend"
+            android:textSize="20dp"
+            android:text="@string/Gender"
+            android:paddingTop="10dp"
+            android:paddingStart="5dp"
+            android:textColor="@color/offwhite"/>
+
     <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/rad"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="90dp"
-        android:paddingTop="10dp"
-        android:layout_below="@id/email_input"
+        android:paddingStart="100dp"
+        android:paddingTop="3dp"
+        android:layout_below="@id/textyear"
         android:backgroundTint="@color/offwhite"
         android:checkedButton="@id/female"
         android:orientation="horizontal">
@@ -137,11 +169,41 @@
             android:textColor="@color/offwhite" />
     </RadioGroup>
 
+        <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/moc"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="90dp"
+            android:paddingTop="10dp"
+            android:layout_below="@id/rad"
+            android:backgroundTint="@color/offwhite"
+            android:checkedButton="@id/hosteller"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/hosteller"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onMocButtonClicked"
+                android:text="Hosteller"
+                android:buttonTint="@color/offwhite"
+                android:textColor="@color/offwhite" />
+
+            <RadioButton
+                android:id="@+id/dayscholar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/offwhite"
+                android:onClick="onMocButtonClicked"
+                android:text="Day Scholar"
+                android:textColor="@color/offwhite" />
+        </RadioGroup>
+
         <Button
             android:id="@+id/submit"
             android:layout_width="118dp"
             android:layout_height="48dp"
-            android:layout_below="@+id/rad"
+            android:layout_below="@+id/moc"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="23dp"
             android:onClick="sendMessage"

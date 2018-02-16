@@ -7,9 +7,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.Toast;
 import android.util.Patterns;
 
@@ -32,17 +34,23 @@ public class Register extends AppCompatActivity {
     public FirebaseDatabase database;
     public SharedPreferences userdetails;
     public EditText name, college, college_id, department, phone, email;
-    public RadioGroup radioGroup;
-    public RadioButton radioButton;
-    public int selectedId;
+    public RadioGroup radioGroup, mocGroup;
+    public RadioButton radioButton, mocButton;
+    public int selectedId, mocID;
     public String regphone = "^[6789]\\d{9}$";
-    public String gender="", body="", bundle_name="", bundle_email="", bundle_phone="";
+    public String gender = "Female", body = "", bundle_name = "", bundle_email = "", bundle_phone = "", year = "", mos = "Hosteller";
     User user = new User();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+
+        if(getSupportActionBar() != null){
+            getSupportActionBar().setTitle("Registration Form");
+            getSupportActionBar().setHomeButtonEnabled(true);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
 
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
@@ -65,7 +73,18 @@ public class Register extends AppCompatActivity {
             email.setText(bundle_email);
             phone.setText(bundle_phone);
         }
+
+        String[] arraySpinner = new String[] {
+                "1", "2", "3", "4"
+        };
+        Spinner s = (Spinner) findViewById(R.id.Year);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, arraySpinner);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        s.setAdapter(adapter);
+        year = s.getSelectedItem().toString();
     }
+
 
     public void onRadioButtonClicked(View view){
         radioGroup = (RadioGroup) findViewById(R.id.rad);
@@ -74,6 +93,14 @@ public class Register extends AppCompatActivity {
         // find the radiobutton by returned id
         radioButton = (RadioButton) findViewById(selectedId);
         gender = radioButton.getText().toString();
+    }
+
+    public void onMocButtonClicked(View view){
+        mocGroup = (RadioGroup)findViewById(R.id.moc);
+        mocID = mocGroup.getCheckedRadioButtonId();
+
+        mocButton = (RadioButton)findViewById(mocID);
+        mos = mocButton.getText().toString();
     }
 
     public void getFFid(){
@@ -162,6 +189,16 @@ public class Register extends AppCompatActivity {
             flag = 1;
         }
 
+        if(year.length() == 0){
+            Toast.makeText(this, "Enter correct year", Toast.LENGTH_SHORT).show();
+            flag = 1;
+        }
+
+        if(mocID < 0){
+            mocButton.setError("Mode of Stay is required!");
+            flag = 1;
+        }
+
         if(flag == 0)
             return true;
         else
@@ -179,6 +216,8 @@ public class Register extends AppCompatActivity {
             user.setCollege(college.getText().toString());
             user.setCollegeid(college_id.getText().toString());
             user.setGender(gender);
+            user.setYear(year);
+            user.setMos(mos);
             getFFid();
         }
         else{
@@ -203,6 +242,9 @@ public class Register extends AppCompatActivity {
         editor.putString("college",college.getText().toString());
         editor.putString("collegeid",college_id.getText().toString());
         editor.putString("gender", gender);
+        editor.putString("Year", year);
+        editor.putString("MOS", mos);
+        editor.putString("FFID", ""+id);
         editor.apply();
     }
 }
