@@ -5,4 +5,6 @@
     <color name="colorAccent">#FF4081</color>
     <color name="white">#ffffff</color>
     <color name="status">#000000</color>
+    <color name="ert">#800080</color>
+    <color name="btn">#ff9d1b</color>
 </resources>
