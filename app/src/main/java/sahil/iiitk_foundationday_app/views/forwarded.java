@@ -22,6 +22,8 @@ import com.google.firebase.database.ValueEventListener;
 import sahil.iiitk_foundationday_app.R;
 import sahil.iiitk_foundationday_app.mail.GMailSender;
 
+import sahil.iiitk_foundationday_app.R;
+
 public class forwarded extends AppCompatActivity {
 
     long uid=0;
@@ -43,7 +45,6 @@ public class forwarded extends AppCompatActivity {
             details="Name: "+name+"\nEmail: "+email+"\nPhone"+phone;
             text.setText(details);
         }
-
     }
     public void getFFid(View view){
         // Write a message to the database

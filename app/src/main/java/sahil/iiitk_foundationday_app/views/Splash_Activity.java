@@ -1,12 +1,16 @@
 package sahil.iiitk_foundationday_app.views;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
@@ -24,8 +28,13 @@ public class Splash_Activity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_);
-
         // hide Action Bar
+        if (android.os.Build.VERSION.SDK_INT >= 21) {
+            Window window = this.getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.setStatusBarColor(this.getResources().getColor(R.color.status));
+        }
         ActionBar action = getSupportActionBar();
         action.hide();
         action.setBackgroundDrawable(new ColorDrawable(Color.BLACK));
@@ -40,10 +49,13 @@ public class Splash_Activity extends AppCompatActivity
             public void run()
             {
                 try{
-                   // sleep(4000);
-                    Intent i = new Intent(getApplicationContext(),Login.class);
-                    startActivity(i);
-                    finish();
+                    sleep(4000);
+
+                        // login activity
+                        Intent i = new Intent(getApplicationContext(), Login_Screen.class);
+                        startActivity(i);
+                        finish();
+
                 }
                 catch (Exception ex)
                 {
@@ -52,5 +64,11 @@ public class Splash_Activity extends AppCompatActivity
             }
         };
         loading.start();
+    }
+    public boolean isLoggedIn(){
+        SharedPreferences sp=getSharedPreferences("userInfo",this.MODE_PRIVATE);
+        if (sp.getString("status","false").equals("true"))
+            return true;
+        else return false;
     }
 }
