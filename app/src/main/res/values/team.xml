@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+
+    <string-array name="positions">
+        <item>Mentor</item>
+        <item>Member</item>
+        <item>Member</item>
+        <item>Volunteer</item>
+        <item>Volunteer</item>
+    </string-array>
+    <string-array name="names">
+        <item>Sahil Ayank</item>
+        <item>Tanuj Mehta</item>
+        <item>Shashwat Singh</item>
+        <item>Vipasa Chandwani</item>
+        <item>Gaurav</item>
+    </string-array>
+    <string-array name="emails">
+        <item>2015kucp1025@iiitkota.ac.in</item>
+        <item>2017kucp1017@iiitkota.ac.in</item>
+        <item>2017kucp1054@iiitkota.ac.in</item>
+        <item>2016kucp1011@iiitkota.ac.in</item>
+        <item>2016kucp1002@iiitkota.ac.in</item>
+    </string-array>
+    <string-array name="facebook">
+        <item>https://www.facebook.com/sahil.ayank</item>
+        <item>https://www.facebook.com/tanuj.mehta.0</item>
+        <item>https://www.facebook.com/shashwat.singh.545</item>
+        <item>https://www.facebook.com/vipasha.chandwani</item>
+        <item>https://www.facebook.com/gaurav.khandelwal.3950178</item>
+    </string-array>
+</resources>

@@ -33,5 +33,13 @@
         android:layout_below="@+id/phoneButton"
         android:layout_marginTop="20dp"
         android:layout_centerHorizontal="true" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/sign_in_button"
+        android:text="see our Team"
+        android:onClick="seeTeam"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"/>
 
 </RelativeLayout>

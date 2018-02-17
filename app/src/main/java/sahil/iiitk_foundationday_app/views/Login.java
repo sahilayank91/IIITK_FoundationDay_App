@@ -196,4 +196,8 @@ public class Login extends AppCompatActivity {
             Toast.makeText(this, "Exception " + e.getStatusCode(), Toast.LENGTH_SHORT).show();
         }
     }
+    //to go to another activity which shows different fragments
+    public void seeTeam(View view){
+       this.startActivity(new Intent(this,ParentForFrag.class));
+    }
 }
