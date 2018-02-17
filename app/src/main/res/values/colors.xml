@@ -7,4 +7,8 @@
     <color name="status">#000000</color>
     <color name="ert">#800080</color>
     <color name="btn">#ff9d1b</color>
+    <color name="offwhite">#dddddd</color>
+    <color name="red">#ff9966</color>
+    <color name="darkred">#dd2020</color>
+    <color name="black">#000000</color>
 </resources>
