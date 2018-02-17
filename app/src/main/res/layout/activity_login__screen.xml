@@ -36,6 +36,7 @@
         android:background="@color/btn"
         android:layout_width="300dp"
         android:textStyle="bold"
+
         android:layout_height="wrap_content"
         android:layout_above="@+id/button5"
         android:layout_alignStart="@+id/phonebutton"
@@ -52,17 +53,18 @@
         android:layout_marginBottom="23dp"
         android:layout_marginStart="37dp"
         android:background="#000000"
+        android:visibility="invisible"
         android:text="Register Later"
         android:fontFamily="serif"
         android:textColor="@color/colorAccent"
         android:typeface="monospace"
         android:textSize="17sp" />
 
-    <Button
+    <TextView
         android:fontFamily="serif"
-        android:textSize="17sp"
-        android:textStyle="bold"
         android:typeface="monospace"
+        android:textSize="20sp"
+        android:textStyle="bold"
         android:textColor="@color/colorAccent"
         android:id="@+id/button6"
         android:background="#000000"
@@ -71,7 +73,7 @@
         android:layout_alignBottom="@+id/button5"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="34dp"
-        android:text="Register Now" />
+        android:text="Register Later" />
 
     <ImageView
         android:id="@+id/imageView2"

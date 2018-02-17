@@ -1,9 +1,285 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="sahil.iiitk_foundationday_app.views.Register">
+    android:layout_height="fill_parent"
+    android:layout_width="fill_parent"
+    android:background="@drawable/bb"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
 
-</android.support.constraint.ConstraintLayout>
+    <RelativeLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true"
+        android:orientation="vertical"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp"
+        tools:context="sahil.iiitk_foundationday_app.views.Register">
+
+        <ImageView
+            android:id="@+id/img"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:paddingTop="10dp"
+            android:src="@drawable/offreg" />
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/text_input_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/img"
+            android:textColorHint="@color/offwhite">
+
+            <EditText
+                android:id="@+id/name_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@id/img"
+                android:backgroundTint="@color/offwhite"
+                android:hint="Name"
+                android:inputType="textPersonName"
+                android:paddingTop="20dp"
+                android:textColor="@color/offwhite"
+                android:textColorHint="@color/offwhite" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/text_input_layout2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/text_input_layout"
+            android:textColorHint="@color/offwhite">
+
+            <EditText
+                android:id="@+id/college_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/text_input_layout"
+                android:backgroundTint="@color/offwhite"
+                android:hint="College"
+                android:inputType="text"
+                android:textColor="@color/offwhite"
+                android:textColorHint="@color/offwhite" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/text_input_layout3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/text_input_layout2"
+            android:textColorHint="@color/offwhite">
+
+            <EditText
+                android:id="@+id/college_id_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/text_input_layout2"
+                android:backgroundTint="@color/offwhite"
+                android:hint="College ID"
+                android:inputType="text"
+                android:textColor="@color/offwhite"
+                android:textColorHint="@color/offwhite" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/text_input_layout4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/text_input_layout3"
+            android:textColorHint="@color/offwhite">
+
+            <EditText
+                android:id="@+id/branch_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/text_input_layout3"
+                android:backgroundTint="@color/offwhite"
+                android:hint="Branch"
+                android:inputType="text"
+                android:textColor="@color/offwhite"
+                android:textColorHint="@color/offwhite" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/text_input_layout5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/text_input_layout4"
+            android:textColorHint="@color/offwhite">
+
+            <EditText
+                android:id="@+id/mobile_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/text_input_layout4"
+                android:backgroundTint="@color/offwhite"
+                android:ems="10"
+                android:hint="Mobile No."
+                android:inputType="number"
+                android:textColor="@color/offwhite"
+                android:textColorHint="@color/offwhite" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/text_input_layout6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/text_input_layout5"
+            android:textColorHint="@color/offwhite">
+
+            <EditText
+                android:id="@+id/email_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/text_input_layout5"
+                android:backgroundTint="@color/offwhite"
+                android:ems="10"
+                android:hint="E-Mail ID"
+                android:inputType="textEmailAddress"
+                android:textColor="@color/offwhite"
+                android:textColorHint="@color/offwhite" />
+        </android.support.design.widget.TextInputLayout>
+
+
+        <TextView
+            android:id="@+id/textyear"
+            android:layout_width="fill_parent"
+            android:layout_height="35dp"
+            android:layout_alignEnd="@+id/gend"
+            android:layout_below="@id/text_input_layout6"
+            android:text="@string/year"
+            android:paddingStart="5dp"
+            android:textColor="@color/offwhite"
+            android:textSize="20dp" />
+
+        <Spinner
+            android:id="@+id/Year"
+            android:layout_width="fill_parent"
+            android:layout_height="35dp"
+            android:layout_alignEnd="@+id/submit"
+            android:layout_below="@id/text_input_layout6"
+            android:backgroundTint="@color/offwhite"
+            android:gravity="right"
+            android:paddingStart="150dp"
+            android:prompt="@string/year"
+            android:spinnerMode="dialog"
+            android:textAlignment="gravity" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="20dp" />
+
+        <TextView
+            android:id="@+id/gend"
+            android:layout_width="100dp"
+            android:layout_height="35dp"
+            android:layout_below="@id/textyear"
+            android:paddingStart="5dp"
+            android:paddingTop="5dp"
+            android:text="@string/Gender"
+            android:textColor="@color/offwhite"
+            android:textSize="20dp" />
+
+        <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/rad"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/Year"
+            android:backgroundTint="@color/offwhite"
+            android:checkedButton="@id/female"
+            android:orientation="horizontal"
+            android:paddingStart="100dp"
+            android:paddingTop="3dp">
+
+            <RadioButton
+                android:id="@+id/female"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/offwhite"
+                android:onClick="onRadioButtonClicked"
+                android:text="Female"
+                android:textColor="@color/offwhite" />
+
+            <RadioButton
+                android:id="@+id/male"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/offwhite"
+                android:onClick="onRadioButtonClicked"
+                android:text="Male"
+                android:textColor="@color/offwhite" />
+        </RadioGroup>
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="20dp" />
+
+        <TextView
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:id="@+id/iam"
+            android:layout_below="@id/gend"
+            android:text="I am"
+            android:textColor="@color/offwhite"
+            android:textSize="20dp"
+            android:paddingLeft="5dp"
+            android:paddingTop="10dp"/>
+
+        <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/moc"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rad"
+            android:backgroundTint="@color/offwhite"
+            android:layout_toEndOf="@+id/iam"
+            android:checkedButton="@id/hosteller"
+            android:orientation="horizontal"
+            android:paddingTop="10dp"
+            android:paddingLeft="40dp">
+
+            <RadioButton
+                android:id="@+id/hosteller"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/offwhite"
+                android:onClick="onMocButtonClicked"
+                android:text="Hosteller"
+                android:textColor="@color/offwhite" />
+
+            <RadioButton
+                android:id="@+id/dayscholar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/offwhite"
+                android:onClick="onMocButtonClicked"
+                android:text="Day Scholar"
+                android:textColor="@color/offwhite" />
+        </RadioGroup>
+
+        <Button
+            android:id="@+id/submit"
+            android:layout_width="118dp"
+            android:layout_height="48dp"
+            android:layout_below="@+id/moc"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="23dp"
+            android:onClick="sendMessage"
+            android:text="Register"
+            android:textColor="@color/black" />
+
+    </RelativeLayout>
+</ScrollView>

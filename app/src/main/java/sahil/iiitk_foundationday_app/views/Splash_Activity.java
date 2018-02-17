@@ -1,6 +1,7 @@
 package sahil.iiitk_foundationday_app.views;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
@@ -49,9 +50,12 @@ public class Splash_Activity extends AppCompatActivity
             {
                 try{
                     sleep(4000);
-                    Intent i = new Intent(getApplicationContext(),Login_Screen.class);
-                    startActivity(i);
-                    finish();
+
+                        // login activity
+                        Intent i = new Intent(getApplicationContext(), Login_Screen.class);
+                        startActivity(i);
+                        finish();
+
                 }
                 catch (Exception ex)
                 {
@@ -60,5 +64,11 @@ public class Splash_Activity extends AppCompatActivity
             }
         };
         loading.start();
+    }
+    public boolean isLoggedIn(){
+        SharedPreferences sp=getSharedPreferences("userInfo",this.MODE_PRIVATE);
+        if (sp.getString("status","false").equals("true"))
+            return true;
+        else return false;
     }
 }

@@ -4,6 +4,7 @@ import android.animation.ObjectAnimator;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Handler;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -28,6 +29,13 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
 
@@ -64,6 +72,7 @@ public class Login_Screen extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login__screen);
+
         if (android.os.Build.VERSION.SDK_INT >= 21) {
             Window window = this.getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
@@ -87,8 +96,11 @@ public class Login_Screen extends AppCompatActivity
         mGoogleSignInClient = GoogleSignIn.getClient(this,gso);
         signInButton=(SignInButton) findViewById(R.id.sign_in_button);
         signInButton.setSize(SignInButton.SIZE_STANDARD);
-        register=(Button) findViewById(R.id.button6);
+        //register=(Button) findViewById(R.id.button6);
         phoneButton=(Button)findViewById(R.id.phonebutton);
+        phoneButton.setEnabled(true);
+        signInButton.setEnabled(true);
+        ff_login_button.setEnabled(true);
         signInButton.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
@@ -141,6 +153,11 @@ public class Login_Screen extends AppCompatActivity
                 {
                     id.setError("Invalid FFID");
                 }
+                else
+                {
+                    checkFFID(id.getText().toString());
+                    myDialog.dismiss();
+                }
             }
         });
 
@@ -168,11 +185,13 @@ public class Login_Screen extends AppCompatActivity
                 //     user action.
                 mVerificationInProgress=false;
                 Toast.makeText(getApplicationContext(),"OTP Verified",Toast.LENGTH_SHORT).show();
-                Intent intent=new Intent(getApplicationContext(),forwarded.class);
-                Bundle  extras=new Bundle();
-                extras.putString("phone",personPhone);
-                intent.putExtras(extras);
-                startActivity(intent);
+//                Intent intent=new Intent(getApplicationContext(),forwarded.class);
+//                Bundle  extras=new Bundle();
+//                extras.putString("phone",personPhone);
+                checkPhone(personPhone);
+                //Toast.makeText(getApplicationContext(),"Phone Number verified",Toast.LENGTH_SHORT).show();
+//                intent.putExtras(extras);
+//                startActivity(intent);
                 myDialog.dismiss();    //so that user cannot go to login screen by pressing back button
             }
 
@@ -192,6 +211,7 @@ public class Login_Screen extends AppCompatActivity
                 // Save verification ID and resending token so we can use them later
                 mVerificationId = verificationId;
                 mResendToken = token;
+                verify.setEnabled(false);
                 Toast.makeText(getApplicationContext(),"OTP sent",Toast.LENGTH_SHORT).show();
             }
 
@@ -207,6 +227,39 @@ public class Login_Screen extends AppCompatActivity
         myDialog.show();
     }
 
+    //this method checks if a registered account exists for the given phone number in
+//firebase. Appropriate action to be done inside if-else statements to get required usage.
+//this will be used on the onCreate() method of login screen
+    public void checkPhone(String a){
+        phoneButton.setEnabled(false);
+        signInButton.setEnabled(false);
+        ff_login_button.setEnabled(false);
+        FirebaseDatabase db=FirebaseDatabase.getInstance();
+        DatabaseReference ref=db.getReference().child("Users");
+        Query query=ref.orderByChild("phone").equalTo(a);
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists()){
+                    //do appropriate action here when account with this phone number exists
+                    Intent i = new Intent(getApplicationContext(),forwarded.class);
+                    startActivity(i);
+                    finish();
+                }else{
+                    //do appropriate action here when account with this phone number does not exist
+                    Toast.makeText(getApplicationContext(),"Look like you have not register with this Phone Number , please register first.",Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(getApplicationContext(),Register.class);
+                    Bundle extra = new Bundle();
+                    extra.putString("phone",personPhone);
+                    i.putExtras(extra);
+                    startActivity(i);
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
+    }
 
     // handle phone
     @Override
@@ -239,14 +292,13 @@ public class Login_Screen extends AppCompatActivity
         personPhone=phoneField.getText().toString();
         if (validatePhoneNumber(personPhone)){
             startPhoneNumberVerification(personPhone);
-            verify.setEnabled(false);
             verify.setText("Waiting for OTP ...");
         }
     }
     private void startPhoneNumberVerification(String phoneNumber) {
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
                 phoneNumber,        // Phone number to verify
-                15,                 // Timeout duration
+                45,                 // Timeout duration
                 TimeUnit.SECONDS,   // Unit of timeout
                 this,               // Activity (for callback binding)
                 mCallbacks);        // OnVerificationStateChangedCallback
@@ -277,13 +329,17 @@ public class Login_Screen extends AppCompatActivity
             if (acct != null) {
                 personName = account.getDisplayName();
                 personEmail = account.getEmail();
+
+
+
                 // Launching landing activity for registration
-                Intent intent=new Intent(this,forwarded.class);
-                Bundle extras=new Bundle();
-                extras.putString("name",personName);
-                extras.putString("email",personEmail);
-                intent.putExtras(extras);
-                startActivity(intent);
+                checkEmail(personEmail);
+//                Intent intent=new Intent(this,forwarded.class);
+//                Bundle extras=new Bundle();
+//                extras.putString("name",personName);
+//                extras.putString("email",personEmail);
+//                intent.putExtras(extras);
+//                startActivity(intent);
                 //finish();    //so that user cannot go to login screen by pressing back button
             }
         } catch (ApiException e) {
@@ -293,6 +349,78 @@ public class Login_Screen extends AppCompatActivity
         }
     }
 
+    //this method checks if a registered account exists for the given email id in
+//firebase. Appropriate action to be done inside if-else statements to get required usage.
+//this will be used on the onCreate() method of login screen
+    public void checkEmail( String a){
+        phoneButton.setEnabled(false);
+        signInButton.setEnabled(false);
+        ff_login_button.setEnabled(false);
+        FirebaseDatabase db=FirebaseDatabase.getInstance();
+        DatabaseReference ref=db.getReference().child("Users");
+        Query query=ref.orderByChild("email").equalTo(a);
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists()){
+                    //done
+                    //do appropriate action here when account with this email exists
+                    //Toast.makeText(getApplicationContext(),"Email exists",Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(getApplicationContext(),forwarded.class);
+                    startActivity(i);
+                    finish();
+                }else{
+                    //do appropriate action here when account with this email does not exist
+                    Toast.makeText(getApplicationContext(),"Looks like you have not registered for FF Please register first.",Toast.LENGTH_SHORT).show();
+                    Intent i =  new Intent(getApplicationContext(),Register.class);
+                    Bundle extra = new Bundle();
+                    extra.putString("name",personName);
+                    extra.putString("email",personEmail);
+                    i.putExtras(extra);
+                    startActivity(i);
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
+    }
+
+    //this method checks if a registered account exists for the given user_id/FFID in
+//firebase. Appropriate action to be done inside if-else statements to get required usage.
+//this will be used on the onCreate() method of login screen
+    public void checkFFID(String a){
+        phoneButton.setEnabled(false);
+        signInButton.setEnabled(false);
+        ff_login_button.setEnabled(false);
+        FirebaseDatabase db=FirebaseDatabase.getInstance();
+        DatabaseReference ref=db.getReference().child("Users");
+        String b=a.substring(2);
+        long c = Long.parseLong(b);
+        Query query=ref.orderByChild("user_id").equalTo(a);
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists()){
+                    //done
+                    //do appropriate action here when account with this user_id/FFID number exists
+                    //Toast.makeText(getApplicationContext(),"FFID Exist",Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(getApplicationContext(),forwarded.class);
+                    startActivity(i);
+                    finish();
+                }else{
+                    //do appropriate action here when account with this user_id/FFID does not exist
+                    phoneButton.setEnabled(true);
+                    signInButton.setEnabled(true);
+                    ff_login_button.setEnabled(true);
+                    Toast.makeText(getApplicationContext(),"Invalid FF ID",Toast.LENGTH_SHORT).show();
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
+    }
 
     // OnBackPress Logic
     public void onBackPressed() {

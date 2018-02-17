@@ -2,14 +2,12 @@ package sahil.iiitk_foundationday_app.model;
 
 
 import android.content.Context;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
 public class User {
 
-	private long user_id;
-	private String name,email,password,salt,phone,otp,department,college,collegeid, gender, year, mos;
+	private String user_id,name,email,password,salt,phone,otp,department,college,collegeid, gender, year, mos;
 	private int account_level;
 
 
@@ -18,7 +16,7 @@ public class User {
 
 	}
 	public User(JSONObject author) throws JSONException {
-		if(author.has("user_id"))this.user_id=author.getLong("user_id");
+		if(author.has("user_id"))this.user_id=author.getString("user_id");
 		if(author.has("name"))this.name=author.getString("name");
 		if(author.has("phone"))this.phone=author.getString("phone");
 		if(author.has("email"))this.email=author.getString("email");
@@ -39,15 +37,15 @@ public class User {
 	@Override
 	public boolean equals(Object obj) {
 		User user=(User)obj;
-		if(user.getUser_id()==this.user_id)
+		if(user.getUser_id().equals(this.user_id))
 			return true;
 		else return false;
 	}
 
-	public long getUser_id() {
+	public String getUser_id() {
 		return user_id;
 	}
-	public void setUser_id(long user_id) {
+	public void setUser_id(String user_id) {
 		this.user_id = user_id;
 	}
 	public String getName() {

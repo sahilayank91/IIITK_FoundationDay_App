@@ -16,7 +16,7 @@
         android:focusable="true"
         android:textColorHint="#dddddd"
         android:hint="FF ID (FFK101)"
-        android:inputType="phone" />
+        android:inputType="text" />
 
     <Button
         android:textStyle="bold"
