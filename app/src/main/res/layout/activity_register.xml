@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_height="fill_parent"
     android:layout_width="fill_parent"
-    android:background="@drawable/bb"
-    xmlns:android="http://schemas.android.com/apk/res/android" >
+    android:layout_height="fill_parent"
+    android:background="@drawable/bb">
 
     <RelativeLayout
-
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fitsSystemWindows="true"
@@ -161,8 +160,8 @@
             android:layout_height="35dp"
             android:layout_alignEnd="@+id/gend"
             android:layout_below="@id/text_input_layout6"
-            android:text="@string/year"
             android:paddingStart="5dp"
+            android:text="@string/year"
             android:textColor="@color/offwhite"
             android:textSize="20dp" />
 
@@ -229,27 +228,27 @@
             android:layout_height="20dp" />
 
         <TextView
+            android:id="@+id/iam"
             android:layout_width="60dp"
             android:layout_height="40dp"
-            android:id="@+id/iam"
             android:layout_below="@id/gend"
+            android:paddingLeft="5dp"
+            android:paddingTop="10dp"
             android:text="I am"
             android:textColor="@color/offwhite"
-            android:textSize="20dp"
-            android:paddingLeft="5dp"
-            android:paddingTop="10dp"/>
+            android:textSize="20dp" />
 
         <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/moc"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_below="@id/rad"
-            android:backgroundTint="@color/offwhite"
             android:layout_toEndOf="@+id/iam"
+            android:backgroundTint="@color/offwhite"
             android:checkedButton="@id/hosteller"
             android:orientation="horizontal"
-            android:paddingTop="10dp"
-            android:paddingLeft="40dp">
+            android:paddingLeft="40dp"
+            android:paddingTop="10dp">
 
             <RadioButton
                 android:id="@+id/hosteller"

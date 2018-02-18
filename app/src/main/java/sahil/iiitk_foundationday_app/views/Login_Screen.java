@@ -9,6 +9,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -90,7 +91,7 @@ public class Login_Screen extends AppCompatActivity
                 .requestEmail()
                 .build();
         inb=(ImageView) findViewById(R.id.imageView2);
-        Animation myanim = AnimationUtils.loadAnimation(this,R.anim.mytransition);
+        final Animation myanim = AnimationUtils.loadAnimation(this,R.anim.mytransition);
         inb.startAnimation(myanim);
         ff_login_button=(Button) findViewById(R.id.button4);
         mGoogleSignInClient = GoogleSignIn.getClient(this,gso);
@@ -325,22 +326,10 @@ public class Login_Screen extends AppCompatActivity
         try {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
             // Signed in successfully, show authenticated UI.
-            GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
-            if (acct != null) {
+            if (account != null) {
                 personName = account.getDisplayName();
                 personEmail = account.getEmail();
-
-
-
-                // Launching landing activity for registration
                 checkEmail(personEmail);
-//                Intent intent=new Intent(this,forwarded.class);
-//                Bundle extras=new Bundle();
-//                extras.putString("name",personName);
-//                extras.putString("email",personEmail);
-//                intent.putExtras(extras);
-//                startActivity(intent);
-                //finish();    //so that user cannot go to login screen by pressing back button
             }
         } catch (ApiException e) {
             // The ApiException status code indicates the detailed failure reason.
@@ -363,15 +352,12 @@ public class Login_Screen extends AppCompatActivity
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if(dataSnapshot.exists()){
-                    //done
                     //do appropriate action here when account with this email exists
-                    //Toast.makeText(getApplicationContext(),"Email exists",Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(getApplicationContext(),forwarded.class);
                     startActivity(i);
                     finish();
                 }else{
                     //do appropriate action here when account with this email does not exist
-                    Toast.makeText(getApplicationContext(),"Looks like you have not registered for FF Please register first.",Toast.LENGTH_SHORT).show();
                     Intent i =  new Intent(getApplicationContext(),Register.class);
                     Bundle extra = new Bundle();
                     extra.putString("name",personName);
@@ -382,6 +368,7 @@ public class Login_Screen extends AppCompatActivity
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
+                Log.e("firebase",databaseError.getDetails());
             }
         });
     }
