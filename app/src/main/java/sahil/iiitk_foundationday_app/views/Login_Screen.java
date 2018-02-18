@@ -384,6 +384,7 @@ public class Login_Screen extends AppCompatActivity
                     i.putExtras(extra);
                     avi.setVisibility(View.INVISIBLE);
                     startActivity(i);
+                    finish();
                 }
             }
             @Override

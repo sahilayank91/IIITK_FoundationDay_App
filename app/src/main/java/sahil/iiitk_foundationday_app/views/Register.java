@@ -78,7 +78,7 @@ public class Register extends AppCompatActivity
         }
 
         final String[] arraySpinner = new String[] {
-                "First", "Sec.", "Third", "Fourt."
+                "First", "Sec.", "Third", "Fourth"
         };
         final Spinner s = (Spinner) findViewById(R.id.Year);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.spinner_item,arraySpinner);

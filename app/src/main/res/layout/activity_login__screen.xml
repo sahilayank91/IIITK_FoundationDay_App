@@ -75,12 +75,12 @@
             android:id="@+id/phonebutton"
             android:layout_width="325dp"
             android:layout_height="wrap_content"
-            android:background="@color/btn"
+            android:background="@drawable/mybutton"
             android:text="Continue with Phone Number"
             android:textColor="#dddddd"
             android:layout_gravity="center_horizontal"
             android:textSize="16sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/button4"
@@ -88,7 +88,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_width="325dp"
             android:layout_height="wrap_content"
-            android:background="@color/btn"
+            android:background="@drawable/mybutton"
             android:text="LOG IN WITH FF ID"
             android:textColor="#dddddd"
             android:textSize="16sp"
