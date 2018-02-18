@@ -33,6 +33,7 @@ import sahil.iiitk_foundationday_app.model.User;
 public class Register extends AppCompatActivity
 {
 
+    public FirebaseAuth mAuth;
     public FirebaseDatabase database;
     public SharedPreferences userdetails;
     public EditText name, college, college_id, department, phone, email;
@@ -56,6 +57,8 @@ public class Register extends AppCompatActivity
 
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
+        mAuth = FirebaseAuth.getInstance();
+
         name = (EditText)findViewById(R.id.name_input);
         college = (EditText)findViewById(R.id.college_input);
         college_id = (EditText)findViewById(R.id.college_id_input);
@@ -75,7 +78,7 @@ public class Register extends AppCompatActivity
         }
 
         final String[] arraySpinner = new String[] {
-                "First", "Second", "Third", "Fourth"
+                "First", "Sec.", "Third", "Fourt."
         };
         final Spinner s = (Spinner) findViewById(R.id.Year);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.spinner_item,arraySpinner);
@@ -125,7 +128,7 @@ public class Register extends AppCompatActivity
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 long uid=(long)dataSnapshot.getValue();
-                uid++;
+                uid=uid+101;
                 dataSnapshot.getRef().setValue(uid);
                 Toast.makeText(getApplicationContext(),"Your FFID is : "+uid,Toast.LENGTH_SHORT).show();
                 sendEmail(uid);
@@ -259,7 +262,6 @@ public class Register extends AppCompatActivity
         editor.putString("Year", year);
         editor.putString("MOS", mos);
         editor.putString("FFID", "FF"+id);
-        editor.putString("status","true");
         editor.apply();
     }
     @Override
@@ -275,5 +277,10 @@ public class Register extends AppCompatActivity
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+
     }
 }
