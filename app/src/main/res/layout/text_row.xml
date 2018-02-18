@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-
+<!--
+Made by tanuj
+-->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -76,7 +78,7 @@
                 android:layout_below="@+id/mem_pos"
                 android:layout_marginLeft="10dp"
                 android:layout_toRightOf="@+id/mem_fb"
-                android:src="@drawable/icon_whatsapp" />
+                android:src="@drawable/icon_linkedin" />
 
         </RelativeLayout>
 

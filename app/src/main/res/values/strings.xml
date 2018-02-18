@@ -4,4 +4,7 @@
     <string name="Gender">Gender</string>
     <string name="title">Registration Form</string>
     <string name="iam">I am</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

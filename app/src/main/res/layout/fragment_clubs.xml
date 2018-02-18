@@ -2,13 +2,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="sahil.iiitk_foundationday_app.views.TeamFragment">
-
+    tools:context="sahil.iiitk_foundationday_app.views.ClubsFragment">
     <!--
-Made by tanuj
--->
+    Made by tanuj
+    -->
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerView"
+        android:id="@+id/recyclerViewClubs"
         android:background="#424242"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>

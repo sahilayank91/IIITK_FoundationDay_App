@@ -78,7 +78,7 @@ public class Register extends AppCompatActivity
         }
 
         final String[] arraySpinner = new String[] {
-                "First", "Sec.", "Third", "Fourt."
+                "First", "Second", "Third", "Fourth"
         };
         final Spinner s = (Spinner) findViewById(R.id.Year);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.spinner_item,arraySpinner);
@@ -120,6 +120,7 @@ public class Register extends AppCompatActivity
         mos = mocButton.getText().toString();
     }
 
+//this method was coded by tanuj
     public void getFFid(){
         // Write a message to the database
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -141,6 +142,7 @@ public class Register extends AppCompatActivity
         });
     }
 
+//this method was coded by tanuj
     //sending emails automatically
     public void sendEmail(long ffid){
         regSecondStage(ffid);
@@ -222,6 +224,7 @@ public class Register extends AppCompatActivity
             return false;
     }
 
+    //this method was coded by tanuj
     public void sendMessage(View view) {
         database = FirebaseDatabase.getInstance();
         boolean value = validateInputs();
@@ -240,10 +243,9 @@ public class Register extends AppCompatActivity
         else{
             Toast.makeText(this, "Enter correct details", Toast.LENGTH_SHORT).show();
         }
-
-
-
     }
+
+    //this method was coded by tanuj
     public void regSecondStage(long id){
         user.setUser_id("FF"+id);
         DatabaseReference mRef = database.getReference().child("Users");
@@ -262,13 +264,13 @@ public class Register extends AppCompatActivity
         editor.putString("Year", year);
         editor.putString("MOS", mos);
         editor.putString("FFID", "FF"+id);
+        editor.putString("status","true");
         editor.apply();
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-
                 // app icon in action bar clicked; goto parent activity.
                 Intent i = new Intent(getApplicationContext(),Login_Screen.class);
                 startActivity(i);

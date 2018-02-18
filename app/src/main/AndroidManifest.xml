@@ -27,6 +27,7 @@
         <activity android:name=".views.Login_Screen" android:screenOrientation="portrait"/>
         <activity android:name=".views.forwarded" android:screenOrientation="portrait" />
         <activity android:name=".views.Register" android:screenOrientation="portrait"/>
+        <activity android:name=".views.ParentForFrag" android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-
+<!--
+Made by tanuj
+-->
 <resources>
 
     <string-array name="positions">
@@ -13,7 +15,7 @@
         <item>Sahil Ayank</item>
         <item>Tanuj Mehta</item>
         <item>Shashwat Singh</item>
-        <item>Vipasa Chandwani</item>
+        <item>Vipasha Chandwani</item>
         <item>Gaurav</item>
     </string-array>
     <string-array name="emails">
@@ -29,5 +31,24 @@
         <item>https://www.facebook.com/shashwat.singh.545</item>
         <item>https://www.facebook.com/vipasha.chandwani</item>
         <item>https://www.facebook.com/gaurav.khandelwal.3950178</item>
+    </string-array>
+    <string-array name="sponsor_names">
+        <item>Tanuj</item>
+        <item>Gaurav</item>
+        <item>Vipasha</item>
+        <item>Shashwat</item>
+        <item>Sahil</item>
+    </string-array>
+<string-array name="club_names">
+    <item>Technical Club</item>
+    <item>Cultural Club</item>
+    <item>Literary and Dramatics Club</item>
+    <item>Fine Arts and Photography Club</item>
+</string-array>
+    <string-array name="club_taglines">
+        <item>For those whose life is all about technology.</item>
+        <item>Dance, Sing and enjoy life to the fullest.</item>
+        <item>Books are love and writing too.</item>
+        <item>Taking Photographs is more than just a click.</item>
     </string-array>
 </resources>

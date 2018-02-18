@@ -4,6 +4,9 @@
     android:layout_height="match_parent"
     tools:context="sahil.iiitk_foundationday_app.views.SponsorsFragment">
 
+    <!--
+Made by tanuj
+-->
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerViewSponsors"
         android:background="#424242"

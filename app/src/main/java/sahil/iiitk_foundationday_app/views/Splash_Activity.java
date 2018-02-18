@@ -8,6 +8,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.Animation;
@@ -47,17 +48,17 @@ public class Splash_Activity extends AppCompatActivity {
             public void run()
             {
                 try{
-                    sleep(4000);
+                        sleep(4000);
                         //todo check if user is logged in or not
                         // login activity
-                        Intent i = new Intent(getApplicationContext(), Login_Screen.class);
+                    //todo remove testing activity and launch login screen
+                        Intent i = new Intent(getApplicationContext(),Login_Screen.class);
                         startActivity(i);
                         finish();
-
                 }
                 catch (Exception ex)
                 {
-                    Toast.makeText(getApplicationContext(),ex.toString(),Toast.LENGTH_SHORT).show();
+                    Log.e("thread",""+ex.getMessage());
                 }
             }
         };
