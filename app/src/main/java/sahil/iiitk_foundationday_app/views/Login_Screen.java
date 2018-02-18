@@ -3,6 +3,7 @@ package sahil.iiitk_foundationday_app.views;
 import android.animation.ObjectAnimator;
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Handler;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBar;
@@ -35,6 +36,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.roger.match.library.MatchTextView;
+import com.wang.avi.AVLoadingIndicatorView;
 
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
@@ -58,7 +61,9 @@ public class Login_Screen extends AppCompatActivity
     Button verify;
     String personName;
     String personEmail;
+    MatchTextView mtv;
     String personPhone;
+    AVLoadingIndicatorView avi;
     private static final String KEY_VERIFY_IN_PROGRESS = "key_verify_in_progress";
     private boolean mVerificationInProgress = false;
     private String mVerificationId;
@@ -101,10 +106,17 @@ public class Login_Screen extends AppCompatActivity
         phoneButton.setEnabled(true);
         signInButton.setEnabled(true);
         ff_login_button.setEnabled(true);
+        avi = (AVLoadingIndicatorView) findViewById(R.id.AVLoadingIndicatorView);
+        mtv = (MatchTextView) findViewById(R.id.hello);
+        mtv.setText("IIIT KOTA Presents");
+        mtv.setTextSize(35);
+        mtv.setTextColor(Color.WHITE);
+        mtv.setProgress(0.5f);
         signInButton.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+
                         gSignIn();
                     }
                 }
@@ -118,6 +130,9 @@ public class Login_Screen extends AppCompatActivity
                         //Intent i = new Intent(getApplicationContext(),Phone_Activity.class);
                         //startActivity(i);
                         callPhoneLogInDialog();
+                        phoneButton.setVisibility(View.VISIBLE);
+                        ff_login_button.setVisibility(View.VISIBLE);
+                        signInButton.setVisibility(View.VISIBLE);
                     }
                 }
         );
@@ -130,6 +145,9 @@ public class Login_Screen extends AppCompatActivity
                         //Intent i = new Intent(getApplicationContext(),FF_ID.class);
                         //startActivity(i);
                         callLogInDialog();
+                        phoneButton.setVisibility(View.VISIBLE);
+                        ff_login_button.setVisibility(View.VISIBLE);
+                        signInButton.setVisibility(View.VISIBLE);
                     }
                 }
         );
@@ -139,13 +157,15 @@ public class Login_Screen extends AppCompatActivity
     }
     private void callLogInDialog()
     {
+        phoneButton.setVisibility(View.GONE);
+        ff_login_button.setVisibility(View.GONE);
+        signInButton.setVisibility(View.GONE);
         final Dialog myDialog =  new Dialog(this);
         myDialog.setContentView(R.layout.id_k);
         myDialog.setCancelable(true);
         myDialog.setTitle("FFID");
         final Button proceed = (Button) myDialog.findViewById(R.id.btnFF1);
         final EditText id = (EditText) myDialog.findViewById(R.id.ffid1);
-        //myDialog.show();
         proceed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -166,33 +186,24 @@ public class Login_Screen extends AppCompatActivity
 
     private void callPhoneLogInDialog()
     {
+        phoneButton.setVisibility(View.GONE);
+        ff_login_button.setVisibility(View.GONE);
+        signInButton.setVisibility(View.GONE);
         final Dialog myDialog =  new Dialog(this);
         myDialog.setContentView(R.layout.phone_verify);
         myDialog.setCancelable(true);
         myDialog.setTitle("VERIFY PHONE NUMBER");
         verify = (Button) myDialog.findViewById(R.id.phoneButton2);
         phoneField = (EditText) myDialog.findViewById(R.id.phoneField2);
-        //myDialog.show();
         mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
 
             @Override
             public void onVerificationCompleted(PhoneAuthCredential credential) {
-                // This callback will be invoked in two situations:
-                // 1 - Instant verification. In some cases the phone number can be instantly
-                //     verified without needing to send or enter a verification code.
-                // 2 - Auto-retrieval. On some devices Google Play services can automatically
-                //     detect the incoming verification SMS and perform verification without
-                //     user action.
                 mVerificationInProgress=false;
                 Toast.makeText(getApplicationContext(),"OTP Verified",Toast.LENGTH_SHORT).show();
-//                Intent intent=new Intent(getApplicationContext(),forwarded.class);
-//                Bundle  extras=new Bundle();
-//                extras.putString("phone",personPhone);
                 checkPhone(personPhone);
-                //Toast.makeText(getApplicationContext(),"Phone Number verified",Toast.LENGTH_SHORT).show();
-//                intent.putExtras(extras);
-//                startActivity(intent);
                 myDialog.dismiss();    //so that user cannot go to login screen by pressing back button
+
             }
 
             @Override
@@ -234,6 +245,7 @@ public class Login_Screen extends AppCompatActivity
         phoneButton.setEnabled(false);
         signInButton.setEnabled(false);
         ff_login_button.setEnabled(false);
+        avi.show();
         FirebaseDatabase db=FirebaseDatabase.getInstance();
         DatabaseReference ref=db.getReference().child("Users");
         Query query=ref.orderByChild("phone").equalTo(a);
@@ -244,6 +256,7 @@ public class Login_Screen extends AppCompatActivity
                     //do appropriate action here when account with this phone number exists
                     Intent i = new Intent(getApplicationContext(),forwarded.class);
                     startActivity(i);
+                    avi.setVisibility(View.INVISIBLE);
                     finish();
                 }else{
                     //do appropriate action here when account with this phone number does not exist
@@ -252,6 +265,7 @@ public class Login_Screen extends AppCompatActivity
                     Bundle extra = new Bundle();
                     extra.putString("phone",personPhone);
                     i.putExtras(extra);
+                    avi.setVisibility(View.INVISIBLE);
                     startActivity(i);
                 }
             }
@@ -328,18 +342,8 @@ public class Login_Screen extends AppCompatActivity
             if (account != null) {
                 personName = account.getDisplayName();
                 personEmail = account.getEmail();
-
-
-
                 // Launching landing activity for registration
                 checkEmail(personEmail);
-//                Intent intent=new Intent(this,forwarded.class);
-//                Bundle extras=new Bundle();
-//                extras.putString("name",personName);
-//                extras.putString("email",personEmail);
-//                intent.putExtras(extras);
-//                startActivity(intent);
-                //finish();    //so that user cannot go to login screen by pressing back button
             }
         } catch (ApiException e) {
             // The ApiException status code indicates the detailed failure reason.
@@ -355,6 +359,7 @@ public class Login_Screen extends AppCompatActivity
         phoneButton.setEnabled(false);
         signInButton.setEnabled(false);
         ff_login_button.setEnabled(false);
+        avi.show();
         FirebaseDatabase db=FirebaseDatabase.getInstance();
         DatabaseReference ref=db.getReference().child("Users");
         Query query=ref.orderByChild("email").equalTo(a);
@@ -367,6 +372,7 @@ public class Login_Screen extends AppCompatActivity
                     //Toast.makeText(getApplicationContext(),"Email exists",Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(getApplicationContext(),forwarded.class);
                     startActivity(i);
+                    avi.setVisibility(View.INVISIBLE);
                     finish();
                 }else{
                     //do appropriate action here when account with this email does not exist
@@ -376,6 +382,7 @@ public class Login_Screen extends AppCompatActivity
                     extra.putString("name",personName);
                     extra.putString("email",personEmail);
                     i.putExtras(extra);
+                    avi.setVisibility(View.INVISIBLE);
                     startActivity(i);
                 }
             }
@@ -392,10 +399,9 @@ public class Login_Screen extends AppCompatActivity
         phoneButton.setEnabled(false);
         signInButton.setEnabled(false);
         ff_login_button.setEnabled(false);
+        avi.show();
         FirebaseDatabase db=FirebaseDatabase.getInstance();
         DatabaseReference ref=db.getReference().child("Users");
-        String b=a.substring(2);
-        long c = Long.parseLong(b);
         Query query=ref.orderByChild("user_id").equalTo(a);
         query.addValueEventListener(new ValueEventListener() {
             @Override
@@ -406,12 +412,14 @@ public class Login_Screen extends AppCompatActivity
                     //Toast.makeText(getApplicationContext(),"FFID Exist",Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(getApplicationContext(),forwarded.class);
                     startActivity(i);
+                    avi.setVisibility(View.INVISIBLE);
                     finish();
                 }else{
                     //do appropriate action here when account with this user_id/FFID does not exist
                     phoneButton.setEnabled(true);
                     signInButton.setEnabled(true);
                     ff_login_button.setEnabled(true);
+                    avi.setVisibility(View.INVISIBLE);
                     Toast.makeText(getApplicationContext(),"Invalid FF ID",Toast.LENGTH_SHORT).show();
                 }
             }

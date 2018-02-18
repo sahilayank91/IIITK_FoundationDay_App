@@ -78,7 +78,7 @@ public class Register extends AppCompatActivity
         }
 
         final String[] arraySpinner = new String[] {
-                "1", "2", "3", "4"
+                "First", "Sec.", "Third", "Fourt."
         };
         final Spinner s = (Spinner) findViewById(R.id.Year);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.spinner_item,arraySpinner);
@@ -128,7 +128,7 @@ public class Register extends AppCompatActivity
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 long uid=(long)dataSnapshot.getValue();
-                uid++;
+                uid=uid+101;
                 dataSnapshot.getRef().setValue(uid);
                 Toast.makeText(getApplicationContext(),"Your FFID is : "+uid,Toast.LENGTH_SHORT).show();
                 sendEmail(uid);
@@ -277,5 +277,10 @@ public class Register extends AppCompatActivity
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+
     }
 }

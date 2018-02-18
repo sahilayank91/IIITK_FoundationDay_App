@@ -14,7 +14,7 @@
         android:orientation="vertical"
         android:paddingLeft="24dp"
         android:paddingRight="24dp"
-        tools:context="sahil.iiitk_foundationday_app.views.Register">
+        tools:context="sahil.iiitk_foundationday_app.Register">
 
         <ImageView
             android:id="@+id/img"
