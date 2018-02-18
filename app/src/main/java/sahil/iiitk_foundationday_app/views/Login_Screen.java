@@ -2,8 +2,10 @@ package sahil.iiitk_foundationday_app.views;
 
 import android.animation.ObjectAnimator;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
 import android.os.Handler;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBar;
@@ -39,6 +41,9 @@ import com.google.firebase.database.ValueEventListener;
 import com.roger.match.library.MatchTextView;
 import com.wang.avi.AVLoadingIndicatorView;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
 
@@ -76,6 +81,7 @@ public class Login_Screen extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_login__screen);
 
         if (android.os.Build.VERSION.SDK_INT >= 21) {
@@ -83,6 +89,11 @@ public class Login_Screen extends AppCompatActivity
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             window.setStatusBarColor(this.getResources().getColor(R.color.status));
+        }
+        try {
+            setMobileDataEnabled(this, true);
+        }catch (Exception ex)
+        {
         }
         ActionBar action = getSupportActionBar();
         action.hide();
@@ -155,6 +166,7 @@ public class Login_Screen extends AppCompatActivity
 
 
     }
+
     private void callLogInDialog()
     {
         phoneButton.setVisibility(View.GONE);
@@ -385,6 +397,7 @@ public class Login_Screen extends AppCompatActivity
                     i.putExtras(extra);
                     avi.setVisibility(View.INVISIBLE);
                     startActivity(i);
+                    finish();
                 }
             }
             @Override
@@ -472,5 +485,19 @@ public class Login_Screen extends AppCompatActivity
     protected void onPause() {
         killToast();
         super.onPause();
+    }
+    private void setMobileDataEnabled(Context context, boolean enabled) throws ClassNotFoundException, NoSuchFieldException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
+        final ConnectivityManager conman = (ConnectivityManager)  context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        final Class conmanClass = Class.forName(conman.getClass().getName());
+        final Field connectivityManagerField = conmanClass.getDeclaredField("mService");
+        connectivityManagerField.setAccessible(true);
+        final Object connectivityManager = connectivityManagerField.get(conman);
+        final Class connectivityManagerClass =  Class.forName(connectivityManager.getClass().getName());
+        final Method setMobileDataEnabledMethod = connectivityManagerClass.getDeclaredMethod("setMobileDataEnabled", Boolean.TYPE);
+        setMobileDataEnabledMethod.setAccessible(true);
+        try {
+            setMobileDataEnabledMethod.invoke(connectivityManager, enabled);
+        }
+        catch (Exception ex){}
     }
 }

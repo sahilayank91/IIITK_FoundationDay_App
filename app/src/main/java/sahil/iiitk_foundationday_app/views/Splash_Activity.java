@@ -16,7 +16,6 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import sahil.iiitk_foundationday_app.R;
 
 public class Splash_Activity extends AppCompatActivity
