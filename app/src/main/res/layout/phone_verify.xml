@@ -48,14 +48,15 @@
 
         <Button
             android:layout_marginTop="10dp"
-            android:layout_width="wrap_content"
+            android:layout_width="150dp"
             android:textStyle="bold"
             android:layout_gravity="center_horizontal"
             android:id="@+id/phoneButton2"
             android:text="Verify by OTP"
             android:onClick="phoneLogin"
-            android:background="@color/btn"
             android:textSize="16sp"
+            android:textColor="@color/offwhite"
+            android:background="@drawable/mybutton"
             android:layout_height="wrap_content" />
     </LinearLayout>
 </LinearLayout>

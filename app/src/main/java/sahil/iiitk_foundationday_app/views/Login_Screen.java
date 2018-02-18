@@ -350,9 +350,8 @@ public class Login_Screen extends AppCompatActivity
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
         try {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
-            // Signed in successfully, show authenticated UI.
-            GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
-            if (acct != null) {
+            // Signed in successfully, show authenticated UI.0
+            if (account != null) {
                 personName = account.getDisplayName();
                 personEmail = account.getEmail();
                 // Launching landing activity for registration
