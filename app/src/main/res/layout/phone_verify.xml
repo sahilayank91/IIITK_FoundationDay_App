@@ -1,41 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/evstill"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:orientation="vertical"
+    android:layout_width="match_parent" android:layout_height="wrap_content">
 
-    <EditText
-        android:id="@+id/phoneField2"
-        android:layout_width="240dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/imageView4"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="26dp"
-        android:ems="10"
-        android:focusable="true"
-        android:textColor="#dddddd"
-        android:textColorHint="#dddddd"
-        android:hint="Phone Number"
-        android:inputType="phone" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_marginTop="100dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:srcCompat="@drawable/logo"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="13dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <Button
-        android:id="@+id/phoneButton2"
-        android:textStyle="bold"
-        android:textSize="16sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/phoneField2"
-        android:background="@color/btn"
-        android:layout_centerHorizontal="true"
-        android:onClick="phoneLogin"
-        android:text="Verify by OTP" />
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/text_input_layout"
+            android:layout_width="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="wrap_content"
+            android:textColorHint="@color/offwhite"
+            >
+            <EditText
+                android:id="@+id/phoneField2"
+                android:keyboardNavigationCluster="true"
+                android:layout_width="240dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_height="wrap_content"
+                android:textColor="#dddddd"
+                android:focusable="true"
+                android:gravity="center"
+                android:textColorHint="#dddddd"
+                android:hint="Phone Number"
+                android:inputType="phone"
+                />
+        </android.support.design.widget.TextInputLayout>
 
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="38dp"
-        app:srcCompat="@drawable/logo" />
-</RelativeLayout>
+        <Button
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/phoneButton2"
+            android:text="Verify by OTP"
+            android:onClick="phoneLogin"
+            android:background="@color/btn"
+            android:textSize="16sp"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+</LinearLayout>
