@@ -57,7 +57,7 @@ public class Register extends AppCompatActivity
 
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        mAuth = FirebaseAuth.getInstance();
+        //mAuth = FirebaseAuth.getInstance();
 
         name = (EditText)findViewById(R.id.name_input);
         college = (EditText)findViewById(R.id.college_input);
