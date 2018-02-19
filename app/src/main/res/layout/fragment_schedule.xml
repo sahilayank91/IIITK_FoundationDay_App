@@ -8,6 +8,14 @@
     <!--
     Made by tanuj
     -->
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
 <com.makeramen.roundedimageview.RoundedImageView
     android:layout_height="200dp"
     android:layout_width="match_parent"
@@ -32,5 +40,6 @@
         app:riv_corner_radius="20dp"/>
 
 
-
+</RelativeLayout>
+    </android.support.v4.widget.NestedScrollView>
 </RelativeLayout>

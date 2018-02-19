@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity
     CollapsingToolbarLayout collapsingToolbarLayout;
     ArrayList<String > titles;
     ImageView BackGround;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,12 +71,12 @@ public class MainActivity extends AppCompatActivity
         //   for(int i=0; i<6; i++)
         titles = new ArrayList<>();
         {
-            titles.add("vip");
-            titles.add("kit");
-            titles.add("jam");
-            titles.add("lit");
-            titles.add("as");
-            titles.add("hell");
+            titles.add("About");
+            titles.add("Events");
+            titles.add("Schedule");
+            titles.add("Sponsors");
+            titles.add("Helpline");
+            titles.add("Team");
         }
         // mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
@@ -128,11 +129,6 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
-    // @Override
-   /* public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_scrolling, menu);
-        return true;
-    }*/
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
@@ -156,7 +152,6 @@ public class MainActivity extends AppCompatActivity
 
         @Override
         public Fragment getItem(int position) {
-
             return mFragmentList.get(position);
         }
 
@@ -175,102 +170,21 @@ public class MainActivity extends AppCompatActivity
             return mFragmentTitleList.get(position);
         }
 
-
-
-
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-
         if (id == R.id.bell) {
-
             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
             drawer.openDrawer(GravityCompat.END);
             return true;
         }
-
         else {
-
-
         }
-
         return super.onOptionsItemSelected(item);
     }
 
 
-
-   /* public static class PlaceholderFragment extends Fragment {
-
-        private static final String ARG_SECTION_NUMBER = "section_number";
-
-        public PlaceholderFragment() {
-        }
-
-        public static PlaceholderFragment newInstance(int sectionNumber) {
-            PlaceholderFragment fragment = new PlaceholderFragment();
-            Bundle args = new Bundle();
-            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-
-            fragment.setArguments(args);
-            return fragment;
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            View rootView;
-            int temp = 0;
-           if(z==1){
-               rootView = inflater.inflate( R.layout.fragment_main, container, false);
-                         }
-            else {
-               rootView = inflater.inflate( R.layout.fragment_main2, container, false);
-           }
-
-         ////   TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-           // textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
-           // textView.setText( "djfdk" );
-            return rootView;
-        }
-    } */
-
-    /*  public class SectionsPagerAdapter extends FragmentPagerAdapter {
-
-          public SectionsPagerAdapter(FragmentManager fm) {
-              super(fm);
-          }
-
-          @Override
-          public Fragment getItem(int position) {
-              return PlaceholderFragment.newInstance(position + 1);
-          }
-
-          @Override
-          public int getCount() {
-              return 6;
-          }
-
-          @Override
-          public CharSequence getPageTitle(int position) {
-              switch (position) {
-                  case 0:
-                      return "SECTION 1";
-                  case 1:
-                      return "SECTION 2";
-                  case 2:
-                      return "SECTION 3";
-                  case 3:
-                      return "SECTION 1";
-                  case 4:
-                      return "SECTION 2";
-                  case 5:
-                      return "SECTION 3";
-              }
-              return null;
-          }
-      }
-  */
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -281,27 +195,21 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-
-
-
-
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_register) {
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.nav_reaches) {
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_queries) {
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.nav_quiz) {
 
         } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
 
         }
 
@@ -313,7 +221,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        // Log.e("triple dot added","now done");
+        // Log.e("triple dot added","now done")
         getMenuInflater().inflate(R.menu.main, menu);
 
         //Toast.makeText(this,"triple dots aakldjf",Toast.LENGTH_LONG).show();
