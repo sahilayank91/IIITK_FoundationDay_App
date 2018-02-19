@@ -107,7 +107,6 @@ public class Register extends AppCompatActivity
         });
     }
 
-
     public void onRadioButtonClicked(View view){
         radioGroup = (RadioGroup) findViewById(R.id.rad);
         selectedId = radioGroup.getCheckedRadioButtonId();
