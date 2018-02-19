@@ -49,12 +49,10 @@ public class Splash_Activity extends AppCompatActivity
             {
                 try{
                     sleep(4000);
-
                         // login activity
                         Intent i = new Intent(getApplicationContext(), Login_Screen.class);
                         startActivity(i);
                         finish();
-
                 }
                 catch (Exception ex)
                 {
