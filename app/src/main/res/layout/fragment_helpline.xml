@@ -7,6 +7,12 @@
     <!--
     Made by tanuj
     -->
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
     <TextView
         android:id="@+id/label_emergency"
         android:layout_width="match_parent"
@@ -138,7 +144,7 @@
                 android:id="@+id/tv_name4"
                 android:layout_width="140dp"
                 android:layout_height="wrap_content"
-                android:text="Vipasa"
+                android:text="Vipasha"
                 android:textSize="20dp"
                 android:gravity="center"
                 android:textColor="#eebe00"/>
@@ -186,7 +192,7 @@
         android:layout_width="match_parent"
         android:layout_below="@+id/label_women_helpline"
         android:layout_height="wrap_content"
-        android:text="Vipasa"
+        android:text="Vipasha"
         android:layout_marginTop="20dp"
         android:textSize="20dp"
         android:gravity="center"
@@ -220,4 +226,6 @@
         android:gravity="center"
         android:textColor="#ffffff"/>
 
+</RelativeLayout>
+    </android.support.v4.widget.NestedScrollView>
 </RelativeLayout>
