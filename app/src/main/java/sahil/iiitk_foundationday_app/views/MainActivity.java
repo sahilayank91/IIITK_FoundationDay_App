@@ -1,6 +1,7 @@
 package sahil.iiitk_foundationday_app.views;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -21,7 +22,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.pusher.client.Pusher;
 import com.pusher.client.PusherOptions;
 import com.pusher.client.channel.Channel;
@@ -181,7 +187,19 @@ public class MainActivity extends AppCompatActivity
             drawer.openDrawer(GravityCompat.END);
             return true;
         }
-        else {
+        if (id==R.id.logoutInside){
+            SharedPreferences sharedPreferences=getSharedPreferences("userInfo",MODE_PRIVATE);
+            SharedPreferences.Editor editor=sharedPreferences.edit();
+            editor.clear();
+            editor.apply();
+            GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                    .requestEmail()
+                    .build();
+            GoogleSignInClient client=GoogleSignIn.getClient(this,gso);
+            client.signOut();
+            Intent intent=new Intent(this,Login_Screen.class);
+            Toast.makeText(this,"Logged out successfully!",Toast.LENGTH_SHORT).show();
+            finish();
         }
         return super.onOptionsItemSelected(item);
     }
@@ -236,8 +254,6 @@ public class MainActivity extends AppCompatActivity
         // Inflate the menu; this adds items to the action bar if it is present.
         // Log.e("triple dot added","now done")
         getMenuInflater().inflate(R.menu.main, menu);
-
-        //Toast.makeText(this,"triple dots aakldjf",Toast.LENGTH_LONG).show();
         return true;
     }
 }

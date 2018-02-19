@@ -69,12 +69,17 @@ public class Register extends AppCompatActivity
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             if(extras.getString("name") != null) bundle_name=extras.getString("name");
-            if(extras.getString("email") != null) bundle_email=extras.getString("email");
-            if(extras.getString("phone") != null) bundle_phone=extras.getString("phone");
-
+            if(extras.getString("email") != null){
+                bundle_email=extras.getString("email");
+                email.setText(bundle_email);
+                email.setEnabled(false);
+            }
+            if(extras.getString("phone") != null){
+                bundle_phone=extras.getString("phone");
+                phone.setText(bundle_phone);
+                phone.setEnabled(false);
+            }
             name.setText(bundle_name);
-            email.setText(bundle_email);
-            phone.setText(bundle_phone);
         }
 
         final String[] arraySpinner = new String[] {
@@ -129,7 +134,7 @@ public class Register extends AppCompatActivity
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 long uid=(long)dataSnapshot.getValue();
-                uid=uid+101;
+                uid=uid+3;
                 dataSnapshot.getRef().setValue(uid);
                 Toast.makeText(getApplicationContext(),"Your FFID is : "+uid,Toast.LENGTH_SHORT).show();
                 sendEmail(uid);
@@ -266,6 +271,9 @@ public class Register extends AppCompatActivity
         editor.putString("FFID", "FF"+id);
         editor.putString("status","true");
         editor.apply();
+        Intent intent=new Intent(this,MainActivity.class);
+        this.startActivity(intent);
+        finish();
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

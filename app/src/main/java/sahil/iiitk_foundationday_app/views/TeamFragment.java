@@ -17,7 +17,7 @@ import sahil.iiitk_foundationday_app.adapters.CustomAdapter;
 
 public class TeamFragment extends Fragment {
 
-    protected String[] names,emails,facebookIDs;
+    protected String[] names,emails,facebookIDs,linkedinIDs;
     protected String[] positions;
     protected RecyclerView mRecyclerView;
     protected CustomAdapter mAdapter;
@@ -32,11 +32,12 @@ public class TeamFragment extends Fragment {
         names=getResources().getStringArray(R.array.names);
         emails=getResources().getStringArray(R.array.emails);
         facebookIDs=getResources().getStringArray(R.array.facebook);
+        linkedinIDs=getResources().getStringArray(R.array.linkedin);
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerView);
         mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        mAdapter = new CustomAdapter(names,positions,emails,facebookIDs);
+        mAdapter = new CustomAdapter(names,positions,emails,facebookIDs,linkedinIDs);
         mRecyclerView.setAdapter(mAdapter);
 
         return rootView;

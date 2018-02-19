@@ -48,11 +48,13 @@ public class Splash_Activity extends AppCompatActivity {
             public void run()
             {
                 try{
-                       // sleep(4000);
-                        //todo check if user is logged in or not
-                        // login activity
-                    //todo remove testing activity and launch login screen
-                        Intent i = new Intent(getApplicationContext(),MainActivity.class);
+                       sleep(4000);
+                    Intent i;
+                       if (isLoggedIn()){
+                           i = new Intent(getApplicationContext(),MainActivity.class);
+                       }else{
+                           i=new Intent(getApplicationContext(),Login_Screen.class);
+                       }
                         startActivity(i);
                         finish();
                 }
