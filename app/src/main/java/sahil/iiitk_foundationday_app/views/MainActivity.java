@@ -1,6 +1,7 @@
 package sahil.iiitk_foundationday_app.views;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -47,7 +48,8 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         // getSupportActionBar().hide();
-
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+      //  setSupportActionBar(toolbar);
         ////////////////////////////    PUSHER SHURU
         PusherOptions options = new PusherOptions();
         options.setCluster("APP_CLUSTER");
@@ -65,7 +67,7 @@ public class MainActivity extends AppCompatActivity
 
         //////////////////////////////////       PUSHER KHATAM
         collapsingToolbarLayout = (CollapsingToolbarLayout)findViewById(R.id.coll);
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+
         BackGround = (ImageView)findViewById(R.id.BG);
        // setSupportActionBar(toolbar);
         //   for(int i=0; i<6; i++)
@@ -202,15 +204,26 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_register) {
-            // Handle the camera action
-        } else if (id == R.id.nav_reaches) {
 
+        } else if (id == R.id.nav_reaches) {
+            Intent intent=new Intent(this, MapActivity.class);
+            this.startActivity(intent);
         } else if (id == R.id.nav_queries) {
 
+            Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
+                    "mailto","tanujm242@gmail.com", null));
+            this.startActivity(Intent.createChooser(emailIntent, "Send Email via"));
+
         } else if (id == R.id.nav_quiz) {
-
+            Intent intent=new Intent(this,QuizActivity.class);
+            this.startActivity(intent);
         } else if (id == R.id.nav_share) {
-
+            item.setCheckable(false);
+            Intent sharingIntent = new Intent(Intent.ACTION_SEND);
+            sharingIntent.setType("text/plain");
+            sharingIntent.putExtra(Intent.EXTRA_SUBJECT, "Flair-Fiesta 2k18");
+            sharingIntent.putExtra(Intent.EXTRA_TEXT, "Download Flair-Fiesta 2k18 from Play Store.");
+            startActivity(Intent.createChooser(sharingIntent, "Share via"));
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

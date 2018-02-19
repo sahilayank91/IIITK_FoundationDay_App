@@ -1,5 +1,7 @@
 package sahil.iiitk_foundationday_app.adapters;
 // Made by tanuj
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,9 +9,11 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import sahil.iiitk_foundationday_app.R;
+import sahil.iiitk_foundationday_app.views.ParentForFrag;
 
 public class ClubsAdapter extends RecyclerView.Adapter<ClubsAdapter.ViewHolder> {
     private static final String TAG = "Clubsdapter";
+    private static  Context con;
 
     private static String[] club_names,club_taglines;
 
@@ -20,14 +24,16 @@ public class ClubsAdapter extends RecyclerView.Adapter<ClubsAdapter.ViewHolder> 
             super(v);
             nameView = (TextView) v.findViewById(R.id.club_name);
             tagView = (TextView) v.findViewById(R.id.club_tagline);
-//            nameView.setOnClickListener(
-//                    new View.OnClickListener(){
-//                        @Override
-//                        public void onClick(View v) {
-//                            Log.d(TAG,"Club: "+getAdapterPosition());
-//                        }
-//                    }
-//            );
+            final Intent intent=new Intent(con, ParentForFrag.class);
+            v.setOnClickListener(
+                    new View.OnClickListener(){
+                        @Override
+                        public void onClick(View v) {
+                            intent.putExtra("club_number",getAdapterPosition());
+                            con.startActivity(intent);
+                        }
+                    }
+            );
         }
 
         public TextView getNameView() {
@@ -43,9 +49,10 @@ public class ClubsAdapter extends RecyclerView.Adapter<ClubsAdapter.ViewHolder> 
      *
      * @param data1 String[] containing the data to populate views to be used by RecyclerView.
      */
-    public ClubsAdapter(String[] data1, String[] data2) {
+    public ClubsAdapter(Context context, String[] data1, String[] data2) {
         club_names = data1;
         club_taglines=data2;
+        con=context;
     }
 
     // BEGIN_INCLUDE(recyclerViewOnCreateViewHolder)
