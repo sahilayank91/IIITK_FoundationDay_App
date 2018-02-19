@@ -21,4 +21,5 @@ public class forwarded extends AppCompatActivity {
             text.setText(details);
         }
     }
+
 }
