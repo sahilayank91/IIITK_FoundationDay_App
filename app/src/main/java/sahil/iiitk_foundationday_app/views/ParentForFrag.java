@@ -13,7 +13,11 @@ public class ParentForFrag extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_parent_for_frag);
         //show fragment
+        int club_number=getIntent().getIntExtra("club_number",0);
         Fragment fragment=new EventsFragment();
+        Bundle bundle=new Bundle();
+        bundle.putInt("club_number",club_number);
+        fragment.setArguments(bundle);
         getFragmentManager().beginTransaction().replace(android.R.id.content,fragment).commit();
     }
 }

@@ -28,7 +28,7 @@ club_taglines=getResources().getStringArray(R.array.club_taglines);
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerViewClubs);
         mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);
-        mAdapter = new ClubsAdapter(club_names,club_taglines);
+        mAdapter = new ClubsAdapter(getActivity(),club_names,club_taglines);
         mRecyclerView.setAdapter(mAdapter);
         return view;
     }

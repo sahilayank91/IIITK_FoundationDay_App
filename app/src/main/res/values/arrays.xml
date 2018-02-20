@@ -6,10 +6,10 @@ Made by tanuj
 
     <string-array name="positions">
         <item>Mentor</item>
-        <item>Member</item>
-        <item>Member</item>
-        <item>Volunteer</item>
-        <item>Volunteer</item>
+        <item>Developer</item>
+        <item>Developer</item>
+        <item>Developer</item>
+        <item>Developer</item>
     </string-array>
     <string-array name="names">
         <item>Sahil Ayank</item>
@@ -31,6 +31,13 @@ Made by tanuj
         <item>https://www.facebook.com/shashwat.singh.545</item>
         <item>https://www.facebook.com/vipasha.chandwani</item>
         <item>https://www.facebook.com/gaurav.khandelwal.3950178</item>
+    </string-array>
+    <string-array name="linkedin">
+        <item>https://www.linkedin.com/in/sahil-ayank-078052132/</item>
+        <item>https://www.linkedin.com/in/tanuj-mehta-72ab25159/</item>
+        <item>https://www.linkedin.com/in/shashwat-singh-55a570149</item>
+        <item>https://www.linkedin.com/in/vipasha-chandwani-36502a136/</item>
+        <item>https://www.linkedin.com/in/gaurav-khandelwal-b6b154147</item>
     </string-array>
     <string-array name="sponsor_names">
         <item>Tanuj</item>

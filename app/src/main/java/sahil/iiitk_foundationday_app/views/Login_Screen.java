@@ -117,7 +117,6 @@ public class Login_Screen extends AppCompatActivity
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
                         gSignIn();
                     }
                 }
@@ -152,9 +151,6 @@ public class Login_Screen extends AppCompatActivity
                     }
                 }
         );
-
-
-
     }
     private void callLogInDialog()
     {
@@ -255,7 +251,7 @@ public class Login_Screen extends AppCompatActivity
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if(dataSnapshot.exists()){
                     //do appropriate action here when account with this phone number exists
-                    Intent i = new Intent(getApplicationContext(),forwarded.class);
+                    Intent i = new Intent(getApplicationContext(),MainActivity.class);
                     startActivity(i);
                     avi.setVisibility(View.INVISIBLE);
                     finish();
@@ -371,7 +367,7 @@ public class Login_Screen extends AppCompatActivity
                     //done
                     //do appropriate action here when account with this email exists
                     //Toast.makeText(getApplicationContext(),"Email exists",Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(getApplicationContext(),forwarded.class);
+                    Intent i = new Intent(getApplicationContext(),MainActivity.class);
                     startActivity(i);
                     avi.setVisibility(View.INVISIBLE);
                     finish();
@@ -412,7 +408,7 @@ public class Login_Screen extends AppCompatActivity
                     //done
                     //do appropriate action here when account with this user_id/FFID number exists
                     //Toast.makeText(getApplicationContext(),"FFID Exist",Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(getApplicationContext(),forwarded.class);
+                    Intent i = new Intent(getApplicationContext(),MainActivity.class);
                     startActivity(i);
                     avi.setVisibility(View.INVISIBLE);
                     finish();

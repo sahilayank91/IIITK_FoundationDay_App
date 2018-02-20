@@ -20,7 +20,7 @@ import sahil.iiitk_foundationday_app.R;
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder> {
     private static final String TAG = "CustomAdapter";
 
-    private static String[] names,position,emails,facebookIDs;
+    private static String[] names,position,emails,facebookIDs,linkedinIDs;
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView nameView,positionView;
 
@@ -52,7 +52,18 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
                         }
                     }
             );
-            //todo adding intents to open links on third icon
+            ImageView mem_linkedin=(ImageView)v.findViewById(R.id.mem_linkedin);
+            mem_linkedin.setOnClickListener(
+                    new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Log.d("card","Linked in button: "+getAdapterPosition());
+                            Intent i = new Intent(Intent.ACTION_VIEW);
+                            i.setData(Uri.parse(linkedinIDs[getAdapterPosition()]));
+                            v.getContext().startActivity(i);
+                        }
+                    }
+            );
         }
 
         public TextView getNameView() {
@@ -68,11 +79,12 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
      *
      * @param data1 String[] containing the data to populate views to be used by RecyclerView.
      */
-    public CustomAdapter(String[] data1,String[] data2,String[] data3,String[] data4) {
+    public CustomAdapter(String[] data1,String[] data2,String[] data3,String[] data4,String[] data5) {
         names = data1;
         position=data2;
         emails=data3;
         facebookIDs=data4;
+        linkedinIDs=data5;
     }
 
     // BEGIN_INCLUDE(recyclerViewOnCreateViewHolder)

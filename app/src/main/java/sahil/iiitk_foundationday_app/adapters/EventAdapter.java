@@ -1,5 +1,7 @@
 package sahil.iiitk_foundationday_app.adapters;
 // Made by tanuj
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -8,9 +10,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import sahil.iiitk_foundationday_app.R;
+import sahil.iiitk_foundationday_app.views.DetailedEvent;
 
 public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> {
     private static final String TAG = "EventAdapter";
+    private static Context con;
+    private static int club_number;
 
     private static Integer[] event_images;
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -19,11 +24,14 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
         public ViewHolder(View v) {
             super(v);
             imageView=(ImageView) v.findViewById(R.id.event_image);
-            imageView.setOnClickListener(
+            final Intent intent=new Intent(con, DetailedEvent.class);
+            v.setOnClickListener(
                     new View.OnClickListener(){
                         @Override
                         public void onClick(View v) {
-                            Log.d(TAG,"Event: "+getAdapterPosition());
+                            intent.putExtra("club_number",club_number);
+                            intent.putExtra("event_number",getAdapterPosition());
+                            con.startActivity(intent);
                         }
                     }
             );
@@ -39,8 +47,10 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
      *
      * @param data String[] containing the data to populate views to be used by RecyclerView.
      */
-    public EventAdapter(Integer[] data) {
+    public EventAdapter(Context context,int club_num,Integer[] data) {
         event_images=data;
+        con=context;
+        club_number=club_num;
     }
 
     // BEGIN_INCLUDE(recyclerViewOnCreateViewHolder)
