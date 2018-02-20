@@ -1,20 +1,20 @@
 package sahil.iiitk_foundationday_app.model;
-
+// Made by tanuj
 import android.content.Context;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class Notif {
+public class Notification {
 
     private long notif_id;
     private String details,time,which_club;
 
-    public Notif() {
+    public Notification() {
     }
-    public Notif(Context context){
+    public Notification(Context context){
     }
-    public Notif(JSONObject object) throws JSONException{
+    public Notification(JSONObject object) throws JSONException{
         if (object.has("notif_id")) this.notif_id=object.getLong("notif_id");
         if (object.has("details")) this.details=object.getString("details");
         if (object.has("time")) this.time=object.getString("time");
@@ -23,7 +23,7 @@ public class Notif {
 
     @Override
     public boolean equals(Object obj) {
-        Notif notif=(Notif) obj;
+        Notification notif=(Notification) obj;
         if (notif.getNotif_id()==this.notif_id)
             return true;
         else return false;

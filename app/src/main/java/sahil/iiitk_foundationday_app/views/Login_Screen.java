@@ -1,5 +1,7 @@
 package sahil.iiitk_foundationday_app.views;
-
+// Made by tanuj
+//all of the main login process was coded by tanuj,
+// and final touch to some parts  by Gaurav
 import android.animation.ObjectAnimator;
 import android.app.Dialog;
 import android.content.Intent;
@@ -40,7 +42,6 @@ import com.roger.match.library.MatchTextView;
 import com.wang.avi.AVLoadingIndicatorView;
 
 import java.util.concurrent.TimeUnit;
-import java.util.regex.Pattern;
 
 import sahil.iiitk_foundationday_app.R;
 

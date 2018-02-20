@@ -5,10 +5,10 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.Animation;
@@ -19,15 +19,14 @@ import android.widget.Toast;
 
 import sahil.iiitk_foundationday_app.R;
 
-public class Splash_Activity extends AppCompatActivity
-{
+public class Splash_Activity extends AppCompatActivity {
     // Splash Screen
     private TextView tv;
     private ImageView iv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splash_);
+        setContentView(R.layout.activity_splash);
         // hide Action Bar
         if (android.os.Build.VERSION.SDK_INT >= 21) {
             Window window = this.getWindow();
@@ -49,17 +48,17 @@ public class Splash_Activity extends AppCompatActivity
             public void run()
             {
                 try{
-                    sleep(4000);
-
+                       // sleep(4000);
+                        //todo check if user is logged in or not
                         // login activity
-                        Intent i = new Intent(getApplicationContext(), Login_Screen.class);
+                    //todo remove testing activity and launch login screen
+                        Intent i = new Intent(getApplicationContext(),MainActivity.class);
                         startActivity(i);
                         finish();
-
                 }
                 catch (Exception ex)
                 {
-                    Toast.makeText(getApplicationContext(),ex.toString(),Toast.LENGTH_SHORT).show();
+                    Log.e("thread",""+ex.getMessage());
                 }
             }
         };
