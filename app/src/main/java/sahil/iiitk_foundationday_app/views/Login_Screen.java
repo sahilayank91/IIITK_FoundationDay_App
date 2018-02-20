@@ -89,8 +89,6 @@ public class Login_Screen extends AppCompatActivity
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             window.setStatusBarColor(this.getResources().getColor(R.color.status));
         }
-        ActionBar action = getSupportActionBar();
-        action.hide();
         if (savedInstanceState != null) {
             onRestoreInstanceState(savedInstanceState);
         }
@@ -131,8 +129,6 @@ public class Login_Screen extends AppCompatActivity
                     @Override
                     public void onClick(View v)
                     {
-                        //Intent i = new Intent(getApplicationContext(),Phone_Activity.class);
-                        //startActivity(i);
                         callPhoneLogInDialog();
                         phoneButton.setVisibility(View.VISIBLE);
                         ff_login_button.setVisibility(View.VISIBLE);
@@ -146,8 +142,6 @@ public class Login_Screen extends AppCompatActivity
                     @Override
                     public void onClick(View v)
                     {
-                        //Intent i = new Intent(getApplicationContext(),FF_ID.class);
-                        //startActivity(i);
                         callLogInDialog();
                         phoneButton.setVisibility(View.VISIBLE);
                         ff_login_button.setVisibility(View.VISIBLE);
@@ -268,6 +262,7 @@ public class Login_Screen extends AppCompatActivity
                     i.putExtras(extra);
                     avi.hide();
                     startActivity(i);
+                    finish();
                 }
             }
             @Override
@@ -429,7 +424,9 @@ public class Login_Screen extends AppCompatActivity
                     extra.putString("email",personEmail);
                     i.putExtras(extra);
                     avi.hide();
-                    startActivity(i);                }
+                    startActivity(i);
+                    finish();
+                }
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {

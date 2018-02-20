@@ -48,15 +48,7 @@ public class Register extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-
-        if(getSupportActionBar() != null){
-            getSupportActionBar().setTitle("Registration Form");
-            getSupportActionBar().setHomeButtonEnabled(true);
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        }
-
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-
         mAuth = FirebaseAuth.getInstance();
 
         name = (EditText)findViewById(R.id.name_input);

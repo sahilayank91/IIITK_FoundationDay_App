@@ -15,12 +15,14 @@
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
         <item name="colorPrimary">#1cd9fa</item>
+        <!--todo adjust color of shortened action bar     -->
     </style>
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 <style name="AppTheme.TabLayout" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
     <item name="colorPrimary">@color/colorPrimary</item>
+    <!--todo adjust color of tabs bar     -->
 </style>
 
 </resources>
