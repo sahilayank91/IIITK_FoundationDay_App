@@ -1,5 +1,7 @@
 package sahil.iiitk_foundationday_app.views;
-
+// Made by tanuj
+//all of the main login process was coded by tanuj,
+// and final touch to some parts  by Gaurav
 import android.animation.ObjectAnimator;
 import android.app.Dialog;
 import android.content.Context;
@@ -45,7 +47,6 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.concurrent.TimeUnit;
-import java.util.regex.Pattern;
 
 import sahil.iiitk_foundationday_app.R;
 
@@ -127,7 +128,6 @@ public class Login_Screen extends AppCompatActivity
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
                         gSignIn();
                     }
                 }
@@ -162,9 +162,6 @@ public class Login_Screen extends AppCompatActivity
                     }
                 }
         );
-
-
-
     }
 
     private void callLogInDialog()
@@ -266,7 +263,7 @@ public class Login_Screen extends AppCompatActivity
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if(dataSnapshot.exists()){
                     //do appropriate action here when account with this phone number exists
-                    Intent i = new Intent(getApplicationContext(),forwarded.class);
+                    Intent i = new Intent(getApplicationContext(),MainActivity.class);
                     startActivity(i);
                     avi.setVisibility(View.INVISIBLE);
                     finish();
@@ -382,7 +379,7 @@ public class Login_Screen extends AppCompatActivity
                     //done
                     //do appropriate action here when account with this email exists
                     //Toast.makeText(getApplicationContext(),"Email exists",Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(getApplicationContext(),forwarded.class);
+                    Intent i = new Intent(getApplicationContext(),MainActivity.class);
                     startActivity(i);
                     avi.setVisibility(View.INVISIBLE);
                     finish();
@@ -423,7 +420,7 @@ public class Login_Screen extends AppCompatActivity
                     //done
                     //do appropriate action here when account with this user_id/FFID number exists
                     //Toast.makeText(getApplicationContext(),"FFID Exist",Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(getApplicationContext(),forwarded.class);
+                    Intent i = new Intent(getApplicationContext(),MainActivity.class);
                     startActivity(i);
                     avi.setVisibility(View.INVISIBLE);
                     finish();

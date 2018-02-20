@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Made by tanuj
+-->
+<resources>
+
+    <string-array name="positions">
+        <item>Mentor</item>
+        <item>Developer</item>
+        <item>Developer</item>
+        <item>Developer</item>
+        <item>Developer</item>
+    </string-array>
+    <string-array name="names">
+        <item>Sahil Ayank</item>
+        <item>Tanuj Mehta</item>
+        <item>Shashwat Singh</item>
+        <item>Vipasha Chandwani</item>
+        <item>Gaurav</item>
+    </string-array>
+    <string-array name="emails">
+        <item>2015kucp1025@iiitkota.ac.in</item>
+        <item>2017kucp1017@iiitkota.ac.in</item>
+        <item>2017kucp1054@iiitkota.ac.in</item>
+        <item>2016kucp1011@iiitkota.ac.in</item>
+        <item>2016kucp1002@iiitkota.ac.in</item>
+    </string-array>
+    <string-array name="facebook">
+        <item>https://www.facebook.com/sahil.ayank</item>
+        <item>https://www.facebook.com/tanuj.mehta.0</item>
+        <item>https://www.facebook.com/shashwat.singh.545</item>
+        <item>https://www.facebook.com/vipasha.chandwani</item>
+        <item>https://www.facebook.com/gaurav.khandelwal.3950178</item>
+    </string-array>
+    <string-array name="linkedin">
+        <item>https://www.linkedin.com/in/sahil-ayank-078052132/</item>
+        <item>https://www.linkedin.com/in/tanuj-mehta-72ab25159/</item>
+        <item>https://www.linkedin.com/in/shashwat-singh-55a570149</item>
+        <item>https://www.linkedin.com/in/vipasha-chandwani-36502a136/</item>
+        <item>https://www.linkedin.com/in/gaurav-khandelwal-b6b154147</item>
+    </string-array>
+    <string-array name="sponsor_names">
+        <item>Tanuj</item>
+        <item>Gaurav</item>
+        <item>Vipasha</item>
+        <item>Shashwat</item>
+        <item>Sahil</item>
+    </string-array>
+<string-array name="club_names">
+    <item>Technical Club</item>
+    <item>Cultural Club</item>
+    <item>Literary and Dramatics Club</item>
+    <item>Fine Arts and Photography Club</item>
+</string-array>
+    <string-array name="club_taglines">
+        <item>For those whose life is all about technology.</item>
+        <item>Dance, Sing and enjoy life to the fullest.</item>
+        <item>Books are love and writing too.</item>
+        <item>Taking Photographs is more than just a click.</item>
+    </string-array>
+</resources>

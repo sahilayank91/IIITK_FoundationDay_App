@@ -1,7 +1,6 @@
 package sahil.iiitk_foundationday_app.mail;
-
+//Made by tanuj
 import android.util.Log;
-import android.widget.Toast;
 
 import javax.activation.DataHandler;
 import javax.activation.DataSource;

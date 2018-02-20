@@ -1,0 +1,231 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#212121"
+    tools:context="sahil.iiitk_foundationday_app.views.HelplineFragment">
+    <!--
+    Made by tanuj
+    -->
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/label_emergency"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:gravity="center_horizontal"
+        android:text="EMERGENCY CONTACTS"
+        android:textColor="#eebe00"
+        android:textSize="20sp" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="2dp"
+        android:layout_below="@+id/label_emergency"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="5dp"
+        android:background="#eebe00" />
+
+    <GridLayout
+        android:id="@+id/grid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/label_emergency"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="30dp"
+        android:columnCount="2"
+        android:rowCount="2">
+
+        <RelativeLayout
+            android:layout_row="0"
+            android:layout_column="0"
+            android:layout_gravity="start">
+            <TextView
+                android:id="@+id/tv_name1"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:text="Tanuj"
+                android:textSize="20dp"
+                android:gravity="center"
+                android:textColor="#eebe00"/>
+            <TextView
+                android:id="@+id/tv_number1"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_name1"
+                android:text="+91-1234567890"
+                android:gravity="center"
+                android:textColor="#ffffff"/>
+            <TextView
+                android:id="@+id/tv_info1"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_number1"
+                android:text="Host"
+                android:gravity="center"
+                android:textColor="#ffffff"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_row="0"
+            android:layout_column="1"
+            android:layout_gravity="end">
+            <TextView
+                android:id="@+id/tv_name2"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:text="Gaurav"
+                android:textSize="20dp"
+                android:gravity="center"
+                android:textColor="#eebe00"/>
+            <TextView
+                android:id="@+id/tv_number2"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_name2"
+                android:text="+91-1234567890"
+                android:gravity="center"
+                android:textColor="#ffffff"/>
+            <TextView
+                android:id="@+id/tv_info2"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_number2"
+                android:text="Helpdesk"
+                android:gravity="center"
+                android:textColor="#ffffff"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_row="1"
+            android:layout_column="0"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="start">
+            <TextView
+                android:id="@+id/tv_name3"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:text="Sahil"
+                android:textSize="20dp"
+                android:gravity="center"
+                android:textColor="#eebe00"/>
+            <TextView
+                android:id="@+id/tv_number3"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_name3"
+                android:text="+91-1234567890"
+                android:gravity="center"
+                android:textColor="#ffffff"/>
+            <TextView
+                android:id="@+id/tv_info3"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_number3"
+                android:text="Mentor"
+                android:gravity="center"
+                android:textColor="#ffffff"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_row="1"
+            android:layout_column="1"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="end">
+            <TextView
+                android:id="@+id/tv_name4"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:text="Vipasha"
+                android:textSize="20dp"
+                android:gravity="center"
+                android:textColor="#eebe00"/>
+            <TextView
+                android:id="@+id/tv_number4"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_name4"
+                android:text="+91-1234567890"
+                android:gravity="center"
+                android:textColor="#ffffff"/>
+            <TextView
+                android:id="@+id/tv_info4"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_number4"
+                android:text="Competitions"
+                android:gravity="center"
+                android:textColor="#ffffff"/>
+        </RelativeLayout>
+
+    </GridLayout>
+    <TextView
+        android:layout_below="@+id/grid"
+        android:id="@+id/label_women_helpline"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:gravity="center_horizontal"
+        android:text="WOMEN HELPLINE"
+        android:textColor="#eebe00"
+        android:textSize="20sp" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="2dp"
+        android:layout_below="@+id/label_women_helpline"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="5dp"
+        android:background="#eebe00" />
+    <TextView
+        android:id="@+id/tv_name5"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/label_women_helpline"
+        android:layout_height="wrap_content"
+        android:text="Vipasha"
+        android:layout_marginTop="20dp"
+        android:textSize="20dp"
+        android:gravity="center"
+        android:textColor="#eebe00"/>
+    <TextView
+        android:id="@+id/tv_number5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_name5"
+        android:text="+91-1234567890"
+        android:gravity="center"
+        android:textColor="#ffffff"/>
+
+    <TextView
+        android:layout_below="@+id/tv_number5"
+        android:id="@+id/label_emailus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:gravity="center_horizontal"
+        android:text="FOR ANY OTHER QUERIES"
+        android:textColor="#eebe00"
+        android:textSize="20sp" />
+    <TextView
+        android:id="@+id/tv_query"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/label_emailus"
+        android:text="Mail us at flairfiesta@iiitkota.ac.in"
+        android:gravity="center"
+        android:textColor="#ffffff"/>
+
+</RelativeLayout>
+    </android.support.v4.widget.NestedScrollView>
+</RelativeLayout>

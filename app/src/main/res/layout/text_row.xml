@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Made by tanuj
+-->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginTop="10dp">
+
+    <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/card_view"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        card_view:cardBackgroundColor="#e0e0e0"
+        card_view:cardCornerRadius="10dp"
+        card_view:cardElevation="30dp">
+
+        <ImageView
+            android:id="@+id/mem_image"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/image" />
+
+        <RelativeLayout
+            android:layout_width="220dp"
+            android:layout_height="80dp"
+            android:layout_marginLeft="120dp"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:id="@+id/mem_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="Tanuj Mehta"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/mem_pos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/mem_name"
+                android:layout_centerHorizontal="true"
+                android:text="Member"
+                android:textColor="#000000"
+                android:textSize="15sp" />
+
+            <ImageView
+                android:id="@+id/mem_mail"
+                android:layout_width="50dp"
+                android:layout_height="70dp"
+                android:layout_below="@+id/mem_pos"
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@+id/mem_fb"
+                android:src="@drawable/icon_email" />
+
+            <ImageView
+                android:id="@+id/mem_fb"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_below="@+id/mem_pos"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/icon_fb" />
+
+            <ImageView
+                android:id="@+id/mem_linkedin"
+                android:layout_width="50dp"
+                android:layout_height="70dp"
+                android:layout_below="@+id/mem_pos"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/mem_fb"
+                android:src="@drawable/icon_linkedin" />
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+</RelativeLayout>

@@ -1,0 +1,15 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="sahil.iiitk_foundationday_app.views.EventsFragment">
+    <!--
+    Made by tanuj
+    -->
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerViewEvents"
+        android:background="#212121"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</FrameLayout>
