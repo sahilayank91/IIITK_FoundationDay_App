@@ -254,7 +254,7 @@ public class Register extends AppCompatActivity
         user.setUser_id("FF"+id);
         DatabaseReference mRef = database.getReference().child("Users");
         mRef.push().setValue(user);
-        Toast.makeText(this, "Registration Successfull", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Registration Successfull!", Toast.LENGTH_SHORT).show();
 
         userdetails = getSharedPreferences("userInfo", MODE_PRIVATE);
         SharedPreferences.Editor editor=userdetails.edit();
