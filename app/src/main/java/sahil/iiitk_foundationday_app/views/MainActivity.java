@@ -198,6 +198,7 @@ public class MainActivity extends AppCompatActivity
             GoogleSignInClient client=GoogleSignIn.getClient(this,gso);
             client.signOut();
             Intent intent=new Intent(this,Login_Screen.class);
+            this.startActivity(intent);
             Toast.makeText(this,"Logged out successfully!",Toast.LENGTH_SHORT).show();
             finish();
         }

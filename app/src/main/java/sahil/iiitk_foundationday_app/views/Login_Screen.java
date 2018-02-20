@@ -6,6 +6,7 @@ import android.animation.ObjectAnimator;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.os.Handler;
@@ -49,6 +50,7 @@ import java.lang.reflect.Method;
 import java.util.concurrent.TimeUnit;
 
 import sahil.iiitk_foundationday_app.R;
+import sahil.iiitk_foundationday_app.model.User;
 
 public class Login_Screen extends AppCompatActivity
 {
@@ -175,16 +177,20 @@ public class Login_Screen extends AppCompatActivity
         myDialog.setTitle("FFID");
         final Button proceed = (Button) myDialog.findViewById(R.id.btnFF1);
         final EditText id = (EditText) myDialog.findViewById(R.id.ffid1);
+        final EditText email=(EditText) myDialog.findViewById(R.id.ffid_email);
         proceed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(id.getText().toString().equals(""))
                 {
-                    id.setError("Invalid FFID");
+                    id.setError("Empty FFID");
+                }
+                else if (email.getText().toString().equals("")){
+                    email.setError("Empty Email");
                 }
                 else
                 {
-                    checkFFID(id.getText().toString());
+                    checkFFID(id.getText().toString(),email.getText().toString());
                     myDialog.dismiss();
                 }
             }
@@ -262,6 +268,23 @@ public class Login_Screen extends AppCompatActivity
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if(dataSnapshot.exists()){
+                    //retrieve details of user from database
+                    User fetch=dataSnapshot.getValue(User.class);
+                    SharedPreferences userdetails = getSharedPreferences("userInfo", MODE_PRIVATE);
+                    SharedPreferences.Editor editor=userdetails.edit();
+                    editor.putString("name",fetch.getName());
+                    editor.putString("department",fetch.getDepartment());
+                    editor.putString("phone",fetch.getPhone());
+                    editor.putString("email",fetch.getEmail());
+                    editor.putString("college",fetch.getCollege());
+                    editor.putString("collegeid",fetch.getCollegeid());
+                    editor.putString("gender", fetch.getGender());
+                    editor.putString("Year", fetch.getYear());
+                    editor.putString("MOS",fetch.getMos());
+                    editor.putString("FFID", "FF"+fetch.getUser_id());
+                    editor.putString("status","true");
+                    editor.apply();
+
                     //do appropriate action here when account with this phone number exists
                     Intent i = new Intent(getApplicationContext(),MainActivity.class);
                     startActivity(i);
@@ -376,9 +399,24 @@ public class Login_Screen extends AppCompatActivity
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if(dataSnapshot.exists()){
-                    //done
                     //do appropriate action here when account with this email exists
-                    //Toast.makeText(getApplicationContext(),"Email exists",Toast.LENGTH_SHORT).show();
+                    //retrieve user details from database
+                    User fetch=dataSnapshot.getValue(User.class);
+                    SharedPreferences userdetails = getSharedPreferences("userInfo", MODE_PRIVATE);
+                    SharedPreferences.Editor editor=userdetails.edit();
+                    editor.putString("name",fetch.getName());
+                    editor.putString("department",fetch.getDepartment());
+                    editor.putString("phone",fetch.getPhone());
+                    editor.putString("email",fetch.getEmail());
+                    editor.putString("college",fetch.getCollege());
+                    editor.putString("collegeid",fetch.getCollegeid());
+                    editor.putString("gender", fetch.getGender());
+                    editor.putString("Year", fetch.getYear());
+                    editor.putString("MOS",fetch.getMos());
+                    editor.putString("FFID", "FF"+fetch.getUser_id());
+                    editor.putString("status","true");
+                    editor.apply();
+
                     Intent i = new Intent(getApplicationContext(),MainActivity.class);
                     startActivity(i);
                     avi.setVisibility(View.INVISIBLE);
@@ -405,7 +443,7 @@ public class Login_Screen extends AppCompatActivity
     //this method checks if a registered account exists for the given user_id/FFID in
 //firebase. Appropriate action to be done inside if-else statements to get required usage.
 //this will be used on the onCreate() method of login screen
-    public void checkFFID(String a){
+    public void checkFFID(String a,final String b){
         phoneButton.setEnabled(false);
         signInButton.setEnabled(false);
         ff_login_button.setEnabled(false);
@@ -417,13 +455,37 @@ public class Login_Screen extends AppCompatActivity
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if(dataSnapshot.exists()){
-                    //done
                     //do appropriate action here when account with this user_id/FFID number exists
-                    //Toast.makeText(getApplicationContext(),"FFID Exist",Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(getApplicationContext(),MainActivity.class);
-                    startActivity(i);
-                    avi.setVisibility(View.INVISIBLE);
-                    finish();
+                    //retrieve user details from database
+                    User fetch=dataSnapshot.getValue(User.class);
+                    if (fetch.getEmail().equals(b)){
+                        SharedPreferences userdetails = getSharedPreferences("userInfo", MODE_PRIVATE);
+                        SharedPreferences.Editor editor=userdetails.edit();
+                        editor.putString("name",fetch.getName());
+                        editor.putString("department",fetch.getDepartment());
+                        editor.putString("phone",fetch.getPhone());
+                        editor.putString("email",fetch.getEmail());
+                        editor.putString("college",fetch.getCollege());
+                        editor.putString("collegeid",fetch.getCollegeid());
+                        editor.putString("gender", fetch.getGender());
+                        editor.putString("Year", fetch.getYear());
+                        editor.putString("MOS",fetch.getMos());
+                        editor.putString("FFID", "FF"+fetch.getUser_id());
+                        editor.putString("status","true");
+                        editor.apply();
+
+                        Intent i = new Intent(getApplicationContext(),MainActivity.class);
+                        startActivity(i);
+                        avi.setVisibility(View.INVISIBLE);
+                        finish();
+                    }else{
+                        //do appropriate action here when account with this user_id/FFID does not exist
+                        phoneButton.setEnabled(true);
+                        signInButton.setEnabled(true);
+                        ff_login_button.setEnabled(true);
+                        avi.setVisibility(View.INVISIBLE);
+                        Toast.makeText(getApplicationContext(),"Invalid FF ID",Toast.LENGTH_SHORT).show();
+                    }
                 }else{
                     //do appropriate action here when account with this user_id/FFID does not exist
                     phoneButton.setEnabled(true);

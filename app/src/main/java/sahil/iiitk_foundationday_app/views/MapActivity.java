@@ -85,9 +85,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         boolean success = mGoogleMap.setMapStyle(new MapStyleOptions(getResources()
                 .getString(R.string.style_json)));
 
-
         gotoLocationZoom(26.8650532,75.8055678,15,"MNIT MAIN JAIPUR");
-
         gotoLocationZoom(26.8639207,75.810202,15,"MNIT PRABHA BHANVAN");
         gotoLocationZoom(26.8621895,75.8099985,15,"MNIT DISPENSARY");
         gotoLocationZoom(26.861871,75.8088408,15,"MNIT CENTRAL LAWN");
@@ -124,7 +122,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
         MarkerOptions options = new MarkerOptions().title("Jaipur").position(ll).snippet(s);
         mGoogleMap.addMarker(options);
-
 
     }
 
@@ -195,20 +192,22 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     public void onLocationChanged(Location location) {
         if(location == null)
         {
-            Toast.makeText(getApplicationContext(),"Cant get current location",Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(),"Can't get current location",Toast.LENGTH_LONG).show();
         }
         else
         {
-            LatLng ll = new LatLng(location.getLatitude(),location.getLongitude());
-            CameraUpdate update = CameraUpdateFactory.newLatLngZoom(ll,15);
-            mGoogleMap.animateCamera(update);
-            if(marker!=null)
-            {
-                marker.remove();
-            }
+            gotoLocationZoom(26.8639207,75.810202,15,"MNIT PRABHA BHANVAN");
 
-            MarkerOptions options = new MarkerOptions().title("User Current Location").position(ll).snippet("I am Here").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW));
-            marker=mGoogleMap.addMarker(options);
+//            LatLng ll = new LatLng(location.getLatitude(),location.getLongitude());
+//            CameraUpdate update = CameraUpdateFactory.newLatLngZoom(ll,15);
+//            mGoogleMap.animateCamera(update);
+//            if(marker!=null)
+//            {
+//                marker.remove();
+//            }
+//
+//            MarkerOptions options = new MarkerOptions().title("User Current Location").position(ll).snippet("I am Here").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW));
+//            marker=mGoogleMap.addMarker(options);
 
         }
     }
