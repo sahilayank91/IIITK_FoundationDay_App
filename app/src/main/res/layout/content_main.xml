@@ -37,7 +37,9 @@
                 android:scaleType="centerCrop"
                 android:id="@+id/BG"
                 app:layout_collapseMode="pin"
-                android:background="#ff5487"/>
+                android:src="@drawable/home_back"
+                />
+
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"

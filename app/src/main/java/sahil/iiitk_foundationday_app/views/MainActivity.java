@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -48,6 +49,7 @@ public class MainActivity extends AppCompatActivity
     CollapsingToolbarLayout collapsingToolbarLayout;
     ArrayList<String > titles;
     ImageView BackGround;
+    private boolean backPressedToExitOnce = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,7 +104,7 @@ public class MainActivity extends AppCompatActivity
                 // change your title
                 // inflate menu
                 // customize your toolbar
-                Log.e("lala",titles.get(position));
+                Log.e("page",titles.get(position));
                 ///Toast.makeText(this,"fd",Toast.LENGTH_SHORT);
                 // TextView title_change = (TextView) findViewById(R.id.title);
                 //title_change.0(titles.get((position)));
@@ -121,7 +123,6 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onPageScrollStateChanged(int state) {
 
-                // Log.e("lala","happens2");
             }
         });
         /////////////////////////////////////////////////
@@ -212,7 +213,19 @@ public class MainActivity extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            //double back press logic
+            if (backPressedToExitOnce) {
+                super.onBackPressed();
+            } else {
+                this.backPressedToExitOnce = true;
+                Toast.makeText(getApplicationContext(),"Press again to exit",Toast.LENGTH_SHORT).show();
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        backPressedToExitOnce = false;
+                    }
+                }, 2000);
+            }
         }
     }
 
@@ -223,6 +236,25 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_register) {
+            SharedPreferences sharedPreferences=getSharedPreferences("userInfo",MODE_PRIVATE);
+            if (!sharedPreferences.getString("FFID","").isEmpty()){
+                Toast.makeText(getApplicationContext(),"You are already registered!",Toast.LENGTH_SHORT).show();
+                item.setCheckable(false);
+            }else{
+                Bundle bundle=new Bundle();
+                if (!sharedPreferences.getString("name","").isEmpty()){
+                    bundle.putString("name",sharedPreferences.getString("name",""));
+                }
+                if (!sharedPreferences.getString("email","").isEmpty()){
+                    bundle.putString("email",sharedPreferences.getString("email",""));
+                }
+                if (!sharedPreferences.getString("phone","").isEmpty()){
+                    bundle.putString("phone",sharedPreferences.getString("phone",""));
+                }
+                Intent intent=new Intent(this,Register.class);
+                intent.putExtras(bundle);
+                this.startActivity(intent);
+            }
 
         } else if (id == R.id.nav_reaches) {
             Intent intent=new Intent(this, MapActivity.class);
@@ -257,4 +289,5 @@ public class MainActivity extends AppCompatActivity
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
+
 }

@@ -32,7 +32,7 @@ import sahil.iiitk_foundationday_app.model.User;
 
 public class Register extends AppCompatActivity
 {
-
+    TextView reg_later;
     public FirebaseAuth mAuth;
     public FirebaseDatabase database;
     public SharedPreferences userdetails;
@@ -65,6 +65,7 @@ public class Register extends AppCompatActivity
         department = (EditText)findViewById(R.id.branch_input);
         phone = (EditText)findViewById(R.id.mobile_input);
         email = (EditText)findViewById(R.id.email_input);
+        reg_later=(TextView)findViewById(R.id.reg_later);
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
@@ -81,9 +82,32 @@ public class Register extends AppCompatActivity
             }
             name.setText(bundle_name);
         }
+        reg_later.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        SharedPreferences userdetails = getSharedPreferences("userInfo", MODE_PRIVATE);
+                        SharedPreferences.Editor editor=userdetails.edit();
+                        if (!bundle_email.isEmpty()){
+                            editor.putString("email",bundle_email);
+                        }
+                        if(!bundle_name.isEmpty()){
+                            editor.putString("name",bundle_name);
+                        }
+                        if (!bundle_phone.isEmpty()){
+                            editor.putString("phone",bundle_phone);
+                        }
+                        editor.apply();
+                        Intent intent=new Intent(getApplicationContext(),MainActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                }
+        );
 
         final String[] arraySpinner = new String[] {
-                "First", "Second", "Third", "Fourth"
+                "First", "Second", "Third", "Fourth","Fifth"
         };
         final Spinner s = (Spinner) findViewById(R.id.Year);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.spinner_item,arraySpinner);

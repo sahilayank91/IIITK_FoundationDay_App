@@ -280,5 +280,21 @@
             android:text="Register"
             android:textColor="@color/black" />
 
+            <TextView
+                android:id="@+id/reg_later"
+                android:layout_below="@+id/submit"
+                android:fontFamily="serif"
+                android:typeface="monospace"
+                android:textSize="20sp"
+                android:layout_marginBottom="10dp"
+                android:textStyle="bold"
+                android:textColor="@color/colorAccent"
+                android:layout_centerHorizontal="true"
+                android:background="#000000"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Register Later"
+                />
+
     </RelativeLayout>
 </ScrollView>

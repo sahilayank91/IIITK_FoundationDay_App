@@ -7,7 +7,7 @@ import org.json.JSONObject;
 
 public class User {
 
-	private String user_id,name,email,password,salt,phone,otp,department,college,collegeid, gender, year, mos;
+	private String user_id,name,email,phone,department,college,collegeid, gender, year, mos;
 	private int account_level;
 
 
@@ -21,7 +21,6 @@ public class User {
 		if(author.has("phone"))this.phone=author.getString("phone");
 		if(author.has("email"))this.email=author.getString("email");
 		if(author.has("account_level"))this.account_level=author.getInt("account_level");
-		if(author.has("otp"))this.otp = author.getString("otp");
 		if(author.has("department"))this.department = author.getString("department");
 		if(author.has("college"))this.college = author.getString("college");
 		if(author.has("collegeid"))this.collegeid = author.getString("collegeid");
@@ -55,22 +54,10 @@ public class User {
 		this.name = name;
 	}
 	public String getEmail() {
-		return email;
+		return this.email;
 	}
 	public void setEmail(String email) {
 		this.email = email;
-	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	public String getSalt() {
-		return salt;
-	}
-	public void setSalt(String salt) {
-		this.salt = salt;
 	}
 	public String getPhone() {
 		return phone;
@@ -78,8 +65,6 @@ public class User {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-	public String getOTP(){ return otp;}
-	public void setOtp(String otp){this.otp = otp; }
 	public String getYear(){ return year;}
 	public void setYear(String year){this.year = year; }
 	public String getGender(){ return gender;}

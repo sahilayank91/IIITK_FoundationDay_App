@@ -4,6 +4,7 @@ package sahil.iiitk_foundationday_app.views;
 import android.app.ActionBar;
 import android.app.Dialog;
 import android.content.pm.PackageManager;
+import android.graphics.Camera;
 import android.location.Location;
 import android.os.Build;
 import android.support.annotation.NonNull;
@@ -11,8 +12,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.Toast;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
@@ -84,12 +83,11 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
         boolean success = mGoogleMap.setMapStyle(new MapStyleOptions(getResources()
                 .getString(R.string.style_json)));
-
-        gotoLocationZoom(26.8650532,75.8055678,15,"MNIT MAIN JAIPUR");
-        gotoLocationZoom(26.8639207,75.810202,15,"MNIT PRABHA BHANVAN");
-        gotoLocationZoom(26.8621895,75.8099985,15,"MNIT DISPENSARY");
-        gotoLocationZoom(26.861871,75.8088408,15,"MNIT CENTRAL LAWN");
-        gotoLocationZoom(26.861871,75.8071993,15,"MNIT ANNAPURNA");
+        //todo adding more places and correct locations
+        gotoLocationZoom(26.8639207,75.810202,15,"MNIT Prabha Bhawan");
+        gotoLocationZoom(26.8621895,75.8099985,15,"MNIT Dispensary");
+        gotoLocationZoom(26.861871,75.8088408,15,"MNIT Central Lawn");
+        gotoLocationZoom(26.861871,75.8071993,15,"MNIT Annapurna");
         gotoLocationZoom(26.8628927,75.8123115,15,"MNIT VLTC");
 
 //        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.M) {
@@ -196,7 +194,10 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         }
         else
         {
-            gotoLocationZoom(26.8639207,75.810202,15,"MNIT PRABHA BHANVAN");
+            gotoLocationZoom(26.8639207,75.810202,15,"MNIT Prabha Bhawan");
+            LatLng ll=new LatLng(26.8639207,75.810202);
+            CameraUpdate update= CameraUpdateFactory.newLatLngZoom(ll,15);
+            mGoogleMap.animateCamera(update);
 
 //            LatLng ll = new LatLng(location.getLatitude(),location.getLongitude());
 //            CameraUpdate update = CameraUpdateFactory.newLatLngZoom(ll,15);
