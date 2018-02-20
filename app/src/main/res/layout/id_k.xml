@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="@drawable/evstill"
-    android:layout_width="wrap_content" android:layout_height="wrap_content">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:orientation="vertical"
@@ -26,10 +27,12 @@
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/text_input_layout1"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_height="wrap_content"
             android:textColorHint="@color/offwhite"
+            android:fadingEdge="vertical"
+            android:background="#111111"
             >
             <EditText
                 android:id="@+id/ffid1"
@@ -41,16 +44,18 @@
                 android:focusable="true"
                 android:gravity="center"
                 android:textColorHint="#dddddd"
-                android:hint="FFID (FF0101)"
+                android:hint="FFID"
                 android:inputType="text"
                 />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/text_input_layout2"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_height="wrap_content"
+            android:background="#111111"
+            android:layout_marginTop="5dp"
             android:textColorHint="@color/offwhite"
             >
             <EditText
@@ -62,9 +67,10 @@
                 android:textColor="#dddddd"
                 android:focusable="true"
                 android:gravity="center"
+
                 android:textColorHint="#dddddd"
                 android:hint="Email"
-                android:inputType="text"
+                android:inputType="textEmailAddress"
                 />
         </android.support.design.widget.TextInputLayout>
 
@@ -79,6 +85,5 @@
             android:textSize="16sp"
             android:layout_height="wrap_content" />
     </LinearLayout>
-
 
 </LinearLayout>

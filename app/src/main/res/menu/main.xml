@@ -4,15 +4,15 @@
 
     <item
         android:id="@+id/logoutInside"
-        android:orderInCategory="101"
-        android:title="LOGOUT"
+        android:orderInCategory="1"
+        android:title="Logout"
         android:visible="true"
         app:showAsAction="never" />
 
     <item
         android:id="@+id/bell"
         android:icon="@drawable/ic_add_alert_black_24dp"
-        android:orderInCategory="11"
+        android:orderInCategory="0"
         android:title="bell"
         android:visible="true"
         app:showAsAction="always" />

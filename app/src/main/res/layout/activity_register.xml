@@ -167,20 +167,16 @@
 
         <Spinner
             android:id="@+id/Year"
-            android:layout_width="fill_parent"
+            android:layout_width="165dp"
             android:layout_height="35dp"
-            android:layout_alignEnd="@+id/submit"
             android:layout_below="@id/text_input_layout6"
             android:backgroundTint="@color/offwhite"
-            android:gravity="right"
-            android:paddingStart="150dp"
+            android:gravity="center"
+            android:layout_toRightOf="@+id/textyear"
             android:prompt="@string/year"
             android:spinnerMode="dialog"
             android:textAlignment="gravity" />
 
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="20dp" />
 
         <TextView
             android:id="@+id/gend"

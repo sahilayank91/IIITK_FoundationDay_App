@@ -28,7 +28,7 @@
         android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme.NoActionBar">
         <activity
             android:name=".views.Splash_Activity"
             android:screenOrientation="portrait">
@@ -47,9 +47,12 @@
         <activity
             android:name=".views.ParentForFrag"
             android:screenOrientation="portrait" />
-        <activity android:name=".views.MainActivity" />
-        <activity android:name=".views.DetailedEvent" />
-        <activity android:name=".views.QuizActivity" />
+        <activity android:name=".views.MainActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".views.DetailedEvent"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".views.QuizActivity"
+            android:screenOrientation="portrait"/>
         <activity android:name=".views.MapActivity">
             <meta-data android:name="com.google.android.gms.version"
                 android:value="android.gms.maps.SupportMapFragment"/>

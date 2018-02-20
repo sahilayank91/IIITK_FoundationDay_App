@@ -20,7 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:fitsSystemWindows="true"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        >
 
         <android.support.design.widget.CollapsingToolbarLayout
             android:id="@+id/coll"
@@ -28,6 +28,7 @@
             android:layout_height="wrap_content"
             android:fitsSystemWindows="true"
             app:contentScrim="?attr/colorPrimary"
+            android:theme="@style/AppTheme.AppBarOverlay"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <ImageView
@@ -54,9 +55,9 @@
             android:id="@+id/tabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
             app:layout_anchor="@id/appBar"
             app:tabMode="scrollable"
+            android:theme="@style/AppTheme.TabLayout"
             android:paddingBottom="0dp"
             app:tabGravity= "fill">
         </android.support.design.widget.TabLayout>

@@ -55,9 +55,8 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        // getSupportActionBar().hide();
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-      //  setSupportActionBar(toolbar);
+       setSupportActionBar(toolbar);
         ////////////////////////////    PUSHER SHURU
         PusherOptions options = new PusherOptions();
         options.setCluster("APP_CLUSTER");
@@ -72,13 +71,10 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-
         //////////////////////////////////       PUSHER KHATAM
         collapsingToolbarLayout = (CollapsingToolbarLayout)findViewById(R.id.coll);
-
+        collapsingToolbarLayout.setTitleEnabled(true);
         BackGround = (ImageView)findViewById(R.id.BG);
-       // setSupportActionBar(toolbar);
-        //   for(int i=0; i<6; i++)
         titles = new ArrayList<>();
         {
             titles.add("About");
@@ -88,8 +84,7 @@ public class MainActivity extends AppCompatActivity
             titles.add("Helpline");
             titles.add("Team");
         }
-        // mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
-
+        collapsingToolbarLayout.setTitle(titles.get(0));
         mViewPager = (ViewPager) findViewById(R.id.viewpager);
         // mViewPager.setAdapter(mSectionsPagerAdapter);
         setupViewPager(mViewPager);
@@ -101,23 +96,9 @@ public class MainActivity extends AppCompatActivity
 
             @Override
             public void onPageSelected(int position) {
-                // change your title
-                // inflate menu
-                // customize your toolbar
                 Log.e("page",titles.get(position));
-                ///Toast.makeText(this,"fd",Toast.LENGTH_SHORT);
-                // TextView title_change = (TextView) findViewById(R.id.title);
-                //title_change.0(titles.get((position)));
-                // getSupportActionBar().setTitle(titles.get(position));
-                // setSupportActionBar(toolbar);
-                collapsingToolbarLayout.setTitleEnabled(false);
-                //toolbar.setTitle("kkljkljlk");
-
-                toolbar.setTitle(titles.get(position));
-                // getSupportActionBar().setTitle(titles.get(position));
-                // getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.BLUE));
-                BackGround.setImageResource(R.drawable.ic_menu_share);
-                //
+                collapsingToolbarLayout.setTitle(titles.get(position));
+                BackGround.setImageResource(R.drawable.home_back);
             }
 
             @Override
