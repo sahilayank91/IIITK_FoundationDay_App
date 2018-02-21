@@ -1,6 +1,7 @@
 package sahil.iiitk_foundationday_app.views;
 
 
+import android.Manifest;
 import android.app.ActionBar;
 import android.app.Dialog;
 import android.content.pm.PackageManager;
@@ -42,12 +43,14 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //ActionBar action = getActionBar();
-        //action.hide();
-        //setContentView(R.layout.activity_main);
+
         if (googleServicesAvailable()) {
-          //  Toast.makeText(getApplicationContext(), "Perfect!!!", Toast.LENGTH_LONG).show();
             setContentView(R.layout.activity_map);
+            //check for the permissions
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)!= PackageManager.PERMISSION_GRANTED
+                    && ActivityCompat.checkSelfPermission(this,Manifest.permission.ACCESS_COARSE_LOCATION)!=PackageManager.PERMISSION_GRANTED){
+                ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.ACCESS_COARSE_LOCATION},123);
+            }
             initMap();
         } else {
             // No Google Map
@@ -190,11 +193,11 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     public void onLocationChanged(Location location) {
         if(location == null)
         {
-            Toast.makeText(getApplicationContext(),"Can't get current location",Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(),"Can't get location data",Toast.LENGTH_LONG).show();
         }
         else
         {
-            gotoLocationZoom(26.8639207,75.810202,15,"MNIT Prabha Bhawan");
+           // gotoLocationZoom(26.8639207,75.810202,15,"MNIT Prabha Bhawan");
             LatLng ll=new LatLng(26.8639207,75.810202);
             CameraUpdate update= CameraUpdateFactory.newLatLngZoom(ll,15);
             mGoogleMap.animateCamera(update);
@@ -211,5 +214,16 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 //            marker=mGoogleMap.addMarker(options);
 
         }
+    }
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode){
+            case 123: if (grantResults[0]==PackageManager.PERMISSION_DENIED){
+                Toast.makeText(this,"Give permission to get awesome experience of Map",Toast.LENGTH_SHORT).show();
+            }
+                break;
+            default: super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+
     }
 }
