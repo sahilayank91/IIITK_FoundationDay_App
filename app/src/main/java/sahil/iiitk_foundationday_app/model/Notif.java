@@ -5,16 +5,16 @@ import android.content.Context;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class Notification {
+public class Notif {
 
     private long notif_id;
     private String details,time,which_club;
 
-    public Notification() {
+    public Notif() {
     }
-    public Notification(Context context){
+    public Notif(Context context){
     }
-    public Notification(JSONObject object) throws JSONException{
+    public Notif(JSONObject object) throws JSONException{
         if (object.has("notif_id")) this.notif_id=object.getLong("notif_id");
         if (object.has("details")) this.details=object.getString("details");
         if (object.has("time")) this.time=object.getString("time");
@@ -23,7 +23,7 @@ public class Notification {
 
     @Override
     public boolean equals(Object obj) {
-        Notification notif=(Notification) obj;
+        Notif notif=(Notif) obj;
         if (notif.getNotif_id()==this.notif_id)
             return true;
         else return false;

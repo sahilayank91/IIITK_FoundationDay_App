@@ -1,9 +1,14 @@
 package sahil.iiitk_foundationday_app.views;
 
 import android.Manifest;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -15,6 +20,8 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.app.Notification;
+import android.support.v4.app.NotificationCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
@@ -29,18 +36,29 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.pusher.client.Pusher;
 import com.pusher.client.PusherOptions;
 import com.pusher.client.channel.Channel;
 import com.pusher.client.channel.SubscriptionEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 import sahil.iiitk_foundationday_app.R;
+import sahil.iiitk_foundationday_app.model.Notif;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -299,5 +317,87 @@ public class MainActivity extends AppCompatActivity
             default: super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         }
 
+    }
+    public void postNotification(View view){
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        Notif notification=new Notif();
+        notification.setDetails("First Notification");
+        notification.setNotif_id(1);
+        notification.setTime("1:08 AM");
+        notification.setWhich_club("Technical Club");
+        DatabaseReference mRef = database.getReference().child("Notification");
+        mRef.push().setValue(notification);
+        Toast.makeText(this, "Notification push Successfull!", Toast.LENGTH_SHORT).show();
+    }
+
+    public void getNotification(View view){
+        FirebaseDatabase database=FirebaseDatabase.getInstance();
+        DatabaseReference ref=database.getReference("Notification");
+        Query query= ref.orderByChild("notif_id");
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                collectNotifications((Map<String,Object>) dataSnapshot.getValue());
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    private void collectNotifications(Map<String,Object> users) {
+        ArrayList<String> notifications = new ArrayList<>();
+        HashMap<Long,String> data=new HashMap<Long, String>();
+        //iterate through each notification
+        for (Map.Entry<String, Object> entry : users.entrySet()){
+            //Get user map
+            Map singleUser = (Map) entry.getValue();
+            //Get phone field and append to list
+           // notifications.add((String) singleUser.get("details"));
+            data.put((Long)singleUser.get("notif_id"),(String)singleUser.get("details"));
+        }
+        //sort the notifications
+        List keys = new ArrayList(data.keySet());
+        Collections.sort(keys);
+        Log.e("notif",keys.toString());
+       alertUser(data.get(keys.get(0)));
+        Log.e("notif",data.get(keys.get(0)));
+    }
+
+    private  void alertUser(String a){
+//        //creating  a notification channel
+//        NotificationManager mNotificationManager =
+//                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+//// The id of the channel.
+//        String id = "my_channel";
+//// The user-visible name of the channel.
+//        CharSequence name = "Flair-Fiesta";
+//// The user-visible description of the channel.
+//        String description ="Flair-Fiesta";
+//        int importance = NotificationManager.IMPORTANCE_HIGH;
+//        NotificationChannel mChannel = new NotificationChannel(id, name, importance);
+//// Configure the notification channel.
+//        mChannel.setDescription(description);
+//        mChannel.enableLights(true);
+//// Sets the notification light color for notifications posted to this
+//// channel, if the device supports this feature.
+//        mChannel.setLightColor(Color.RED);
+//        mChannel.enableVibration(true);
+//        mChannel.setVibrationPattern(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
+//        mNotificationManager.createNotificationChannel(mChannel);
+
+        NotificationCompat.Builder builder =
+                new NotificationCompat.Builder(this)
+                        .setSmallIcon(R.drawable.ic_launcher_round)
+                        .setContentTitle("FlairFiesta 2k18")
+                        .setContentText(a);
+        int NOTIFICATION_ID = 123;
+
+        Intent targetIntent = new Intent(this, MainActivity.class);
+        PendingIntent contentIntent = PendingIntent.getActivity(this, 0, targetIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        builder.setContentIntent(contentIntent);
+        NotificationManager nManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        nManager.notify(NOTIFICATION_ID, builder.build());
     }
 }
