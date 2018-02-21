@@ -90,6 +90,7 @@ public class Register extends AppCompatActivity
                         if (!bundle_phone.isEmpty()){
                             editor.putString("phone",bundle_phone);
                         }
+                        editor.putString("status","true");
                         editor.apply();
                         Intent intent=new Intent(getApplicationContext(),MainActivity.class);
                         startActivity(intent);
