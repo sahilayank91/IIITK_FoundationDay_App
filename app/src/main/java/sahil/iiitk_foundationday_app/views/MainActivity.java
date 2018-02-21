@@ -1,14 +1,17 @@
 package sahil.iiitk_foundationday_app.views;
 
+import android.Manifest;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -56,7 +59,21 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-       setSupportActionBar(toolbar);
+        setSupportActionBar(toolbar);
+
+       //requesting location permission from user
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)!= PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(this,Manifest.permission.ACCESS_COARSE_LOCATION)!=PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.ACCESS_COARSE_LOCATION},123);
+        }
+//        if (ActivityCompat.checkSelfPermission(this,Manifest.permission.INTERNET)!=PackageManager.PERMISSION_GRANTED){
+//            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.INTERNET},124);
+//        }
+//        if (ActivityCompat.checkSelfPermission(this,Manifest.permission.WRITE_EXTERNAL_STORAGE)!=PackageManager.PERMISSION_GRANTED){
+//            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},125);
+//        }
+        //permissions end
+
         ////////////////////////////    PUSHER SHURU
         PusherOptions options = new PusherOptions();
         options.setCluster("APP_CLUSTER");
@@ -86,7 +103,6 @@ public class MainActivity extends AppCompatActivity
         }
         collapsingToolbarLayout.setTitle(titles.get(0));
         mViewPager = (ViewPager) findViewById(R.id.viewpager);
-        // mViewPager.setAdapter(mSectionsPagerAdapter);
         setupViewPager(mViewPager);
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -193,7 +209,9 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
-        } else {
+        } else if (drawer.isDrawerOpen(GravityCompat.END)){
+            drawer.closeDrawer(GravityCompat.END);
+        }else{
             //double back press logic
             if (backPressedToExitOnce) {
                 super.onBackPressed();
@@ -220,7 +238,7 @@ public class MainActivity extends AppCompatActivity
             SharedPreferences sharedPreferences=getSharedPreferences("userInfo",MODE_PRIVATE);
             if (!sharedPreferences.getString("FFID","").isEmpty()){
                 Toast.makeText(getApplicationContext(),"You are already registered!",Toast.LENGTH_SHORT).show();
-                item.setCheckable(false);
+              //  item.setCheckable(false);
             }else{
                 Bundle bundle=new Bundle();
                 if (!sharedPreferences.getString("name","").isEmpty()){
@@ -238,6 +256,7 @@ public class MainActivity extends AppCompatActivity
             }
 
         } else if (id == R.id.nav_reaches) {
+           // item.setCheckable(false);
             Intent intent=new Intent(this, MapActivity.class);
             this.startActivity(intent);
         } else if (id == R.id.nav_queries) {
@@ -266,9 +285,19 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        // Log.e("triple dot added","now done")
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode){
+            case 123: if (grantResults[0]==PackageManager.PERMISSION_DENIED){
+                    Toast.makeText(this,"Give permission to get awesome experience of Map",Toast.LENGTH_SHORT).show();
+                }
+                break;
+            default: super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+
+    }
 }
