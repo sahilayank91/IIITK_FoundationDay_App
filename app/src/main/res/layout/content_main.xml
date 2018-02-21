@@ -3,23 +3,33 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#424242"
     android:fitsSystemWindows="true"
     app:layout_scrollFlags="scroll|enterAlways"
     tools:context="sahil.iiitk_foundationday_app.views.MainActivity">
 
     <android.support.v4.view.ViewPager
         android:id="@+id/viewpager"
+        android:layout_gravity="top"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="0dp"
-        android:paddingTop="0dp"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" >
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            app:layout_anchor="@id/appBar"
+            app:tabMode="scrollable"
+            android:background="#ff9c5e"
+            app:tabGravity="center">
+        </android.support.design.widget.TabLayout>
+    </android.support.v4.view.ViewPager>
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appBar"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:fitsSystemWindows="true"
+        android:layout_height="256dp"
+
         >
 
         <android.support.design.widget.CollapsingToolbarLayout
@@ -45,22 +55,13 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                app:layout_collapseMode="parallax"
+                app:layout_collapseMode="pin"
                 app:popupTheme="@style/AppTheme.PopupOverlay" />
 
 
         </android.support.design.widget.CollapsingToolbarLayout>
 
-        <android.support.design.widget.TabLayout
-            android:id="@+id/tabs"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_anchor="@id/appBar"
-            app:tabMode="scrollable"
-            android:theme="@style/AppTheme.TabLayout"
-            android:paddingBottom="0dp"
-            app:tabGravity= "fill">
-        </android.support.design.widget.TabLayout>
+
 
     </android.support.design.widget.AppBarLayout>
 </android.support.design.widget.CoordinatorLayout>
