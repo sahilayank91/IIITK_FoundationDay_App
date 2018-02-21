@@ -3,24 +3,34 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#424242"
     android:fitsSystemWindows="true"
     app:layout_scrollFlags="scroll|enterAlways"
     tools:context="sahil.iiitk_foundationday_app.views.MainActivity">
 
     <android.support.v4.view.ViewPager
         android:id="@+id/viewpager"
+        android:layout_gravity="top"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="0dp"
-        android:paddingTop="0dp"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" >
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            app:layout_anchor="@id/appBar"
+            app:tabMode="scrollable"
+            android:background="#ff9c5e"
+            app:tabGravity="center">
+        </android.support.design.widget.TabLayout>
+    </android.support.v4.view.ViewPager>
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appBar"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:fitsSystemWindows="true"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:layout_height="256dp"
+
+        >
 
         <android.support.design.widget.CollapsingToolbarLayout
             android:id="@+id/coll"
@@ -28,14 +38,8 @@
             android:layout_height="wrap_content"
             android:fitsSystemWindows="true"
             app:contentScrim="?attr/colorPrimary"
+            android:theme="@style/AppTheme.AppBarOverlay"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
-
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:layout_collapseMode="parallax"
-                app:popupTheme="@style/AppTheme.PopupOverlay" />
 
             <ImageView
                 android:layout_width="match_parent"
@@ -44,19 +48,20 @@
                 android:scaleType="centerCrop"
                 android:id="@+id/BG"
                 app:layout_collapseMode="pin"
-                android:background="@drawable/ddyy"/>
+                android:src="@drawable/home_back"
+                />
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/AppTheme.PopupOverlay" />
+
 
         </android.support.design.widget.CollapsingToolbarLayout>
 
-        <android.support.design.widget.TabLayout
-            android:id="@+id/tabs"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
-            app:layout_anchor="@id/appBar"
-            app:tabMode="scrollable"
-            app:tabGravity= "fill">
-        </android.support.design.widget.TabLayout>
+
 
     </android.support.design.widget.AppBarLayout>
 </android.support.design.widget.CoordinatorLayout>

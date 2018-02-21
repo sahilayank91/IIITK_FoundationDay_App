@@ -167,20 +167,16 @@
 
         <Spinner
             android:id="@+id/Year"
-            android:layout_width="fill_parent"
+            android:layout_width="165dp"
             android:layout_height="35dp"
-            android:layout_alignParentEnd="true"
             android:layout_below="@id/text_input_layout6"
             android:backgroundTint="@color/offwhite"
-            android:gravity="right"
-            android:paddingStart="150dp"
+            android:gravity="center"
+            android:layout_toRightOf="@+id/textyear"
             android:prompt="@string/year"
             android:spinnerMode="dialog"
             android:textAlignment="gravity" />
 
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="20dp" />
 
         <TextView
             android:id="@+id/gend"
@@ -274,12 +270,27 @@
             android:layout_width="118dp"
             android:layout_height="48dp"
             android:layout_below="@+id/moc"
-            android:background="@drawable/mybutton"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="23dp"
             android:onClick="sendMessage"
             android:text="Register"
             android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/reg_later"
+                android:layout_below="@+id/submit"
+                android:fontFamily="serif"
+                android:typeface="monospace"
+                android:textSize="20sp"
+                android:layout_marginBottom="10dp"
+                android:textStyle="bold"
+                android:textColor="@color/colorAccent"
+                android:layout_centerHorizontal="true"
+                android:background="#000000"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Register Later"
+                />
 
     </RelativeLayout>
 </ScrollView>

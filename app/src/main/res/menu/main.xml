@@ -4,16 +4,17 @@
 
     <item
         android:id="@+id/logoutInside"
-        android:orderInCategory="101"
-        android:title="LOGOUT"
+        android:orderInCategory="1"
+        android:title="Logout"
+        android:icon="@drawable/ic_logout"
         android:visible="true"
-        app:showAsAction="never" />
+        app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/bell"
         android:icon="@drawable/ic_add_alert_black_24dp"
-        android:orderInCategory="11"
-        android:title="bell"
+        android:orderInCategory="0"
+        android:title="Notification"
         android:visible="true"
         app:showAsAction="always" />
 

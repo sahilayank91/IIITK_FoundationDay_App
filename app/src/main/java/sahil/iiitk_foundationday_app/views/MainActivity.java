@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -48,14 +49,14 @@ public class MainActivity extends AppCompatActivity
     CollapsingToolbarLayout collapsingToolbarLayout;
     ArrayList<String > titles;
     ImageView BackGround;
+    private boolean backPressedToExitOnce = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        // getSupportActionBar().hide();
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-      //  setSupportActionBar(toolbar);
+       setSupportActionBar(toolbar);
         ////////////////////////////    PUSHER SHURU
         PusherOptions options = new PusherOptions();
         options.setCluster("APP_CLUSTER");
@@ -70,13 +71,10 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-
         //////////////////////////////////       PUSHER KHATAM
         collapsingToolbarLayout = (CollapsingToolbarLayout)findViewById(R.id.coll);
-
+        collapsingToolbarLayout.setTitleEnabled(true);
         BackGround = (ImageView)findViewById(R.id.BG);
-       // setSupportActionBar(toolbar);
-        //   for(int i=0; i<6; i++)
         titles = new ArrayList<>();
         {
             titles.add("About");
@@ -86,8 +84,7 @@ public class MainActivity extends AppCompatActivity
             titles.add("Helpline");
             titles.add("Team");
         }
-        // mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
-
+        collapsingToolbarLayout.setTitle(titles.get(0));
         mViewPager = (ViewPager) findViewById(R.id.viewpager);
         // mViewPager.setAdapter(mSectionsPagerAdapter);
         setupViewPager(mViewPager);
@@ -99,29 +96,14 @@ public class MainActivity extends AppCompatActivity
 
             @Override
             public void onPageSelected(int position) {
-                // change your title
-                // inflate menu
-                // customize your toolbar
-                Log.e("lala",titles.get(position));
-                ///Toast.makeText(this,"fd",Toast.LENGTH_SHORT);
-                // TextView title_change = (TextView) findViewById(R.id.title);
-                //title_change.0(titles.get((position)));
-                // getSupportActionBar().setTitle(titles.get(position));
-                // setSupportActionBar(toolbar);
-                collapsingToolbarLayout.setTitleEnabled(false);
-                //toolbar.setTitle("kkljkljlk");
-
-                toolbar.setTitle(titles.get(position));
-                // getSupportActionBar().setTitle(titles.get(position));
-                // getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.BLUE));
-                BackGround.setImageResource(R.drawable.ic_menu_share);
-                //
+                Log.e("page",titles.get(position));
+                collapsingToolbarLayout.setTitle(titles.get(position));
+                BackGround.setImageResource(R.drawable.home_back);
             }
 
             @Override
             public void onPageScrollStateChanged(int state) {
 
-                // Log.e("lala","happens2");
             }
         });
         /////////////////////////////////////////////////
@@ -198,6 +180,7 @@ public class MainActivity extends AppCompatActivity
             GoogleSignInClient client=GoogleSignIn.getClient(this,gso);
             client.signOut();
             Intent intent=new Intent(this,Login_Screen.class);
+            this.startActivity(intent);
             Toast.makeText(this,"Logged out successfully!",Toast.LENGTH_SHORT).show();
             finish();
         }
@@ -211,7 +194,19 @@ public class MainActivity extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            //double back press logic
+            if (backPressedToExitOnce) {
+                super.onBackPressed();
+            } else {
+                this.backPressedToExitOnce = true;
+                Toast.makeText(getApplicationContext(),"Press again to exit",Toast.LENGTH_SHORT).show();
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        backPressedToExitOnce = false;
+                    }
+                }, 2000);
+            }
         }
     }
 
@@ -222,6 +217,25 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_register) {
+            SharedPreferences sharedPreferences=getSharedPreferences("userInfo",MODE_PRIVATE);
+            if (!sharedPreferences.getString("FFID","").isEmpty()){
+                Toast.makeText(getApplicationContext(),"You are already registered!",Toast.LENGTH_SHORT).show();
+                item.setCheckable(false);
+            }else{
+                Bundle bundle=new Bundle();
+                if (!sharedPreferences.getString("name","").isEmpty()){
+                    bundle.putString("name",sharedPreferences.getString("name",""));
+                }
+                if (!sharedPreferences.getString("email","").isEmpty()){
+                    bundle.putString("email",sharedPreferences.getString("email",""));
+                }
+                if (!sharedPreferences.getString("phone","").isEmpty()){
+                    bundle.putString("phone",sharedPreferences.getString("phone",""));
+                }
+                Intent intent=new Intent(this,Register.class);
+                intent.putExtras(bundle);
+                this.startActivity(intent);
+            }
 
         } else if (id == R.id.nav_reaches) {
             Intent intent=new Intent(this, MapActivity.class);
@@ -256,4 +270,5 @@ public class MainActivity extends AppCompatActivity
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
+
 }

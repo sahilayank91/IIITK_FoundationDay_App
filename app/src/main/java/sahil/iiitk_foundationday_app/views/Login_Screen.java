@@ -5,6 +5,7 @@ package sahil.iiitk_foundationday_app.views;
 import android.animation.ObjectAnimator;
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Handler;
 import android.support.design.widget.Snackbar;
@@ -12,6 +13,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -21,6 +23,7 @@ import android.view.animation.DecelerateInterpolator;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -32,6 +35,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -44,12 +48,12 @@ import com.wang.avi.AVLoadingIndicatorView;
 import java.util.concurrent.TimeUnit;
 
 import sahil.iiitk_foundationday_app.R;
+import sahil.iiitk_foundationday_app.model.User;
 
 public class Login_Screen extends AppCompatActivity
 {
-    Button register;
+    TextView reg_later;
     ImageView inb;
-    Button submit;
     EditText id;
     Button ff_login_button;
     EditText ff_number_input;
@@ -85,8 +89,6 @@ public class Login_Screen extends AppCompatActivity
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             window.setStatusBarColor(this.getResources().getColor(R.color.status));
         }
-        ActionBar action = getSupportActionBar();
-        action.hide();
         if (savedInstanceState != null) {
             onRestoreInstanceState(savedInstanceState);
         }
@@ -102,11 +104,11 @@ public class Login_Screen extends AppCompatActivity
         mGoogleSignInClient = GoogleSignIn.getClient(this,gso);
         signInButton=(SignInButton) findViewById(R.id.sign_in_button);
         signInButton.setSize(SignInButton.SIZE_STANDARD);
-        //register=(Button) findViewById(R.id.button6);
         phoneButton=(Button)findViewById(R.id.phonebutton);
         phoneButton.setEnabled(true);
         signInButton.setEnabled(true);
         ff_login_button.setEnabled(true);
+        reg_later=(TextView)findViewById(R.id.reg_later);
         avi = (AVLoadingIndicatorView) findViewById(R.id.AVLoadingIndicatorView);
         mtv = (MatchTextView) findViewById(R.id.hello);
         mtv.setText("IIIT KOTA Presents");
@@ -127,8 +129,6 @@ public class Login_Screen extends AppCompatActivity
                     @Override
                     public void onClick(View v)
                     {
-                        //Intent i = new Intent(getApplicationContext(),Phone_Activity.class);
-                        //startActivity(i);
                         callPhoneLogInDialog();
                         phoneButton.setVisibility(View.VISIBLE);
                         ff_login_button.setVisibility(View.VISIBLE);
@@ -142,8 +142,6 @@ public class Login_Screen extends AppCompatActivity
                     @Override
                     public void onClick(View v)
                     {
-                        //Intent i = new Intent(getApplicationContext(),FF_ID.class);
-                        //startActivity(i);
                         callLogInDialog();
                         phoneButton.setVisibility(View.VISIBLE);
                         ff_login_button.setVisibility(View.VISIBLE);
@@ -151,6 +149,7 @@ public class Login_Screen extends AppCompatActivity
                     }
                 }
         );
+
     }
     private void callLogInDialog()
     {
@@ -163,16 +162,20 @@ public class Login_Screen extends AppCompatActivity
         myDialog.setTitle("FFID");
         final Button proceed = (Button) myDialog.findViewById(R.id.btnFF1);
         final EditText id = (EditText) myDialog.findViewById(R.id.ffid1);
+        final EditText email=(EditText) myDialog.findViewById(R.id.ffid_email);
         proceed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(id.getText().toString().equals(""))
                 {
-                    id.setError("Invalid FFID");
+                    id.setError("Empty FFID");
+                }
+                else if (email.getText().toString().equals("")){
+                    email.setError("Empty Email");
                 }
                 else
                 {
-                    checkFFID(id.getText().toString());
+                    checkFFID(id.getText().toString(),email.getText().toString());
                     myDialog.dismiss();
                 }
             }
@@ -238,7 +241,7 @@ public class Login_Screen extends AppCompatActivity
     //this method checks if a registered account exists for the given phone number in
 //firebase. Appropriate action to be done inside if-else statements to get required usage.
 //this will be used on the onCreate() method of login screen
-    public void checkPhone(String a){
+    public void checkPhone(final String a){
         phoneButton.setEnabled(false);
         signInButton.setEnabled(false);
         ff_login_button.setEnabled(false);
@@ -250,20 +253,16 @@ public class Login_Screen extends AppCompatActivity
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if(dataSnapshot.exists()){
-                    //do appropriate action here when account with this phone number exists
-                    Intent i = new Intent(getApplicationContext(),MainActivity.class);
-                    startActivity(i);
-                    avi.setVisibility(View.INVISIBLE);
-                    finish();
+                    downloadUserDetailsAfterPhone(a);
                 }else{
                     //do appropriate action here when account with this phone number does not exist
-                    Toast.makeText(getApplicationContext(),"Look like you have not register with this Phone Number , please register first.",Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(getApplicationContext(),Register.class);
                     Bundle extra = new Bundle();
                     extra.putString("phone",personPhone);
                     i.putExtras(extra);
-                    avi.setVisibility(View.INVISIBLE);
+                    avi.hide();
                     startActivity(i);
+                    finish();
                 }
             }
             @Override
@@ -271,8 +270,59 @@ public class Login_Screen extends AppCompatActivity
             }
         });
     }
+    public void downloadUserDetailsAfterPhone(final String a){
+        //retrieve details of user from database
+        FirebaseDatabase db=FirebaseDatabase.getInstance();
+        DatabaseReference ref=db.getReference().child("Users");
+        Query query=ref.orderByChild("phone").equalTo(a);
+        query.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                User fetch=dataSnapshot.getValue(User.class);
+                SharedPreferences userdetails = getSharedPreferences("userInfo", MODE_PRIVATE);
+                SharedPreferences.Editor editor=userdetails.edit();
+                editor.putString("name",fetch.getName());
+                editor.putString("department",fetch.getDepartment());
+                editor.putString("phone",fetch.getPhone());
+                editor.putString("email",fetch.getEmail());
+                editor.putString("college",fetch.getCollege());
+                editor.putString("collegeid",fetch.getCollegeid());
+                editor.putString("gender", fetch.getGender());
+                editor.putString("Year", fetch.getYear());
+                editor.putString("MOS",fetch.getMos());
+                editor.putString("FFID", "FF"+fetch.getUser_id());
+                editor.putString("status","true");
+                editor.apply();
 
-    // handle phone
+                //do appropriate action here when account with this phone number exists
+                Intent i = new Intent(getApplicationContext(),MainActivity.class);
+                startActivity(i);
+                avi.hide();
+                finish();
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
     @Override
     public void onStart() {
         super.onStart();
@@ -352,38 +402,84 @@ public class Login_Screen extends AppCompatActivity
     //this method checks if a registered account exists for the given email id in
 //firebase. Appropriate action to be done inside if-else statements to get required usage.
 //this will be used on the onCreate() method of login screen
-    public void checkEmail( String a){
+    public void checkEmail(final String a){
         phoneButton.setEnabled(false);
         signInButton.setEnabled(false);
         ff_login_button.setEnabled(false);
         avi.show();
         FirebaseDatabase db=FirebaseDatabase.getInstance();
         DatabaseReference ref=db.getReference().child("Users");
-        Query query=ref.orderByChild("email").equalTo(a);
-        query.addValueEventListener(new ValueEventListener() {
+        Query q=ref.orderByChild("email").equalTo(a);
+        q.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                if(dataSnapshot.exists()){
-                    //done
-                    //do appropriate action here when account with this email exists
-                    //Toast.makeText(getApplicationContext(),"Email exists",Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(getApplicationContext(),MainActivity.class);
-                    startActivity(i);
-                    avi.setVisibility(View.INVISIBLE);
-                    finish();
+                if (dataSnapshot.exists()){
+                    downloadUserDetailsAfterEmail(a);
                 }else{
                     //do appropriate action here when account with this email does not exist
-                    Toast.makeText(getApplicationContext(),"Looks like you have not registered for FF Please register first.",Toast.LENGTH_SHORT).show();
                     Intent i =  new Intent(getApplicationContext(),Register.class);
                     Bundle extra = new Bundle();
                     extra.putString("name",personName);
                     extra.putString("email",personEmail);
                     i.putExtras(extra);
-                    avi.setVisibility(View.INVISIBLE);
+                    avi.hide();
                     startActivity(i);
                     finish();
                 }
             }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+    public void downloadUserDetailsAfterEmail(final String a ){
+        FirebaseDatabase db=FirebaseDatabase.getInstance();
+        DatabaseReference ref=db.getReference().child("Users");
+        Query query=ref.orderByChild("email").equalTo(a);
+        query.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                    //do appropriate action here when account with this email exists
+                    //retrieve user details from database
+                    User fetch=dataSnapshot.getValue(User.class);
+                    Log.e("datasnapshot",fetch.getEmail()+","+fetch.getName()+", "+fetch.getUser_id());
+                    SharedPreferences userdetails = getSharedPreferences("userInfo", MODE_PRIVATE);
+                    SharedPreferences.Editor editor=userdetails.edit();
+                    editor.putString("name",fetch.getName());
+                    editor.putString("department",fetch.getDepartment());
+                    editor.putString("phone",fetch.getPhone());
+                    editor.putString("email",fetch.getEmail());
+                    editor.putString("college",fetch.getCollege());
+                    editor.putString("collegeid",fetch.getCollegeid());
+                    editor.putString("gender", fetch.getGender());
+                    editor.putString("Year", fetch.getYear());
+                    editor.putString("MOS",fetch.getMos());
+                    editor.putString("FFID", "FF"+fetch.getUser_id());
+                    editor.putString("status","true");
+                    editor.apply();
+
+                    Intent i = new Intent(getApplicationContext(),MainActivity.class);
+                    startActivity(i);
+                    avi.hide();
+                    finish();
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
             @Override
             public void onCancelled(DatabaseError databaseError) {
             }
@@ -393,37 +489,95 @@ public class Login_Screen extends AppCompatActivity
     //this method checks if a registered account exists for the given user_id/FFID in
 //firebase. Appropriate action to be done inside if-else statements to get required usage.
 //this will be used on the onCreate() method of login screen
-    public void checkFFID(String a){
+    public void checkFFID(final String a,final String b){
         phoneButton.setEnabled(false);
         signInButton.setEnabled(false);
         ff_login_button.setEnabled(false);
         avi.show();
         FirebaseDatabase db=FirebaseDatabase.getInstance();
-        DatabaseReference ref=db.getReference().child("Users");
-        Query query=ref.orderByChild("user_id").equalTo(a);
-        query.addValueEventListener(new ValueEventListener() {
+        DatabaseReference ref=db.getReference("Users");
+        Query q=ref.orderByChild("user_id").equalTo(a);
+        q.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                if(dataSnapshot.exists()){
-                    //done
-                    //do appropriate action here when account with this user_id/FFID number exists
-                    //Toast.makeText(getApplicationContext(),"FFID Exist",Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(getApplicationContext(),MainActivity.class);
-                    startActivity(i);
-                    avi.setVisibility(View.INVISIBLE);
-                    finish();
+                if (dataSnapshot.exists()){
+                    authFFIDwithEmail(a,b);
                 }else{
-                    //do appropriate action here when account with this user_id/FFID does not exist
-                    phoneButton.setEnabled(true);
-                    signInButton.setEnabled(true);
-                    ff_login_button.setEnabled(true);
-                    avi.setVisibility(View.INVISIBLE);
-                    Toast.makeText(getApplicationContext(),"Invalid FF ID",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"No account exists with given FFID!",Toast.LENGTH_SHORT).show();
+                    avi.hide();
                 }
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
+
             }
+        });
+    }
+    public void authFFIDwithEmail(String a,final String b){
+        FirebaseDatabase db=FirebaseDatabase.getInstance();
+        DatabaseReference ref=db.getReference("Users");
+        Query query=ref.orderByChild("user_id").equalTo(a);
+        query.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                Log.e("datasnapshot","exists");
+
+                //do appropriate action here when account with this user_id/FFID number exists
+                //retrieve user details from database
+                User fetch=(User)dataSnapshot.getValue(User.class);
+                Log.e("datasnapshot",fetch.getPhone()+","+fetch.getName()+", "+fetch.getUser_id());
+                if (fetch.getEmail().equals(b)){
+                    SharedPreferences userdetails = getSharedPreferences("userInfo", MODE_PRIVATE);
+                    SharedPreferences.Editor editor=userdetails.edit();
+                    editor.putString("name",fetch.getName());
+                    editor.putString("department",fetch.getDepartment());
+                    editor.putString("phone",fetch.getPhone());
+                    editor.putString("email",fetch.getEmail());
+                    editor.putString("college",fetch.getCollege());
+                    editor.putString("collegeid",fetch.getCollegeid());
+                    editor.putString("gender", fetch.getGender());
+                    editor.putString("Year", fetch.getYear());
+                    editor.putString("MOS",fetch.getMos());
+                    editor.putString("FFID", "FF"+fetch.getUser_id());
+                    editor.putString("status","true");
+                    editor.apply();
+
+                    Intent i = new Intent(getApplicationContext(),MainActivity.class);
+                    startActivity(i);
+                    avi.hide();
+                    finish();
+                }else{
+                    Log.e("datasnapshot","email does not match with FFID!");
+                    //do appropriate action here when account with this user_id/FFID does not exist
+                    phoneButton.setEnabled(true);
+                    signInButton.setEnabled(true);
+                    ff_login_button.setEnabled(true);
+                    avi.hide();
+                    Toast.makeText(getApplicationContext(),"FFID and email do not match!",Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+
         });
     }
 
