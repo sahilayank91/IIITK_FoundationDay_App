@@ -34,22 +34,12 @@
         android:background="#37474F"/>
 </RelativeLayout>
     </android.support.v7.widget.CardView>
-<Button
-    android:layout_below="@id/notif_header_card"
-    android:layout_width="wrap_content"
-    android:layout_centerHorizontal="true"
-    android:layout_marginTop="10dp"
-    android:layout_height="wrap_content"
-    android:onClick="postNotification"
-    android:text="Send"/>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/notif_recycler"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
-    <Button
-        android:layout_below="@id/notif_header_card"
-        android:layout_width="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="60dp"
-        android:layout_height="wrap_content"
-        android:onClick="getNotification"
-        android:text="GET"/>
 
 </RelativeLayout>

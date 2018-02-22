@@ -27,6 +27,8 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
@@ -38,6 +40,7 @@ import android.widget.Toast;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -58,6 +61,8 @@ import java.util.SortedSet;
 import java.util.TreeSet;
 
 import sahil.iiitk_foundationday_app.R;
+import sahil.iiitk_foundationday_app.adapters.ClubsAdapter;
+import sahil.iiitk_foundationday_app.adapters.NotifAdapter;
 import sahil.iiitk_foundationday_app.model.Notif;
 
 public class MainActivity extends AppCompatActivity
@@ -71,6 +76,10 @@ public class MainActivity extends AppCompatActivity
     ArrayList<String > titles;
     ImageView BackGround;
     private boolean backPressedToExitOnce = false;
+    ArrayList<String> ar=new ArrayList<>();
+    RecyclerView mRecyclerView;
+    RecyclerView.LayoutManager  mLayoutManager;
+    RecyclerView.Adapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -152,6 +161,9 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        //get Notifications from firebase
+        getNotifications();
     }
 
     private void setupViewPager(ViewPager viewPager) {
@@ -330,11 +342,11 @@ public class MainActivity extends AppCompatActivity
         Toast.makeText(this, "Notification push Successfull!", Toast.LENGTH_SHORT).show();
     }
 
-    public void getNotification(View view){
+    public void getNotifications(){
         FirebaseDatabase database=FirebaseDatabase.getInstance();
         DatabaseReference ref=database.getReference("Notification");
         Query query= ref.orderByChild("notif_id");
-        query.addListenerForSingleValueEvent(new ValueEventListener() {
+        query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 collectNotifications((Map<String,Object>) dataSnapshot.getValue());
@@ -347,22 +359,48 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void collectNotifications(Map<String,Object> users) {
-        ArrayList<String> notifications = new ArrayList<>();
-        HashMap<Long,String> data=new HashMap<Long, String>();
+        HashMap<Long,String> details=new HashMap<Long, String>();
+        HashMap<Long,String> times=new HashMap<Long, String>();
+        HashMap<Long,String> club_names=new HashMap<Long, String>();
         //iterate through each notification
         for (Map.Entry<String, Object> entry : users.entrySet()){
             //Get user map
             Map singleUser = (Map) entry.getValue();
             //Get phone field and append to list
            // notifications.add((String) singleUser.get("details"));
-            data.put((Long)singleUser.get("notif_id"),(String)singleUser.get("details"));
+            details.put((Long)singleUser.get("notif_id"),(String)singleUser.get("details"));
+            times.put((Long)singleUser.get("notif_id"),(String)singleUser.get("time"));
+            club_names.put((Long)singleUser.get("notif_id"),(String)singleUser.get("which_club"));
         }
         //sort the notifications
-        List keys = new ArrayList(data.keySet());
+        List keys = new ArrayList(details.keySet());
         Collections.sort(keys);
-        Log.e("notif",keys.toString());
-       alertUser(data.get(keys.get(0)));
-        Log.e("notif",data.get(keys.get(0)));
+       // alertUser(data.get(keys.get(0)));
+        //Fill array which is sorted and ready
+        ArrayList<String> info=new ArrayList<>();
+        ArrayList<String> when=new ArrayList<>();
+        ArrayList<String> which_club=new ArrayList<>();
+        for (int i=0;i<keys.size();i++){
+            info.add(details.get(keys.get(i)));
+            when.add(times.get(keys.get(i)));
+            which_club.add(club_names.get(keys.get(i)));
+        }
+        Collections.reverse(info);
+        Collections.reverse(when);
+        Collections.reverse(which_club);
+        //show notifications in cards
+        Log.e("notif",info.toString());
+        Log.e("notif",when.toString());
+        Log.e("notif",which_club.toString());
+        showNotifCard(info,when,which_club);
+    }
+
+    private void showNotifCard(ArrayList<String> info,ArrayList<String> when,ArrayList<String> which){
+        mRecyclerView = (RecyclerView)findViewById(R.id.notif_recycler);
+        mLayoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        mAdapter = new NotifAdapter(info,when,which);
+        mRecyclerView.setAdapter(mAdapter);
     }
 
     private  void alertUser(String a){
