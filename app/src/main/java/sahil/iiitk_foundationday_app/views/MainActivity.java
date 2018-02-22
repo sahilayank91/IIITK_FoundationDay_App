@@ -8,7 +8,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -20,8 +19,8 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.app.Notification;
 import android.support.v4.app.NotificationCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
@@ -40,7 +39,6 @@ import android.widget.Toast;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -57,11 +55,8 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.SortedSet;
-import java.util.TreeSet;
 
 import sahil.iiitk_foundationday_app.R;
-import sahil.iiitk_foundationday_app.adapters.ClubsAdapter;
 import sahil.iiitk_foundationday_app.adapters.NotifAdapter;
 import sahil.iiitk_foundationday_app.model.Notif;
 
@@ -89,17 +84,10 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
        //requesting location permission from user
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)!= PackageManager.PERMISSION_GRANTED
-                && ActivityCompat.checkSelfPermission(this,Manifest.permission.ACCESS_COARSE_LOCATION)!=PackageManager.PERMISSION_GRANTED){
-            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.ACCESS_COARSE_LOCATION},123);
+        if ((ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)!= PackageManager.PERMISSION_GRANTED
+                && ContextCompat.checkSelfPermission(this,Manifest.permission.ACCESS_COARSE_LOCATION)!=PackageManager.PERMISSION_GRANTED)){
+            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION},123);
         }
-//        if (ActivityCompat.checkSelfPermission(this,Manifest.permission.INTERNET)!=PackageManager.PERMISSION_GRANTED){
-//            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.INTERNET},124);
-//        }
-//        if (ActivityCompat.checkSelfPermission(this,Manifest.permission.WRITE_EXTERNAL_STORAGE)!=PackageManager.PERMISSION_GRANTED){
-//            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},125);
-//        }
-        //permissions end
 
         ////////////////////////////    PUSHER SHURU
         PusherOptions options = new PusherOptions();
@@ -162,7 +150,7 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        //get Notifications from firebase
+        //getting notifications
         getNotifications();
     }
 
@@ -319,17 +307,6 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        switch (requestCode){
-            case 123: if (grantResults[0]==PackageManager.PERMISSION_DENIED){
-                    Toast.makeText(this,"Give permission to get awesome experience of Map",Toast.LENGTH_SHORT).show();
-                }
-                break;
-            default: super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        }
-
-    }
     public void postNotification(View view){
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         Notif notification=new Notif();
@@ -349,7 +326,9 @@ public class MainActivity extends AppCompatActivity
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists())
                 collectNotifications((Map<String,Object>) dataSnapshot.getValue());
+                else Toast.makeText(getApplicationContext(),"No notifications found!",Toast.LENGTH_SHORT).show();
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
@@ -359,10 +338,14 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void collectNotifications(Map<String,Object> users) {
+        //iterate through each notification
         HashMap<Long,String> details=new HashMap<Long, String>();
         HashMap<Long,String> times=new HashMap<Long, String>();
         HashMap<Long,String> club_names=new HashMap<Long, String>();
-        //iterate through each notification
+        List keys = new ArrayList();
+        ArrayList<String> info=new ArrayList<>();
+        ArrayList<String> when=new ArrayList<>();
+        ArrayList<String> which_club=new ArrayList<>();
         for (Map.Entry<String, Object> entry : users.entrySet()){
             //Get user map
             Map singleUser = (Map) entry.getValue();
@@ -373,13 +356,11 @@ public class MainActivity extends AppCompatActivity
             club_names.put((Long)singleUser.get("notif_id"),(String)singleUser.get("which_club"));
         }
         //sort the notifications
-        List keys = new ArrayList(details.keySet());
+        keys = new ArrayList(details.keySet());
         Collections.sort(keys);
+        int max_notif_id=keys.size();
        // alertUser(data.get(keys.get(0)));
         //Fill array which is sorted and ready
-        ArrayList<String> info=new ArrayList<>();
-        ArrayList<String> when=new ArrayList<>();
-        ArrayList<String> which_club=new ArrayList<>();
         for (int i=0;i<keys.size();i++){
             info.add(details.get(keys.get(i)));
             when.add(times.get(keys.get(i)));
@@ -392,7 +373,18 @@ public class MainActivity extends AppCompatActivity
         Log.e("notif",info.toString());
         Log.e("notif",when.toString());
         Log.e("notif",which_club.toString());
+        //showing notifications in cards
         showNotifCard(info,when,which_club);
+        //getting last seen notification from sharedpreferences
+        SharedPreferences pref=getSharedPreferences("userInfo",MODE_PRIVATE);
+        int n=pref.getInt("last_notif",0);
+        SharedPreferences.Editor editor=pref.edit();
+        editor.putInt("last_notif",max_notif_id);
+        editor.apply();
+        //displaying these notifications in user's notification panel
+        for (int i=n;i<info.size();i++){
+            alertUser(info.get(i),i);
+        }
     }
 
     private void showNotifCard(ArrayList<String> info,ArrayList<String> when,ArrayList<String> which){
@@ -403,7 +395,7 @@ public class MainActivity extends AppCompatActivity
         mRecyclerView.setAdapter(mAdapter);
     }
 
-    private  void alertUser(String a){
+    private  void alertUser(String a,int NOTIFICATION_ID){
 //        //creating  a notification channel
 //        NotificationManager mNotificationManager =
 //                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
@@ -429,12 +421,11 @@ public class MainActivity extends AppCompatActivity
                 new NotificationCompat.Builder(this)
                         .setSmallIcon(R.drawable.ic_launcher_round)
                         .setContentTitle("FlairFiesta 2k18")
+                        .setTicker(a)
+                       .setAutoCancel(true)
+                        .setPriority(1000)
                         .setContentText(a);
-        int NOTIFICATION_ID = 123;
 
-        Intent targetIntent = new Intent(this, MainActivity.class);
-        PendingIntent contentIntent = PendingIntent.getActivity(this, 0, targetIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-        builder.setContentIntent(contentIntent);
         NotificationManager nManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         nManager.notify(NOTIFICATION_ID, builder.build());
     }
