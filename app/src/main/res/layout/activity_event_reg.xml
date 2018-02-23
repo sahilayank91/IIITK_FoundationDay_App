@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/th"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="sahil.iiitk_foundationday_app.views.EventRegActivity">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_marginTop="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:textColor="#dddddd"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="25dp"
+            android:layout_marginTop="15dp"
+            android:fontFamily="monospace"
+            android:text="Member Registration"/>
+        <LinearLayout
+            android:layout_marginTop="50dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+            <TextView
+                android:textColor="#887776"
+                android:textStyle="bold"
+                android:layout_width="220dp"
+                android:textSize="25sp"
+                android:fontFamily="serif"
+                android:layout_gravity="center"
+                android:layout_height="wrap_content"
+                android:text="Team Size"/>
+            <Spinner
+                android:id="@+id/s1"
+                android:scrollbarStyle="outsideOverlay"
+                android:layout_marginLeft="12dp"
+                android:layout_width="100dp"
+                android:layout_height="31dp"
+                android:layout_weight="0.17" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="15dp"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="200dp"
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/lv2"
+                android:orientation="vertical"
+                android:layout_marginTop="13dp"
+                android:layout_height="match_parent">
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="200dp"
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/lv1"
+                android:orientation="vertical"
+                android:layout_marginTop="13dp"
+                android:layout_height="match_parent">
+            </LinearLayout>
+            <Button
+                android:layout_marginTop="12dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/go"
+                android:layout_gravity="center_horizontal"
+                android:text="Register"/>
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>
+

@@ -6,7 +6,9 @@
     android:background="#607d8b"
     android:orientation="vertical"
     >
-
+    <!--
+            Made by tanuj
+            -->
     <ImageView
         android:id="@+id/nav_logo"
         android:layout_marginLeft="25dp"

@@ -20,6 +20,14 @@
             android:icon="@drawable/ic_menu_manage"
             android:title="Quiz" />
 
+        <item android:id="@+id/nav_fb"
+            android:icon="@mipmap/ic_launcher_round"
+            android:title="Facebook Page"/>
+
+        <item android:id="@+id/nav_website"
+            android:icon="@mipmap/ic_launcher_round"
+            android:title="Website"/>
+
     <item
         android:id="@+id/nav_share"
         android:icon="@drawable/ic_menu_share"

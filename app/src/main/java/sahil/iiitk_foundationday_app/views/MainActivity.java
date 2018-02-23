@@ -256,7 +256,6 @@ public class MainActivity extends AppCompatActivity
             SharedPreferences sharedPreferences=getSharedPreferences("userInfo",MODE_PRIVATE);
             if (!sharedPreferences.getString("FFID","").isEmpty()){
                 Toast.makeText(getApplicationContext(),"You are already registered!",Toast.LENGTH_SHORT).show();
-              //  item.setCheckable(false);
             }else{
                 Bundle bundle=new Bundle();
                 if (!sharedPreferences.getString("name","").isEmpty()){
@@ -274,11 +273,10 @@ public class MainActivity extends AppCompatActivity
             }
 
         } else if (id == R.id.nav_reaches) {
-           // item.setCheckable(false);
             Intent intent=new Intent(this, MapActivity.class);
             this.startActivity(intent);
-        } else if (id == R.id.nav_queries) {
 
+        } else if (id == R.id.nav_queries) {
             Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
                     "mailto","tanujm242@gmail.com", null));
             this.startActivity(Intent.createChooser(emailIntent, "Send Email via"));
@@ -286,13 +284,23 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_quiz) {
             Intent intent=new Intent(this,QuizActivity.class);
             this.startActivity(intent);
+
         } else if (id == R.id.nav_share) {
-            item.setCheckable(false);
             Intent sharingIntent = new Intent(Intent.ACTION_SEND);
             sharingIntent.setType("text/plain");
             sharingIntent.putExtra(Intent.EXTRA_SUBJECT, "Flair-Fiesta 2k18");
             sharingIntent.putExtra(Intent.EXTRA_TEXT, "Download Flair-Fiesta 2k18 from Play Store.");
             startActivity(Intent.createChooser(sharingIntent, "Share via"));
+
+        } else if (id==R.id.nav_fb){
+            Intent i = new Intent(Intent.ACTION_VIEW);
+            i.setData(Uri.parse("https://www.facebook.com/iiitkfd"));
+            this.startActivity(i);
+
+        }else if (id==R.id.nav_website){
+            Intent i = new Intent(Intent.ACTION_VIEW);
+            i.setData(Uri.parse("http://www.flairfiesta.com/"));
+            this.startActivity(i);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
