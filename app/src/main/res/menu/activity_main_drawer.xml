@@ -32,6 +32,12 @@
         android:id="@+id/nav_share"
         android:icon="@drawable/ic_menu_share"
         android:title="Share" />
+
+        <item
+            android:title="Go Admin"
+            android:icon="@drawable/ic_menu_manage"
+            android:id="@+id/nav_admin"
+            />
     </group>
 
 </menu>

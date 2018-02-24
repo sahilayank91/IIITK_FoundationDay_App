@@ -155,7 +155,8 @@ public class EventRegActivity extends AppCompatActivity
             }
         });
     }
-
+        //registration ,validation and confirmation work done by
+        //Tanuj
     public void checkFFID(final String a){
         DatabaseReference databaseReference=db.getReference("Users");
         Query query=databaseReference.orderByChild("user_id").equalTo(a);
@@ -302,7 +303,7 @@ public class EventRegActivity extends AppCompatActivity
         +"\n\nThanks and Regards"
         +"\nAdmin";
         final String recepient=email;
-        Log.e("registration","Sending confirmation email");
+
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -312,8 +313,9 @@ public class EventRegActivity extends AppCompatActivity
                             body,
                             "tanujm242@gmail.com",
                             recepient);
+                    Log.e("registration","Sending confirmation email to: "+recepient);
                 } catch (Exception e) {
-                    Log.e("SendMail", e.getMessage(), e);
+                    Log.e("registration", e.getMessage(), e);
                 }
             }
         }).start();

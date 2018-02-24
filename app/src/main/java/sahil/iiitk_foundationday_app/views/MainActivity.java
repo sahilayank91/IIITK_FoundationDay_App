@@ -5,6 +5,7 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -25,14 +26,17 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.InputType;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -59,6 +63,7 @@ import java.util.Map;
 
 import sahil.iiitk_foundationday_app.R;
 import sahil.iiitk_foundationday_app.adapters.NotifAdapter;
+import sahil.iiitk_foundationday_app.model.AdminIDs;
 import sahil.iiitk_foundationday_app.model.Notif;
 
 public class MainActivity extends AppCompatActivity
@@ -77,6 +82,10 @@ public class MainActivity extends AppCompatActivity
     RecyclerView.LayoutManager  mLayoutManager;
     RecyclerView.Adapter mAdapter;
     TextView nav_ffid;
+    String dialogue_entry;
+    FirebaseDatabase db;
+    DatabaseReference ref;
+    AdminIDs admin=new AdminIDs();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -317,6 +326,9 @@ public class MainActivity extends AppCompatActivity
             i.setData(Uri.parse("http://www.flairfiesta.com/"));
             this.startActivity(i);
         }
+        else if (id==R.id.nav_admin){
+            launchAdmin();
+        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -330,17 +342,6 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-    public void postNotification(View view){
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        Notif notification=new Notif();
-        notification.setDetails("First Notification");
-        notification.setNotif_id(1);
-        notification.setTime("1:08 AM");
-        notification.setWhich_club("Technical Club");
-        DatabaseReference mRef = database.getReference().child("Notification");
-        mRef.push().setValue(notification);
-        Toast.makeText(this, "Notification push Successfull!", Toast.LENGTH_SHORT).show();
-    }
 
     public void getNotifications(){
         FirebaseDatabase database=FirebaseDatabase.getInstance();
@@ -371,8 +372,6 @@ public class MainActivity extends AppCompatActivity
         for (Map.Entry<String, Object> entry : users.entrySet()){
             //Get user map
             Map singleUser = (Map) entry.getValue();
-            //Get phone field and append to list
-           // notifications.add((String) singleUser.get("details"));
             details.put((Long)singleUser.get("notif_id"),(String)singleUser.get("details"));
             times.put((Long)singleUser.get("notif_id"),(String)singleUser.get("time"));
             club_names.put((Long)singleUser.get("notif_id"),(String)singleUser.get("which_club"));
@@ -381,7 +380,6 @@ public class MainActivity extends AppCompatActivity
         keys = new ArrayList(details.keySet());
         Collections.sort(keys);
         int max_notif_id=keys.size();
-
         //Fill array which is sorted and ready
         for (int i=0;i<keys.size();i++){
             info.add(details.get(keys.get(i)));
@@ -405,7 +403,8 @@ public class MainActivity extends AppCompatActivity
         SharedPreferences.Editor editor=pref.edit();
         editor.putInt("last_notif",max_notif_id);
         editor.apply();
-
+        //we need to reverse it again to show the new notification to user
+        Collections.reverse(info);
         //displaying these notifications in user's notification panel
         for (int i=n;i<info.size();i++){
             alertUser(info.get(i),i);
@@ -421,6 +420,7 @@ public class MainActivity extends AppCompatActivity
 
     private  void alertUser(String a,int NOTIFICATION_ID){
 //        //creating  a notification channel
+        //todo setup notifications for newer versions of android >=26
 //        NotificationManager mNotificationManager =
 //                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 //// The id of the channel.
@@ -454,5 +454,90 @@ public class MainActivity extends AppCompatActivity
         builder.setContentIntent(pendingIntent);
         NotificationManager nManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         nManager.notify(NOTIFICATION_ID, builder.build());
+    }
+
+    private void launchAdmin(){
+        //launch a dialogue to verify Admin ID
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Enter Admin ID");
+
+        // Set up the input
+        final EditText input = new EditText(this);
+        // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
+       // input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        input.setInputType(InputType.TYPE_CLASS_TEXT);
+        builder.setView(input);
+
+        //   Set up the buttons
+        builder.setPositiveButton("GO", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialogue_entry = input.getText().toString();
+                dialog.cancel();
+               checkAdminID();
+            }
+        });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        builder.show();
+    }
+
+    private  void checkAdminID(){
+        db=FirebaseDatabase.getInstance();
+        ref=db.getReference("Admin");
+        Query query=ref;
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()){
+                    Log.e("adminpage","Data Snapshot exists!");
+                    Map<String,Object> data=(Map<String,Object>) dataSnapshot.getValue();
+                    getAdminIDs(data);
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    private void getAdminIDs(Map<String,Object> users){
+        ArrayList<String> adminIDs=new ArrayList<>();
+        ArrayList<String> adminNames=new ArrayList<>();
+        for (Map.Entry<String, Object> entry : users.entrySet()){
+            //Get admin user map
+            Map singleUser = (Map) entry.getValue();
+            adminIDs.add((String)singleUser.get("id"));
+            adminNames.add((String)singleUser.get("name"));
+        }
+
+        Log.e("adminpage",adminIDs.toString());
+        if (adminIDs.contains(dialogue_entry)){
+            Log.e("adminpage","Admin ID confirmed!");
+            int index=adminIDs.indexOf(dialogue_entry);
+            String club_name=adminNames.get(index);
+            Toast.makeText(getApplicationContext(),"Welcome Admin!",Toast.LENGTH_SHORT).show();
+            //goto Admin page
+            Intent intent=new Intent(getApplicationContext(),AdminPage.class);
+            intent.putExtra("club_name",club_name);
+            this.startActivity(intent);
+        }else{
+            Log.e("adminpage","Wrong Admin ID");
+            Toast.makeText(this,"Wrong Admin ID!",Toast.LENGTH_SHORT).show();
+        }
+    }
+//use when need to put more adminIDs
+    private  void putAdminIDs(){
+        db=FirebaseDatabase.getInstance();
+        ref=db.getReference("Admin");
+        admin.setName("Fine_arts_and_photography_club");
+        admin.setId("abc");
+        ref.push().setValue(admin);
+        Log.e("adminpage","One Admin ID pushed!");
     }
 }
