@@ -34,6 +34,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -75,6 +76,7 @@ public class MainActivity extends AppCompatActivity
     RecyclerView mRecyclerView;
     RecyclerView.LayoutManager  mLayoutManager;
     RecyclerView.Adapter mAdapter;
+    TextView nav_ffid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -149,6 +151,18 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        NavigationView notif_nav=findViewById(R.id.nav_view_2);
+        mRecyclerView = notif_nav.getHeaderView(0).findViewById(R.id.notif_recycler);
+
+        //showing user's FFID if it exists
+        nav_ffid=navigationView.getHeaderView(0).findViewById(R.id.nav_ffid);
+        SharedPreferences pref=getSharedPreferences("userInfo",MODE_PRIVATE);
+        if (pref.getString("FFID","").equals("")){
+            nav_ffid.setText("Register to get FFID");
+        }else{
+            nav_ffid.setText("Your FFID is "+pref.getString("FFID",""));
+        }
 
         //getting notifications
         getNotifications();
@@ -270,6 +284,7 @@ public class MainActivity extends AppCompatActivity
                 Intent intent=new Intent(this,Register.class);
                 intent.putExtras(bundle);
                 this.startActivity(intent);
+                finish();
             }
 
         } else if (id == R.id.nav_reaches) {
@@ -336,7 +351,6 @@ public class MainActivity extends AppCompatActivity
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists())
                 collectNotifications((Map<String,Object>) dataSnapshot.getValue());
-                else Toast.makeText(getApplicationContext(),"No notifications found!",Toast.LENGTH_SHORT).show();
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
@@ -350,7 +364,7 @@ public class MainActivity extends AppCompatActivity
         HashMap<Long,String> details=new HashMap<Long, String>();
         HashMap<Long,String> times=new HashMap<Long, String>();
         HashMap<Long,String> club_names=new HashMap<Long, String>();
-        List keys = new ArrayList();
+        List keys;
         ArrayList<String> info=new ArrayList<>();
         ArrayList<String> when=new ArrayList<>();
         ArrayList<String> which_club=new ArrayList<>();
@@ -367,7 +381,7 @@ public class MainActivity extends AppCompatActivity
         keys = new ArrayList(details.keySet());
         Collections.sort(keys);
         int max_notif_id=keys.size();
-       // alertUser(data.get(keys.get(0)));
+
         //Fill array which is sorted and ready
         for (int i=0;i<keys.size();i++){
             info.add(details.get(keys.get(i)));
@@ -381,14 +395,17 @@ public class MainActivity extends AppCompatActivity
         Log.e("notif",info.toString());
         Log.e("notif",when.toString());
         Log.e("notif",which_club.toString());
+
         //showing notifications in cards
         showNotifCard(info,when,which_club);
+
         //getting last seen notification from sharedpreferences
         SharedPreferences pref=getSharedPreferences("userInfo",MODE_PRIVATE);
         int n=pref.getInt("last_notif",0);
         SharedPreferences.Editor editor=pref.edit();
         editor.putInt("last_notif",max_notif_id);
         editor.apply();
+
         //displaying these notifications in user's notification panel
         for (int i=n;i<info.size();i++){
             alertUser(info.get(i),i);
@@ -396,7 +413,6 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void showNotifCard(ArrayList<String> info,ArrayList<String> when,ArrayList<String> which){
-        mRecyclerView = (RecyclerView)findViewById(R.id.notif_recycler);
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mAdapter = new NotifAdapter(info,when,which);
@@ -433,7 +449,9 @@ public class MainActivity extends AppCompatActivity
                        .setAutoCancel(true)
                         .setPriority(1000)
                         .setContentText(a);
-
+        Intent intent=new Intent(this,Splash_Activity.class);
+        PendingIntent pendingIntent=PendingIntent.getActivity(this,1,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+        builder.setContentIntent(pendingIntent);
         NotificationManager nManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         nManager.notify(NOTIFICATION_ID, builder.build());
     }

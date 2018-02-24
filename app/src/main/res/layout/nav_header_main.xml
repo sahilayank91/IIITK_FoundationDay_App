@@ -3,31 +3,43 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="160dp"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="#607d8b"
-    android:orientation="vertical"
-    >
+    tools:context="sahil.iiitk_foundationday_app.views.MainActivity"
+    android:orientation="vertical">
     <!--
-            Made by tanuj
+          Made by tanuj
             -->
     <ImageView
         android:id="@+id/nav_logo"
-        android:layout_marginLeft="25dp"
-        android:layout_centerVertical="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-       android:src="@drawable/ic_launcher_round"/>
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="25dp"
+        android:src="@drawable/ic_launcher_round" />
 
 
     <TextView
         android:id="@+id/nav_name"
-        android:layout_toRightOf="@+id/nav_logo"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="#ffffff"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/nav_logo"
         android:gravity="center"
-        android:textSize="25sp"
-        android:text="Flair Fiesta 2018" />
+        android:text="Flair Fiesta 2018"
+        android:textColor="#ffffff"
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/nav_ffid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/nav_logo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="10dp"
+        android:gravity="center"
+        android:textColor="#ffffff"
+        android:textSize="20sp" />
 
 </RelativeLayout>

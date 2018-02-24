@@ -1,5 +1,7 @@
 package sahil.iiitk_foundationday_app.views;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.support.v7.app.AppCompatActivity;
@@ -25,9 +27,13 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import sahil.iiitk_foundationday_app.R;
+import sahil.iiitk_foundationday_app.mail.GMailSender;
 import sahil.iiitk_foundationday_app.model.EventReg;
 
 public class EventRegActivity extends AppCompatActivity
@@ -35,7 +41,7 @@ public class EventRegActivity extends AppCompatActivity
     LinearLayout lv1,lv2;
     Spinner s1;
     int min,max,club_number,check_number;
-    String event_name;
+    String event_name,body;
     EditText ed,edd;
     Button btnl;
     List<EditText> allEds = new ArrayList<>();
@@ -43,6 +49,7 @@ public class EventRegActivity extends AppCompatActivity
     List<String> IDs=new ArrayList<>();
     EventReg registration=new EventReg();
     FirebaseDatabase db;
+    SharedPreferences savedData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -51,6 +58,8 @@ public class EventRegActivity extends AppCompatActivity
         setContentView(R.layout.activity_event_reg);
 
         db=FirebaseDatabase.getInstance();
+        savedData=getSharedPreferences("userInfo",MODE_PRIVATE);
+
         //get values passed by intent
         Bundle bundle=getIntent().getExtras();
         event_name=bundle.getString("event_name");
@@ -101,6 +110,7 @@ public class EventRegActivity extends AppCompatActivity
                                 AbsListView.LayoutParams.WRAP_CONTENT));
                         lv1.addView(ed);
                     }
+                    allEds.get(0).setText(""+savedData.getString("FFID",""));
                 }
                 @Override
                 public void onNothingSelected(AdapterView<?> adapterView) {
@@ -129,13 +139,14 @@ public class EventRegActivity extends AppCompatActivity
                         IDs.add(strings[i]);
                     }
                 }
-                if (edd.getText().toString().equals("")){
-                    edd.setError("Empty");
-                    flag=1;
+                if (min>=2){
+                    if (edd.getText().toString().equals("")){
+                        edd.setError("Empty");
+                        flag=1;
+                    }
                 }
                 if(flag==0)
                 {
-                    //todo proceed to firebase
                     checkFFID(IDs.get(0));
                 }else{
                     IDs.clear();
@@ -152,6 +163,7 @@ public class EventRegActivity extends AppCompatActivity
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (!dataSnapshot.exists()){
+                    allEds.get(check_number).setError("This FFID does not exist!");
                     Toast.makeText(getApplicationContext(),"Member with FFID: "+a+" does not exist!",Toast.LENGTH_SHORT).show();
                 }
                 else{
@@ -159,7 +171,8 @@ public class EventRegActivity extends AppCompatActivity
                     if (check_number<IDs.size()){
                         checkFFID(IDs.get(check_number));
                     }else if (check_number==IDs.size()){
-                        reg_lastStage();
+                        check_number=0;
+                        reg_secondStage();
                     }
                 }
             }
@@ -171,11 +184,74 @@ public class EventRegActivity extends AppCompatActivity
     }
 
     public void reg_secondStage(){
-            //todo checking if given users are in other teams or not remaining
+        Log.e("registration","Second stage called!");
+        DatabaseReference ref=db.getReference("Registrations");
+        switch (club_number){
+            case 0: ref=ref.child("Technical_club");
+                break;
+            case 1: ref=ref.child("Cultural_club");
+                break;
+            case 2: ref=ref.child("Literary_and_dramatics_club");
+                break;
+            case 3: ref=ref.child("Fine_arts_and_photography_club");
+                break;
+        }
+        ref=ref.child(event_name);
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+        @Override
+        public void onDataChange(DataSnapshot dataSnapshot) {
+            if (dataSnapshot.exists()){
+                Log.e("registration","Snapshot exists!");
+                collectRegistrations((Map<String,Object>) dataSnapshot.getValue());
+            }else{
+                Log.e("registration","Snapshot does not exists!");
+                reg_lastStage();
+            }
+
+        }
+        @Override
+        public void onCancelled(DatabaseError databaseError) {
+
+        }
+    });
+}
+
+    private void collectRegistrations(Map<String,Object> users) {
+        //iterate through each registration
+        Log.e("registration","Collecting all registrations!");
+        boolean goodToGo=true;
+        HashMap<Long,ArrayList<String>> ffids=new HashMap<Long, ArrayList<String>>();
+        long i=0;
+        for (Map.Entry<String, Object> entry : users.entrySet()){
+            //Get registration map
+            Map singleUser = (Map) entry.getValue();
+            ffids.put(i, (ArrayList<String>) singleUser.get("ffids"));
+            i++;
+            }
+            ArrayList<Long> keys= new ArrayList<>(ffids.keySet());
+        for (int j=0;j<ffids.keySet().size();j++){
+            Log.e("registration","outer call no. "+j);
+            ArrayList<String> single_reg=ffids.get(keys.get(j));
+            Log.e("registration",single_reg.toString());
+            Log.e("registration",IDs.toString());
+            for (String a : IDs){
+                Log.e("registration","inner call no. "+j);
+                if (single_reg.contains(a)){
+                    goodToGo=false;
+                    Log.e("registration","Found match for FFID!");
+                    break;
+                }
+            }
+        }
+        if (goodToGo){
+            reg_lastStage();
+        }else{
+            Toast.makeText(getApplicationContext(),"One or more of these FFIDs are already registered for this event!",Toast.LENGTH_LONG).show();
+        }
     }
 
     public void reg_lastStage(){
-        Log.e("registration","Second stage called!");
+        Log.e("registration","Last stage called!");
         DatabaseReference ref=db.getReference("Registrations");
         switch (club_number){
             case 0: ref=ref.child("Technical_club");
@@ -194,8 +270,55 @@ public class EventRegActivity extends AppCompatActivity
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String formattedDate = df.format(c.getTime());
         registration.setReg_time(formattedDate);
-        registration.setTeam_name(edd.getText().toString());
+        String team_name;
+        if (min>=2){
+            team_name=edd.getText().toString();
+        }
+        else{
+            team_name=savedData.getString("name","");
+        }
+        registration.setTeam_name(team_name);
+        registration.setEmail(savedData.getString("email",""));
+        registration.setPhone(savedData.getString("phone",""));
         ref.push().setValue(registration);
+        Toast.makeText(this,"Your Team is registered for "+event_name,Toast.LENGTH_LONG).show();
+        //send confirmation mail
+        sendEmail(IDs,savedData.getString("name",""),savedData.getString("email",""),event_name,team_name);
+
+        //go back to details activity
+        Intent intent=new Intent(this,DetailedEvent.class);
+        this.startActivity(intent);
     }
+
+    //sending emails automatically
+    public void sendEmail(List<String> ffids, String name, String email, final String event_name,final String team_name){
+        body="Hi,\n"+name+" ( "+email+" )\nYour registration for "+event_name+" in Flair Fiesta 2k18 is now confirmed."
+                + "\nTeam Name: "+team_name
+                +"\nYour team members are - ";
+        for (int i=0;i<ffids.size();i++){
+            body=body+"\n"+(i+1)+". "+ffids.get(i);
+        }
+        body=body+"\n\nWe at Organzing Team of Flair Fiesta 2k18 will be glad to have you with us on 23Mar 18 and 24Mar 18."
+        +"\n\nThanks and Regards"
+        +"\nAdmin";
+        final String recepient=email;
+        Log.e("registration","Sending confirmation email");
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    GMailSender sender = new GMailSender("tanujm242@gmail.com", "geniusmehta");
+                    sender.sendMail("Your Registration for "+event_name+" in Flair Fiesta 2k18 is Confirmed.",
+                            body,
+                            "tanujm242@gmail.com",
+                            recepient);
+                } catch (Exception e) {
+                    Log.e("SendMail", e.getMessage(), e);
+                }
+            }
+        }).start();
+
+    }
+
 }
 

@@ -303,7 +303,7 @@ public class Login_Screen extends AppCompatActivity
                 editor.putString("gender", fetch.getGender());
                 editor.putString("Year", fetch.getYear());
                 editor.putString("MOS",fetch.getMos());
-                editor.putString("FFID", "FF"+fetch.getUser_id());
+                editor.putString("FFID",fetch.getUser_id());
                 editor.putString("status","true");
                 editor.apply();
 
@@ -469,7 +469,7 @@ public class Login_Screen extends AppCompatActivity
                     editor.putString("gender", fetch.getGender());
                     editor.putString("Year", fetch.getYear());
                     editor.putString("MOS",fetch.getMos());
-                    editor.putString("FFID", "FF"+fetch.getUser_id());
+                    editor.putString("FFID", fetch.getUser_id());
                     editor.putString("status","true");
                     editor.apply();
 
@@ -552,7 +552,7 @@ public class Login_Screen extends AppCompatActivity
                     editor.putString("gender", fetch.getGender());
                     editor.putString("Year", fetch.getYear());
                     editor.putString("MOS",fetch.getMos());
-                    editor.putString("FFID", "FF"+fetch.getUser_id());
+                    editor.putString("FFID",fetch.getUser_id());
                     editor.putString("status","true");
                     editor.apply();
 

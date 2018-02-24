@@ -2,6 +2,7 @@ package sahil.iiitk_foundationday_app.views;
 // Made by Tanuj
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -13,21 +14,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.HashMap;
-import java.util.List;
 
 import sahil.iiitk_foundationday_app.R;
-import sahil.iiitk_foundationday_app.model.EventReg;
 
 public class DetailedEvent extends AppCompatActivity {
 
@@ -40,12 +32,9 @@ public class DetailedEvent extends AppCompatActivity {
     HashMap<String, Integer> imageMap = new HashMap<>();
     int club_number;
     int event_number;
-    EventReg registration=new EventReg();
-    int i,check_number=0,min,max;
+    int i,min,max;
     FirebaseDatabase db;
-    List<String> names=new ArrayList<>();;
     String[] event_data,clubs_array;
-    String club_name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,15 +90,33 @@ public class DetailedEvent extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //open registration page
-                Intent intent=new Intent(getApplicationContext(),EventRegActivity.class);
-                Bundle bundle=new Bundle();
-                bundle.putInt("club_number",club_number);
-                bundle.putString("event_name",event_data[0]);
-                bundle.putInt("min",min);
-                bundle.putInt("max",max);
-                intent.putExtras(bundle);
-                getApplicationContext().startActivity(intent);
+                //check if user has registered in the app or not
+                SharedPreferences sharedPreferences=getSharedPreferences("userInfo",MODE_PRIVATE);
+                if (!sharedPreferences.getString("FFID","").isEmpty()){
+                    //open registration page
+                    Intent intent=new Intent(getApplicationContext(),EventRegActivity.class);
+                    Bundle bundle=new Bundle();
+                    bundle.putInt("club_number",club_number);
+                    bundle.putString("event_name",event_data[0]);
+                    bundle.putInt("min",min);
+                    bundle.putInt("max",max);
+                    intent.putExtras(bundle);
+                    getApplicationContext().startActivity(intent);
+                }else{
+                    Bundle bundle=new Bundle();
+                    if (!sharedPreferences.getString("name","").isEmpty()){
+                        bundle.putString("name",sharedPreferences.getString("name",""));
+                    }
+                    if (!sharedPreferences.getString("email","").isEmpty()){
+                        bundle.putString("email",sharedPreferences.getString("email",""));
+                    }
+                    if (!sharedPreferences.getString("phone","").isEmpty()){
+                        bundle.putString("phone",sharedPreferences.getString("phone",""));
+                    }
+                    Intent intent=new Intent(getApplicationContext(),Register.class);
+                    intent.putExtras(bundle);
+                    getApplicationContext().startActivity(intent);
+                }
             }
         });
     }
