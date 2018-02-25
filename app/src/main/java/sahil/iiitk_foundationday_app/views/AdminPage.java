@@ -43,6 +43,9 @@ public class AdminPage extends Activity {
     ListView list;
     FirebaseDatabase db;
     HashMap<Long,ArrayList<String>> ffids=new HashMap<>();
+    ArrayList<String> team_contact_email=new ArrayList<>();
+    ArrayList<String> team_contact_phone=new ArrayList<>();
+    ArrayList<String> team_time=new ArrayList<>();
     ArrayList<String> team_names=new ArrayList<>();
     FloatingActionButton admin_fab;
 
@@ -106,7 +109,7 @@ public class AdminPage extends Activity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 AlertDialog.Builder builder=new AlertDialog.Builder(AdminPage.this);
-                builder.setTitle("Team Members");
+                builder.setTitle(team_names.get(position));
                 String details="";
                 ArrayList<Long> keys=new ArrayList<>(ffids.keySet());
                 Collections.sort(keys);
@@ -115,6 +118,8 @@ public class AdminPage extends Activity {
                 for (int i=0;i<members.size();i++){
                     details+=""+(i+1)+". "+members.get(i)+"\n";
                 }
+                details+="\n@ "+team_time.get(position)
+                +"\nContact: "+team_contact_phone.get(position)+"\n"+team_contact_email.get(position)+"\n";
                 builder.setMessage(details);
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
@@ -226,6 +231,9 @@ public class AdminPage extends Activity {
             Map singleUser = (Map) entry.getValue();
             ffids.put(i, (ArrayList<String>) singleUser.get("ffids"));
             team_names.add((String)singleUser.get("team_name"));
+            team_time.add((String) singleUser.get("reg_time"));
+            team_contact_email.add((String) singleUser.get("email"));
+            team_contact_phone.add((String) singleUser.get("phone"));
             i++;
         }
         Log.e("adminpage",team_names.toString());

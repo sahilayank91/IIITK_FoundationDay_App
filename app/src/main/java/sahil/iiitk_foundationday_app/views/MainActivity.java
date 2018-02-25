@@ -77,7 +77,6 @@ public class MainActivity extends AppCompatActivity
     ArrayList<String > titles;
     ImageView BackGround;
     private boolean backPressedToExitOnce = false;
-    ArrayList<String> ar=new ArrayList<>();
     RecyclerView mRecyclerView;
     RecyclerView.LayoutManager  mLayoutManager;
     RecyclerView.Adapter mAdapter;
@@ -386,6 +385,13 @@ public class MainActivity extends AppCompatActivity
             when.add(times.get(keys.get(i)));
             which_club.add(club_names.get(keys.get(i)));
         }
+        //copy info list for use in alerting by notification
+        ArrayList<String> copy=new ArrayList<>();
+        for (int i=0;i<info.size();i++){
+            String x=info.get(i);
+            copy.add(x);
+        }
+        //reverse all lists so that newest notification comes on top
         Collections.reverse(info);
         Collections.reverse(when);
         Collections.reverse(which_club);
@@ -393,7 +399,7 @@ public class MainActivity extends AppCompatActivity
         Log.e("notif",info.toString());
         Log.e("notif",when.toString());
         Log.e("notif",which_club.toString());
-
+        Log.e("notif",""+max_notif_id);
         //showing notifications in cards
         showNotifCard(info,when,which_club);
 
@@ -403,11 +409,12 @@ public class MainActivity extends AppCompatActivity
         SharedPreferences.Editor editor=pref.edit();
         editor.putInt("last_notif",max_notif_id);
         editor.apply();
-        //we need to reverse it again to show the new notification to user
-        Collections.reverse(info);
+        Log.e("notif",""+n+", "+max_notif_id);
         //displaying these notifications in user's notification panel
-        for (int i=n;i<info.size();i++){
-            alertUser(info.get(i),i);
+        Log.e("notif",copy.toString());
+
+        for (int i=n;i<max_notif_id;i++){
+            alertUser(copy.get(i),i);
         }
     }
 
@@ -419,6 +426,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     private  void alertUser(String a,int NOTIFICATION_ID){
+        Log.e("notif","notifying: "+a);
 //        //creating  a notification channel
         //todo setup notifications for newer versions of android >=26
 //        NotificationManager mNotificationManager =

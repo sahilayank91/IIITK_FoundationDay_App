@@ -101,7 +101,7 @@ public class DetailedEvent extends AppCompatActivity {
                     bundle.putInt("min",min);
                     bundle.putInt("max",max);
                     intent.putExtras(bundle);
-                    getApplicationContext().startActivity(intent);
+                    DetailedEvent.this.startActivity(intent);
                 }else{
                     Bundle bundle=new Bundle();
                     if (!sharedPreferences.getString("name","").isEmpty()){

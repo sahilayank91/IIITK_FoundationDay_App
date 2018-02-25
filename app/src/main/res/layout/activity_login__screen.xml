@@ -1,98 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@drawable/evstill"
     android:layout_height="match_parent"
+    android:background="@drawable/evstill"
+    android:orientation="vertical"
     tools:context="sahil.iiitk_foundationday_app.views.Login_Screen">
 
     <LinearLayout
-        android:layout_marginTop="10dp"
-        android:orientation="vertical"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical">
 
         <com.roger.match.library.MatchTextView
             android:id="@+id/hello"
             android:layout_width="wrap_content"
             android:layout_height="100dp"
             android:text="IIIT KOTA Presents"
-            android:textSize="30sp"
             android:textColor="#ffffff"
-
-            />
+            android:textSize="30sp" />
 
     </LinearLayout>
 
     <LinearLayout
-        android:layout_marginTop="30dp"
         android:layout_width="match_parent"
-        android:orientation="vertical"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:orientation="vertical">
 
         <ImageView
-            android:layout_gravity="center_horizontal"
-            android:layout_width="240dp"
             android:id="@+id/imageView2"
+            android:layout_width="240dp"
             android:layout_height="250dp"
+            android:layout_gravity="center_horizontal"
             app:srcCompat="@drawable/logo" />
     </LinearLayout>
 
     <LinearLayout
-        android:layout_marginTop="10dp"
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical">
 
         <com.wang.avi.AVLoadingIndicatorView
-            android:layout_gravity="center_horizontal"
             android:id="@+id/AVLoadingIndicatorView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:visibility="invisible"
             app:indicatorColor="@color/colorAccent"
-            app:indicatorName="BallRotateIndicator"
-            />
+            app:indicatorName="BallRotateIndicator" />
     </LinearLayout>
 
     <LinearLayout
-        android:layout_marginTop="0dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"
         android:orientation="vertical">
 
         <com.google.android.gms.common.SignInButton
             android:id="@+id/sign_in_button"
             android:layout_width="200dp"
-            android:layout_gravity="center_horizontal"
             android:layout_height="54dp"
-            />
+            android:layout_gravity="center_horizontal" />
 
         <Button
-            android:layout_marginTop="10dp"
             android:id="@+id/phonebutton"
             android:layout_width="325dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
             android:background="@color/btn"
             android:text="Continue with Phone Number"
             android:textColor="#dddddd"
-            android:layout_gravity="center_horizontal"
             android:textSize="16sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/button4"
-            android:layout_marginTop="15dp"
-            android:layout_gravity="center_horizontal"
             android:layout_width="325dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="15dp"
             android:background="@color/btn"
             android:text="LOG IN WITH FF ID"
             android:textColor="#dddddd"
             android:textSize="16sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
 
     </LinearLayout>
 
