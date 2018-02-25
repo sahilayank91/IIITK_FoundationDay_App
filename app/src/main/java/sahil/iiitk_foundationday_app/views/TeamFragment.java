@@ -27,7 +27,6 @@ public class TeamFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_team, container, false);
-
         positions=getResources().getStringArray(R.array.positions);
         names=getResources().getStringArray(R.array.names);
         emails=getResources().getStringArray(R.array.emails);
@@ -36,10 +35,8 @@ public class TeamFragment extends Fragment {
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerView);
         mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);
-
         mAdapter = new CustomAdapter(names,positions,emails,facebookIDs,linkedinIDs);
         mRecyclerView.setAdapter(mAdapter);
-
         return rootView;
     }
 }

@@ -23,8 +23,8 @@ public class ClubsFragment extends Fragment {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_clubs, container, false);
 
-club_names=getResources().getStringArray(R.array.club_names);
-club_taglines=getResources().getStringArray(R.array.club_taglines);
+    club_names=getResources().getStringArray(R.array.club_names);
+    club_taglines=getResources().getStringArray(R.array.club_taglines);
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerViewClubs);
         mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);

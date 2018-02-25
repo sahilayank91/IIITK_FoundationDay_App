@@ -1,6 +1,9 @@
 apply plugin: 'com.android.application'
 
 android {
+    defaultConfig {
+        multiDexEnabled true
+    }
     compileSdkVersion 26
     defaultConfig {
         applicationId "sahil.iiitk_foundationday_app"
@@ -48,16 +51,4 @@ dependencies {
     compile 'com.pusher:pusher-java-client:1.6.0'
     compile 'com.google.android.gms:play-services:11.8.0'
 }
-
-
-
-
-
-
-
-
-
-
-
-
 apply plugin: 'com.google.gms.google-services'

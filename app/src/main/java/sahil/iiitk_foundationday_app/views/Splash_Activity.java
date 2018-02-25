@@ -51,7 +51,7 @@ public class Splash_Activity extends AppCompatActivity {
                        sleep(4000);
                     Intent i;
                        if (isLoggedIn()){
-                           i = new Intent(getApplicationContext(),MainActivity.class);
+                           i = new Intent(getApplicationContext(),Main2Activity.class);
                        }else{
                            i=new Intent(getApplicationContext(),Login_Screen.class);
                        }
