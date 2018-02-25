@@ -13,6 +13,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
@@ -82,7 +83,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
 
         mGoogleMap = googleMap;
-        // go to patricular location
+        // go to particular location
 
         boolean success = mGoogleMap.setMapStyle(new MapStyleOptions(getResources()
                 .getString(R.string.style_json)));
@@ -95,7 +96,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
 //        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.M) {
 //            if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-//                // TODO: Consider calling
+//
 //                //    ActivityCompat#requestPermissions
 //                // here to request the missing permissions, and then overriding
 //                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
@@ -166,7 +167,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         mLocationRequest.setInterval(1000);
         if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.M) {
             if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                // TODO: Consider calling
                 //    ActivityCompat#requestPermissions
                 // here to request the missing permissions, and then overriding
                 //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
@@ -193,13 +193,12 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     public void onLocationChanged(Location location) {
         if(location == null)
         {
-            Toast.makeText(getApplicationContext(),"Can't get location data",Toast.LENGTH_LONG).show();
+            Log.e("map","can't get location data!");
         }
         else
         {
-           // gotoLocationZoom(26.8639207,75.810202,15,"MNIT Prabha Bhawan");
             LatLng ll=new LatLng(26.8639207,75.810202);
-            CameraUpdate update= CameraUpdateFactory.newLatLngZoom(ll,15);
+            CameraUpdate update= CameraUpdateFactory.newLatLng(ll);
             mGoogleMap.animateCamera(update);
 
 //            LatLng ll = new LatLng(location.getLatitude(),location.getLongitude());

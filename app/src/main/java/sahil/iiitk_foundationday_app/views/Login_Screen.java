@@ -2,13 +2,17 @@ package sahil.iiitk_foundationday_app.views;
 // Made by tanuj
 //all of the main login process was coded by tanuj,
 // and final touch to some parts  by Gaurav
+import android.Manifest;
 import android.animation.ObjectAnimator;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -149,7 +153,16 @@ public class Login_Screen extends AppCompatActivity
                     }
                 }
         );
-
+        //request internet permission
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.INTERNET)!= PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.INTERNET},124);
+           }
+    }
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (requestCode==124 && grantResults[0]==PackageManager.PERMISSION_DENIED){
+            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.INTERNET},124);
+        }
     }
     private void callLogInDialog()
     {
@@ -290,7 +303,7 @@ public class Login_Screen extends AppCompatActivity
                 editor.putString("gender", fetch.getGender());
                 editor.putString("Year", fetch.getYear());
                 editor.putString("MOS",fetch.getMos());
-                editor.putString("FFID", "FF"+fetch.getUser_id());
+                editor.putString("FFID",fetch.getUser_id());
                 editor.putString("status","true");
                 editor.apply();
 
@@ -455,7 +468,7 @@ public class Login_Screen extends AppCompatActivity
                     editor.putString("gender", fetch.getGender());
                     editor.putString("Year", fetch.getYear());
                     editor.putString("MOS",fetch.getMos());
-                    editor.putString("FFID", "FF"+fetch.getUser_id());
+                    editor.putString("FFID", fetch.getUser_id());
                     editor.putString("status","true");
                     editor.apply();
 
@@ -538,7 +551,7 @@ public class Login_Screen extends AppCompatActivity
                     editor.putString("gender", fetch.getGender());
                     editor.putString("Year", fetch.getYear());
                     editor.putString("MOS",fetch.getMos());
-                    editor.putString("FFID", "FF"+fetch.getUser_id());
+                    editor.putString("FFID",fetch.getUser_id());
                     editor.putString("status","true");
                     editor.apply();
 

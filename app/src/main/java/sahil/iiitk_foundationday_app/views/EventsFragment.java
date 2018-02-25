@@ -15,12 +15,12 @@ public class EventsFragment extends Fragment {
     int club_number;
     Bundle bundle;
 
-
+//todo update images for adapter
     Integer[] event_images,
             a={R.drawable.event1},
-            b={R.drawable.event2,R.drawable.event1},
-            c={R.drawable.event2,R.drawable.event1,R.drawable.event2},
-            d={R.drawable.event1,R.drawable.event2,R.drawable.event1,R.drawable.event2,R.drawable.event1};
+            b,
+            c,
+            d;
     protected RecyclerView mRecyclerView;
     protected EventAdapter mAdapter;
     protected RecyclerView.LayoutManager mLayoutManager;

@@ -10,21 +10,24 @@
 
     <android.support.v4.view.ViewPager
         android:id="@+id/viewpager"
-        android:layout_gravity="top"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" >
-
+        android:layout_gravity="top"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        <!--
+                Made by tanuj
+                -->
         <android.support.design.widget.TabLayout
             android:id="@+id/tabs"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            app:layout_anchor="@id/appBar"
-            app:tabMode="scrollable"
-            android:elevation="5dp"
-            app:tabIndicatorColor="#ffffff"
             android:background="#ff9c5e"
-            app:tabGravity="fill">
+            android:elevation="5dp"
+            app:layout_anchor="@id/appBar"
+            app:tabGravity="fill"
+            app:tabIndicatorColor="#ffffff"
+            app:tabMode="scrollable">
+
         </android.support.design.widget.TabLayout>
     </android.support.v4.view.ViewPager>
 
@@ -40,19 +43,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fitsSystemWindows="true"
-            app:contentScrim="?attr/colorPrimary"
             android:theme="@style/AppTheme.AppBarOverlay"
+            app:contentScrim="?attr/colorPrimary"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <ImageView
+                android:id="@+id/BG"
                 android:layout_width="match_parent"
                 android:layout_height="256dp"
                 android:fitsSystemWindows="true"
                 android:scaleType="centerCrop"
-                android:id="@+id/BG"
-                app:layout_collapseMode="pin"
                 android:src="@drawable/home_back"
-                />
+                app:layout_collapseMode="pin" />
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
@@ -61,10 +63,7 @@
                 app:layout_collapseMode="pin"
                 app:popupTheme="@style/AppTheme.PopupOverlay" />
 
-
         </android.support.design.widget.CollapsingToolbarLayout>
-
-
 
     </android.support.design.widget.AppBarLayout>
 </android.support.design.widget.CoordinatorLayout>

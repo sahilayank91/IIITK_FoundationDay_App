@@ -58,4 +58,18 @@ Made by tanuj
         <item>Books are love and writing too.</item>
         <item>Taking Photographs is more than just a click.</item>
     </string-array>
+    <string-array name="event00">
+        <item>Treasure Quest</item>
+        <item>23 Feb 10:30 AM</item>
+        <item>Team Event</item>
+        <item>VLTC MNIT</item>
+        <item>24 March 18</item>
+        <item>7665517141</item>
+        <item>2000</item>
+        <item>This is some random text in place of details about the event</item>
+        <item>1</item>
+        <item>1</item>
+    </string-array>
+    <!-- todo    add data for every event present
+    -->
 </resources>

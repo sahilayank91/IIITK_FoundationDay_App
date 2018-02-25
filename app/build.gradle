@@ -12,10 +12,21 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+    //Signing configurations for build variant "release"
+    signingConfigs {
+        release {
+            storeFile file("C:/Users/Tanuj Mehta/AndroidStudioProjects/flairfiesta.jks")
+            storePassword "flairfiesta"
+            keyAlias "flairfiesta"
+            keyPassword "flairfiesta"
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
 }
@@ -49,6 +60,9 @@ dependencies {
     compile 'com.pusher:pusher-java-client:1.6.0'
     compile 'com.google.android.gms:play-services:11.8.0'
 }
+
+
+
 
 
 

@@ -47,22 +47,32 @@
         <activity
             android:name=".views.ParentForFrag"
             android:screenOrientation="portrait" />
-        <activity android:name=".views.MainActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".views.DetailedEvent"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".views.QuizActivity"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".views.MainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".views.DetailedEvent"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".views.QuizActivity"
+            android:screenOrientation="portrait" />
         <activity android:name=".views.MapActivity">
-            <meta-data android:name="com.google.android.gms.version"
-                android:value="android.gms.maps.SupportMapFragment"/>
+            <meta-data
+                android:name="com.google.android.gms.version"
+                android:value="android.gms.maps.SupportMapFragment" />
         </activity>
-        <meta-data android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyCkdG9S2AfqHFYBNOkkI7jdReSmfQnCns4"/>
 
-        <meta-data android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version"/>
+        <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="AIzaSyCkdG9S2AfqHFYBNOkkI7jdReSmfQnCns4" />
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
 
+        <activity
+            android:name=".views.EventRegActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".views.AdminPage" />
     </application>
 
 </manifest>

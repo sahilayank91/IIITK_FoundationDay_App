@@ -1,6 +1,11 @@
 package sahil.iiitk_foundationday_app.views;
 
 import android.Manifest;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -15,32 +20,51 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.InputType;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.pusher.client.Pusher;
 import com.pusher.client.PusherOptions;
 import com.pusher.client.channel.Channel;
 import com.pusher.client.channel.SubscriptionEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import sahil.iiitk_foundationday_app.R;
+import sahil.iiitk_foundationday_app.adapters.NotifAdapter;
+import sahil.iiitk_foundationday_app.model.AdminIDs;
+import sahil.iiitk_foundationday_app.model.Notif;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -53,6 +77,15 @@ public class MainActivity extends AppCompatActivity
     ArrayList<String > titles;
     ImageView BackGround;
     private boolean backPressedToExitOnce = false;
+    ArrayList<String> ar=new ArrayList<>();
+    RecyclerView mRecyclerView;
+    RecyclerView.LayoutManager  mLayoutManager;
+    RecyclerView.Adapter mAdapter;
+    TextView nav_ffid;
+    String dialogue_entry;
+    FirebaseDatabase db;
+    DatabaseReference ref;
+    AdminIDs admin=new AdminIDs();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,17 +95,10 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
        //requesting location permission from user
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)!= PackageManager.PERMISSION_GRANTED
-                && ActivityCompat.checkSelfPermission(this,Manifest.permission.ACCESS_COARSE_LOCATION)!=PackageManager.PERMISSION_GRANTED){
-            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.ACCESS_COARSE_LOCATION},123);
+        if ((ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)!= PackageManager.PERMISSION_GRANTED
+                && ContextCompat.checkSelfPermission(this,Manifest.permission.ACCESS_COARSE_LOCATION)!=PackageManager.PERMISSION_GRANTED)){
+            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION},123);
         }
-//        if (ActivityCompat.checkSelfPermission(this,Manifest.permission.INTERNET)!=PackageManager.PERMISSION_GRANTED){
-//            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.INTERNET},124);
-//        }
-//        if (ActivityCompat.checkSelfPermission(this,Manifest.permission.WRITE_EXTERNAL_STORAGE)!=PackageManager.PERMISSION_GRANTED){
-//            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},125);
-//        }
-        //permissions end
 
         ////////////////////////////    PUSHER SHURU
         PusherOptions options = new PusherOptions();
@@ -134,6 +160,21 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        NavigationView notif_nav=findViewById(R.id.nav_view_2);
+        mRecyclerView = notif_nav.getHeaderView(0).findViewById(R.id.notif_recycler);
+
+        //showing user's FFID if it exists
+        nav_ffid=navigationView.getHeaderView(0).findViewById(R.id.nav_ffid);
+        SharedPreferences pref=getSharedPreferences("userInfo",MODE_PRIVATE);
+        if (pref.getString("FFID","").equals("")){
+            nav_ffid.setText("Register to get FFID");
+        }else{
+            nav_ffid.setText("Your FFID is "+pref.getString("FFID",""));
+        }
+
+        //getting notifications
+        getNotifications();
     }
 
     private void setupViewPager(ViewPager viewPager) {
@@ -238,7 +279,6 @@ public class MainActivity extends AppCompatActivity
             SharedPreferences sharedPreferences=getSharedPreferences("userInfo",MODE_PRIVATE);
             if (!sharedPreferences.getString("FFID","").isEmpty()){
                 Toast.makeText(getApplicationContext(),"You are already registered!",Toast.LENGTH_SHORT).show();
-              //  item.setCheckable(false);
             }else{
                 Bundle bundle=new Bundle();
                 if (!sharedPreferences.getString("name","").isEmpty()){
@@ -253,14 +293,14 @@ public class MainActivity extends AppCompatActivity
                 Intent intent=new Intent(this,Register.class);
                 intent.putExtras(bundle);
                 this.startActivity(intent);
+                finish();
             }
 
         } else if (id == R.id.nav_reaches) {
-           // item.setCheckable(false);
             Intent intent=new Intent(this, MapActivity.class);
             this.startActivity(intent);
-        } else if (id == R.id.nav_queries) {
 
+        } else if (id == R.id.nav_queries) {
             Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
                     "mailto","tanujm242@gmail.com", null));
             this.startActivity(Intent.createChooser(emailIntent, "Send Email via"));
@@ -268,13 +308,26 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_quiz) {
             Intent intent=new Intent(this,QuizActivity.class);
             this.startActivity(intent);
+
         } else if (id == R.id.nav_share) {
-            item.setCheckable(false);
             Intent sharingIntent = new Intent(Intent.ACTION_SEND);
             sharingIntent.setType("text/plain");
             sharingIntent.putExtra(Intent.EXTRA_SUBJECT, "Flair-Fiesta 2k18");
             sharingIntent.putExtra(Intent.EXTRA_TEXT, "Download Flair-Fiesta 2k18 from Play Store.");
             startActivity(Intent.createChooser(sharingIntent, "Share via"));
+
+        } else if (id==R.id.nav_fb){
+            Intent i = new Intent(Intent.ACTION_VIEW);
+            i.setData(Uri.parse("https://www.facebook.com/iiitkfd"));
+            this.startActivity(i);
+
+        }else if (id==R.id.nav_website){
+            Intent i = new Intent(Intent.ACTION_VIEW);
+            i.setData(Uri.parse("http://www.flairfiesta.com/"));
+            this.startActivity(i);
+        }
+        else if (id==R.id.nav_admin){
+            launchAdmin();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -289,15 +342,202 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        switch (requestCode){
-            case 123: if (grantResults[0]==PackageManager.PERMISSION_DENIED){
-                    Toast.makeText(this,"Give permission to get awesome experience of Map",Toast.LENGTH_SHORT).show();
+
+    public void getNotifications(){
+        FirebaseDatabase database=FirebaseDatabase.getInstance();
+        DatabaseReference ref=database.getReference("Notification");
+        Query query= ref.orderByChild("notif_id");
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists())
+                collectNotifications((Map<String,Object>) dataSnapshot.getValue());
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    private void collectNotifications(Map<String,Object> users) {
+        //iterate through each notification
+        HashMap<Long,String> details=new HashMap<Long, String>();
+        HashMap<Long,String> times=new HashMap<Long, String>();
+        HashMap<Long,String> club_names=new HashMap<Long, String>();
+        List keys;
+        ArrayList<String> info=new ArrayList<>();
+        ArrayList<String> when=new ArrayList<>();
+        ArrayList<String> which_club=new ArrayList<>();
+        for (Map.Entry<String, Object> entry : users.entrySet()){
+            //Get user map
+            Map singleUser = (Map) entry.getValue();
+            details.put((Long)singleUser.get("notif_id"),(String)singleUser.get("details"));
+            times.put((Long)singleUser.get("notif_id"),(String)singleUser.get("time"));
+            club_names.put((Long)singleUser.get("notif_id"),(String)singleUser.get("which_club"));
+        }
+        //sort the notifications
+        keys = new ArrayList(details.keySet());
+        Collections.sort(keys);
+        int max_notif_id=keys.size();
+        //Fill array which is sorted and ready
+        for (int i=0;i<keys.size();i++){
+            info.add(details.get(keys.get(i)));
+            when.add(times.get(keys.get(i)));
+            which_club.add(club_names.get(keys.get(i)));
+        }
+        Collections.reverse(info);
+        Collections.reverse(when);
+        Collections.reverse(which_club);
+        //show notifications in cards
+        Log.e("notif",info.toString());
+        Log.e("notif",when.toString());
+        Log.e("notif",which_club.toString());
+
+        //showing notifications in cards
+        showNotifCard(info,when,which_club);
+
+        //getting last seen notification from sharedpreferences
+        SharedPreferences pref=getSharedPreferences("userInfo",MODE_PRIVATE);
+        int n=pref.getInt("last_notif",0);
+        SharedPreferences.Editor editor=pref.edit();
+        editor.putInt("last_notif",max_notif_id);
+        editor.apply();
+        //we need to reverse it again to show the new notification to user
+        Collections.reverse(info);
+        //displaying these notifications in user's notification panel
+        for (int i=n;i<info.size();i++){
+            alertUser(info.get(i),i);
+        }
+    }
+
+    private void showNotifCard(ArrayList<String> info,ArrayList<String> when,ArrayList<String> which){
+        mLayoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        mAdapter = new NotifAdapter(info,when,which);
+        mRecyclerView.setAdapter(mAdapter);
+    }
+
+    private  void alertUser(String a,int NOTIFICATION_ID){
+//        //creating  a notification channel
+        //todo setup notifications for newer versions of android >=26
+//        NotificationManager mNotificationManager =
+//                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+//// The id of the channel.
+//        String id = "my_channel";
+//// The user-visible name of the channel.
+//        CharSequence name = "Flair-Fiesta";
+//// The user-visible description of the channel.
+//        String description ="Flair-Fiesta";
+//        int importance = NotificationManager.IMPORTANCE_HIGH;
+//        NotificationChannel mChannel = new NotificationChannel(id, name, importance);
+//// Configure the notification channel.
+//        mChannel.setDescription(description);
+//        mChannel.enableLights(true);
+//// Sets the notification light color for notifications posted to this
+//// channel, if the device supports this feature.
+//        mChannel.setLightColor(Color.RED);
+//        mChannel.enableVibration(true);
+//        mChannel.setVibrationPattern(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
+//        mNotificationManager.createNotificationChannel(mChannel);
+
+        NotificationCompat.Builder builder =
+                new NotificationCompat.Builder(this)
+                        .setSmallIcon(R.drawable.ic_launcher_round)
+                        .setContentTitle("FlairFiesta 2k18")
+                        .setTicker(a)
+                       .setAutoCancel(true)
+                        .setPriority(1000)
+                        .setContentText(a);
+        Intent intent=new Intent(this,Splash_Activity.class);
+        PendingIntent pendingIntent=PendingIntent.getActivity(this,1,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+        builder.setContentIntent(pendingIntent);
+        NotificationManager nManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        nManager.notify(NOTIFICATION_ID, builder.build());
+    }
+
+    private void launchAdmin(){
+        //launch a dialogue to verify Admin ID
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Enter Admin ID");
+
+        // Set up the input
+        final EditText input = new EditText(this);
+        // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
+       // input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        input.setInputType(InputType.TYPE_CLASS_TEXT);
+        builder.setView(input);
+
+        //   Set up the buttons
+        builder.setPositiveButton("GO", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialogue_entry = input.getText().toString();
+                dialog.cancel();
+               checkAdminID();
+            }
+        });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        builder.show();
+    }
+
+    private  void checkAdminID(){
+        db=FirebaseDatabase.getInstance();
+        ref=db.getReference("Admin");
+        Query query=ref;
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()){
+                    Log.e("adminpage","Data Snapshot exists!");
+                    Map<String,Object> data=(Map<String,Object>) dataSnapshot.getValue();
+                    getAdminIDs(data);
                 }
-                break;
-            default: super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    private void getAdminIDs(Map<String,Object> users){
+        ArrayList<String> adminIDs=new ArrayList<>();
+        ArrayList<String> adminNames=new ArrayList<>();
+        for (Map.Entry<String, Object> entry : users.entrySet()){
+            //Get admin user map
+            Map singleUser = (Map) entry.getValue();
+            adminIDs.add((String)singleUser.get("id"));
+            adminNames.add((String)singleUser.get("name"));
         }
 
+        Log.e("adminpage",adminIDs.toString());
+        if (adminIDs.contains(dialogue_entry)){
+            Log.e("adminpage","Admin ID confirmed!");
+            int index=adminIDs.indexOf(dialogue_entry);
+            String club_name=adminNames.get(index);
+            Toast.makeText(getApplicationContext(),"Welcome Admin!",Toast.LENGTH_SHORT).show();
+            //goto Admin page
+            Intent intent=new Intent(getApplicationContext(),AdminPage.class);
+            intent.putExtra("club_name",club_name);
+            this.startActivity(intent);
+        }else{
+            Log.e("adminpage","Wrong Admin ID");
+            Toast.makeText(this,"Wrong Admin ID!",Toast.LENGTH_SHORT).show();
+        }
+    }
+//use when need to put more adminIDs
+    private  void putAdminIDs(){
+        db=FirebaseDatabase.getInstance();
+        ref=db.getReference("Admin");
+        admin.setName("Fine_arts_and_photography_club");
+        admin.setId("abc");
+        ref.push().setValue(admin);
+        Log.e("adminpage","One Admin ID pushed!");
     }
 }
