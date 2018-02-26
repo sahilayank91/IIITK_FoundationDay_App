@@ -1,5 +1,5 @@
 package sahil.iiitk_foundationday_app.adapters;
-// Made by tanuj
+// Made by Tanuj
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
