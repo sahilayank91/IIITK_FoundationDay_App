@@ -8,9 +8,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
-import android.widget.RadioButton;
-import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import sahil.iiitk_foundationday_app.R;
 import sahil.iiitk_foundationday_app.adapters.CustomAdapter;
@@ -19,6 +19,7 @@ public class TeamFragment extends Fragment {
 
     protected String[] names,emails,facebookIDs,linkedinIDs;
     protected String[] positions;
+    List<Integer> images=new ArrayList<>();
     protected RecyclerView mRecyclerView;
     protected CustomAdapter mAdapter;
     protected RecyclerView.LayoutManager mLayoutManager;
@@ -33,11 +34,18 @@ public class TeamFragment extends Fragment {
         emails=getResources().getStringArray(R.array.emails);
         facebookIDs=getResources().getStringArray(R.array.facebook);
         linkedinIDs=getResources().getStringArray(R.array.linkedin);
+
+        //todo add names of display pictures
+        images.add(R.drawable.image);
+        images.add(R.drawable.image);
+        images.add(R.drawable.image);
+        images.add(R.drawable.image);
+        images.add(R.drawable.image);
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerView);
         mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        mAdapter = new CustomAdapter(names,positions,emails,facebookIDs,linkedinIDs);
+        mAdapter = new CustomAdapter(names,positions,emails,facebookIDs,linkedinIDs,images);
         mRecyclerView.setAdapter(mAdapter);
 
         return rootView;

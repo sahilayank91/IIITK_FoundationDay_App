@@ -1,6 +1,7 @@
 package sahil.iiitk_foundationday_app.views;
 
 import android.Manifest;
+import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -10,6 +11,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -102,7 +104,7 @@ public class MainActivity extends AppCompatActivity
             titles.add("Events");
             titles.add("Schedule");
             titles.add("Sponsors");
-            titles.add("Helpline");
+            titles.add("Contacts");
             titles.add("Team");
         }
         backgrounds=new ArrayList<>();
@@ -167,7 +169,7 @@ public class MainActivity extends AppCompatActivity
         adapter.addFrag(new ClubsFragment(), "EVENTS");
         adapter.addFrag(new ScheduleFragment(), "SCHEDULE");
         adapter.addFrag(new SponsorsFragment(), "SPONSORS");
-        adapter.addFrag(new HelplineFragment(), "HELPLINE");
+        adapter.addFrag(new HelplineFragment(), "CONTACTS");
         adapter.addFrag(new TeamFragment(), "TEAM");
 
         viewPager.setAdapter(adapter);
@@ -434,19 +436,24 @@ public class MainActivity extends AppCompatActivity
 //        mChannel.setVibrationPattern(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
 //        mNotificationManager.createNotificationChannel(mChannel);
 
-        NotificationCompat.Builder builder =
-                new NotificationCompat.Builder(this)
-                        .setSmallIcon(R.drawable.ic_launcher_round)
-                        .setContentTitle("FlairFiesta 2k18")
-                        .setTicker(a)
-                       .setAutoCancel(true)
-                        .setPriority(1000)
-                        .setContentText(a);
-        Intent intent=new Intent(this,Splash_Activity.class);
-        PendingIntent pendingIntent=PendingIntent.getActivity(this,1,intent,PendingIntent.FLAG_UPDATE_CURRENT);
-        builder.setContentIntent(pendingIntent);
-        NotificationManager nManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        nManager.notify(NOTIFICATION_ID, builder.build());
+        if (Build.VERSION.SDK_INT<26){
+            //notification for devices running SDK<26
+            NotificationCompat.Builder builder =
+                    new NotificationCompat.Builder(this)
+                            .setSmallIcon(R.drawable.ic_launcher_round)
+                            .setContentTitle("FlairFiesta 2k18")
+                            .setTicker(a)
+                            .setAutoCancel(true)
+                            .setPriority(1000)
+                            .setDefaults(Notification.DEFAULT_ALL)
+                            .setContentText(a);
+            Intent intent=new Intent(this,Splash_Activity.class);
+            PendingIntent pendingIntent=PendingIntent.getActivity(this,1,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+            builder.setContentIntent(pendingIntent);
+            NotificationManager nManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            nManager.notify(NOTIFICATION_ID, builder.build());
+        }
+
     }
 
     private void launchAdmin(){

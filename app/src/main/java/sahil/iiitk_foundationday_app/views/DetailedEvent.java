@@ -58,17 +58,20 @@ public class DetailedEvent extends AppCompatActivity {
         map.put("event03", R.array.event03);
         map.put("event04", R.array.event04);
         map.put("event05", R.array.event05);
+
         map.put("event10", R.array.event10);
         map.put("event11", R.array.event11);
         map.put("event12", R.array.event12);
         map.put("event13", R.array.event13);
         map.put("event14", R.array.event14);
         map.put("event15", R.array.event15);
+
         map.put("event20", R.array.event20);
         map.put("event21", R.array.event21);
         map.put("event22", R.array.event22);
         map.put("event23", R.array.event23);
         map.put("event24", R.array.event24);
+
         map.put("event30", R.array.event30);
         map.put("event31", R.array.event31);
         map.put("event32", R.array.event32);
@@ -78,28 +81,32 @@ public class DetailedEvent extends AppCompatActivity {
 
         //setting image addresses in imageMap
         //todo update all images address ,, currently all are same
-        imageMap.put("image00", R.drawable.home_back);
-        imageMap.put("image01", R.drawable.home_back);
-        imageMap.put("image02", R.drawable.home_back);
-        imageMap.put("image03", R.drawable.home_back);
-        imageMap.put("image04", R.drawable.home_back);
-        imageMap.put("image05", R.drawable.home_back);
-        imageMap.put("image10", R.drawable.home_back);
-        imageMap.put("image11", R.drawable.home_back);
-        imageMap.put("image12", R.drawable.home_back);
-        imageMap.put("image13", R.drawable.home_back);
-        imageMap.put("image14", R.drawable.home_back);
-        imageMap.put("image15", R.drawable.home_back);
-        imageMap.put("image20", R.drawable.home_back);
-        imageMap.put("image21", R.drawable.home_back);
-        imageMap.put("image22", R.drawable.home_back);
-        imageMap.put("image23", R.drawable.home_back);
-        imageMap.put("image24", R.drawable.home_back);
-        imageMap.put("image30", R.drawable.home_back);
-        imageMap.put("image31", R.drawable.home_back);
-        imageMap.put("image32", R.drawable.home_back);
-        imageMap.put("image33", R.drawable.home_back);
-        imageMap.put("image34", R.drawable.home_back);
+        imageMap.put("image00", R.drawable.detail_technical);
+        imageMap.put("image01", R.drawable.detail_technical);
+        imageMap.put("image02", R.drawable.detail_technical);
+        imageMap.put("image03", R.drawable.detail_technical);
+        imageMap.put("image04", R.drawable.detail_technical);
+        imageMap.put("image05", R.drawable.detail_technical);
+
+        imageMap.put("image10", R.drawable.detail_cultural);
+        imageMap.put("image11", R.drawable.detail_cultural);
+        imageMap.put("image12", R.drawable.detail_cultural);
+        imageMap.put("image13", R.drawable.detail_cultural);
+        imageMap.put("image14", R.drawable.detail_cultural);
+        imageMap.put("image15", R.drawable.detail_cultural);
+
+        imageMap.put("image20", R.drawable.detail_literary);
+        imageMap.put("image21", R.drawable.detail_literary);
+        imageMap.put("image22", R.drawable.detail_literary);
+        imageMap.put("image23", R.drawable.detail_literary);
+        imageMap.put("image24", R.drawable.detail_literary);
+
+        imageMap.put("image30", R.drawable.detail_photography);
+        imageMap.put("image31", R.drawable.detail_photography);
+        imageMap.put("image32", R.drawable.detail_photography);
+        imageMap.put("image33", R.drawable.detail_photography);
+        imageMap.put("image34", R.drawable.detail_photography);
+        imageMap.put("image35", R.drawable.detail_photography);
 
         fab = findViewById(R.id.event_fab);
         event_detail = findViewById(R.id.event_more_details);
