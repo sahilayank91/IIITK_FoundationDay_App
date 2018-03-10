@@ -1,9 +1,9 @@
 package sahil.iiitk_foundationday_app.views;
 // Made by tanuj
+
 //all of the main login process was coded by tanuj,
-// and final touch to some parts  by Gaurav
+// and final touch to some parts and UI design  by Gaurav
 import android.Manifest;
-import android.animation.ObjectAnimator;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -11,9 +11,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Handler;
 import android.support.annotation.NonNull;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -23,7 +21,6 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.view.animation.DecelerateInterpolator;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -60,7 +57,6 @@ public class Login_Screen extends AppCompatActivity
     ImageView inb;
     EditText id;
     Button ff_login_button;
-    EditText ff_number_input;
     GoogleSignInClient mGoogleSignInClient;
     private static final String TAG = "PhoneAuthActivity";
     SignInButton signInButton;
@@ -223,7 +219,7 @@ public class Login_Screen extends AppCompatActivity
             public void onVerificationFailed(FirebaseException e) {
                 // This callback is invoked in an invalid request for verification is made,
                 // for instance if the the phone number format is not valid.
-                Toast.makeText(getApplicationContext(),"Verification Failed: "+e.getLocalizedMessage(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),"Verification Failed:\n "+e.getLocalizedMessage(),Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -379,9 +375,7 @@ public class Login_Screen extends AppCompatActivity
         mVerificationInProgress = true;
     }
 
-
-
-    //to handle signin by otp verification
+    //to handle signin by google  verification
     public void gSignIn(){
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_SIGN_IN);
@@ -409,7 +403,7 @@ public class Login_Screen extends AppCompatActivity
         } catch (ApiException e) {
             // The ApiException status code indicates the detailed failure reason.
             // Please refer to the GoogleSignInStatusCodes class reference for more information.
-            Toast.makeText(this, "Exception " + e.getStatusCode(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Oops! Error... try again! ", Toast.LENGTH_SHORT).show();
         }
     }
 
