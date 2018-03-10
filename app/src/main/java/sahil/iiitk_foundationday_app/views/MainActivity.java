@@ -50,10 +50,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.pusher.client.Pusher;
-import com.pusher.client.PusherOptions;
-import com.pusher.client.channel.Channel;
-import com.pusher.client.channel.SubscriptionEventListener;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -64,18 +60,16 @@ import java.util.Map;
 import sahil.iiitk_foundationday_app.R;
 import sahil.iiitk_foundationday_app.adapters.NotifAdapter;
 import sahil.iiitk_foundationday_app.model.AdminIDs;
-import sahil.iiitk_foundationday_app.model.Notif;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    // private SectionsPagerAdapter mSectionsPagerAdapter;
-
     private ViewPager mViewPager;
     Toolbar toolbar;
     CollapsingToolbarLayout collapsingToolbarLayout;
-    ArrayList<String > titles;
+    ArrayList<String> titles;
     ImageView BackGround;
+    ArrayList<Integer> backgrounds;
     private boolean backPressedToExitOnce = false;
     RecyclerView mRecyclerView;
     RecyclerView.LayoutManager  mLayoutManager;
@@ -99,21 +93,6 @@ public class MainActivity extends AppCompatActivity
             ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION},123);
         }
 
-        ////////////////////////////    PUSHER SHURU
-        PusherOptions options = new PusherOptions();
-        options.setCluster("APP_CLUSTER");
-
-        Pusher pusher = new Pusher("APP_KEY", options);
-        pusher.connect();
-        Channel channel = pusher.subscribe("my-channel");
-        channel.bind("my-event", new SubscriptionEventListener() {
-            @Override
-            public void onEvent(String channelName, String eventName, final String data) {
-                System.out.println(data);
-            }
-        });
-
-        //////////////////////////////////       PUSHER KHATAM
         collapsingToolbarLayout = (CollapsingToolbarLayout)findViewById(R.id.coll);
         collapsingToolbarLayout.setTitleEnabled(true);
         BackGround = (ImageView)findViewById(R.id.BG);
@@ -126,6 +105,14 @@ public class MainActivity extends AppCompatActivity
             titles.add("Helpline");
             titles.add("Team");
         }
+        backgrounds=new ArrayList<>();
+        backgrounds.add(R.drawable.home_back);
+        backgrounds.add(R.drawable.home_back);
+        backgrounds.add(R.drawable.home_back);
+        backgrounds.add(R.drawable.home_back);
+        backgrounds.add(R.drawable.home_back);
+        backgrounds.add(R.drawable.home_back);
+
         collapsingToolbarLayout.setTitle(titles.get(0));
         mViewPager = (ViewPager) findViewById(R.id.viewpager);
         setupViewPager(mViewPager);
@@ -139,7 +126,7 @@ public class MainActivity extends AppCompatActivity
             public void onPageSelected(int position) {
                 Log.e("page",titles.get(position));
                 collapsingToolbarLayout.setTitle(titles.get(position));
-                BackGround.setImageResource(R.drawable.home_back);
+                BackGround.setImageResource(backgrounds.get(position));
             }
 
             @Override
@@ -147,7 +134,7 @@ public class MainActivity extends AppCompatActivity
 
             }
         });
-        /////////////////////////////////////////////////
+
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
 
@@ -166,9 +153,7 @@ public class MainActivity extends AppCompatActivity
         //showing user's FFID if it exists
         nav_ffid=navigationView.getHeaderView(0).findViewById(R.id.nav_ffid);
         SharedPreferences pref=getSharedPreferences("userInfo",MODE_PRIVATE);
-        if (pref.getString("FFID","").equals("")){
-            nav_ffid.setText("Register to get FFID");
-        }else{
+        if (!pref.getString("FFID","").equals("")){
             nav_ffid.setText("Your FFID is "+pref.getString("FFID",""));
         }
 
@@ -181,7 +166,7 @@ public class MainActivity extends AppCompatActivity
         adapter.addFrag(new MainFragment2(), "ABOUT");
         adapter.addFrag(new ClubsFragment(), "EVENTS");
         adapter.addFrag(new ScheduleFragment(), "SCHEDULE");
-        adapter.addFrag(new SponsorsFragment(), "SPONSERS");
+        adapter.addFrag(new SponsorsFragment(), "SPONSORS");
         adapter.addFrag(new HelplineFragment(), "HELPLINE");
         adapter.addFrag(new TeamFragment(), "TEAM");
 

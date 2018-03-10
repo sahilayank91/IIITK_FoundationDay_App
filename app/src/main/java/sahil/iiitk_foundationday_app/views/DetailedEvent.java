@@ -8,11 +8,9 @@ import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -23,7 +21,7 @@ import sahil.iiitk_foundationday_app.R;
 
 public class DetailedEvent extends AppCompatActivity {
 
-    TextView event_detail, event_date_time, event_venue, event_last_date, event_contact, event_prize, event_type;
+    TextView event_detail, event_date_time, event_venue, event_last_date, event_contact, event_prize, event_type,event_regfee;
     CollapsingToolbarLayout collapsingToolbarLayout;
     ArrayList<String> titles;
     ImageView event_picture;
@@ -53,13 +51,55 @@ public class DetailedEvent extends AppCompatActivity {
         event_number = getIntent().getIntExtra("event_number", 0);
 
         //setting address values in hash-map
+        //todo check once at final time
         map.put("event00", R.array.event00);
-        //todo add all events for full working
+        map.put("event01", R.array.event01);
+        map.put("event02", R.array.event02);
+        map.put("event03", R.array.event03);
+        map.put("event04", R.array.event04);
+        map.put("event05", R.array.event05);
+        map.put("event10", R.array.event10);
+        map.put("event11", R.array.event11);
+        map.put("event12", R.array.event12);
+        map.put("event13", R.array.event13);
+        map.put("event14", R.array.event14);
+        map.put("event15", R.array.event15);
+        map.put("event20", R.array.event20);
+        map.put("event21", R.array.event21);
+        map.put("event22", R.array.event22);
+        map.put("event23", R.array.event23);
+        map.put("event24", R.array.event24);
+        map.put("event30", R.array.event30);
+        map.put("event31", R.array.event31);
+        map.put("event32", R.array.event32);
+        map.put("event33", R.array.event33);
+        map.put("event34", R.array.event34);
+        map.put("event35", R.array.event35);
 
         //setting image addresses in imageMap
+        //todo update all images address ,, currently all are same
         imageMap.put("image00", R.drawable.home_back);
-
-        //todo add all images address
+        imageMap.put("image01", R.drawable.home_back);
+        imageMap.put("image02", R.drawable.home_back);
+        imageMap.put("image03", R.drawable.home_back);
+        imageMap.put("image04", R.drawable.home_back);
+        imageMap.put("image05", R.drawable.home_back);
+        imageMap.put("image10", R.drawable.home_back);
+        imageMap.put("image11", R.drawable.home_back);
+        imageMap.put("image12", R.drawable.home_back);
+        imageMap.put("image13", R.drawable.home_back);
+        imageMap.put("image14", R.drawable.home_back);
+        imageMap.put("image15", R.drawable.home_back);
+        imageMap.put("image20", R.drawable.home_back);
+        imageMap.put("image21", R.drawable.home_back);
+        imageMap.put("image22", R.drawable.home_back);
+        imageMap.put("image23", R.drawable.home_back);
+        imageMap.put("image24", R.drawable.home_back);
+        imageMap.put("image30", R.drawable.home_back);
+        imageMap.put("image31", R.drawable.home_back);
+        imageMap.put("image32", R.drawable.home_back);
+        imageMap.put("image33", R.drawable.home_back);
+        imageMap.put("image34", R.drawable.home_back);
 
         fab = findViewById(R.id.event_fab);
         event_detail = findViewById(R.id.event_more_details);
@@ -69,6 +109,7 @@ public class DetailedEvent extends AppCompatActivity {
         event_venue = findViewById(R.id.event_venue);
         event_contact = findViewById(R.id.event_contact_details);
         event_prize = findViewById(R.id.event_prize);
+        event_regfee=findViewById(R.id.event_regfee);
 
         //fetching stored event data from xml file according to Map
         clubs_array=getResources().getStringArray(R.array.club_names);
@@ -82,6 +123,7 @@ public class DetailedEvent extends AppCompatActivity {
         event_date_time.setText(event_data[1]);
         event_type.setText(event_data[2]);
         event_venue.setText(event_data[3]);
+        event_regfee.setText("Registration Fee: \u20B9 "+event_data[10]+"/-");
         event_last_date.setText("Last date to pay registration fee: " + event_data[4]);
         event_contact.setText("Contact: " + event_data[5]);
         event_prize.setText("Prizes worth \u20B9 " + event_data[6] + "/-");

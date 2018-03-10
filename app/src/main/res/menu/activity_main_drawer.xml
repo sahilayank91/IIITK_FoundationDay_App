@@ -34,7 +34,7 @@
         android:title="Share" />
 
         <item
-            android:title="Go Admin"
+            android:title="Admin Console"
             android:icon="@drawable/ic_menu_manage"
             android:id="@+id/nav_admin"
             />

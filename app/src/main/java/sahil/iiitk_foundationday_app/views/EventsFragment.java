@@ -17,7 +17,7 @@ public class EventsFragment extends Fragment {
 
 //todo update images for adapter
     Integer[] event_images,
-            a={R.drawable.event2},
+            a={R.drawable.event2,R.drawable.event1},
             b,
             c,
             d;

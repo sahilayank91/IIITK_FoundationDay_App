@@ -58,18 +58,330 @@ Made by tanuj
         <item>Books are love and writing too.</item>
         <item>Taking Photographs is more than just a click.</item>
     </string-array>
+
+    <!--Events of technical club-->
     <string-array name="event00">
         <item>Treasure Quest</item>
         <item>23 Feb 10:30 AM</item>
         <item>Team Event</item>
         <item>VLTC MNIT</item>
-        <item>24 March 18</item>
-        <item>7665517141</item>
-        <item>2000</item>
-        <item>This is some random text in place of details about the event</item>
+        <item>22 March '18</item>
+        <item>+91-0123456789</item>
+        <item>5000</item>
+        <item>Sherlocked (Quiz and Treasure Hunt)\nThis is some random text in place of details about the event.</item>
         <item>3</item>
         <item>4</item>
+        <item>50</item>
     </string-array>
-    <!-- todo    add data for every event present
+    <string-array name="event01">
+        <item>Enigma</item>
+        <item>XXXX</item>
+        <item>Team Event</item>
+        <item>XXXX</item>
+        <item>XXXX</item>
+        <item>XXXX</item>
+        <item>2000</item>
+        <item>Live Hacking Event </item>
+        <item>3</item>
+        <item>3</item>
+        <item>XXXX</item>
+    </string-array>
+    <string-array name="event02">
+        <item>Code Canon</item>
+        <item>XXXX</item>
+        <item>Team Event</item>
+        <item>XXXX</item>
+        <item>XXXX</item>
+        <item>XXXX</item>
+        <item>XXXX</item>
+        <item>Coding Event </item>
+        <item>3</item>
+        <item>3</item>
+        <item>XXXX</item>
+    </string-array>
+    <string-array name="event03">
+        <item>War Manga</item>
+        <item>XXXX</item>
+        <item>Team Event</item>
+        <item>XXXX</item>
+        <item>XXXX</item>
+        <item>XXXX</item>
+        <item>5000</item>
+        <item>CS GO and Mini Militia </item>
+        <item>2</item>
+        <item>2</item>
+        <item>100 and 50</item>
+    </string-array>
+    <string-array name="event04">
+        <item>Connect the Dots</item>
+        <item>XXXX</item>
+        <item>Team Event</item>
+        <item>XXXX</item>
+        <item>XXXX</item>
+        <item>XXXX</item>
+        <item>XXXX</item>
+        <item>XXXX</item>
+        <item>2</item>
+        <item>2</item>
+        <item>XXXX</item>
+    </string-array>
+    <string-array name="event05">
+        <item>Cryptic</item>
+        <item>XXXX</item>
+        <item>Team Event</item>
+        <item>XXXX</item>
+        <item>XXXX</item>
+        <item>XXXX</item>
+        <item>XXXX</item>
+        <item>XXXX</item>
+        <item>3</item>
+        <item>3</item>
+        <item>XXXX</item>
+    </string-array>
+
+    <!--Events of cultural club -->
+    <string-array name="event10">
+        <item>Melomania</item>
+        <item>XXXX</item>
+        <item>Solo Event</item>
+        <item>XXXX</item>
+        <item>22 March '18</item>
+        <item>XXXX</item>
+        <item>XXXX</item>
+        <item>Solo singing</item>
+        <item>1</item>
+        <item>1</item>
+        <item>XXXX</item>
+    </string-array>
+    <string-array name="event11">
+        <item>Dhun</item>
+        <item>XXXX</item>
+        <item>Solo Event</item>
+        <item>XXXX</item>
+        <item>22 March '18</item>
+        <item>XXXX</item>
+        <item>XXXX</item>
+        <item>Instrumental performance</item>
+        <item>1</item>
+        <item>1</item>
+        <item>XXXX</item>
+    </string-array>
+    <string-array name="event12">
+        <item>Flying Solo</item>
+        <item>XXXX</item>
+        <item>Solo Event</item>
+        <item>XXXX</item>
+        <item>22 March '18</item>
+        <item>XXXXX</item>
+        <item>XXXX</item>
+        <item>Solo Dance</item>
+        <item>3</item>
+        <item>4</item>
+        <item>XXXX</item>
+    </string-array>
+    <string-array name="event13">
+        <item>Algorhythm</item>
+        <item>XXXX</item>
+        <item>Team Event</item>
+        <item>XXXX</item>
+        <item>22 March '18</item>
+        <item>XXXX</item>
+        <item>XXXX</item>
+        <item>Group Dance</item>
+        <item>4</item>
+        <item>6</item>
+        <item>XXXX</item>
+    </string-array>
+    <string-array name="event14">
+        <item>Connect 2 Culture</item>
+        <item>XXXX</item>
+        <item>Solo Event</item>
+        <item>XXXX</item>
+        <item>22 March '18</item>
+        <item>XXXX</item>
+        <item>XXXX</item>
+        <item>Quiz</item>
+        <item>1</item>
+        <item>1</item>
+        <item>XXXX</item>
+    </string-array>
+    <string-array name="event15">
+        <item>Informals</item>
+        <item>XXXX</item>
+        <item>Team and Solo Events</item>
+        <item>XXXX</item>
+        <item>22 March '18</item>
+        <item>XXXX</item>
+        <item>XXXX</item>
+        <item>1.TV Series Quiz\n2.General FUn Game Show\n3.Poker/Card Games\n4.Bucket and Glass Games\n5.Rubik's Cube Challenge\n6.Color Box Game</item>
+        <item>1</item>
+        <item>1</item>
+        <item>XXXX</item>
+    </string-array>
+
+<!--Events of Literary and dramatics club-->
+    <string-array name="event20">
+        <item>Cast a spell</item>
+        <item>XXXX</item>
+        <item>Solo Event</item>
+        <item>XXXX</item>
+        <item>22 March '18</item>
+        <item>XXX</item>
+        <item>XXXX</item>
+        <item>Spell Bee\n
+        Come on, you all the spelling geeks, test your dictation skills!\n
+        Ready to spell 'Euonym' without google?\n
+        It is time to show your love fro words your avidity to know their usage through this interesting challenge.</item>
+        <item>1</item>
+        <item>1</item>
+        <item>XXXX</item>
+    </string-array>
+    <string-array name="event21">
+        <item>Talesmith</item>
+        <item>XXXX</item>
+        <item>Solo Event</item>
+        <item>XXXX</item>
+        <item>22 March '18</item>
+        <item>XXX</item>
+        <item>XXXX</item>
+        <item>4 Words of 1 Story\n
+            Writers can brew up a story from just a hint of an idea.\n
+        Think you can too?\n
+        We give you an expression, you give us a story. Let the best plot win.</item>
+        <item>1</item>
+        <item>1</item>
+        <item>XXXX</item>
+    </string-array>
+    <string-array name="event22">
+        <item>Mad Ads</item>
+        <item>XXXX</item>
+        <item>Solo Event</item>
+        <item>XXXX</item>
+        <item>22 March '18</item>
+        <item>XXX</item>
+        <item>XXXX</item>
+        <item>Flaunt your creativity and mischiefs in this amusing yet gripping event. It will be the time when you can come up with the most weird ideas and comical performances.\n
+        Showcase what you can do for the marketing world!</item>
+        <item>1</item>
+        <item>1</item>
+        <item>XXXX</item>
+    </string-array>
+    <string-array name="event23">
+        <item>Yatharth</item>
+        <item>XXXX</item>
+        <item>Solo Event</item>
+        <item>XXXX</item>
+        <item>22 March '18</item>
+        <item>XXX</item>
+        <item>XXXX</item>
+        <item>Street Play\n
+        Unleash your acting skills before an assemblage and arouse discussions on the lesser talked about affairs through this street play.\n
+        Let's enkindle the flame that moves people to work for the enrichment of the society.</item>
+        <item>1</item>
+        <item>1</item>
+        <item>XXXX</item>
+    </string-array>
+    <string-array name="event24">
+        <item>Tell a Tale</item>
+        <item>XXXX</item>
+        <item>Solo Event</item>
+        <item>XXXX</item>
+        <item>22 March '18</item>
+        <item>XXX</item>
+        <item>XXXX</item>
+        <item>Slam Poetry\n
+        Sometimes syllabus sentences and stanzas are </item>
+        <item>1</item>
+        <item>1</item>
+        <item>XXXX</item>
+    </string-array>
+
+<!--Events of photography club-->
+    <string-array name="event30">
+        <item>Colour of Halloween</item>
+        <item>XXXX</item>
+        <item>Solo Event</item>
+        <item>XXXX</item>
+        <item>22 March '18</item>
+        <item>XXXX</item>
+        <item>XXXX</item>
+        <item>Don't we all love horror stories?! It's your chance to create one! Think of all the scary and gruesome stuff that you can and paint something even scarier.
+Let's face paint Halloween! May the scariest win!</item>
+        <item>1</item>
+        <item>1</item>
+        <item>XXXX</item>
+    </string-array>
+    <string-array name="event31">
+        <item>Tatto Designing</item>
+        <item>XXXX</item>
+        <item>Solo Event</item>
+        <item>XXXX</item>
+        <item>22 March '18</item>
+        <item>XXXX</item>
+        <item>XXXX</item>
+        <item>Who doesn't love tattoos?
+Tattoos are a unique form of art, a very personal and meaningful display of individuality and self-expression. Come and wear your heart on your skin for a day sans the pain. Let the creative juices flow as you enjoy the body-art experience.</item>
+        <item>1</item>
+        <item>1</item>
+        <item>XXXX</item>
+    </string-array>
+    <string-array name="event32">
+        <item>Meme Slay</item>
+        <item>XXXX</item>
+        <item>Solo Event</item>
+        <item>XXXX</item>
+        <item>22 March '18</item>
+        <item>XXXX</item>
+        <item>XXXX</item>
+        <item>We are engineers and we know a good meme when we see one. Not only that, we are pretty good in making them too .
+Challenge your friends in this Meme Slay with your epic mastery in sarcasm and puns! Post your memes with the hashtag #ffmemeslay.</item>
+        <item>1</item>
+        <item>1</item>
+        <item>XXXX</item>
+    </string-array>
+    <string-array name="event33">
+        <item>Campus Clicks</item>
+        <item>XXXX</item>
+        <item>Solo Event</item>
+        <item>XXXX</item>
+        <item>22 March '18</item>
+        <item>XXXX</item>
+        <item>XXXX</item>
+        <item>There are millions of amazing stories that we hear each day that take place between friends, at awesome hangout places in our college. We are giving you a platform to share the pictures of the popular hang out places inside your campus and if possible caption it with a vivid memory of yours associated with it.</item>
+        <item>1</item>
+        <item>1</item>
+        <item>XXXX</item>
+    </string-array>
+    <string-array name="event34">
+        <item>Vine competition</item>
+        <item>XXXX</item>
+        <item>Solo Event</item>
+        <item>XXXX</item>
+        <item>22 March '18</item>
+        <item>XXXX</item>
+        <item>XXXX</item>
+        <item>Vine and win! It's a chance to show off your video making skills and make your vines a trend. Take up any topic , shoot a 2 minutes clip and get a chance to be the vine champ! </item>
+        <item>1</item>
+        <item>1</item>
+        <item>XXXX</item>
+    </string-array>
+    <string-array name="event35">
+        <item>Origami Time</item>
+        <item>XXXX</item>
+        <item>Solo Event</item>
+        <item>XXXX</item>
+        <item>22 March '18</item>
+        <item>XXXX</item>
+        <item>XXXX</item>
+        <item>We have been playing around with paper since we were small kids. Be it a fan, flower or a paper cracker we have done it all. Re - live your childhood with this fun origami competition and show off your paper folding skills!</item>
+        <item>1</item>
+        <item>1</item>
+        <item>XXXX</item>
+    </string-array>
+
+
+
+
+    <!-- todo    complete  data for every event of every club
     -->
 </resources>

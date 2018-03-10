@@ -20,7 +20,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:gravity="center_horizontal"
-        android:text="EMERGENCY CONTACTS"
+        android:text="CONTACTS"
         android:textColor="#eebe00"
         android:textSize="20sp" />
 
@@ -42,7 +42,7 @@
         android:layout_marginRight="30dp"
         android:layout_marginTop="30dp"
         android:columnCount="2"
-        android:rowCount="2">
+        android:rowCount="3">
 
         <RelativeLayout
             android:layout_row="0"
@@ -52,7 +52,7 @@
                 android:id="@+id/tv_name1"
                 android:layout_width="140dp"
                 android:layout_height="wrap_content"
-                android:text="Tanuj"
+                android:text="Parth"
                 android:textSize="20dp"
                 android:gravity="center"
                 android:textColor="#eebe00"/>
@@ -61,7 +61,7 @@
                 android:layout_width="140dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tv_name1"
-                android:text="+91-1234567890"
+                android:text="+91-79721 09123"
                 android:gravity="center"
                 android:textColor="#ffffff"/>
             <TextView
@@ -69,7 +69,7 @@
                 android:layout_width="140dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tv_number1"
-                android:text="Host"
+                android:text="Coordinator "
                 android:gravity="center"
                 android:textColor="#ffffff"/>
         </RelativeLayout>
@@ -82,7 +82,7 @@
                 android:id="@+id/tv_name2"
                 android:layout_width="140dp"
                 android:layout_height="wrap_content"
-                android:text="Gaurav"
+                android:text="Ishita"
                 android:textSize="20dp"
                 android:gravity="center"
                 android:textColor="#eebe00"/>
@@ -91,7 +91,7 @@
                 android:layout_width="140dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tv_name2"
-                android:text="+91-1234567890"
+                android:text="+91-80949 89700"
                 android:gravity="center"
                 android:textColor="#ffffff"/>
             <TextView
@@ -99,7 +99,7 @@
                 android:layout_width="140dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tv_number2"
-                android:text="Helpdesk"
+                android:text="Deputy Coordinator"
                 android:gravity="center"
                 android:textColor="#ffffff"/>
         </RelativeLayout>
@@ -113,7 +113,7 @@
                 android:id="@+id/tv_name3"
                 android:layout_width="140dp"
                 android:layout_height="wrap_content"
-                android:text="Sahil"
+                android:text="Arunabh"
                 android:textSize="20dp"
                 android:gravity="center"
                 android:textColor="#eebe00"/>
@@ -122,7 +122,7 @@
                 android:layout_width="140dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tv_name3"
-                android:text="+91-1234567890"
+                android:text="+91-88755 17770"
                 android:gravity="center"
                 android:textColor="#ffffff"/>
             <TextView
@@ -130,7 +130,7 @@
                 android:layout_width="140dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tv_number3"
-                android:text="Mentor"
+                android:text="Cultural Club"
                 android:gravity="center"
                 android:textColor="#ffffff"/>
         </RelativeLayout>
@@ -144,7 +144,7 @@
                 android:id="@+id/tv_name4"
                 android:layout_width="140dp"
                 android:layout_height="wrap_content"
-                android:text="Vipasha"
+                android:text="Shrestha"
                 android:textSize="20dp"
                 android:gravity="center"
                 android:textColor="#eebe00"/>
@@ -153,7 +153,7 @@
                 android:layout_width="140dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tv_name4"
-                android:text="+91-1234567890"
+                android:text="+91-98187 06010"
                 android:gravity="center"
                 android:textColor="#ffffff"/>
             <TextView
@@ -161,7 +161,67 @@
                 android:layout_width="140dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tv_number4"
-                android:text="Competitions"
+                android:text="Literary Club"
+                android:gravity="center"
+                android:textColor="#ffffff"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_row="2"
+            android:layout_column="0"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="start">
+            <TextView
+                android:id="@+id/tv_name6"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:text="Anmol"
+                android:textSize="20dp"
+                android:gravity="center"
+                android:textColor="#eebe00"/>
+            <TextView
+                android:id="@+id/tv_number6"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_name6"
+                android:text="+91-86996 81796"
+                android:gravity="center"
+                android:textColor="#ffffff"/>
+            <TextView
+                android:id="@+id/tv_info6"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_number6"
+                android:text="Technical Club"
+                android:gravity="center"
+                android:textColor="#ffffff"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_row="2"
+            android:layout_column="1"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="end">
+            <TextView
+                android:id="@+id/tv_name7"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:text="Ankit"
+                android:textSize="20dp"
+                android:gravity="center"
+                android:textColor="#eebe00"/>
+            <TextView
+                android:id="@+id/tv_number7"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_name7"
+                android:text="+91-98187 06010"
+                android:gravity="center"
+                android:textColor="#ffffff"/>
+            <TextView
+                android:id="@+id/tv_info7"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_number7"
+                android:text="Fine Arts Club"
                 android:gravity="center"
                 android:textColor="#ffffff"/>
         </RelativeLayout>
@@ -169,20 +229,20 @@
     </GridLayout>
     <TextView
         android:layout_below="@+id/grid"
-        android:id="@+id/label_women_helpline"
+        android:id="@+id/label_app"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:gravity="center_horizontal"
-        android:text="WOMEN HELPLINE"
+        android:text="FOR APP RELATED QUERY"
         android:textColor="#eebe00"
         android:textSize="20sp" />
 
     <View
         android:layout_width="fill_parent"
         android:layout_height="2dp"
-        android:layout_below="@+id/label_women_helpline"
+        android:layout_below="@+id/label_app"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginTop="5dp"
@@ -190,9 +250,9 @@
     <TextView
         android:id="@+id/tv_name5"
         android:layout_width="match_parent"
-        android:layout_below="@+id/label_women_helpline"
+        android:layout_below="@+id/label_app"
         android:layout_height="wrap_content"
-        android:text="Vipasha"
+        android:text="Tanuj Mehta"
         android:layout_marginTop="20dp"
         android:textSize="20dp"
         android:gravity="center"
@@ -202,7 +262,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tv_name5"
-        android:text="+91-1234567890"
+        android:text="+91-76655 17141"
+        android:gravity="center"
+        android:textColor="#ffffff"/>
+    <TextView
+        android:id="@+id/tv_info5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_number5"
+        android:text="App developer"
         android:gravity="center"
         android:textColor="#ffffff"/>
 
@@ -222,7 +290,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/label_emailus"
-        android:text="Mail us at flairfiesta@iiitkota.ac.in"
+        android:text="Mail us at contactus@flairfiesta.com"
         android:gravity="center"
         android:textColor="#ffffff"/>
 
