@@ -16,7 +16,7 @@ Made by tanuj
         <item>Tanuj Mehta</item>
         <item>Shashwat Singh</item>
         <item>Vipasha Chandwani</item>
-        <item>Gaurav</item>
+        <item>Gaurav Khandelwal</item>
     </string-array>
     <string-array name="emails">
         <item>2015kucp1025@iiitkota.ac.in</item>
@@ -34,7 +34,7 @@ Made by tanuj
     </string-array>
     <string-array name="linkedin">
         <item>https://www.linkedin.com/in/sahil-ayank-078052132/</item>
-        <item>https://www.linkedin.com/in/tanuj-mehta-72ab25159/</item>
+        <item>https://www.linkedin.com/in/iamtanujmehta/</item>
         <item>https://www.linkedin.com/in/shashwat-singh-55a570149</item>
         <item>https://www.linkedin.com/in/vipasha-chandwani-36502a136/</item>
         <item>https://www.linkedin.com/in/gaurav-khandelwal-b6b154147</item>
@@ -52,23 +52,25 @@ Made by tanuj
     <item>Literary and Dramatics Club</item>
     <item>Fine Arts and Photography Club</item>
 </string-array>
-    <string-array name="club_taglines">
-        <item>For those whose life is all about technology.</item>
-        <item>Dance, Sing and enjoy life to the fullest.</item>
-        <item>Books are love and writing too.</item>
-        <item>Taking Photographs is more than just a click.</item>
-    </string-array>
+<string-array name="club_taglines">
+        <item>Alpha</item>
+        <item>Sanskriti</item>
+        <item>Find a script for your Life</item>
+        <item>THE ARTSY LENS : A perfect place for photomaniacs</item>
+</string-array>
 
     <!--Events of technical club-->
     <string-array name="event00">
-        <item>Treasure Quest</item>
+        <item>Sherlocked</item>
         <item>23 Feb 10:30 AM</item>
         <item>Team Event</item>
-        <item>VLTC MNIT</item>
+        <item>Prabha Bhawan</item>
         <item>22 March '18</item>
         <item>+91-0123456789</item>
         <item>5000</item>
-        <item>Sherlocked (Quiz and Treasure Hunt)\nThis is some random text in place of details about the event.</item>
+        <item>Quiz and Treasure Hunt\n
+        Elementary my dear Watson. . . \n
+Bring out the mastermind in you as you find your way out of a pool of clues, and finally reach the *clink clonk* treasure.</item>
         <item>3</item>
         <item>4</item>
         <item>50</item>
@@ -81,7 +83,9 @@ Made by tanuj
         <item>XXXX</item>
         <item>XXXX</item>
         <item>2000</item>
-        <item>Live Hacking Event </item>
+        <item>Only in it for the bugs. . . \n
+Up for some serious challenges?\n
+            Here is the platform for it! Put your thinking caps on, and dive into Enigma, a place to showcase your “knack for hack”. May the force be with you! </item>
         <item>3</item>
         <item>3</item>
         <item>XXXX</item>
@@ -94,7 +98,8 @@ Made by tanuj
         <item>XXXX</item>
         <item>XXXX</item>
         <item>XXXX</item>
-        <item>Coding Event </item>
+        <item>Come, code, create. . . \n
+Exigent tasks and precise algorithms- if you are a coding maniac and a programming fanatic, this is the place for you. Wrack your brains and race against time to prove that you are indeed the best coder ever!</item>
         <item>3</item>
         <item>3</item>
         <item>XXXX</item>
@@ -107,7 +112,8 @@ Made by tanuj
         <item>XXXX</item>
         <item>XXXX</item>
         <item>5000</item>
-        <item>CS GO and Mini Militia </item>
+        <item>Time out. . .\n
+“Hushed voices, silent footsteps, reload of a gun, reviving of engines, a gush of nitrous.” If all this is music to your ears then you belong here at the ultimate gaming arcade that is WarManga for the maniacs who just can’t get enough of reality. </item>
         <item>2</item>
         <item>2</item>
         <item>100 and 50</item>
@@ -120,7 +126,8 @@ Made by tanuj
         <item>XXXX</item>
         <item>XXXX</item>
         <item>XXXX</item>
-        <item>XXXX</item>
+        <item>Patience, the big picture will emerge. . .\n
+Observe the audio-visuals, and make supreme sense out of all of them put as one! You need not be Einstein to figure this out!</item>
         <item>2</item>
         <item>2</item>
         <item>XXXX</item>
@@ -133,7 +140,8 @@ Made by tanuj
         <item>XXXX</item>
         <item>XXXX</item>
         <item>XXXX</item>
-        <item>XXXX</item>
+        <item>We came, we quizzed, we conquered. . . \n
+We await the crowning of the next tech wizards. A haven for those with the technical chutzpah to display their skills. Slay your opponents and emerge the winner, in this clash of brain over brawn!</item>
         <item>3</item>
         <item>3</item>
         <item>XXXX</item>
@@ -161,7 +169,8 @@ Made by tanuj
         <item>22 March '18</item>
         <item>XXXX</item>
         <item>XXXX</item>
-        <item>Instrumental performance</item>
+        <item>Instrumental. . .\n
+        ‘If music be the food of love, play on. . .’, DHUN is an instrumental music competition which encourages the contestants to exhibit their musical abilities and regale a captive audience. Calling all Beethoven and Mozart to create some new music that brings not just some amazing tunes, but also move the audience.</item>
         <item>1</item>
         <item>1</item>
         <item>XXXX</item>
@@ -174,7 +183,8 @@ Made by tanuj
         <item>22 March '18</item>
         <item>XXXXX</item>
         <item>XXXX</item>
-        <item>Solo Dance</item>
+        <item>Solo Dance Competition. . .\n
+        Dance is a language beyond words,expressing that for which we have no words.To dance is to fly so here comes the FLYING SOLO Dance Competition, a chance to show your flight to the world .So get ready and practice like you have never won , and dance like you have never lost.</item>
         <item>3</item>
         <item>4</item>
         <item>XXXX</item>
@@ -187,7 +197,8 @@ Made by tanuj
         <item>22 March '18</item>
         <item>XXXX</item>
         <item>XXXX</item>
-        <item>Group Dance</item>
+        <item>Group Dance. . .\n
+        The dance is one of the human emotions which cannot be suppressed.Dancing is immortal culture which have existed all times, among all people and races.The objective behind group dance is to come out with new people and new talent which they are unable to come up solo.</item>
         <item>4</item>
         <item>6</item>
         <item>XXXX</item>
@@ -200,7 +211,8 @@ Made by tanuj
         <item>22 March '18</item>
         <item>XXXX</item>
         <item>XXXX</item>
-        <item>Quiz</item>
+        <item>Quiz on Rajasthani Culture. . . \n
+        Culture is central to identity. Culture defines who we are, how we think, how we communicate, what we value and what is important to us. C2C (connect to culture) is a quiz that will speak volumes of our connection with the culture.The quiz is an effort to involve the students from different cultures and give them a chance to know more about different culture.</item>
         <item>1</item>
         <item>1</item>
         <item>XXXX</item>
@@ -213,7 +225,7 @@ Made by tanuj
         <item>22 March '18</item>
         <item>XXXX</item>
         <item>XXXX</item>
-        <item>1.TV Series Quiz\n2.General FUn Game Show\n3.Poker/Card Games\n4.Bucket and Glass Games\n5.Rubik's Cube Challenge\n6.Color Box Game</item>
+        <item>'Informal Events ' is a category having fun games and will be full of excitement.\nThey help the participants to unwind and make new friends. There will be several games under this category which will test your brawn and wits until there are none left.</item>
         <item>1</item>
         <item>1</item>
         <item>XXXX</item>
@@ -260,7 +272,7 @@ Made by tanuj
         <item>22 March '18</item>
         <item>XXX</item>
         <item>XXXX</item>
-        <item>Flaunt your creativity and mischiefs in this amusing yet gripping event. It will be the time when you can come up with the most weird ideas and comical performances.\n
+        <item>Flaunt your creativity and mischiefs in this amusing yet gripping event.\nIt will be the time when you can come up with the most weird ideas and comical performances.\n
         Showcase what you can do for the marketing world!</item>
         <item>1</item>
         <item>1</item>
@@ -290,7 +302,7 @@ Made by tanuj
         <item>XXX</item>
         <item>XXXX</item>
         <item>Slam Poetry\n
-        Sometimes syllabus sentences and stanzas are </item>
+        Sometimes syllables, sentences and stanzas are strung so tightly together, you almost shed a tear when the lines bless your ears. SPEAK, SCREAM, HOWL, WHISPER, OR SING YOUR WORDS! The stage is a playground for reciters! The event is open to anyone who wishes to put some power behind their opinion and voice their thoughts. </item>
         <item>1</item>
         <item>1</item>
         <item>XXXX</item>
@@ -305,7 +317,9 @@ Made by tanuj
         <item>22 March '18</item>
         <item>XXXX</item>
         <item>XXXX</item>
-        <item>Don't we all love horror stories?! It's your chance to create one! Think of all the scary and gruesome stuff that you can and paint something even scarier.
+        <item>Don't we all love horror stories?!\n
+            It's your chance to create one!\n
+            Think of all the scary and gruesome stuff that you can and paint something even scarier.
 Let's face paint Halloween! May the scariest win!</item>
         <item>1</item>
         <item>1</item>
@@ -319,7 +333,8 @@ Let's face paint Halloween! May the scariest win!</item>
         <item>22 March '18</item>
         <item>XXXX</item>
         <item>XXXX</item>
-        <item>Who doesn't love tattoos?
+        <item>Ink your style. . .\n
+            Who doesn't love tattoos?\n
 Tattoos are a unique form of art, a very personal and meaningful display of individuality and self-expression. Come and wear your heart on your skin for a day sans the pain. Let the creative juices flow as you enjoy the body-art experience.</item>
         <item>1</item>
         <item>1</item>
@@ -333,7 +348,8 @@ Tattoos are a unique form of art, a very personal and meaningful display of indi
         <item>22 March '18</item>
         <item>XXXX</item>
         <item>XXXX</item>
-        <item>We are engineers and we know a good meme when we see one. Not only that, we are pretty good in making them too .
+        <item>Slam It up. . .\n
+            We are engineers and we know a good meme when we see one.Not only that, we are pretty good in making them too .
 Challenge your friends in this Meme Slay with your epic mastery in sarcasm and puns! Post your memes with the hashtag #ffmemeslay.</item>
         <item>1</item>
         <item>1</item>
@@ -347,7 +363,8 @@ Challenge your friends in this Meme Slay with your epic mastery in sarcasm and p
         <item>22 March '18</item>
         <item>XXXX</item>
         <item>XXXX</item>
-        <item>There are millions of amazing stories that we hear each day that take place between friends, at awesome hangout places in our college. We are giving you a platform to share the pictures of the popular hang out places inside your campus and if possible caption it with a vivid memory of yours associated with it.</item>
+        <item>The Amazing Eye. . .\n
+            There are millions of amazing stories that we hear each day that take place between friends, at awesome hangout places in our college. We are giving you a platform to share the pictures of the popular hang out places inside your campus and if possible caption it with a vivid memory of yours associated with it.</item>
         <item>1</item>
         <item>1</item>
         <item>XXXX</item>
@@ -360,7 +377,9 @@ Challenge your friends in this Meme Slay with your epic mastery in sarcasm and p
         <item>22 March '18</item>
         <item>XXXX</item>
         <item>XXXX</item>
-        <item>Vine and win! It's a chance to show off your video making skills and make your vines a trend. Take up any topic , shoot a 2 minutes clip and get a chance to be the vine champ! </item>
+        <item>Vine and win!\n
+            It's a chance to show off your video making skills and make your vines a trend.\n
+            Take up any topic , shoot a 2 minutes clip and get a chance to be the vine champ! </item>
         <item>1</item>
         <item>1</item>
         <item>XXXX</item>
@@ -373,7 +392,9 @@ Challenge your friends in this Meme Slay with your epic mastery in sarcasm and p
         <item>22 March '18</item>
         <item>XXXX</item>
         <item>XXXX</item>
-        <item>We have been playing around with paper since we were small kids. Be it a fan, flower or a paper cracker we have done it all. Re - live your childhood with this fun origami competition and show off your paper folding skills!</item>
+        <item>Revive Childhood. . .\n
+            We have been playing around with paper since we were small kids.\n
+            Be it a fan, flower or a paper cracker we have done it all. Re-live your childhood with this fun origami competition and show off your paper folding skills!</item>
         <item>1</item>
         <item>1</item>
         <item>XXXX</item>
