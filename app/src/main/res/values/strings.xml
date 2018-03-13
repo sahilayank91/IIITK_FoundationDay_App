@@ -1,7 +1,7 @@
 <resources>
-    <string name="app_name">Flair-Fiesta 2k18</string>
+    <string name="app_name">Flair Fiesta \'18</string>
     <string name="year">Year</string>
-    <string name="college">College</string>
+  <string name="college">College</string>
     <string name="Gender">Gender</string>
     <string name="title">Registration Form</string>
     <string name="iam">I am</string>

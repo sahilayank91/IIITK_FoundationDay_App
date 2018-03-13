@@ -44,7 +44,7 @@
             android:layout_toStartOf="@+id/Year"
             android:paddingStart="5dp"
             android:paddingTop="5dp"
-            android:text="@string/college"
+            android:text="College"
             android:textColor="@color/offwhite"
             android:textSize="20dp" />
 
@@ -279,21 +279,21 @@
             android:text="Register"
             android:textColor="@color/black" />
 
-            <TextView
-                android:id="@+id/reg_later"
-                android:layout_below="@+id/submit"
-                android:fontFamily="serif"
-                android:typeface="monospace"
-                android:textSize="20sp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:textStyle="bold"
-                android:textColor="@color/colorAccent"
-                android:layout_centerHorizontal="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Register Later"
-                />
+        <TextView
+            android:id="@+id/reg_later"
+            android:layout_below="@+id/submit"
+            android:fontFamily="serif"
+            android:typeface="monospace"
+            android:textSize="20sp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:textStyle="bold"
+            android:textColor="@color/colorAccent"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Register Later"
+            />
 
     </RelativeLayout>
 </ScrollView>

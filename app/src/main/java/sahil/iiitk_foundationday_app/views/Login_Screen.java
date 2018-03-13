@@ -594,7 +594,7 @@ public class Login_Screen extends AppCompatActivity
             super.onBackPressed();
         } else {
             this.backPressedToExitOnce = true;
-            showToast("Press again to exit");
+            Toast.makeText(this,"Press again to exit!",Toast.LENGTH_SHORT).show();
             new Handler().postDelayed(new Runnable() {
 
                 @Override
@@ -604,31 +604,9 @@ public class Login_Screen extends AppCompatActivity
             }, 2000);
         }
     }
-    private void showToast(String message) {
-        if (this.toast == null) {
-            // Create toast if found null, it would he the case of first call only
-            this.toast = Toast.makeText(this, message, Toast.LENGTH_SHORT);
 
-        } else if (this.toast.getView() == null) {
-            // Toast not showing, so create new one
-            this.toast = Toast.makeText(this, message, Toast.LENGTH_SHORT);
-
-        } else {
-            // Updating toast message is showing
-            this.toast.setText(message);
-        }
-
-        // Showing toast finally
-        this.toast.show();
-    }
-    private void killToast() {
-        if (this.toast != null) {
-            this.toast.cancel();
-        }
-    }
     @Override
     protected void onPause() {
-        killToast();
         super.onPause();
     }
 }

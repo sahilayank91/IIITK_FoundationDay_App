@@ -189,7 +189,7 @@ public class Register extends AppCompatActivity
         mos = mocButton.getText().toString();
     }
 
-//this method was coded by tanuj
+    //this method was coded by tanuj
     public void getFFid(){
         // Write a message to the database
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -213,7 +213,7 @@ public class Register extends AppCompatActivity
         });
     }
 
-//this method was coded by tanuj
+    //this method was coded by tanuj
     //sending emails automatically
     public void sendEmail(long ffid){
         regSecondStage(ffid);

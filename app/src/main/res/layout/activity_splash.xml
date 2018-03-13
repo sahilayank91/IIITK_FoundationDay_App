@@ -9,6 +9,7 @@
 
     <LinearLayout
         android:gravity="center"
+        android:id="@+id/splash_back"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -16,7 +17,7 @@
 
         <ImageView
             android:id="@+id/iv"
-            android:src="@drawable/logo"
+            android:src="@drawable/ic_launcher"
             android:layout_width="200dp"
             android:layout_height="200dp"
             android:layout_gravity="center"/>
