@@ -62,17 +62,17 @@ Made by tanuj
     <!--Events of technical club-->
     <string-array name="event00">
         <item>Sherlocked</item>
-        <item>23 Mar 2–3 PM and 24 Mar 8–11 AM</item>
+        <item>23 Mar 2–3 PM</item>
         <item>Team Event</item>
         <item>L-1 Prabha Bhawan, Second Floor</item>
-        <item>22 March '18</item>
+        <item>22 March \'18</item>
         <item>NA</item>
         <item>5000</item>
         <item>
             Quiz and Treasure Hunt\n
             Elementary my dear Watson. . . \n
             Bring out the mastermind in you as you find your way out of a pool of clues, and finally reach the *clink clonk* treasure.\n
-        Duration: 4 hour (2 rounds : 1 + 3 hrs)\n
+        \nDuration: 4 hour (2 rounds : 1 + 3 hrs)\n
         RULES:\n
 • It will consist of two rounds : Quiz (General problem solving skills) + Treasure Hunt.\n
 • Teams who pass the first round will be invited to the second round.\n
@@ -88,13 +88,13 @@ Made by tanuj
         <item>24 Mar 12:30 – 2:20 PM</item>
         <item>Team Event</item>
         <item>IIITK-Lab, Prabha Bhawan, Second Floor</item>
-        <item>22 March '18</item>
+        <item>22 March \'18</item>
         <item>NA</item>
         <item>2000</item>
         <item>Only in it for the bugs. . . \n
 Up for some serious challenges?\n
             Here is the platform for it! Put your thinking caps on, and dive into Enigma, a place to showcase your “knack for hack”. May the force be with you!\n
-        Duration: 2 hours\n
+        \nDuration: 2 hours\n
             RULES:\n
 ╛ Find the bugs and hack a way out of all the levels.\n
 ╛ With each level, the difficulty will rise.\n
@@ -109,12 +109,12 @@ Up for some serious challenges?\n
         <item>23 Mar 11:30 AM - 1:30 PM</item>
         <item>Team Event</item>
         <item>IIITK-Lab, Prabha Bhawan, Second Floor</item>
-        <item>22 March '18</item>
+        <item>22 March \'18</item>
         <item>NA</item>
         <item>2500</item>
         <item>Come, code, create. . . \n
 Exigent tasks and precise algorithms- if you are a coding maniac and a programming fanatic, this is the place for you. Wrack your brains and race against time to prove that you are indeed the best coder ever!\n
-        Duration: 2 hour\n
+        \nDuration: 2 hour\n
         RULES:\n
 • This is an IOI style contest. This means that the problems will be\n
 partially graded. You will get score for passing certain test data.\n
@@ -132,20 +132,20 @@ judged.\n
     </string-array>
     <string-array name="event03">
         <item>War Manga</item>
-        <item>23 Mar 12 – 6 PM and 24Mar 9 AM - 3 PM</item>
+        <item>23Mar 12–6PM, 24Mar 9AM-3PM</item>
         <item>Team Event</item>
         <item>SW1,SW2-Lab, CSE Department, MNIT</item>
-        <item>22 March '18</item>
+        <item>22 March \'18</item>
         <item>NA</item>
         <item>5000</item>
         <item>Time out. . .\n
-“Hushed voices, silent footsteps, reload of a gun, reviving of engines, a gush of nitrous.” If all this is music to your ears then you belong here at the ultimate gaming arcade that is WarManga for the maniacs who just can’t get enough of reality.\n
-        Duration: All day 23-24 March 2018\n
+\'Hushed voices, silent footsteps, reload of a gun, reviving of engines, a gush of nitrous.\' If all this is music to your ears then you belong here at the ultimate gaming arcade that is WarManga for the maniacs who just can\’t get enough of reality.\n
+        \nDuration: All day 23-24 March 2018\n
         RULES:\n
 • Team: 5 members: CS GO, 4 members : Mini Militia\n
 • Register yourself as early as possible to get a slot and opponent pre-allocated.\n
 • Teams displaying any type of dishonest tactics will be eliminated.\n
-Charges : 100 Rs. per team for CS GO, and 50 Rs. per team for Mini Militia\n
+Charges : 100 Rs. per team for CS GO, and 50 Rs. per team for Mini Militia.\n
 </item>
         <item>4</item>
         <item>5</item>
@@ -156,12 +156,12 @@ Charges : 100 Rs. per team for CS GO, and 50 Rs. per team for Mini Militia\n
         <item>24 Mar 11 AM - 12 PM</item>
         <item>Team Event</item>
         <item>L-1, Prabha Bhawan, Second Floor</item>
-        <item>22 Mar '18</item>
+        <item>22 Mar \'18</item>
         <item>NA</item>
         <item>2500</item>
         <item>Patience, the big picture will emerge. . .\n
 Observe the audio-visuals, and make supreme sense out of all of them put as one! You need not be Einstein to figure this out!\n
-        Duration: 1 hour\n
+        \nDuration: 1 hour\n
         RULES:\n
 ╛ Make sense out of a series of pictures, audio clips and videos.\n
 ╛ Questions will be of all types- general knowledge based, technical based,
@@ -177,14 +177,14 @@ and common sense and mental aptitude.\n
         <item>23 Mar 3:30 – 4:30 PM</item>
         <item>Team Event</item>
         <item>L-1, Prabha Bhawan, Second Floor</item>
-        <item>22 Mar '18</item>
+        <item>22 Mar \'18</item>
         <item>NA</item>
         <item>2500</item>
         <item>We came, we quizzed, we conquered. . . \n
 We await the crowning of the next tech wizards. A haven for those with the technical chutzpah to display their skills. Slay your opponents and emerge the winner, in this clash of brain over brawn!\n
-        Duration: 1 hour\n
+        \nDuration: 1 hour\n
         RULES:\n
-╛ There will be 20 questions\n
+╛ There will be 20 questions.\n
 ╛ The questions will be both from electronics as well as computer science.\n
 ╛ The questions will be of MCQ type, with some easy, some difficult questions.\n
 ╛ Teams displaying any type of dishonest tactics will be eliminated.\n
@@ -200,11 +200,11 @@ We await the crowning of the next tech wizards. A haven for those with the techn
         <item>24 Mar 2–4 PM</item>
         <item>Solo Event</item>
         <item>Neeti Sabhagar, Prabha Bhawan, Second Floor</item>
-        <item>22 March '18</item>
+        <item>22 March \'18</item>
         <item>9911163723</item>
         <item>NA</item>
         <item>Solo Singing. . .\n
-        Singing is a way of releasing an emotion that you sometimes can't portray when you are acting and music moves your soul ,so music is the source of most intense emotion you can feel.Singing is something that provides a true sense of lightheartedness. Music is an expression individuality.So CULTURAL CLUB is here with solo singing competition ,which gives you the platform to showcase your talent.\n
+        Singing is a way of releasing an emotion that you sometimes can\'t portray when you are acting and music moves your soul ,so music is the source of most intense emotion you can feel.Singing is something that provides a true sense of lightheartedness. Music is an expression individuality.So CULTURAL CLUB is here with solo singing competition ,which gives you the platform to showcase your talent.\n
         Number of rounds: 2\n
 Round 1:\n
 1. Maximum performance time is 1.5 minutes.\n
@@ -215,7 +215,7 @@ Round 2:\n
 them.\n
 3. Song sung in 1st round must not be repeated.\n
 NOTE:\n
-Make sure that songs don’t have anything abusive
+Make sure that songs don\’t have anything abusive
 and objectionable.\n
         </item>
         <item>1</item>
@@ -227,11 +227,11 @@ and objectionable.\n
         <item>23 Mar 6:30 – 8 PM</item>
         <item>Solo Event</item>
         <item>Neeti Sabhagar, Prabha Bhawan, Second Floor</item>
-        <item>22 March '18</item>
+        <item>22 March \'18</item>
         <item>NA</item>
         <item>NA</item>
         <item>Instrumental. . .\n
-        ‘If music be the food of love, play on. . .’, DHUN is an instrumental music competition which encourages the contestants to exhibit their musical abilities and regale a captive audience. Calling all Beethoven and Mozart to create some new music that brings not just some amazing tunes, but also move the audience.</item>
+        \‘If music be the food of love, play on. . .\’, DHUN is an instrumental music competition which encourages the contestants to exhibit their musical abilities and regale a captive audience. Calling all Beethoven and Mozart to create some new music that brings not just some amazing tunes, but also move the audience.</item>
         <item>1</item>
         <item>1</item>
         <item>50</item>
@@ -241,12 +241,12 @@ and objectionable.\n
         <item>23 Mar 8 – 9:30 AM</item>
         <item>Solo Event</item>
         <item>Neeti Sabhagar, Prabha Bhawan, Second Floor</item>
-        <item>22 March '18</item>
+        <item>22 March \'18</item>
         <item>8740016785</item>
         <item>NA</item>
         <item>Solo Dance Competition. . .\n
         Dance is a language beyond words,expressing that for which we have no words.To dance is to fly so here comes the FLYING SOLO Dance Competition, a chance to show your flight to the world .So get ready and practice like you have never won , and dance like you have never lost.\n
-        FORMAT AND RULES\n
+        \nFORMAT AND RULES\:n
  Participants can perform on any song in any dance style.\n
  The time limit will be 5 min.( including setup , performance and clearance ).\n
  Participants will have to bring their song with them.\n
@@ -268,12 +268,12 @@ In both the rounds the participants will be judged on the basis of their facial 
         <item>24 Mar 6PM onwards</item>
         <item>Team Event</item>
         <item>Neeti Sabhagar, Prabha Bhawan, Second Floor</item>
-        <item>22 March '18</item>
+        <item>22 March \'18</item>
         <item>+917355997724</item>
         <item>NA</item>
         <item>Group Dance. . .\n
         The dance is one of the human emotions which cannot be suppressed.Dancing is immortal culture which have existed all times, among all people and races.The objective behind group dance is to come out with new people and new talent which they are unable to come up solo.\n
-        RULES FOR EVENT\n
+        \nRULES FOR EVENT\n
 1. Any dance style can be entertain .\n
 2. Time limit: (4-5) minutes extra one minute for their setup.\n
 3. Team should bring their songs on which they perform .\n
@@ -293,12 +293,12 @@ Synchronization,Choreography,Coordination and expressions during performance.\n
         <item>23 Mar 11:30 AM - 12:30 PM </item>
         <item>Team Event</item>
         <item>L-1, Prabha Bhawan, Second Floor</item>
-        <item>22 March '18</item>
+        <item>22 March \'18</item>
         <item>+917597263356</item>
         <item>NA</item>
         <item>Quiz on Rajasthani Culture. . . \n
         Culture is central to identity. Culture defines who we are, how we think, how we communicate, what we value and what is important to us. C2C (connect to culture) is a quiz that will speak volumes of our connection with the culture.The quiz is an effort to involve the students from different cultures and give them a chance to know more about different culture.\n
-        Format and Rules:\n
+        \nFormat and Rules:\n
 ✓ All questions will be related to Indian culture.\n
 ✓ Participation can be individual or in a team of two.\n
 ✓ Quiz will be an MCQ based test consisting of 40 questions.\n
@@ -320,13 +320,13 @@ festivals.\n
     </string-array>
     <string-array name="event15">
         <item>Informals</item>
-        <item>23 Mar and 24 Mar '18</item>
+        <item>23 Mar and 24 Mar \'18</item>
         <item>Team and Solo Events</item>
         <item>Cafeteria, Prabha Bhawan, Second Floor</item>
-        <item>22 March '18</item>
+        <item>22 March \'18</item>
         <item>NA</item>
         <item>NA</item>
-        <item>'Informal Events ' is a category having fun games and will be full of excitement.\nThey help the participants to unwind and make new friends. There will be several games under this category which will test your brawn and wits until there are none left.</item>
+        <item>\'Informal Events \' is a category having fun games and will be full of excitement.\nThey help the participants to unwind and make new friends. There will be several games under this category which will test your brawn and wits until there are none left.</item>
         <item>1</item>
         <item>1</item>
         <item>NA</item>
@@ -338,13 +338,13 @@ festivals.\n
         <item>23 Mar 12:45 – 1:45 PM</item>
         <item>Team Event</item>
         <item>L-1, Prabha Bhawan, Second Floor</item>
-        <item>22 March '18</item>
+        <item>22 March \'18</item>
         <item>NA</item>
         <item>NA</item>
         <item>Spell Bee\n
         Come on, you all the spelling geeks, test your dictation skills!\n
-        Ready to spell 'Euonym' without google?It is time to show your love fro words your avidity to know their usage through this interesting challenge.
-        Duration: 1 hour\n
+        Ready to spell \'Euonym\' without google?It is time to show your love fro words your avidity to know their usage through this interesting challenge.
+        \nDuration: 1 hour\n
             RULES: \n
             ●	It comprises of three rounds. Competition would be both oral and written.\n
 ●	The rules will be read out by an official before the commencement of each round.\n
@@ -361,7 +361,7 @@ festivals.\n
         <item>24 Mar 12:30 – 2 PM</item>
         <item>Solo Event</item>
         <item>Neeti Sabhagar, Prabha Bhawan, Second Floor</item>
-        <item>22 March '18</item>
+        <item>22 March \'18</item>
         <item>NA</item>
         <item>NA</item>
         <item>4 Words of 1 Story\n
@@ -382,12 +382,12 @@ festivals.\n
         <item>23 Mar 2:30 – 4 PM</item>
         <item>Team Event</item>
         <item>Neeti Sabhagar, Prabha Bhawan, Second Floor</item>
-        <item>22 March '18</item>
+        <item>22 March \'18</item>
         <item>NA</item>
         <item>NA</item>
         <item>Flaunt your creativity and mischiefs in this amusing yet gripping event.\nIt will be the time when you can come up with the most weird ideas and comical performances.
         Showcase what you can do for the marketing world!\n
-            RULES:\n
+            \nRULES:\n
         • There would be 2 rounds for the event.\n
 • Time limit for the performing the advertisement is 2 minutes for both the rounds.\n
 • In Round 1 teams have to perform an advertisement on any product, it can be real as well as
@@ -410,11 +410,11 @@ defamation etc. in Advertisement.\n
         <item>23 Mar 4 – 5:30 PM</item>
         <item>Team Event</item>
         <item>Parking Space, Infront of Prabha Bhawan</item>
-        <item>22 March '18</item>
+        <item>22 March \'18</item>
         <item>NA</item>
         <item>NA</item>
         <item>Street Play\n
-        Unleash your acting skills before an assemblage and arouse discussions on the lesser talked about affairs through this street play.Let's enkindle the flame that moves people to work for the enrichment of the society.\n
+        Unleash your acting skills before an assemblage and arouse discussions on the lesser talked about affairs through this street play.Let\'s enkindle the flame that moves people to work for the enrichment of the society.\n
         Duration: 6 to 10 minutes per act.\n
             RULES:\n
 ●	The play shall depict some kind of social reform or ways to tackle social issues.\n
@@ -433,7 +433,7 @@ defamation etc. in Advertisement.\n
         <item>NA</item>
         <item>Solo Event</item>
         <item>NA</item>
-        <item>22 March '18</item>
+        <item>22 March \'18</item>
         <item>NA</item>
         <item>NA</item>
         <item>Slam Poetry\n
@@ -456,12 +456,13 @@ defamation etc. in Advertisement.\n
         <item>23 Mar 5:30 – 6:30 PM</item>
         <item>Team Event</item>
         <item>L-1, Prabha Bhawan, Second FLoor</item>
-        <item>22 March '18</item>
+        <item>22 March \'18</item>
         <item>NA</item>
         <item>NA</item>
-        <item>Don't we all love horror stories?! It's your chance to create one! Think of all the scary and gruesome stuff that you can and paint something even scarier.
+        <item>Don\'t we all love horror stories?! It\'s your chance to create one! Think of all the scary and gruesome stuff that you can and paint something even scarier.
 Let's face paint Halloween! May the scariest win!\n
 Face painting. . .\n
+            \nRULES:\n
 1.A team of 2-3 members shall be made.
 2.Colors and brushes will be provided during the event.\n
 3.Theme for the event is Halloween .\n
@@ -476,12 +477,12 @@ Face painting. . .\n
         <item>24 Mar 12 – 1 PM</item>
         <item>Team Event</item>
         <item>L-1, Prabha Bhawan, Second FLoor</item>
-        <item>22 March '18</item>
+        <item>22 March \'18</item>
         <item>NA</item>
         <item>NA</item>
         <item>Ink your style. . .\n
-            Who doesn't love tattoos?Tattoos are a unique form of art, a very personal and meaningful display of individuality and self-expression. Come and wear your heart on your skin for a day sans the pain. Let the creative juices flow as you enjoy the body-art experience.\n
-        RULES:\n
+            Who doesn\'t love tattoos?Tattoos are a unique form of art, a very personal and meaningful display of individuality and self-expression. Come and wear your heart on your skin for a day sans the pain. Let the creative juices flow as you enjoy the body-art experience.\n
+        \nRULES:\n
             1. Team event (2 members – one who will draw and the other person on whom art will be performed).\n
 2. Material will be provided on the spot of event.\n
 3. Time – 1 hr 15 Minutes.\n
@@ -495,13 +496,13 @@ Face painting. . .\n
         <item>14 Mar onwards</item>
         <item>Solo Event</item>
         <item>NA</item>
-        <item>22 March '18</item>
+        <item>22 March \'18</item>
         <item>NA</item>
         <item>NA</item>
         <item>Slam It up. . .\n
             We are engineers and we know a good meme when we see one.Not only that, we are pretty good in making them too .
 Challenge your friends in this Meme Slay with your epic mastery in sarcasm and puns! Post your memes with the hashtag #ffmemeslay.\n
-            RULES:\n
+            \nRULES:\n
             1. Maximum 5 Memes can be posted on the page.\n
 2.Only Submission before 24th March will be accepted.\n
 *Judging Criteria-\n
@@ -518,13 +519,13 @@ Challenge your friends in this Meme Slay with your epic mastery in sarcasm and p
         <item>14 Mar onwards</item>
         <item>Solo Event</item>
         <item>NA</item>
-        <item>22 March '18</item>
+        <item>22 March \'18</item>
         <item>NA</item>
         <item>NA</item>
         <item>The Amazing Eye. . .\n
             There are millions of amazing stories that we hear each day that take place between friends, at awesome hangout places in our college. We are giving you a platform to share the pictures of the popular hang out places inside your campus and if possible caption it with a vivid memory of yours associated with it.\n
-            RULES:\n
-        1. It’s a solo event.\n
+            \nRULES:\n
+        1. It\’s a solo event.\n
 2. The photograph should be uploaded to the facebook page and 50% evaluation will be based on the
 number of likes on the Photograph.\n
 3. The photograph should be accompanied by a suitable caption explaining the photograph.\n
@@ -541,11 +542,11 @@ the competition.\n
         <item>14 Mar onwards</item>
         <item>Team Event</item>
         <item>NA</item>
-        <item>22 March '18</item>
+        <item>22 March \'18</item>
         <item>NA</item>
         <item>NA</item>
         <item>Vine and win!\n
-            It's a chance to show off your video making skills and make your vines a trend. Take up any topic , shoot a 2 minutes clip and get a chance to be the vine champ!\n
+            It\'s a chance to show off your video making skills and make your vines a trend. Take up any topic , shoot a 2 minutes clip and get a chance to be the vine champ!\n
         RULES:\n
             1.A maximum of 5 people can act in the video.\n
 2. Video should be of Min duration of 5 mins and Maximum duration of 15 mins.\n
@@ -566,12 +567,12 @@ the competition.\n
         <item>24 Mar 1 – 2 PM</item>
         <item>Team Event</item>
         <item>L-1, Prabha Bhawan, Second Floor</item>
-        <item>22 March '18</item>
+        <item>22 March \'18</item>
         <item>NA</item>
         <item>NA</item>
         <item>Revive Childhood. . .\n
             We have been playing around with paper since we were small kids.Be it a fan, flower or a paper cracker we have done it all. Re-live your childhood with this fun origami competition and show off your paper folding skills!
-            RULES:\n
+            \nRULES:\n
             1. Maximum of 2 people can make a team.\n
 2.Origami sheets and material will be provided on the spot.\n
 3.No extra sheets will be issued.\n

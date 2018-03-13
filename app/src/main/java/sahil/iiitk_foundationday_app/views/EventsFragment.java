@@ -17,10 +17,10 @@ public class EventsFragment extends Fragment {
 
 //todo update images for adapter
     Integer[] event_images,
-            a={R.drawable.event2,R.drawable.event1},
-            b,
-            c,
-            d;
+            a={R.drawable.event2,R.drawable.event1,R.drawable.event2,R.drawable.event1,R.drawable.event2,R.drawable.event2},
+            b={R.drawable.event2,R.drawable.event1,R.drawable.event2,R.drawable.event1,R.drawable.event2,R.drawable.event2},
+            c={R.drawable.event2,R.drawable.event1,R.drawable.event2,R.drawable.event1,R.drawable.event2},
+            d={R.drawable.event2,R.drawable.event1,R.drawable.event2,R.drawable.event1,R.drawable.event2,R.drawable.event2};
     protected RecyclerView mRecyclerView;
     protected EventAdapter mAdapter;
     protected RecyclerView.LayoutManager mLayoutManager;
