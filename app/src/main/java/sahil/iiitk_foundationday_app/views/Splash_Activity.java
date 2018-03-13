@@ -3,6 +3,7 @@ package sahil.iiitk_foundationday_app.views;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,8 +12,12 @@ import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.io.IOException;
+
+import pl.droidsonroids.gif.GifDrawable;
 import sahil.iiitk_foundationday_app.R;
 
 public class Splash_Activity extends AppCompatActivity {
@@ -23,7 +28,15 @@ public class Splash_Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        // hide Action Bar
+        //set GIF background
+        LinearLayout back=findViewById(R.id.splash_back);
+        try{
+            GifDrawable image=new GifDrawable(getResources(),R.drawable.splash_back);
+            back.setBackground(image);
+        }catch (IOException e){
+
+        }
+
         if (android.os.Build.VERSION.SDK_INT >= 21) {
             Window window = this.getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
@@ -42,7 +55,7 @@ public class Splash_Activity extends AppCompatActivity {
             {
                 try{
                     //todo add sleep
-                    // sleep(4000);
+                    sleep(4000);
                     Intent i;
                        if (isLoggedIn()){
                            i = new Intent(getApplicationContext(),MainActivity.class);
