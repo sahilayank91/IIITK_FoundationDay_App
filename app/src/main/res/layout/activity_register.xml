@@ -33,35 +33,47 @@
                 android:inputType="textPersonName"
                 android:paddingTop="20dp"
                 android:textColor="@color/offwhite"
-                android:textColorHint="@color/offwhite" />
+                android:textColorHint="#999999" />
         </android.support.design.widget.TextInputLayout>
 
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/text_input_layout2"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/col"
+            android:layout_width="fill_parent"
+            android:layout_height="35dp"
+            android:layout_below="@id/text_input_layout"
+            android:layout_toStartOf="@+id/Year"
+            android:paddingStart="5dp"
+            android:paddingTop="5dp"
+            android:text="@string/college"
+            android:textColor="@color/offwhite"
+            android:textSize="20dp" />
+
+        <Spinner
+            android:layout_width="165dp"
+            android:layout_height="35dp"
+            android:id="@+id/collegespin"
+            android:layout_below="@id/text_input_layout"
+            android:backgroundTint="@color/offwhite"
+            android:gravity="center"
+            android:layout_toRightOf="@+id/col"
+            android:prompt="@string/college"
+            android:spinnerMode="dialog"
+            android:textAlignment="gravity"/>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/text_input_layout"
-            android:textColorHint="@color/offwhite">
+            android:visibility="invisible"
+            android:layout_below="@+id/col"
+            android:id="@+id/rel"/>
 
-            <EditText
-                android:id="@+id/college_input"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentStart="true"
-                android:layout_below="@+id/text_input_layout"
-                android:backgroundTint="@color/offwhite"
-                android:hint="College"
-                android:inputType="text"
-                android:textColor="@color/offwhite"
-                android:textColorHint="@color/offwhite" />
-        </android.support.design.widget.TextInputLayout>
+
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/text_input_layout3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/text_input_layout2"
+            android:layout_below="@+id/rel"
             android:textColorHint="@color/offwhite">
 
             <EditText
