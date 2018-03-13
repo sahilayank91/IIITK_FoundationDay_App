@@ -62,7 +62,7 @@ Made by tanuj
     <!--Events of technical club-->
     <string-array name="event00">
         <item>Sherlocked</item>
-        <item>23 Mar 2–3 PM and 24 Mar 8-11 AM</item>
+        <item>23 Mar 2–3 PM and 24 Mar 8–11 AM</item>
         <item>Team Event</item>
         <item>L-1 Prabha Bhawan, Second Floor</item>
         <item>22 March '18</item>
@@ -265,7 +265,7 @@ In both the rounds the participants will be judged on the basis of their facial 
     </string-array>
     <string-array name="event13">
         <item>Algorhythm</item>
-        <item>23 Mar</item>
+        <item>24 Mar 6PM onwards</item>
         <item>Team Event</item>
         <item>Neeti Sabhagar, Prabha Bhawan, Second Floor</item>
         <item>22 March '18</item>
@@ -291,7 +291,7 @@ Synchronization,Choreography,Coordination and expressions during performance.\n
     <string-array name="event14">
         <item>Connect 2 Culture</item>
         <item>23 Mar 11:30 AM - 12:30 PM </item>
-        <item>Solo Event</item>
+        <item>Team Event</item>
         <item>L-1, Prabha Bhawan, Second Floor</item>
         <item>22 March '18</item>
         <item>+917597263356</item>
@@ -336,7 +336,7 @@ festivals.\n
     <string-array name="event20">
         <item>Cast a spell</item>
         <item>23 Mar 12:45 – 1:45 PM</item>
-        <item>Solo Event</item>
+        <item>Team Event</item>
         <item>L-1, Prabha Bhawan, Second Floor</item>
         <item>22 March '18</item>
         <item>NA</item>
@@ -380,8 +380,8 @@ festivals.\n
     <string-array name="event22">
         <item>Mad Ads</item>
         <item>23 Mar 2:30 – 4 PM</item>
-        <item>Solo Event</item>
-        <item>Neeti Sabhagar, Prabha Bhawan, Second Floo</item>
+        <item>Team Event</item>
+        <item>Neeti Sabhagar, Prabha Bhawan, Second Floor</item>
         <item>22 March '18</item>
         <item>NA</item>
         <item>NA</item>
@@ -408,128 +408,180 @@ defamation etc. in Advertisement.\n
     <string-array name="event23">
         <item>Yatharth</item>
         <item>23 Mar 4 – 5:30 PM</item>
-        <item>Solo Event</item>
-        <item>XXXX</item>
+        <item>Team Event</item>
+        <item>Parking Space, Infront of Prabha Bhawan</item>
         <item>22 March '18</item>
-        <item>XXX</item>
-        <item>XXXX</item>
+        <item>NA</item>
+        <item>NA</item>
         <item>Street Play\n
-        Unleash your acting skills before an assemblage and arouse discussions on the lesser talked about affairs through this street play.\n
-        Let's enkindle the flame that moves people to work for the enrichment of the society.</item>
-        <item>1</item>
-        <item>1</item>
-        <item>XXXX</item>
+        Unleash your acting skills before an assemblage and arouse discussions on the lesser talked about affairs through this street play.Let's enkindle the flame that moves people to work for the enrichment of the society.\n
+        Duration: 6 to 10 minutes per act.\n
+            RULES:\n
+●	The play shall depict some kind of social reform or ways to tackle social issues.\n
+●	The teams must abide by the given time duration. Teams exceeding the final bell at 10 minutes will attract negative marks.\n
+●	The use of props and costumes is allowed. However, they will not be provided by the organizers.\n
+●	The presentation shall not include offensive actions or objectionable remarks.\n
+●	The act must be prepared well in advance.\n
+●	The competition will be conducted in an open place. Use of music systems is not allowed. Teams can sing/dance to create the necessary music.\n
+        </item>
+        <item>8</item>
+        <item>12</item>
+        <item>150</item>
     </string-array>
     <string-array name="event24">
         <item>Tell a Tale</item>
-        <item>XXXX</item>
+        <item>NA</item>
         <item>Solo Event</item>
-        <item>XXXX</item>
+        <item>NA</item>
         <item>22 March '18</item>
-        <item>XXX</item>
-        <item>XXXX</item>
+        <item>NA</item>
+        <item>NA</item>
         <item>Slam Poetry\n
-        Sometimes syllables, sentences and stanzas are strung so tightly together, you almost shed a tear when the lines bless your ears. SPEAK, SCREAM, HOWL, WHISPER, OR SING YOUR WORDS! The stage is a playground for reciters! The event is open to anyone who wishes to put some power behind their opinion and voice their thoughts. </item>
+        Sometimes syllables, sentences and stanzas are strung so tightly together, you almost shed a tear when the lines bless your ears. SPEAK, SCREAM, HOWL, WHISPER, OR SING YOUR WORDS! The stage is a playground for reciters! The event is open to anyone who wishes to put some power behind their opinion and voice their thoughts.\n
+        Duration-  3 to 6 minutes per act.\n
+●	Participation is solo.\n
+●	Preparation in advance is appreciated.\n
+●	This is a stage event where participants would narrate a tale or recite a poem that has to be a piece of their own work.\n
+●	The tale could be an incident out of their lives. Therefore, the material needs to be original.\n
+●	Use of offensive language shall lead to immediate disqualification.\n
+        </item>
         <item>1</item>
         <item>1</item>
-        <item>XXXX</item>
+        <item>50</item>
     </string-array>
 
 <!--Events of photography club-->
     <string-array name="event30">
         <item>Colour of Halloween</item>
-        <item>XXXX</item>
-        <item>Solo Event</item>
-        <item>XXXX</item>
+        <item>23 Mar 5:30 – 6:30 PM</item>
+        <item>Team Event</item>
+        <item>L-1, Prabha Bhawan, Second FLoor</item>
         <item>22 March '18</item>
-        <item>XXXX</item>
-        <item>XXXX</item>
-        <item>Don't we all love horror stories?!\n
-            It's your chance to create one!\n
-            Think of all the scary and gruesome stuff that you can and paint something even scarier.
-Let's face paint Halloween! May the scariest win!</item>
-        <item>1</item>
-        <item>1</item>
-        <item>XXXX</item>
+        <item>NA</item>
+        <item>NA</item>
+        <item>Don't we all love horror stories?! It's your chance to create one! Think of all the scary and gruesome stuff that you can and paint something even scarier.
+Let's face paint Halloween! May the scariest win!\n
+Face painting. . .\n
+1.A team of 2-3 members shall be made.
+2.Colors and brushes will be provided during the event.\n
+3.Theme for the event is Halloween .\n
+3.Maximum time duration – 2 hours .\n
+        </item>
+        <item>2</item>
+        <item>3</item>
+        <item>150</item>
     </string-array>
     <string-array name="event31">
         <item>Tatto Designing</item>
-        <item>XXXX</item>
-        <item>Solo Event</item>
-        <item>XXXX</item>
+        <item>24 Mar 12 – 1 PM</item>
+        <item>Team Event</item>
+        <item>L-1, Prabha Bhawan, Second FLoor</item>
         <item>22 March '18</item>
-        <item>XXXX</item>
-        <item>XXXX</item>
+        <item>NA</item>
+        <item>NA</item>
         <item>Ink your style. . .\n
-            Who doesn't love tattoos?\n
-Tattoos are a unique form of art, a very personal and meaningful display of individuality and self-expression. Come and wear your heart on your skin for a day sans the pain. Let the creative juices flow as you enjoy the body-art experience.</item>
-        <item>1</item>
-        <item>1</item>
-        <item>XXXX</item>
+            Who doesn't love tattoos?Tattoos are a unique form of art, a very personal and meaningful display of individuality and self-expression. Come and wear your heart on your skin for a day sans the pain. Let the creative juices flow as you enjoy the body-art experience.\n
+        RULES:\n
+            1. Team event (2 members – one who will draw and the other person on whom art will be performed).\n
+2. Material will be provided on the spot of event.\n
+3. Time – 1 hr 15 Minutes.\n
+        </item>
+        <item>3</item>
+        <item>3</item>
+        <item>NA</item>
     </string-array>
     <string-array name="event32">
         <item>Meme Slay</item>
-        <item>XXXX</item>
+        <item>14 Mar onwards</item>
         <item>Solo Event</item>
-        <item>XXXX</item>
+        <item>NA</item>
         <item>22 March '18</item>
-        <item>XXXX</item>
-        <item>XXXX</item>
+        <item>NA</item>
+        <item>NA</item>
         <item>Slam It up. . .\n
             We are engineers and we know a good meme when we see one.Not only that, we are pretty good in making them too .
-Challenge your friends in this Meme Slay with your epic mastery in sarcasm and puns! Post your memes with the hashtag #ffmemeslay.</item>
+Challenge your friends in this Meme Slay with your epic mastery in sarcasm and puns! Post your memes with the hashtag #ffmemeslay.\n
+            RULES:\n
+            1. Maximum 5 Memes can be posted on the page.\n
+2.Only Submission before 24th March will be accepted.\n
+*Judging Criteria-\n
+50%- Facebook likes and tags.\n
+30%-Creativity and thought.\n
+20%-Judging panel.\n
+        </item>
         <item>1</item>
         <item>1</item>
-        <item>XXXX</item>
+        <item>50</item>
     </string-array>
     <string-array name="event33">
         <item>Campus Clicks</item>
-        <item>XXXX</item>
+        <item>14 Mar onwards</item>
         <item>Solo Event</item>
-        <item>XXXX</item>
+        <item>NA</item>
         <item>22 March '18</item>
-        <item>XXXX</item>
-        <item>XXXX</item>
+        <item>NA</item>
+        <item>NA</item>
         <item>The Amazing Eye. . .\n
-            There are millions of amazing stories that we hear each day that take place between friends, at awesome hangout places in our college. We are giving you a platform to share the pictures of the popular hang out places inside your campus and if possible caption it with a vivid memory of yours associated with it.</item>
+            There are millions of amazing stories that we hear each day that take place between friends, at awesome hangout places in our college. We are giving you a platform to share the pictures of the popular hang out places inside your campus and if possible caption it with a vivid memory of yours associated with it.\n
+            RULES:\n
+        1. It’s a solo event.\n
+2. The photograph should be uploaded to the facebook page and 50% evaluation will be based on the
+number of likes on the Photograph.\n
+3. The photograph should be accompanied by a suitable caption explaining the photograph.\n
+4.A soft copy of original image must be submitted by email .\n
+5.Plagiarism should be strictly avoided and such photographs shall be immediately disqualified from
+the competition.\n
+        </item>
         <item>1</item>
         <item>1</item>
-        <item>XXXX</item>
+        <item>50</item>
     </string-array>
     <string-array name="event34">
         <item>Vine competition</item>
-        <item>XXXX</item>
-        <item>Solo Event</item>
-        <item>XXXX</item>
+        <item>14 Mar onwards</item>
+        <item>Team Event</item>
+        <item>NA</item>
         <item>22 March '18</item>
-        <item>XXXX</item>
-        <item>XXXX</item>
+        <item>NA</item>
+        <item>NA</item>
         <item>Vine and win!\n
-            It's a chance to show off your video making skills and make your vines a trend.\n
-            Take up any topic , shoot a 2 minutes clip and get a chance to be the vine champ! </item>
-        <item>1</item>
-        <item>1</item>
-        <item>XXXX</item>
+            It's a chance to show off your video making skills and make your vines a trend. Take up any topic , shoot a 2 minutes clip and get a chance to be the vine champ!\n
+        RULES:\n
+            1.A maximum of 5 people can act in the video.\n
+2. Video should be of Min duration of 5 mins and Maximum duration of 15 mins.\n
+3.Should not portray any vulgar act or nudity content.\n
+4.Only Submission before 24th March will be accepted.\n
+*Judging Criteria :-\n
+30%- Idea and Concept\n
+30%- Facebook likes.\n
+25%- Acting skills.\n
+15%- Creativity (Camera Dynamics, Audio ,Editing , Cinematography)\n
+        </item>
+        <item>3</item>
+        <item>5</item>
+        <item>NA</item>
     </string-array>
     <string-array name="event35">
         <item>Origami Time</item>
-        <item>XXXX</item>
-        <item>Solo Event</item>
-        <item>XXXX</item>
+        <item>24 Mar 1 – 2 PM</item>
+        <item>Team Event</item>
+        <item>L-1, Prabha Bhawan, Second Floor</item>
         <item>22 March '18</item>
-        <item>XXXX</item>
-        <item>XXXX</item>
+        <item>NA</item>
+        <item>NA</item>
         <item>Revive Childhood. . .\n
-            We have been playing around with paper since we were small kids.\n
-            Be it a fan, flower or a paper cracker we have done it all. Re-live your childhood with this fun origami competition and show off your paper folding skills!</item>
+            We have been playing around with paper since we were small kids.Be it a fan, flower or a paper cracker we have done it all. Re-live your childhood with this fun origami competition and show off your paper folding skills!
+            RULES:\n
+            1. Maximum of 2 people can make a team.\n
+2.Origami sheets and material will be provided on the spot.\n
+3.No extra sheets will be issued.\n
+4.Time duration :- 1 hr 30 minutes\n
+        </item>
         <item>1</item>
-        <item>1</item>
-        <item>XXXX</item>
+        <item>2</item>
+        <item>150</item>
     </string-array>
 
-
-
-
-    <!-- todo    complete  data for every event of every club
+    <!-- todo  fill all the NA values
     -->
 </resources>
