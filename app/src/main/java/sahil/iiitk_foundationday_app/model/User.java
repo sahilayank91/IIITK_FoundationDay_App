@@ -2,16 +2,19 @@ package sahil.iiitk_foundationday_app.model;
 
 
 import android.content.Context;
+
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.List;
 
 public class User {
 
 	private String user_id,name,email,phone,department,college,collegeid, gender, year, mos;
 	private int account_level;
-
-
-
+	private List<Long> done_questions;
+	private JSONArray jsonArray;
 	public User(){
 
 	}
@@ -27,6 +30,11 @@ public class User {
 		if(author.has("gender"))this.gender = author.getString("gender");
 		if(author.has("year"))this.year = author.getString("year");
 		if(author.has("mos"))this.mos = author.getString("mos");
+		if (author.has("done_questions")) this.jsonArray=author.getJSONArray("done_questions");
+
+		for (int i=0;i<jsonArray.length();i++){
+			done_questions.add(jsonArray.getLong(i));
+		}
 	}
 
 	public User(Context context){
@@ -39,6 +47,14 @@ public class User {
 		if(user.getUser_id().equals(this.user_id))
 			return true;
 		else return false;
+	}
+
+	public List<Long> getDone_questions() {
+		return done_questions;
+	}
+
+	public void setDone_questions(List<Long> done_questions) {
+		this.done_questions = done_questions;
 	}
 
 	public String getUser_id() {

@@ -26,6 +26,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.util.Patterns;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.regex.Pattern;
 import com.google.firebase.auth.FirebaseAuth;
@@ -324,6 +326,8 @@ public class Register extends AppCompatActivity
     //this method was coded by tanuj
     public void regSecondStage(long id){
         user.setUser_id("FF"+id);
+        List<Long> empty_list=new ArrayList<>();
+        user.setDone_questions(empty_list);
         DatabaseReference mRef = database.getReference().child("Users");
         mRef.push().setValue(user);
         Toast.makeText(getApplicationContext(),"Your FFID is : FF"+id,Toast.LENGTH_LONG).show();
