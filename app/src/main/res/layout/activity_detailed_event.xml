@@ -32,7 +32,6 @@
                 android:layout_height="250dp"
                 android:fitsSystemWindows="true"
                 android:scaleType="centerCrop"
-                android:src="@drawable/home_back"
                 app:layout_collapseMode="pin" />
 
             <android.support.v7.widget.Toolbar
@@ -107,10 +106,20 @@
                         android:textSize="18dp" />
 
                     <TextView
-                        android:id="@+id/event_last_date"
+                        android:id="@+id/event_regfee"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/event_venue"
+                        android:gravity="left"
+                        android:text="Registration fee: 50/-"
+                        android:textColor="#0d02ab"
+                        android:textSize="15dp" />
+
+                    <TextView
+                        android:id="@+id/event_last_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/event_regfee"
                         android:gravity="left"
                         android:text="Last date to pay registration fee: 23Mar 18"
                         android:textColor="#37474F"
@@ -173,6 +182,6 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
         app:layout_anchorGravity="bottom|end"
-        app:srcCompat="@drawable/ic_launcher_round" />
+        app:srcCompat="@drawable/icon_reg" />
 
 </android.support.design.widget.CoordinatorLayout>

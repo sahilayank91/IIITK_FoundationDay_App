@@ -45,6 +45,6 @@
         android:layout_alignParentBottom="true"
         android:layout_margin="@dimen/fab_margin"
         app:layout_anchorGravity="bottom|end"
-        android:src="@drawable/ic_add_alert_black_24dp" />
+        android:src="@drawable/icon_notif" />
 
 </RelativeLayout>

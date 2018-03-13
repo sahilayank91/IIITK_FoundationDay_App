@@ -19,6 +19,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.util.Patterns;
+
+import java.util.Random;
 import java.util.regex.Pattern;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -150,7 +152,10 @@ public class Register extends AppCompatActivity
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 long uid=(long)dataSnapshot.getValue();
-                uid=uid+3;
+                //to generate random IDs so that user's can never guess what will be new FFID
+                Random rand=new Random();
+                int n=rand.nextInt(3)+1;
+                uid=uid+n;
                 dataSnapshot.getRef().setValue(uid);
                 sendEmail(uid);
             }

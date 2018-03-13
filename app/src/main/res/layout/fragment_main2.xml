@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+    Made by Tanuj
+                -->
 
+<!--Fragment for About Page or first page-->
 <android.support.v4.widget.NestedScrollView
     android:layout_height="wrap_content"
     android:padding="0dp"

@@ -1,5 +1,5 @@
 package sahil.iiitk_foundationday_app.views;
-
+// Made by Tanuj
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.app.AlertDialog;
@@ -43,11 +43,15 @@ public class AdminPage extends Activity {
     ListView list;
     FirebaseDatabase db;
     HashMap<Long,ArrayList<String>> ffids=new HashMap<>();
+    ArrayList<String> team_contact_email=new ArrayList<>();
+    ArrayList<String> team_contact_phone=new ArrayList<>();
+    ArrayList<String> team_time=new ArrayList<>();
     ArrayList<String> team_names=new ArrayList<>();
     FloatingActionButton admin_fab;
 
-    //todo add number of events of each club here
-    int[] num={1,0,0,0};
+    //add number of events of each here
+    //todo check once at last time
+    int[] num={6,6,5,6};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,8 +66,31 @@ public class AdminPage extends Activity {
         list=findViewById(R.id.admin_registrations);
         admin_fab=findViewById(R.id.admin_fab);
 
-        //todo add data for events
+        //data for events of every club
+        //todo check once at final time
         map.put("event00", R.array.event00);
+        map.put("event01", R.array.event01);
+        map.put("event02", R.array.event02);
+        map.put("event03", R.array.event03);
+        map.put("event04", R.array.event04);
+        map.put("event05", R.array.event05);
+        map.put("event10", R.array.event10);
+        map.put("event11", R.array.event11);
+        map.put("event12", R.array.event12);
+        map.put("event13", R.array.event13);
+        map.put("event14", R.array.event14);
+        map.put("event15", R.array.event15);
+        map.put("event20", R.array.event20);
+        map.put("event21", R.array.event21);
+        map.put("event22", R.array.event22);
+        map.put("event23", R.array.event23);
+        map.put("event24", R.array.event24);
+        map.put("event30", R.array.event30);
+        map.put("event31", R.array.event31);
+        map.put("event32", R.array.event32);
+        map.put("event33", R.array.event33);
+        map.put("event34", R.array.event34);
+        map.put("event35", R.array.event35);
 
         //determine club number
         if (club_name.equals("Technical_club")) club_number=0;
@@ -106,7 +133,7 @@ public class AdminPage extends Activity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 AlertDialog.Builder builder=new AlertDialog.Builder(AdminPage.this);
-                builder.setTitle("Team Members");
+                builder.setTitle(team_names.get(position));
                 String details="";
                 ArrayList<Long> keys=new ArrayList<>(ffids.keySet());
                 Collections.sort(keys);
@@ -115,6 +142,8 @@ public class AdminPage extends Activity {
                 for (int i=0;i<members.size();i++){
                     details+=""+(i+1)+". "+members.get(i)+"\n";
                 }
+                details+="\n@ "+team_time.get(position)
+                +"\nContact: "+team_contact_phone.get(position)+"\n"+team_contact_email.get(position)+"\n";
                 builder.setMessage(details);
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
@@ -137,7 +166,7 @@ public class AdminPage extends Activity {
                 final EditText input = new EditText(AdminPage.this);
                 // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
                 // input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-                input.setInputType(InputType.TYPE_TEXT_VARIATION_LONG_MESSAGE);
+                input.setInputType(InputType.TYPE_TEXT_FLAG_MULTI_LINE);
                 builder.setView(input);
 
                 //   Set up the buttons
@@ -145,9 +174,14 @@ public class AdminPage extends Activity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialogue_entry = input.getText().toString();
-                        dialog.cancel();
-                        //post notification
-                        generateNotifID();
+                        if (dialogue_entry.isEmpty()){
+                            Toast.makeText(getApplicationContext(),"Empty Message!",Toast.LENGTH_SHORT).show();
+                        }else{
+                            dialog.cancel();
+                            //post notification
+                            generateNotifID();
+                        }
+
                     }
                 });
                 builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -206,7 +240,13 @@ public class AdminPage extends Activity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()){
+                    Log.e("registration","Registrations found!");
                     collectRegistrations((Map<String,Object>) dataSnapshot.getValue());
+                }else{
+                    Log.e("registration","No registrations found for this event!");
+                    team_names.clear();
+                    ArrayAdapter adapter=new ArrayAdapter(getApplicationContext(),android.R.layout.simple_list_item_1,team_names);
+                    list.setAdapter(adapter);
                 }
             }
 
@@ -221,11 +261,18 @@ public class AdminPage extends Activity {
         //iterate through each registration
         Log.e("registration","Collecting all registrations!");
         long i=0;
+        team_names.clear();
+        team_contact_phone.clear();
+        team_time.clear();
+        team_contact_email.clear();
         for (Map.Entry<String, Object> entry : users.entrySet()){
             //Get registration map
             Map singleUser = (Map) entry.getValue();
             ffids.put(i, (ArrayList<String>) singleUser.get("ffids"));
             team_names.add((String)singleUser.get("team_name"));
+            team_time.add((String) singleUser.get("reg_time"));
+            team_contact_email.add((String) singleUser.get("email"));
+            team_contact_phone.add((String) singleUser.get("phone"));
             i++;
         }
         Log.e("adminpage",team_names.toString());

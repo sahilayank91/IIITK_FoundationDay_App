@@ -1,5 +1,5 @@
 package sahil.iiitk_foundationday_app.views;
-
+// Made by Tanuj
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -147,7 +147,16 @@ public class EventRegActivity extends AppCompatActivity
                 }
                 if(flag==0)
                 {
-                    checkFFID(IDs.get(0));
+                    //check if entered FFIDs have the registered user's FFID or not
+                    //so that user can't register for other people unless he is in the team
+                    if (IDs.contains(savedData.getString("FFID",""))){
+                        Log.e("registration","Going to check FFIDs");
+                        checkFFID(IDs.get(0));
+                    }else{
+                        Log.e("registration","User's FFID is not present in the list!");
+                        Toast.makeText(getApplicationContext(),"You can't register for others unless you have a team!",Toast.LENGTH_LONG).show();
+                    }
+
                 }else{
                     IDs.clear();
                 }

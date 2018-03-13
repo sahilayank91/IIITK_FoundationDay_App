@@ -23,7 +23,7 @@
     android:layout_marginLeft="10dp"
     android:layout_marginRight="10dp"
     android:id="@+id/day1"
-    android:src="@drawable/schedule1"
+    android:src="@drawable/schedule"
     android:scaleType="fitCenter"
     app:riv_corner_radius="20dp"/>
 
@@ -35,7 +35,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:id="@+id/day2"
-        android:src="@drawable/schedule1"
+        android:src="@drawable/schedule"
         android:scaleType="fitCenter"
         app:riv_corner_radius="20dp"/>
 

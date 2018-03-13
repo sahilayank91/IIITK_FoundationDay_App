@@ -15,20 +15,11 @@
         android:paddingRight="24dp"
         tools:context="sahil.iiitk_foundationday_app.Register">
 
-        <ImageView
-            android:id="@+id/img"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:paddingTop="10dp"
-            android:src="@drawable/offreg" />
-
         <android.support.design.widget.TextInputLayout
             android:id="@+id/text_input_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/img"
+            android:layout_marginTop="10dp"
             android:textColorHint="@color/offwhite">
 
             <EditText
@@ -37,7 +28,6 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentStart="true"
-                android:layout_below="@id/img"
                 android:backgroundTint="@color/offwhite"
                 android:hint="Name"
                 android:inputType="textPersonName"
@@ -144,6 +134,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentStart="true"
+                android:layout_marginBottom="10dp"
                 android:layout_below="@+id/text_input_layout5"
                 android:backgroundTint="@color/offwhite"
                 android:ems="10"
@@ -282,11 +273,11 @@
                 android:fontFamily="serif"
                 android:typeface="monospace"
                 android:textSize="20sp"
+                android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:textStyle="bold"
                 android:textColor="@color/colorAccent"
                 android:layout_centerHorizontal="true"
-                android:background="#000000"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Register Later"

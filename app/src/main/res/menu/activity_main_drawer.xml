@@ -5,37 +5,37 @@
     <group android:checkableBehavior="none">
         <item
             android:id="@+id/nav_register"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/icon_reg"
             android:title="Register" />
         <item
             android:id="@+id/nav_reaches"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@drawable/icon_map"
             android:title="Reaches" />
         <item
             android:id="@+id/nav_queries"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/icon_queries"
             android:title="Queries" />
         <item
             android:id="@+id/nav_quiz"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Quiz" />
+            android:icon="@drawable/icon_game"
+            android:title="Game" />
 
         <item android:id="@+id/nav_fb"
-            android:icon="@mipmap/ic_launcher_round"
+            android:icon="@drawable/icon_fb_menu"
             android:title="Facebook Page"/>
 
         <item android:id="@+id/nav_website"
-            android:icon="@mipmap/ic_launcher_round"
+            android:icon="@drawable/icon_web"
             android:title="Website"/>
 
     <item
         android:id="@+id/nav_share"
-        android:icon="@drawable/ic_menu_share"
+        android:icon="@drawable/icon_share"
         android:title="Share" />
 
         <item
-            android:title="Go Admin"
-            android:icon="@drawable/ic_menu_manage"
+            android:title="Admin Console"
+            android:icon="@drawable/icon_console"
             android:id="@+id/nav_admin"
             />
     </group>

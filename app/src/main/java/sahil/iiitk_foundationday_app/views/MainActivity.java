@@ -1,6 +1,7 @@
 package sahil.iiitk_foundationday_app.views;
 
 import android.Manifest;
+import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -10,6 +11,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -50,10 +52,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.pusher.client.Pusher;
-import com.pusher.client.PusherOptions;
-import com.pusher.client.channel.Channel;
-import com.pusher.client.channel.SubscriptionEventListener;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -64,20 +62,17 @@ import java.util.Map;
 import sahil.iiitk_foundationday_app.R;
 import sahil.iiitk_foundationday_app.adapters.NotifAdapter;
 import sahil.iiitk_foundationday_app.model.AdminIDs;
-import sahil.iiitk_foundationday_app.model.Notif;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    // private SectionsPagerAdapter mSectionsPagerAdapter;
-
     private ViewPager mViewPager;
     Toolbar toolbar;
     CollapsingToolbarLayout collapsingToolbarLayout;
-    ArrayList<String > titles;
+    ArrayList<String> titles;
     ImageView BackGround;
+    ArrayList<Integer> backgrounds;
     private boolean backPressedToExitOnce = false;
-    ArrayList<String> ar=new ArrayList<>();
     RecyclerView mRecyclerView;
     RecyclerView.LayoutManager  mLayoutManager;
     RecyclerView.Adapter mAdapter;
@@ -100,21 +95,6 @@ public class MainActivity extends AppCompatActivity
             ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION},123);
         }
 
-        ////////////////////////////    PUSHER SHURU
-        PusherOptions options = new PusherOptions();
-        options.setCluster("APP_CLUSTER");
-
-        Pusher pusher = new Pusher("APP_KEY", options);
-        pusher.connect();
-        Channel channel = pusher.subscribe("my-channel");
-        channel.bind("my-event", new SubscriptionEventListener() {
-            @Override
-            public void onEvent(String channelName, String eventName, final String data) {
-                System.out.println(data);
-            }
-        });
-
-        //////////////////////////////////       PUSHER KHATAM
         collapsingToolbarLayout = (CollapsingToolbarLayout)findViewById(R.id.coll);
         collapsingToolbarLayout.setTitleEnabled(true);
         BackGround = (ImageView)findViewById(R.id.BG);
@@ -124,9 +104,17 @@ public class MainActivity extends AppCompatActivity
             titles.add("Events");
             titles.add("Schedule");
             titles.add("Sponsors");
-            titles.add("Helpline");
+            titles.add("Contacts");
             titles.add("Team");
         }
+        backgrounds=new ArrayList<>();
+        backgrounds.add(R.drawable.home_back);
+        backgrounds.add(R.drawable.home_back);
+        backgrounds.add(R.drawable.home_back);
+        backgrounds.add(R.drawable.home_back);
+        backgrounds.add(R.drawable.home_back);
+        backgrounds.add(R.drawable.home_back);
+
         collapsingToolbarLayout.setTitle(titles.get(0));
         mViewPager = (ViewPager) findViewById(R.id.viewpager);
         setupViewPager(mViewPager);
@@ -140,7 +128,7 @@ public class MainActivity extends AppCompatActivity
             public void onPageSelected(int position) {
                 Log.e("page",titles.get(position));
                 collapsingToolbarLayout.setTitle(titles.get(position));
-                BackGround.setImageResource(R.drawable.home_back);
+                BackGround.setImageResource(backgrounds.get(position));
             }
 
             @Override
@@ -148,7 +136,7 @@ public class MainActivity extends AppCompatActivity
 
             }
         });
-        /////////////////////////////////////////////////
+
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
 
@@ -167,9 +155,7 @@ public class MainActivity extends AppCompatActivity
         //showing user's FFID if it exists
         nav_ffid=navigationView.getHeaderView(0).findViewById(R.id.nav_ffid);
         SharedPreferences pref=getSharedPreferences("userInfo",MODE_PRIVATE);
-        if (pref.getString("FFID","").equals("")){
-            nav_ffid.setText("Register to get FFID");
-        }else{
+        if (!pref.getString("FFID","").equals("")){
             nav_ffid.setText("Your FFID is "+pref.getString("FFID",""));
         }
 
@@ -182,8 +168,8 @@ public class MainActivity extends AppCompatActivity
         adapter.addFrag(new MainFragment2(), "ABOUT");
         adapter.addFrag(new ClubsFragment(), "EVENTS");
         adapter.addFrag(new ScheduleFragment(), "SCHEDULE");
-        adapter.addFrag(new SponsorsFragment(), "SPONSERS");
-        adapter.addFrag(new HelplineFragment(), "HELPLINE");
+        adapter.addFrag(new SponsorsFragment(), "SPONSORS");
+        adapter.addFrag(new HelplineFragment(), "CONTACTS");
         adapter.addFrag(new TeamFragment(), "TEAM");
 
         viewPager.setAdapter(adapter);
@@ -386,6 +372,13 @@ public class MainActivity extends AppCompatActivity
             when.add(times.get(keys.get(i)));
             which_club.add(club_names.get(keys.get(i)));
         }
+        //copy info list for use in alerting by notification
+        ArrayList<String> copy=new ArrayList<>();
+        for (int i=0;i<info.size();i++){
+            String x=info.get(i);
+            copy.add(x);
+        }
+        //reverse all lists so that newest notification comes on top
         Collections.reverse(info);
         Collections.reverse(when);
         Collections.reverse(which_club);
@@ -393,7 +386,7 @@ public class MainActivity extends AppCompatActivity
         Log.e("notif",info.toString());
         Log.e("notif",when.toString());
         Log.e("notif",which_club.toString());
-
+        Log.e("notif",""+max_notif_id);
         //showing notifications in cards
         showNotifCard(info,when,which_club);
 
@@ -403,11 +396,12 @@ public class MainActivity extends AppCompatActivity
         SharedPreferences.Editor editor=pref.edit();
         editor.putInt("last_notif",max_notif_id);
         editor.apply();
-        //we need to reverse it again to show the new notification to user
-        Collections.reverse(info);
+        Log.e("notif",""+n+", "+max_notif_id);
         //displaying these notifications in user's notification panel
-        for (int i=n;i<info.size();i++){
-            alertUser(info.get(i),i);
+        Log.e("notif",copy.toString());
+
+        for (int i=n;i<max_notif_id;i++){
+            alertUser(copy.get(i),i);
         }
     }
 
@@ -419,6 +413,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     private  void alertUser(String a,int NOTIFICATION_ID){
+        Log.e("notif","notifying: "+a);
 //        //creating  a notification channel
         //todo setup notifications for newer versions of android >=26
 //        NotificationManager mNotificationManager =
@@ -441,19 +436,24 @@ public class MainActivity extends AppCompatActivity
 //        mChannel.setVibrationPattern(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
 //        mNotificationManager.createNotificationChannel(mChannel);
 
-        NotificationCompat.Builder builder =
-                new NotificationCompat.Builder(this)
-                        .setSmallIcon(R.drawable.ic_launcher_round)
-                        .setContentTitle("FlairFiesta 2k18")
-                        .setTicker(a)
-                       .setAutoCancel(true)
-                        .setPriority(1000)
-                        .setContentText(a);
-        Intent intent=new Intent(this,Splash_Activity.class);
-        PendingIntent pendingIntent=PendingIntent.getActivity(this,1,intent,PendingIntent.FLAG_UPDATE_CURRENT);
-        builder.setContentIntent(pendingIntent);
-        NotificationManager nManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        nManager.notify(NOTIFICATION_ID, builder.build());
+        if (Build.VERSION.SDK_INT<26){
+            //notification for devices running SDK<26
+            NotificationCompat.Builder builder =
+                    new NotificationCompat.Builder(this)
+                            .setSmallIcon(R.drawable.ic_launcher_round)
+                            .setContentTitle("FlairFiesta 2k18")
+                            .setTicker(a)
+                            .setAutoCancel(true)
+                            .setPriority(1000)
+                            .setDefaults(Notification.DEFAULT_ALL)
+                            .setContentText(a);
+            Intent intent=new Intent(this,Splash_Activity.class);
+            PendingIntent pendingIntent=PendingIntent.getActivity(this,1,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+            builder.setContentIntent(pendingIntent);
+            NotificationManager nManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            nManager.notify(NOTIFICATION_ID, builder.build());
+        }
+
     }
 
     private void launchAdmin(){
