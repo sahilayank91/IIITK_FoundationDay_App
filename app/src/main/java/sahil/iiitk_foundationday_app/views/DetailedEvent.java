@@ -164,7 +164,8 @@ public class DetailedEvent extends AppCompatActivity {
                     }
                     Intent intent=new Intent(getApplicationContext(),Register.class);
                     intent.putExtras(bundle);
-                    getApplicationContext().startActivity(intent);
+                    //todo ......context problem check if it works in older APIs
+                    DetailedEvent.this.startActivity(intent);
                 }
             }
         });
