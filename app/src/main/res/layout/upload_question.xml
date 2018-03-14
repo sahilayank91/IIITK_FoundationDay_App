@@ -45,13 +45,26 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"/>
 
-    <EditText
-        android:id="@+id/upload_correct_option"
-        android:layout_below="@+id/upload_option4"
-        android:layout_width="match_parent"
-        android:hint="Correct Option Number"
-        android:inputType="number"
+    <TextView
+        android:id="@+id/upload_spinner_label"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="Choose correct option"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:layout_below="@id/upload_option4"/>
+
+    <Spinner
+        android:id="@+id/upload_correct_option"
+        android:layout_width="100dp"
+        android:layout_below="@id/upload_spinner_label"
+        android:layout_height="35dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:spinnerMode="dialog"
+        android:textAlignment="gravity"
+        android:prompt="@string/options"
         android:layout_centerHorizontal="true"/>
 
     <Button

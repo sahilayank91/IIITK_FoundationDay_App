@@ -53,6 +53,7 @@ dependencies {
     compile 'com.github.bumptech.glide:glide:3.7.0'
     compile 'com.google.android.gms:play-services:11.8.0'
     compile 'pl.droidsonroids.gif:android-gif-drawable:1.2.11'
+    compile 'commons-net:commons-net:3.3'
     implementation files('C:/Users/Tanuj Mehta/AndroidStudioProjects/IIITK_FoundationDay_App/libs/activation.jar')
     implementation files('C:/Users/Tanuj Mehta/AndroidStudioProjects/IIITK_FoundationDay_App/libs/additionnal.jar')
     implementation files('C:/Users/Tanuj Mehta/AndroidStudioProjects/IIITK_FoundationDay_App/libs/mail.jar')

@@ -4,7 +4,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -21,10 +23,12 @@ import sahil.iiitk_foundationday_app.model.Question;
 
 public class UploadQuestionActivity extends AppCompatActivity {
 
-    EditText question,option1,option2,option3,option4,correct_option;
+    EditText question,option1,option2,option3,option4;
+    Spinner correct_option;
     List<String> upload_options=new ArrayList<>();
     Question upload_question=new Question();
     FirebaseDatabase database;
+    String[] arraySpinner = new String[]{"1", "2", "3","4"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +42,9 @@ public class UploadQuestionActivity extends AppCompatActivity {
         option3=findViewById(R.id.upload_option3);
         option4=findViewById(R.id.upload_option4);
         correct_option=findViewById(R.id.upload_correct_option);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.spinner_item, arraySpinner);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        correct_option.setAdapter(adapter);
     }
 
     public void uploadQuestion(View view){
@@ -47,7 +54,7 @@ public class UploadQuestionActivity extends AppCompatActivity {
         String b=option2.getText().toString();
         String c=option3.getText().toString();
         String d =option4.getText().toString();
-        String e=correct_option.getText().toString();
+        String e=arraySpinner[correct_option.getSelectedItemPosition()];
         if (ques.isEmpty()) {
             question.setError("Empty!");
             return;
@@ -66,11 +73,6 @@ public class UploadQuestionActivity extends AppCompatActivity {
         }
         if (d.isEmpty()){
             option4.setError("Empty!");
-            return;
-        }
-        if (e.isEmpty())
-        {
-            correct_option.setError("Empty!");
             return;
         }
         upload_options.add(a);
