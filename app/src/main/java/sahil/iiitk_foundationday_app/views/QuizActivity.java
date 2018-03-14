@@ -1,6 +1,9 @@
 package sahil.iiitk_foundationday_app.views;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -18,10 +21,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-import org.json.JSONArray;
-
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -39,10 +39,11 @@ public class QuizActivity extends AppCompatActivity {
     ProgressDialog dialog;
     FirebaseDatabase db;
     DatabaseReference ref;
-    String cur_question,cur_option1,cur_option2,cur_option3,cur_option4;
-    long cur_correct,cur_id;
+    String cur_question,cur_option1,cur_option2,cur_option3,cur_option4,ffid;
+    long cur_correct,cur_id,lives,correct;
     Button button1,button2,button3,button4;
     TextView question_view;
+    DataSnapshot userSnapshot;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,10 +57,12 @@ public class QuizActivity extends AppCompatActivity {
         //show a dialog until data is downloaded
         dialog=new ProgressDialog(this);
         dialog.setMessage("Hang up a bit...We are loading...");
+        dialog.setCancelable(false);
+        dialog.show();
 
         //download data from firebase
         SharedPreferences pref=getSharedPreferences("userInfo",MODE_PRIVATE);
-        String ffid=pref.getString("FFID","");
+        ffid=pref.getString("FFID","");
         db=FirebaseDatabase.getInstance();
         //download list of done questions of user
         ref=db.getReference().child("Users");
@@ -69,7 +72,11 @@ public class QuizActivity extends AppCompatActivity {
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 if (dataSnapshot!=null){
                     User fetch=dataSnapshot.getValue(User.class);
+                    lives=fetch.getQuiz_lives();
                     done_question_ids=fetch.getDone_questions();
+                    if (done_question_ids==null){
+                        done_question_ids=new ArrayList<>();
+                    }
                 }
             }
             @Override
@@ -92,6 +99,7 @@ public class QuizActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()){
                     Log.e("quiz","Questions data exists.");
+                    userSnapshot=dataSnapshot;
                     collectQuestions((Map<String,Object>) dataSnapshot.getValue());
                 }
             }
@@ -119,6 +127,26 @@ public class QuizActivity extends AppCompatActivity {
         dialog.dismiss();
         Log.e("quiz",all_question_ids.toString());
         if (done_question_ids!=null) Log.e("quiz",done_question_ids.toString());
+        //check if user is left with lives or not
+        Log.e("quiz","Lives left: "+lives);
+        if (lives==-1){
+            //do not let user play this game
+            AlertDialog.Builder builder = new AlertDialog.Builder(QuizActivity.this);
+            builder.setTitle("Oops! All lives exhausted!");
+            builder.setMessage("You have used all your lives and are not allowed to play further!\n" +
+                    "Best of luck for other events.");
+            builder.setNegativeButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.cancel();
+                    //go back to home page
+                    Intent intent=new Intent(QuizActivity.this,MainActivity.class);
+                    QuizActivity.this.startActivity(intent);
+                    QuizActivity.this.finish();
+                }
+            });
+            builder.show();
+        }
         //delete questions which have been attempted
         if (done_question_ids!=null){
             for (int i=0;i<done_question_ids.size();i++){
@@ -154,6 +182,9 @@ public class QuizActivity extends AppCompatActivity {
         //delete this question from the list
         all_question_ids.remove(x);
         all_questions.remove(y);
+        //add this question's ID to the attempted list
+        done_question_ids.add(y);
+        //todo pushing this updated list of seen questions on firebase
     }
 
     public  void check(View view){
@@ -168,10 +199,59 @@ public class QuizActivity extends AppCompatActivity {
             a=4;
         }
         if (a==cur_correct){
-            Toast.makeText(this,"Correct Answer!",Toast.LENGTH_SHORT).show();
-            showNextQuestion();
+            correct++;
+            //todo update database
+            AlertDialog.Builder builder = new AlertDialog.Builder(QuizActivity.this);
+            builder.setTitle("Congratulations!");
+            builder.setMessage("Your answer is Correct!");
+            builder.setNegativeButton("Close Game", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.cancel();
+                    //go back to home page
+                    Intent intent=new Intent(QuizActivity.this,MainActivity.class);
+                    QuizActivity.this.startActivity(intent);
+                    QuizActivity.this.finish();
+                }
+            });
+            builder.setPositiveButton("Next Question", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.cancel();
+                    showNextQuestion();
+                }
+            });
+            builder.show();
         }else{
-            Toast.makeText(this,"Wrong Answer! You can't play more.",Toast.LENGTH_SHORT).show();
+            lives--;
+            //todo update database
+            AlertDialog.Builder builder = new AlertDialog.Builder(QuizActivity.this);
+            builder.setTitle("Sorry!");
+            String str="";
+            if (lives>=0){
+                str="You have lost one life.";
+            }
+            builder.setMessage("Your answer is Incorrect!\n"+str);
+            builder.setNegativeButton("Close Game", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.cancel();
+                    //go back to home page
+                    Intent intent=new Intent(QuizActivity.this,MainActivity.class);
+                    QuizActivity.this.startActivity(intent);
+                    QuizActivity.this.finish();
+                }
+            });
+            if (lives>=0){
+                builder.setPositiveButton("Next Question", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                        showNextQuestion();
+                    }
+                });
+            }
+            builder.show();
         }
 
     }

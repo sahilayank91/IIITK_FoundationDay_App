@@ -328,6 +328,7 @@ public class Register extends AppCompatActivity
         user.setUser_id("FF"+id);
         List<Long> empty_list=new ArrayList<>();
         user.setDone_questions(empty_list);
+        user.setQuiz_lives(5);
         DatabaseReference mRef = database.getReference().child("Users");
         mRef.push().setValue(user);
         Toast.makeText(getApplicationContext(),"Your FFID is : FF"+id,Toast.LENGTH_LONG).show();
