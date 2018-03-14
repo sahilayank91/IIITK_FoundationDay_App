@@ -5,11 +5,13 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,10 +43,13 @@ public class QuizActivity extends AppCompatActivity {
     DatabaseReference ref;
     String cur_question,cur_option1,cur_option2,cur_option3,cur_option4,ffid;
     long cur_correct,cur_id,lives,correct;
+    float progress;
     Button button1,button2,button3,button4;
     TextView question_view;
+    ProgressBar progressBar;
     DataSnapshot userSnapshot;
     User user;
+    CountDownTimer timer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +60,7 @@ public class QuizActivity extends AppCompatActivity {
         button3=findViewById(R.id.quiz_option3);
         button4=findViewById(R.id.quiz_option4);
         question_view=findViewById(R.id.quiz_question);
+        progressBar=findViewById(R.id.timer);
         //show a dialog until data is downloaded
         dialog=new ProgressDialog(this);
         dialog.setMessage("Hang up a bit...We are loading...");
@@ -210,9 +216,61 @@ public class QuizActivity extends AppCompatActivity {
         //updating done questions list on firebase
         user.setDone_questions(done_question_ids);
         userSnapshot.getRef().setValue(user);
+
+        //start a timer to control the time of 10 seconds
+        final long range=10000;
+        timer=new CountDownTimer(range, 500) {
+
+            public void onTick(long millisUntilFinished) {
+                long elapsed=range-millisUntilFinished;
+                progress=(float) elapsed/range;
+                int max=progressBar.getMax();
+                progressBar.setProgress((int)(progress*max));
+            }
+            public void onFinish() {
+                lives--;
+                Log.e("quiz","Lives left: "+lives);
+                //update the number of correct answers  to the firebase
+                user.setDone_questions(done_question_ids);
+                user.setQuiz_correct(correct);
+                user.setQuiz_lives(lives);
+                userSnapshot.getRef().setValue(user);
+                //show results to the user
+                AlertDialog.Builder builder = new AlertDialog.Builder(QuizActivity.this);
+                builder.setTitle("Time Out!");
+                String str="";
+                if (lives>=0){
+                    str="You have lost one life.";
+                }
+                builder.setMessage("Your didn't answer anything!\n"+str);
+                builder.setNegativeButton("Close Game", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                        //go back to home page
+                        Intent intent=new Intent(QuizActivity.this,MainActivity.class);
+                        QuizActivity.this.startActivity(intent);
+                        QuizActivity.this.finish();
+                    }
+                });
+                if (lives>=0){
+                    builder.setPositiveButton("Next Question", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                            showNextQuestion();
+                        }
+                    });
+                }
+                builder.show();
+            }
+
+        };
+        timer.start();
     }
 
     public  void check(View view){
+        timer.cancel();
         long a=0;
         if (view.getId()==R.id.quiz_option1){
             a=1;

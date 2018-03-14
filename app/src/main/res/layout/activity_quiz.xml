@@ -7,8 +7,19 @@
     android:background="#90a4ae"
     tools:context="sahil.iiitk_foundationday_app.views.QuizActivity">
 
+    <ProgressBar
+        android:id="@+id/timer"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp" />
+
     <TextView
         android:id="@+id/quiz_question"
+        android:layout_below="@id/timer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30sp"
@@ -59,5 +70,6 @@
         android:background="#607D8B"
         android:onClick="check"
         android:textSize="20sp" />
+
 
 </RelativeLayout>
