@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -151,7 +152,33 @@ public class EventRegActivity extends AppCompatActivity
                     //so that user can't register for other people unless he is in the team
                     if (IDs.contains(savedData.getString("FFID",""))){
                         Log.e("registration","Going to check FFIDs");
-                        checkFFID(IDs.get(0));
+                        String college_name=savedData.getString("college","");
+                        if (college_name.equals("IIIT KOTA") || college_name.equals("MNIT JAIPUR")){
+                            checkFFID(IDs.get(0));
+                        }else{
+                            DatabaseReference databaseReference=db.getReference("Users");
+                            Query query=databaseReference.orderByChild("user_id").equalTo(IDs.get(0));
+                            query.addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(DataSnapshot dataSnapshot) {
+                                    if (dataSnapshot.exists()){
+                                        Intent i = new Intent(Intent.ACTION_VIEW);
+                                        if (max==1){
+                                            i.setData(Uri.parse("https://www.townscript.com/e/solo-event-flairfiesta-iiitk-334121/"));
+                                        }else{
+                                            i.setData(Uri.parse("https://www.townscript.com/e/team-event-flairfiesta-iiitk-334121/"));
+                                        }
+                                        EventRegActivity.this.startActivity(i);
+                                    }else{
+                                        Toast.makeText(getApplicationContext(),"Provided FFID does not exist!",Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                                @Override
+                                public void onCancelled(DatabaseError databaseError) {
+                                }
+                            });
+
+                        }
                     }else{
                         Log.e("registration","User's FFID is not present in the list!");
                         Toast.makeText(getApplicationContext(),"You can't register for others unless you have a team!",Toast.LENGTH_LONG).show();
@@ -296,7 +323,7 @@ public class EventRegActivity extends AppCompatActivity
         sendEmail(IDs,savedData.getString("name",""),savedData.getString("email",""),event_name,team_name);
 
         //go back to details activity
-        Intent intent=new Intent(this,DetailedEvent.class);
+        Intent intent=new Intent(this,MainActivity.class);
         this.startActivity(intent);
     }
 

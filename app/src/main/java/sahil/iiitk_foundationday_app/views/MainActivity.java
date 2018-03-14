@@ -289,8 +289,14 @@ public class MainActivity extends AppCompatActivity
             this.startActivity(Intent.createChooser(emailIntent, "Send Email via"));
 
         } else if (id == R.id.nav_quiz) {
-            Intent intent=new Intent(this,QuizActivity.class);
-            this.startActivity(intent);
+            //check if the user has an account in the app or not
+            SharedPreferences sharedPreferences=getSharedPreferences("userInfo",MODE_PRIVATE);
+            if (sharedPreferences.getString("FFID","").isEmpty()){
+                Toast.makeText(this,"You have register in the App to play game.",Toast.LENGTH_SHORT).show();
+            }else{
+                Intent intent=new Intent(this,QuizActivity.class);
+                this.startActivity(intent);
+            }
 
         } else if (id == R.id.nav_share) {
             Intent sharingIntent = new Intent(Intent.ACTION_SEND);

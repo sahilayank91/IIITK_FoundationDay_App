@@ -17,8 +17,8 @@ public class EventsFragment extends Fragment {
 
 //todo update images for adapter
     Integer[] event_images,
-            a={R.drawable.event2,R.drawable.event1,R.drawable.event2,R.drawable.event1,R.drawable.event2,R.drawable.event2},
-            b={R.drawable.event2,R.drawable.event1,R.drawable.event2,R.drawable.event1,R.drawable.event2,R.drawable.event2},
+            a={R.drawable.sherlocked,R.drawable.enigma,R.drawable.codecanon,R.drawable.warmanga,R.drawable.connectthedots,R.drawable.cryptic},
+            b={R.drawable.melomania,R.drawable.dhun,R.drawable.flyingsolo,R.drawable.algorhythm,R.drawable.connecttoculture,R.drawable.informals},
             c={R.drawable.event2,R.drawable.event1,R.drawable.event2,R.drawable.event1,R.drawable.event2},
             d={R.drawable.event2,R.drawable.event1,R.drawable.event2,R.drawable.event1,R.drawable.event2,R.drawable.event2};
     protected RecyclerView mRecyclerView;
