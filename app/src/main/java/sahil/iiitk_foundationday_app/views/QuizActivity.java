@@ -44,6 +44,7 @@ public class QuizActivity extends AppCompatActivity {
     Button button1,button2,button3,button4;
     TextView question_view;
     DataSnapshot userSnapshot;
+    User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,9 +72,11 @@ public class QuizActivity extends AppCompatActivity {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 if (dataSnapshot!=null){
-                    User fetch=dataSnapshot.getValue(User.class);
-                    lives=fetch.getQuiz_lives();
-                    done_question_ids=fetch.getDone_questions();
+                    userSnapshot=dataSnapshot;
+                    user=dataSnapshot.getValue(User.class);
+                    lives=user.getQuiz_lives();
+                    correct=user.getQuiz_correct();
+                    done_question_ids=user.getDone_questions();
                     if (done_question_ids==null){
                         done_question_ids=new ArrayList<>();
                     }
@@ -99,7 +102,6 @@ public class QuizActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()){
                     Log.e("quiz","Questions data exists.");
-                    userSnapshot=dataSnapshot;
                     collectQuestions((Map<String,Object>) dataSnapshot.getValue());
                 }
             }
@@ -134,7 +136,9 @@ public class QuizActivity extends AppCompatActivity {
             AlertDialog.Builder builder = new AlertDialog.Builder(QuizActivity.this);
             builder.setTitle("Oops! All lives exhausted!");
             builder.setMessage("You have used all your lives and are not allowed to play further!\n" +
-                    "Best of luck for other events.");
+                    "Best of luck for other events.\n"+
+                    "Wait for the results of the Quiz to be announced.");
+            builder.setCancelable(false);
             builder.setNegativeButton("OK", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
@@ -146,16 +150,18 @@ public class QuizActivity extends AppCompatActivity {
                 }
             });
             builder.show();
-        }
-        //delete questions which have been attempted
-        if (done_question_ids!=null){
-            for (int i=0;i<done_question_ids.size();i++){
-                all_questions.remove(done_question_ids.get(i));
-                int x=all_question_ids.indexOf(done_question_ids.get(i));
-                all_question_ids.remove(x);
+        }else{
+            //delete questions which have been attempted
+            if (done_question_ids!=null){
+                for (int i=0;i<done_question_ids.size();i++){
+                    all_questions.remove(done_question_ids.get(i));
+                    int x=all_question_ids.indexOf(done_question_ids.get(i));
+                    all_question_ids.remove(x);
+                }
             }
+            Log.e("quiz","Questions to show: "+all_question_ids.toString());
+            showNextQuestion();
         }
-        showNextQuestion();
     }
 
     public void showNextQuestion(){
@@ -165,7 +171,23 @@ public class QuizActivity extends AppCompatActivity {
         if (all_question_ids.size()>0){
             x=random.nextInt(all_question_ids.size());
         }else{
-            Toast.makeText(this,"All questions over!",Toast.LENGTH_SHORT).show();
+            AlertDialog.Builder builder = new AlertDialog.Builder(QuizActivity.this);
+            builder.setTitle("All Questions Over");
+            builder.setMessage("Congratulations! You have reached the end of Quiz.\n" +
+                    "This is not what everyone can do.\n Be Proud. Best of Luck" +
+                    "Wait for the results of the Quiz to be announced.");
+            builder.setCancelable(false);
+            builder.setNegativeButton("Close Game", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.cancel();
+                    //go back to home page
+                    Intent intent=new Intent(QuizActivity.this,MainActivity.class);
+                    QuizActivity.this.startActivity(intent);
+                    QuizActivity.this.finish();
+                }
+            });
+            builder.show();
             return;
         }
         long y=all_question_ids.get(x);
@@ -184,7 +206,10 @@ public class QuizActivity extends AppCompatActivity {
         all_questions.remove(y);
         //add this question's ID to the attempted list
         done_question_ids.add(y);
-        //todo pushing this updated list of seen questions on firebase
+        Log.e("quiz","Updated Done list: "+done_question_ids.toString());
+        //updating done questions list on firebase
+        user.setDone_questions(done_question_ids);
+        userSnapshot.getRef().setValue(user);
     }
 
     public  void check(View view){
@@ -200,10 +225,17 @@ public class QuizActivity extends AppCompatActivity {
         }
         if (a==cur_correct){
             correct++;
-            //todo update database
+            Log.e("quiz","Correct: "+correct);
+            //update the number of correct answers  to the firebase
+            user.setDone_questions(done_question_ids);
+            user.setQuiz_correct(correct);
+            user.setQuiz_lives(lives);
+            userSnapshot.getRef().setValue(user);
+            //show results to the user
             AlertDialog.Builder builder = new AlertDialog.Builder(QuizActivity.this);
             builder.setTitle("Congratulations!");
             builder.setMessage("Your answer is Correct!");
+            builder.setCancelable(false);
             builder.setNegativeButton("Close Game", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
@@ -224,7 +256,13 @@ public class QuizActivity extends AppCompatActivity {
             builder.show();
         }else{
             lives--;
-            //todo update database
+            Log.e("quiz","Lives left: "+lives);
+            //update the number of correct answers  to the firebase
+            user.setDone_questions(done_question_ids);
+            user.setQuiz_correct(correct);
+            user.setQuiz_lives(lives);
+            userSnapshot.getRef().setValue(user);
+            //show results to the user
             AlertDialog.Builder builder = new AlertDialog.Builder(QuizActivity.this);
             builder.setTitle("Sorry!");
             String str="";
