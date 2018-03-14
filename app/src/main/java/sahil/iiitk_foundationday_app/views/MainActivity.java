@@ -100,14 +100,14 @@ public class MainActivity extends AppCompatActivity
             titles.add("About");
             titles.add("Events");
             titles.add("Schedule");
-            titles.add("Sponsors");
+            //titles.add("Sponsors");
             titles.add("Contacts");
             titles.add("Team");
         }
         backgrounds=new ArrayList<>();
         backgrounds.add(R.drawable.home_back);
         backgrounds.add(R.drawable.home_back);
-        backgrounds.add(R.drawable.home_back);
+        //backgrounds.add(R.drawable.home_back);
         backgrounds.add(R.drawable.home_back);
         backgrounds.add(R.drawable.home_back);
         backgrounds.add(R.drawable.home_back);
@@ -165,7 +165,7 @@ public class MainActivity extends AppCompatActivity
         adapter.addFrag(new MainFragment2(), "ABOUT");
         adapter.addFrag(new ClubsFragment(), "EVENTS");
         adapter.addFrag(new ScheduleFragment(), "SCHEDULE");
-        adapter.addFrag(new SponsorsFragment(), "SPONSORS");
+        //adapter.addFrag(new SponsorsFragment(), "SPONSORS");
         adapter.addFrag(new HelplineFragment(), "CONTACTS");
         adapter.addFrag(new TeamFragment(), "TEAM");
 
@@ -302,7 +302,7 @@ public class MainActivity extends AppCompatActivity
             Intent sharingIntent = new Intent(Intent.ACTION_SEND);
             sharingIntent.setType("text/plain");
             sharingIntent.putExtra(Intent.EXTRA_SUBJECT, "Flair-Fiesta 2k18");
-            sharingIntent.putExtra(Intent.EXTRA_TEXT, "Download Flair-Fiesta 2k18 from Play Store.");
+            sharingIntent.putExtra(Intent.EXTRA_TEXT, "Download Flair-Fiesta 2k18 from Play Store. https://play.google.com/store/apps/details?id=sahil.iiitk_foundationday_app ");
             startActivity(Intent.createChooser(sharingIntent, "Share via"));
 
         } else if (id==R.id.nav_fb){

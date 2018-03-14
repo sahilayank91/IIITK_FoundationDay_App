@@ -5,6 +5,7 @@ Made by tanuj
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginLeft="10dp"
@@ -20,13 +21,14 @@ Made by tanuj
         card_view:cardCornerRadius="10dp"
         card_view:cardElevation="30dp">
 
-        <ImageView
+        <com.makeramen.roundedimageview.RoundedImageView
             android:id="@+id/mem_image"
             android:layout_width="80dp"
             android:layout_height="80dp"
+            app:riv_corner_radius="200dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
-            android:src="@drawable/image" />
+            android:src="@drawable/person" />
 
         <RelativeLayout
             android:layout_width="220dp"

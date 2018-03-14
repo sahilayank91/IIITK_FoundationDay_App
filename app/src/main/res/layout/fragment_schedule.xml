@@ -14,30 +14,17 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
+            android:background="#e0e0e0"
             android:layout_height="match_parent">
-
-<com.makeramen.roundedimageview.RoundedImageView
-    android:layout_height="200dp"
-    android:layout_width="match_parent"
-    android:layout_marginTop="10dp"
-    android:layout_marginLeft="10dp"
-    android:layout_marginRight="10dp"
-    android:id="@+id/day1"
-    android:src="@drawable/schedule"
-    android:scaleType="fitCenter"
-    app:riv_corner_radius="20dp"/>
-
-    <com.makeramen.roundedimageview.RoundedImageView
-        android:layout_height="200dp"
-        android:layout_width="match_parent"
-        android:layout_marginTop="10dp"
-        android:layout_below="@+id/day1"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:id="@+id/day2"
-        android:src="@drawable/schedule"
-        android:scaleType="fitCenter"
-        app:riv_corner_radius="20dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:textColor="#000000"
+                android:gravity="center"
+                android:layout_marginTop="50dp"
+                android:layout_marginBottom="50dp"
+                android:textSize="25sp"
+                android:text="To be announced. . ."
+                android:layout_height="wrap_content" />
 
 
 </RelativeLayout>
