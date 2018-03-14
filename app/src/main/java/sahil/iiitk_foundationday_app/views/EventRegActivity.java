@@ -322,9 +322,10 @@ public class EventRegActivity extends AppCompatActivity
         //send confirmation mail
         sendEmail(IDs,savedData.getString("name",""),savedData.getString("email",""),event_name,team_name);
 
-        //go back to details activity
+        //go back to home activity
         Intent intent=new Intent(this,MainActivity.class);
         this.startActivity(intent);
+        this.finish();
     }
 
     //sending emails automatically

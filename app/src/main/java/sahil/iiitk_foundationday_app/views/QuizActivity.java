@@ -109,6 +109,28 @@ public class QuizActivity extends AppCompatActivity {
                 if (dataSnapshot.exists()){
                     Log.e("quiz","Questions data exists.");
                     collectQuestions((Map<String,Object>) dataSnapshot.getValue());
+                }else{
+                    dialog.dismiss();
+                    //No questions are there on firebase
+                    Log.e("quiz","Questions data empty!");
+                    //do not let user play this game
+                    AlertDialog.Builder builder = new AlertDialog.Builder(QuizActivity.this);
+                    builder.setTitle("Oops! No questions.");
+                    builder.setMessage("Looks like no questions have been added for quiz.\n" +
+                            "Best of luck for other events.\n"+
+                            "Wait for the questions of the Quiz to be added.");
+                    builder.setCancelable(false);
+                    builder.setNegativeButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                            //go back to home page
+                            Intent intent=new Intent(QuizActivity.this,MainActivity.class);
+                            QuizActivity.this.startActivity(intent);
+                            QuizActivity.this.finish();
+                        }
+                    });
+                    builder.show();
                 }
             }
             @Override

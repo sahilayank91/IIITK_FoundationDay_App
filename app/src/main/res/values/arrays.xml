@@ -62,7 +62,7 @@ Made by tanuj
     <!--Events of technical club-->
     <string-array name="event00">
         <item>Sherlocked</item>
-        <item>23 Mar 2–3 PM</item>
+        <item>23 Mar 2:15–3:15 PM</item>
         <item>Team Event</item>
         <item>L-1 Prabha Bhawan, Second Floor</item>
         <item>22 March \'18</item>
@@ -85,7 +85,7 @@ Made by tanuj
     </string-array>
     <string-array name="event01">
         <item>Enigma</item>
-        <item>24 Mar 12:30 – 2:20 PM</item>
+        <item>24 Mar 12:30 – 2:30 PM</item>
         <item>Team Event</item>
         <item>IIITK-Lab, Prabha Bhawan, Second Floor</item>
         <item>22 March \'18</item>
@@ -132,7 +132,7 @@ judged.\n
     </string-array>
     <string-array name="event03">
         <item>War Manga</item>
-        <item>23Mar 12–6PM, 24Mar 9AM-3PM</item>
+        <item>23Mar12–6PM,24Mar9AM-3PM</item>
         <item>Team Event</item>
         <item>SW1,SW2-Lab, CSE Department, MNIT</item>
         <item>22 March \'18</item>
@@ -320,8 +320,8 @@ festivals.\n
     </string-array>
     <string-array name="event15">
         <item>Informals</item>
-        <item>23 Mar and 24 Mar \'18</item>
-        <item>Team and Solo Events</item>
+        <item>23 Mar,24 Mar \'18</item>
+        <item>Team,Solo Events</item>
         <item>Cafeteria, Prabha Bhawan, Second Floor</item>
         <item>22 March \'18</item>
         <item>+91–9664211015</item>
@@ -335,7 +335,7 @@ festivals.\n
 <!--Events of Literary and dramatics club-->
     <string-array name="event20">
         <item>Cast a spell</item>
-        <item>23 Mar 12:45 – 1:45 PM</item>
+        <item>23 Mar 12:45 – 2 PM</item>
         <item>Team Event</item>
         <item>L-1, Prabha Bhawan, Second Floor</item>
         <item>22 March \'18</item>
@@ -358,9 +358,9 @@ festivals.\n
     </string-array>
     <string-array name="event21">
         <item>Talesmith</item>
-        <item>24 Mar 12:30 – 2 PM</item>
+        <item>24 Mar 10 – 11 PM</item>
         <item>Solo Event</item>
-        <item>Neeti Sabhagar, Prabha Bhawan, Second Floor</item>
+        <item>L-1, Prabha Bhawan, Second Floor</item>
         <item>22 March \'18</item>
         <item>+91–8696438199</item>
         <item>1000</item>
@@ -379,7 +379,7 @@ festivals.\n
     </string-array>
     <string-array name="event22">
         <item>Mad Ads</item>
-        <item>23 Mar 2:30 – 4 PM</item>
+        <item>23 Mar 2:30 – 4:30 PM</item>
         <item>Team Event</item>
         <item>Neeti Sabhagar, Prabha Bhawan, Second Floor</item>
         <item>22 March \'18</item>
@@ -407,7 +407,7 @@ defamation etc. in Advertisement.\n
     </string-array>
     <string-array name="event23">
         <item>Yatharth</item>
-        <item>23 Mar 4 – 5:30 PM</item>
+        <item>23 Mar 6 – 7:30 PM</item>
         <item>Team Event</item>
         <item>Parking Space, Infront of Prabha Bhawan</item>
         <item>22 March \'18</item>
@@ -430,9 +430,9 @@ defamation etc. in Advertisement.\n
     </string-array>
     <string-array name="event24">
         <item>Tell a Tale</item>
-        <item>NA</item>
+        <item>24Mar 12:30 – 2PM</item>
         <item>Solo Event</item>
-        <item>NA</item>
+        <item>Neeti Sabhagar, Prabha Bhawan, Second Floor</item>
         <item>22 March \'18</item>
         <item>+91–9461054547</item>
         <item>2500</item>
@@ -453,7 +453,7 @@ defamation etc. in Advertisement.\n
 <!--Events of photography club-->
     <string-array name="event30">
         <item>Colour of Halloween</item>
-        <item>23 Mar 5:30 – 6:30 PM</item>
+        <item>23 Mar 4:30 – 6:30 PM</item>
         <item>Team Event</item>
         <item>L-1, Prabha Bhawan, Second FLoor</item>
         <item>22 March \'18</item>
@@ -583,6 +583,4 @@ the competition.\n
         <item>150</item>
     </string-array>
 
-    <!-- todo  fill all the NA values
-    -->
 </resources>

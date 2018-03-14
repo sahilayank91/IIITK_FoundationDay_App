@@ -297,6 +297,7 @@ public class MainActivity extends AppCompatActivity
                 Intent intent=new Intent(this,QuizActivity.class);
                 this.startActivity(intent);
             }
+            //todo check for the correct time to open quiz
 
         } else if (id == R.id.nav_share) {
             Intent sharingIntent = new Intent(Intent.ACTION_SEND);
