@@ -90,8 +90,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
         gotoLocationZoom(26.8639207,75.810202,15,"MNIT Prabha Bhawan");
         gotoLocationZoom(26.8621943,75.8099985,15,"MNIT Dispensary");
-        gotoLocationZoom(26.861871,75.8006942,15,"MNIT Central Lawn");
-        gotoLocationZoom(26.8624161,75.8094621,15,"MNIT Annapurna");
+        gotoLocationZoom(26.8619331,75.807207,15,"MNIT Central Lawn");
+        gotoLocationZoom(26.8606199,75.8084348,15,"MNIT Annapurna");
         gotoLocationZoom(26.8629559,75.8114518,15,"MNIT VLTC");
 
 //        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.M) {
