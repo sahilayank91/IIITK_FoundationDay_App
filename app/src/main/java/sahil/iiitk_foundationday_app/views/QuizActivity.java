@@ -183,7 +183,9 @@ public class QuizActivity extends AppCompatActivity {
                 for (int i=0;i<done_question_ids.size();i++){
                     all_questions.remove(done_question_ids.get(i));
                     int x=all_question_ids.indexOf(done_question_ids.get(i));
-                    all_question_ids.remove(x);
+                    if(x>=0){
+                        all_question_ids.remove(x);
+                    }
                 }
             }
             Log.e("quiz","Questions to show: "+all_question_ids.toString());
@@ -254,8 +256,9 @@ public class QuizActivity extends AppCompatActivity {
         button3.setText(b.get(2));
         button4.setText(b.get(3));
         //delete this question from the list
-        all_question_ids.remove(x);
-        all_questions.remove(y);
+        if (x>=0) all_question_ids.remove(x);
+        if (y>=0) all_questions.remove(y);
+
         //add this question's ID to the attempted list
         done_question_ids.add(y);
         Log.e("quiz","Updated Done list: "+done_question_ids.toString());
