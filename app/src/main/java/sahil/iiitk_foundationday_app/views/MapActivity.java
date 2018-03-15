@@ -87,12 +87,12 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
         boolean success = mGoogleMap.setMapStyle(new MapStyleOptions(getResources()
                 .getString(R.string.style_json)));
-        //todo adding more places and correct locations
+
         gotoLocationZoom(26.8639207,75.810202,15,"MNIT Prabha Bhawan");
-        gotoLocationZoom(26.8621895,75.8099985,15,"MNIT Dispensary");
-        gotoLocationZoom(26.861871,75.8088408,15,"MNIT Central Lawn");
-        gotoLocationZoom(26.861871,75.8071993,15,"MNIT Annapurna");
-        gotoLocationZoom(26.8628927,75.8123115,15,"MNIT VLTC");
+        gotoLocationZoom(26.8621943,75.8099985,15,"MNIT Dispensary");
+        gotoLocationZoom(26.861871,75.8006942,15,"MNIT Central Lawn");
+        gotoLocationZoom(26.8624161,75.8094621,15,"MNIT Annapurna");
+        gotoLocationZoom(26.8629559,75.8114518,15,"MNIT VLTC");
 
 //        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.M) {
 //            if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {

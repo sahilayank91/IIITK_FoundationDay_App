@@ -24,6 +24,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -57,6 +58,7 @@ public class Login_Screen extends AppCompatActivity
     ImageView inb;
     EditText id;
     Button ff_login_button;
+    LinearLayout back;
     GoogleSignInClient mGoogleSignInClient;
     private static final String TAG = "PhoneAuthActivity";
     SignInButton signInButton;
@@ -82,6 +84,13 @@ public class Login_Screen extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login__screen);
+
+        back=findViewById(R.id.login_back);
+        try{
+            back.setBackgroundResource(R.drawable.evstill);
+        }catch (OutOfMemoryError e){
+            Log.e("image","ImageError: "+e.getMessage());
+        }
 
         if (android.os.Build.VERSION.SDK_INT >= 21) {
             Window window = this.getWindow();

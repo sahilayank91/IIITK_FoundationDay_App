@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/evstill"
+    android:id="@+id/login_back"
     android:orientation="vertical"
     tools:context="sahil.iiitk_foundationday_app.views.Login_Screen">
 

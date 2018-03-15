@@ -15,6 +15,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -40,6 +41,7 @@ import sahil.iiitk_foundationday_app.model.EventReg;
 public class EventRegActivity extends AppCompatActivity
 {
     LinearLayout lv1,lv2;
+    ScrollView back;
     Spinner s1;
     int min,max,club_number,check_number;
     String event_name,body;
@@ -57,6 +59,13 @@ public class EventRegActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_reg);
+
+        back=findViewById(R.id.reg_back);
+        try{
+            back.setBackgroundResource(R.drawable.th);
+        }catch (OutOfMemoryError e){
+            Log.e("image","ImageError: "+e.getMessage());
+        }
 
         db=FirebaseDatabase.getInstance();
         savedData=getSharedPreferences("userInfo",MODE_PRIVATE);
