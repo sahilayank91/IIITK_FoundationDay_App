@@ -3,6 +3,7 @@ package sahil.iiitk_foundationday_app.adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -70,7 +71,11 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
     public void onBindViewHolder(ViewHolder viewHolder, final int pos) {
         // Get element from your dataset at this position and replace the contents of the view
         // with that element
-        viewHolder.getImageView().setImageResource(event_images[pos]);
+        try {
+            viewHolder.getImageView().setImageResource(event_images[pos]);
+        }catch(OutOfMemoryError e){
+            Log.e("image","Image Error: "+e.getMessage());
+        }
     }
     // END_INCLUDE(recyclerViewOnBindViewHolder)
 

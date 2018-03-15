@@ -108,7 +108,6 @@ public class MainActivity extends AppCompatActivity
         backgrounds=new ArrayList<>();
         backgrounds.add(R.drawable.ffposter);
         backgrounds.add(R.drawable.ffposter);
-        //backgrounds.add(R.drawable.home_back);
         backgrounds.add(R.drawable.ffposter);
         backgrounds.add(R.drawable.ffposter);
         backgrounds.add(R.drawable.ffposter);
@@ -126,7 +125,12 @@ public class MainActivity extends AppCompatActivity
             public void onPageSelected(int position) {
                 Log.e("page",titles.get(position));
                 collapsingToolbarLayout.setTitle(titles.get(position));
-                BackGround.setImageResource(backgrounds.get(position));
+                try {
+                    BackGround.setImageResource(backgrounds.get(position));
+                }catch(OutOfMemoryError e){
+                    Log.e("image","Image Error: "+e.getMessage());
+                }
+
             }
 
             @Override

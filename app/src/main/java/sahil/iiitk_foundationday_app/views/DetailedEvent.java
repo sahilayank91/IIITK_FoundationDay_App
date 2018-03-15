@@ -8,6 +8,7 @@ import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -125,7 +126,11 @@ public class DetailedEvent extends AppCompatActivity {
         max=Integer.parseInt(event_data[9]);
 
         //display data in fields
-        event_picture.setImageResource(imageMap.get("image" + club_number + "" + event_number));
+        try {
+            event_picture.setImageResource(imageMap.get("image" + club_number + "" + event_number));
+        }catch(OutOfMemoryError e){
+            Log.e("image","Image Error: "+e.getMessage());
+        }
         collapsingToolbarLayout.setTitle(event_data[0]);
         event_date_time.setText(event_data[1]);
         event_type.setText(event_data[2]);
