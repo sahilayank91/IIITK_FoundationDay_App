@@ -105,7 +105,7 @@ public class UploadQuestionActivity extends AppCompatActivity {
 
     public void pushQuestion(long id){
         upload_question.setId(id);
-        DatabaseReference mRef = database.getReference().child("Questions");
+        DatabaseReference mRef = database.getReference().child("New_Questions");
         mRef.push().setValue(upload_question);
         Toast.makeText(this, "Question push Successfull!", Toast.LENGTH_SHORT).show();
     }

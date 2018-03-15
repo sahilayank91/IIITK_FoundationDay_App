@@ -41,7 +41,7 @@
                 android:focusable="true"
                 android:gravity="center"
                 android:textColorHint="#dddddd"
-                android:hint="Phone Number"
+                android:hint="10 Digit Phone Number"
                 android:inputType="phone"
                 />
         </android.support.design.widget.TextInputLayout>

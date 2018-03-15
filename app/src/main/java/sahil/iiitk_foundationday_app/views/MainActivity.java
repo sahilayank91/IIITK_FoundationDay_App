@@ -50,10 +50,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-import org.apache.commons.net.ntp.NTPUDPClient;
-import org.apache.commons.net.ntp.TimeInfo;
-
-import java.net.InetAddress;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -110,12 +106,12 @@ public class MainActivity extends AppCompatActivity
             titles.add("Team");
         }
         backgrounds=new ArrayList<>();
-        backgrounds.add(R.drawable.home_back);
-        backgrounds.add(R.drawable.home_back);
+        backgrounds.add(R.drawable.ffposter);
+        backgrounds.add(R.drawable.ffposter);
         //backgrounds.add(R.drawable.home_back);
-        backgrounds.add(R.drawable.home_back);
-        backgrounds.add(R.drawable.home_back);
-        backgrounds.add(R.drawable.home_back);
+        backgrounds.add(R.drawable.ffposter);
+        backgrounds.add(R.drawable.ffposter);
+        backgrounds.add(R.drawable.ffposter);
 
         collapsingToolbarLayout.setTitle(titles.get(0));
         mViewPager = (ViewPager) findViewById(R.id.viewpager);
@@ -290,7 +286,7 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_queries) {
             Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
-                    "mailto","tanujm242@gmail.com", null));
+                    "mailto","contactus@flairfiesta.com", null));
             this.startActivity(Intent.createChooser(emailIntent, "Send Email via"));
 
         } else if (id == R.id.nav_quiz) {

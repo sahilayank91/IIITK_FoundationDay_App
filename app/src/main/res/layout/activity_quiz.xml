@@ -6,7 +6,9 @@
     android:layout_height="match_parent"
     android:background="#90a4ae"
     tools:context="sahil.iiitk_foundationday_app.views.QuizActivity">
-
+<!--
+    Made by Tanuj
+                -->
     <ProgressBar
         android:id="@+id/timer"
         style="?android:attr/progressBarStyleHorizontal"

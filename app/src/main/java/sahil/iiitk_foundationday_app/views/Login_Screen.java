@@ -243,7 +243,6 @@ public class Login_Screen extends AppCompatActivity
                 verify.setEnabled(true);
             }
         };
-
         myDialog.show();
     }
 
@@ -340,8 +339,8 @@ public class Login_Screen extends AppCompatActivity
         }
     }
     private boolean validatePhoneNumber(String num) {
-        if (TextUtils.isEmpty(num) || num.length()<10) {
-            phoneField.setError("Invalid phone number");
+        if (TextUtils.isEmpty(num) || num.length()!=10) {
+            phoneField.setError("Enter 10 digit phone number");
             return false;
         }
         return true;

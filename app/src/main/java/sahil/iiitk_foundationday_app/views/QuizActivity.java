@@ -1,5 +1,5 @@
 package sahil.iiitk_foundationday_app.views;
-
+// Game made by Tanuj
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
@@ -13,7 +13,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -102,7 +101,7 @@ public class QuizActivity extends AppCompatActivity {
             }
         });
         //download list of all questions
-        DatabaseReference ques_ref=db.getReference().child("Questions");
+        DatabaseReference ques_ref=db.getReference().child("New_Questions");
         ques_ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -188,7 +187,32 @@ public class QuizActivity extends AppCompatActivity {
                 }
             }
             Log.e("quiz","Questions to show: "+all_question_ids.toString());
-            showNextQuestion();
+            //show a dialog to continue or not
+            AlertDialog.Builder builder = new AlertDialog.Builder(QuizActivity.this);
+            builder.setTitle("Would you like to start...");
+            builder.setMessage("Click Yes to continue with Game\n" +
+                    "OR\n" +
+                    "No for going back to Home.");
+            builder.setCancelable(false);
+            builder.setNegativeButton("Go Back", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.cancel();
+                    //go back to home page
+                    Intent intent=new Intent(QuizActivity.this,MainActivity.class);
+                    QuizActivity.this.startActivity(intent);
+                    QuizActivity.this.finish();
+                }
+            });
+            builder.setPositiveButton("Start", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.cancel();
+                    //start with the questions
+                    showNextQuestion();
+                }
+            });
+            builder.show();
         }
     }
 
@@ -202,7 +226,7 @@ public class QuizActivity extends AppCompatActivity {
             AlertDialog.Builder builder = new AlertDialog.Builder(QuizActivity.this);
             builder.setTitle("All Questions Over");
             builder.setMessage("Congratulations! You have reached the end of Quiz.\n" +
-                    "This is not what everyone can do.\n Be Proud. Best of Luck" +
+                    "This is not what everyone can do.\n Be Proud. Best of Luck.\n" +
                     "Wait for the results of the Quiz to be announced.");
             builder.setCancelable(false);
             builder.setNegativeButton("Close Game", new DialogInterface.OnClickListener() {
@@ -262,7 +286,8 @@ public class QuizActivity extends AppCompatActivity {
                 builder.setTitle("Time Out!");
                 String str="";
                 if (lives>=0){
-                    str="You have lost one life.";
+                    str="You have lost one life.\n" +
+                            "Lives Left: "+lives;
                 }
                 builder.setMessage("Your didn't answer anything!\n"+str);
                 builder.setNegativeButton("Close Game", new DialogInterface.OnClickListener() {
@@ -347,7 +372,8 @@ public class QuizActivity extends AppCompatActivity {
             builder.setTitle("Sorry!");
             String str="";
             if (lives>=0){
-                str="You have lost one life.";
+                str="You have lost one life.\n" +
+                        "Lives Left: "+lives;
             }
             builder.setMessage("Your answer is Incorrect!\n"+str);
             builder.setNegativeButton("Close Game", new DialogInterface.OnClickListener() {

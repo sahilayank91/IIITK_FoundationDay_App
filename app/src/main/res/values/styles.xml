@@ -14,7 +14,7 @@
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
-        <item name="colorPrimary">#1cd9fa</item>
+        <item name="colorPrimary">#a5a5a5</item>
         <!--todo adjust color of shortened action bar     -->
     </style>
 

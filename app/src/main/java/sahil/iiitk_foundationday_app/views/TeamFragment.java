@@ -35,12 +35,12 @@ public class TeamFragment extends Fragment {
         facebookIDs=getResources().getStringArray(R.array.facebook);
         linkedinIDs=getResources().getStringArray(R.array.linkedin);
 
-        //todo add names of display pictures
-        images.add(R.drawable.person);
+        // names of display pictures of every team member
+        images.add(R.drawable.sahil);
         images.add(R.drawable.tanuj);
         images.add(R.drawable.shashwat);
-        images.add(R.drawable.person);
-        images.add(R.drawable.person);
+        images.add(R.drawable.vipasha);
+        images.add(R.drawable.gaurav);
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerView);
         mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);

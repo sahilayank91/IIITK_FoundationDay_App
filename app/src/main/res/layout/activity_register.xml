@@ -127,7 +127,7 @@
                 android:layout_below="@+id/text_input_layout4"
                 android:backgroundTint="@color/offwhite"
                 android:ems="10"
-                android:hint="Mobile No."
+                android:hint="10 Digit Mobile No."
                 android:inputType="number"
                 android:textColor="@color/offwhite"
                 android:textColorHint="@color/offwhite" />
