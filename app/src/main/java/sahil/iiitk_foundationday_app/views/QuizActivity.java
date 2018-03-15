@@ -228,7 +228,7 @@ public class QuizActivity extends AppCompatActivity {
         int x;
         if (all_question_ids.size()>0){
             x=random.nextInt(all_question_ids.size());
-            
+
             long y=all_question_ids.get(x);
             Question a=all_questions.get(y);
             cur_question=a.getQuestion();
