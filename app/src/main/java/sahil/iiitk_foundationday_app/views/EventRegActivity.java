@@ -4,10 +4,13 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -50,6 +53,7 @@ public class EventRegActivity extends AppCompatActivity
     EventReg registration=new EventReg();
     FirebaseDatabase db;
     SharedPreferences savedData;
+    WebView webview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -125,43 +129,41 @@ public class EventRegActivity extends AppCompatActivity
         btnl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                IDs.clear();
-                check_number=0;
-                int flag=0;
-                String[] strings = new String[allEds.size()];
-                for(int i=0; i < allEds.size(); i++) {
-                    strings[i] = allEds.get(i).getText().toString();
-                    if (strings[i].equals("")) {
-                        allEds.get(i).setError("Enter FFID");
-                        flag=1;
-                    } else
-                    {
-                        IDs.add(strings[i]);
-                    }
-                }
-                if (min>=2){
-                    if (edd.getText().toString().equals("")){
-                        edd.setError("Empty");
-                        flag=1;
-                    }
-                }
-                if(flag==0)
-                {
-                    //check if entered FFIDs have the registered user's FFID or not
-                    //so that user can't register for other people unless he is in the team
-                    if (IDs.contains(savedData.getString("FFID",""))){
-                        Log.e("registration","Going to check FFIDs");
-                        checkFFID(IDs.get(0));
-                    }else{
-                        Log.e("registration","User's FFID is not present in the list!");
-                        Toast.makeText(getApplicationContext(),"You can't register for others unless you have a team!",Toast.LENGTH_LONG).show();
-                    }
 
-                }else{
                     IDs.clear();
-                }
+                    check_number = 0;
+                    int flag = 0;
+                    String[] strings = new String[allEds.size()];
+                    for (int i = 0; i < allEds.size(); i++) {
+                        strings[i] = allEds.get(i).getText().toString();
+                        if (strings[i].equals("")) {
+                            allEds.get(i).setError("Enter FFID");
+                            flag = 1;
+                        } else {
+                            IDs.add(strings[i]);
+                        }
+                    }
+                    if (min >= 2) {
+                        if (edd.getText().toString().equals("")) {
+                            edd.setError("Empty");
+                            flag = 1;
+                        }
+                    }
+                    if (flag == 0) {
+                        //check if entered FFIDs have the registered user's FFID or not
+                        //so that user can't register for other people unless he is in the team
+                        if (IDs.contains(savedData.getString("FFID", ""))) {
+                            Log.e("registration", "Going to check FFIDs");
+                            checkFFID(IDs.get(0));
+                        } else {
+                            Log.e("registration", "User's FFID is not present in the list!");
+                            Toast.makeText(getApplicationContext(), "You can't register for others unless you have a team!", Toast.LENGTH_LONG).show();
+                        }
 
-            }
+                    } else {
+                        IDs.clear();
+                    }
+                }
         });
     }
         //registration ,validation and confirmation work done by
