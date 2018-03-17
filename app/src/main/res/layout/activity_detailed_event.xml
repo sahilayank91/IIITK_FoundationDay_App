@@ -14,6 +14,7 @@
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/event_appbar"
+        android:background="#a5a5a5"
         android:layout_width="match_parent"
         android:layout_height="250dp">
 

@@ -14,7 +14,7 @@ import sahil.iiitk_foundationday_app.adapters.Sponsor_adapter;
 public class SponsorsFragment extends Fragment {
 
     String[] sponsor_names;
-    Integer[] sponsor_images={R.drawable.sponsor,R.drawable.sponsor2,R.drawable.sponsor,R.drawable.sponsor2,R.drawable.sponsor};
+    Integer[] sponsor_images={R.drawable.sponsor,R.drawable.sponsor,R.drawable.sponsor,R.drawable.sponsor,R.drawable.sponsor};
     protected RecyclerView mRecyclerView;
     protected Sponsor_adapter mAdapter;
     protected RecyclerView.LayoutManager mLayoutManager;

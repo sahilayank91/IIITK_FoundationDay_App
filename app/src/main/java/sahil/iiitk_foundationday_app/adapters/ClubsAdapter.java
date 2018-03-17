@@ -3,6 +3,7 @@ package sahil.iiitk_foundationday_app.adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -78,7 +79,12 @@ public class ClubsAdapter extends RecyclerView.Adapter<ClubsAdapter.ViewHolder> 
         // with that element
         viewHolder.getNameView().setText(club_names[pos]);
         viewHolder.getTagView().setText(club_taglines[pos]);
-        viewHolder.getBackground().setImageResource(images.get(pos));
+        try {
+            viewHolder.getBackground().setImageResource(images.get(pos));
+        }catch(OutOfMemoryError e){
+            Log.e("image","Image Error: "+e.getMessage());
+        }
+
     }
 
     // Return the size of your dataset (invoked by the layout manager)

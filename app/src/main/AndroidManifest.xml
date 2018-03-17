@@ -54,7 +54,7 @@
             android:name=".views.DetailedEvent"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".views.QuizActivity"
+            android:name=".views.UploadQuestionActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".views.MapActivity">
             <meta-data
@@ -72,7 +72,10 @@
         <activity
             android:name=".views.EventRegActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".views.AdminPage" />
+        <activity android:name=".views.AdminPage"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".views.QuizActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

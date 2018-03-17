@@ -8,8 +8,8 @@ android {
         multiDexEnabled true
         minSdkVersion 19
         targetSdkVersion 26
-        versionCode 1
-        versionName "1.0"
+        versionCode 4
+        versionName "4"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     //Signing configurations for build variant "release"
@@ -57,28 +57,5 @@ dependencies {
     implementation files('C:/Users/USER/AndroidStudioProjects/IIITK_FoundationDay_App/libs/additionnal.jar')
     implementation files('C:/Users/USER/AndroidStudioProjects/IIITK_FoundationDay_App/libs/mail.jar')
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 apply plugin: 'com.google.gms.google-services'

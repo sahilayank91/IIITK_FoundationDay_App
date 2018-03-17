@@ -37,6 +37,17 @@
         android:layout_centerHorizontal="true" />
 
     <android.support.design.widget.FloatingActionButton
+        android:id="@+id/admin_fab_question"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_alignParentRight="true"
+        android:layout_above="@id/admin_fab"
+        android:layout_margin="@dimen/fab_margin"
+        app:layout_anchorGravity="bottom|end"
+        android:src="@drawable/icon_addquestion" />
+
+    <android.support.design.widget.FloatingActionButton
         android:id="@+id/admin_fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -3,11 +3,13 @@ package sahil.iiitk_foundationday_app.views;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.text.InputType;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -47,10 +49,9 @@ public class AdminPage extends Activity {
     ArrayList<String> team_contact_phone=new ArrayList<>();
     ArrayList<String> team_time=new ArrayList<>();
     ArrayList<String> team_names=new ArrayList<>();
-    FloatingActionButton admin_fab;
+    FloatingActionButton admin_fab,admin_add_question;
 
     //add number of events of each here
-    //todo check once at last time
     int[] num={6,6,5,6};
 
     @Override
@@ -65,26 +66,29 @@ public class AdminPage extends Activity {
         event_spinner=findViewById(R.id.admin_spinner);
         list=findViewById(R.id.admin_registrations);
         admin_fab=findViewById(R.id.admin_fab);
+        admin_add_question=findViewById(R.id.admin_fab_question);
 
         //data for events of every club
-        //todo check once at final time
         map.put("event00", R.array.event00);
         map.put("event01", R.array.event01);
         map.put("event02", R.array.event02);
         map.put("event03", R.array.event03);
         map.put("event04", R.array.event04);
         map.put("event05", R.array.event05);
+
         map.put("event10", R.array.event10);
         map.put("event11", R.array.event11);
         map.put("event12", R.array.event12);
         map.put("event13", R.array.event13);
         map.put("event14", R.array.event14);
         map.put("event15", R.array.event15);
+
         map.put("event20", R.array.event20);
         map.put("event21", R.array.event21);
         map.put("event22", R.array.event22);
         map.put("event23", R.array.event23);
         map.put("event24", R.array.event24);
+
         map.put("event30", R.array.event30);
         map.put("event31", R.array.event31);
         map.put("event32", R.array.event32);
@@ -165,8 +169,9 @@ public class AdminPage extends Activity {
                 // Set up the input
                 final EditText input = new EditText(AdminPage.this);
                 // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
-                // input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-                input.setInputType(InputType.TYPE_TEXT_FLAG_MULTI_LINE);
+                input.setSingleLine(false);
+                input.setImeOptions(EditorInfo.IME_FLAG_NO_ENTER_ACTION);
+                input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_MULTI_LINE);
                 builder.setView(input);
 
                 //   Set up the buttons
@@ -181,7 +186,6 @@ public class AdminPage extends Activity {
                             //post notification
                             generateNotifID();
                         }
-
                     }
                 });
                 builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -193,10 +197,17 @@ public class AdminPage extends Activity {
                 builder.show();
             }
         });
+        admin_add_question.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(AdminPage.this,UploadQuestionActivity.class);
+                AdminPage.this.startActivity(intent);
+            }
+        });
     }
 
     private void generateNotifID(){
-            // Write a message to the database
+            // get the value stored on the database
             FirebaseDatabase database = FirebaseDatabase.getInstance();
             DatabaseReference myRef = database.getReference("last_notif");
             myRef.addListenerForSingleValueEvent(new ValueEventListener() {

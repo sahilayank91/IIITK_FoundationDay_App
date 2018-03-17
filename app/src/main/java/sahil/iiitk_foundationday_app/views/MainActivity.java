@@ -2,7 +2,6 @@ package sahil.iiitk_foundationday_app.views;
 
 import android.Manifest;
 import android.app.Notification;
-import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -14,7 +13,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.NonNull;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
@@ -37,7 +35,6 @@ import android.text.InputType;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -81,6 +78,7 @@ public class MainActivity extends AppCompatActivity
     FirebaseDatabase db;
     DatabaseReference ref;
     AdminIDs admin=new AdminIDs();
+    ValueEventListener listener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,17 +101,16 @@ public class MainActivity extends AppCompatActivity
             titles.add("About");
             titles.add("Events");
             titles.add("Schedule");
-            titles.add("Sponsors");
+            //titles.add("Sponsors");
             titles.add("Contacts");
             titles.add("Team");
         }
         backgrounds=new ArrayList<>();
-        backgrounds.add(R.drawable.home_back);
-        backgrounds.add(R.drawable.home_back);
-        backgrounds.add(R.drawable.home_back);
-        backgrounds.add(R.drawable.home_back);
-        backgrounds.add(R.drawable.home_back);
-        backgrounds.add(R.drawable.home_back);
+        backgrounds.add(R.drawable.ffposter);
+        backgrounds.add(R.drawable.ffposter);
+        backgrounds.add(R.drawable.ffposter);
+        backgrounds.add(R.drawable.ffposter);
+        backgrounds.add(R.drawable.ffposter);
 
         collapsingToolbarLayout.setTitle(titles.get(0));
         mViewPager = (ViewPager) findViewById(R.id.viewpager);
@@ -128,7 +125,12 @@ public class MainActivity extends AppCompatActivity
             public void onPageSelected(int position) {
                 Log.e("page",titles.get(position));
                 collapsingToolbarLayout.setTitle(titles.get(position));
-                BackGround.setImageResource(backgrounds.get(position));
+                try {
+                    BackGround.setImageResource(backgrounds.get(position));
+                }catch(OutOfMemoryError e){
+                    Log.e("image","Image Error: "+e.getMessage());
+                }
+
             }
 
             @Override
@@ -168,7 +170,7 @@ public class MainActivity extends AppCompatActivity
         adapter.addFrag(new MainFragment2(), "ABOUT");
         adapter.addFrag(new ClubsFragment(), "EVENTS");
         adapter.addFrag(new ScheduleFragment(), "SCHEDULE");
-        adapter.addFrag(new SponsorsFragment(), "SPONSORS");
+        //adapter.addFrag(new SponsorsFragment(), "SPONSORS");
         adapter.addFrag(new HelplineFragment(), "CONTACTS");
         adapter.addFrag(new TeamFragment(), "TEAM");
 
@@ -288,18 +290,48 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_queries) {
             Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
-                    "mailto","tanujm242@gmail.com", null));
+                    "mailto","contactus@flairfiesta.com", null));
             this.startActivity(Intent.createChooser(emailIntent, "Send Email via"));
 
         } else if (id == R.id.nav_quiz) {
-            Intent intent=new Intent(this,QuizActivity.class);
-            this.startActivity(intent);
+            //check if the user has an account in the app or not
+            SharedPreferences sharedPreferences=getSharedPreferences("userInfo",MODE_PRIVATE);
+            if (sharedPreferences.getString("FFID","").isEmpty()){
+                Toast.makeText(this,"You have to register in the App to play game.",Toast.LENGTH_SHORT).show();
+            }else{
+                // check if quiz is open or not by using  a value stored on firebase
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                final DatabaseReference myRef = database.getReference("start_quiz");
+                listener=new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.exists()){
+                            Log.e("home","start_quiz variable found.");
+                            long start_quiz=(long)dataSnapshot.getValue();
+                            if (start_quiz==1){
+                                Log.e("home","Starting quiz.");
+                                Intent intent=new Intent(MainActivity.this,QuizActivity.class);
+                                MainActivity.this.startActivity(intent);
+                            }else{
+                                Log.e("home","Quiz not started yet.");
+                                Toast.makeText(getApplicationContext(),"Quiz has not been started yet!\nCome back soon.",Toast.LENGTH_SHORT).show();
+                            }
+                            myRef.removeEventListener(listener);
+                        }
+                    }
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        Log.e("home", "Failed to read value: "+ databaseError.getDetails());
+                    }
+                };
+                myRef.addListenerForSingleValueEvent(listener);
+            }
 
         } else if (id == R.id.nav_share) {
             Intent sharingIntent = new Intent(Intent.ACTION_SEND);
             sharingIntent.setType("text/plain");
             sharingIntent.putExtra(Intent.EXTRA_SUBJECT, "Flair-Fiesta 2k18");
-            sharingIntent.putExtra(Intent.EXTRA_TEXT, "Download Flair-Fiesta 2k18 from Play Store.");
+            sharingIntent.putExtra(Intent.EXTRA_TEXT, "Download Flair-Fiesta 2k18 from Play Store. https://play.google.com/store/apps/details?id=sahil.iiitk_foundationday_app ");
             startActivity(Intent.createChooser(sharingIntent, "Share via"));
 
         } else if (id==R.id.nav_fb){

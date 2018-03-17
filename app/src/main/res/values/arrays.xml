@@ -55,18 +55,18 @@ Made by tanuj
 <string-array name="club_taglines">
         <item>Alpha</item>
         <item>Sanskriti</item>
-        <item>Bookholics</item>
+        <item>__</item>
         <item>The Artsy Lens</item>
 </string-array>
 
     <!--Events of technical club-->
     <string-array name="event00">
         <item>Sherlocked</item>
-        <item>23 Mar 2–3 PM</item>
+        <item>23 Mar 2:15–3:15 PM</item>
         <item>Team Event</item>
         <item>L-1 Prabha Bhawan, Second Floor</item>
         <item>22 March \'18</item>
-        <item>NA</item>
+        <item>+91–9314105496</item>
         <item>5000</item>
         <item>
             Quiz and Treasure Hunt\n
@@ -85,11 +85,11 @@ Made by tanuj
     </string-array>
     <string-array name="event01">
         <item>Enigma</item>
-        <item>24 Mar 12:30 – 2:20 PM</item>
+        <item>24 Mar 12:30 – 2:30 PM</item>
         <item>Team Event</item>
         <item>IIITK-Lab, Prabha Bhawan, Second Floor</item>
         <item>22 March \'18</item>
-        <item>NA</item>
+        <item>+91–9650996588</item>
         <item>2000</item>
         <item>Only in it for the bugs. . . \n
 Up for some serious challenges?\n
@@ -110,7 +110,7 @@ Up for some serious challenges?\n
         <item>Team Event</item>
         <item>IIITK-Lab, Prabha Bhawan, Second Floor</item>
         <item>22 March \'18</item>
-        <item>NA</item>
+        <item>+91–8699681796</item>
         <item>2500</item>
         <item>Come, code, create. . . \n
 Exigent tasks and precise algorithms- if you are a coding maniac and a programming fanatic, this is the place for you. Wrack your brains and race against time to prove that you are indeed the best coder ever!\n
@@ -132,11 +132,11 @@ judged.\n
     </string-array>
     <string-array name="event03">
         <item>War Manga</item>
-        <item>23Mar 12–6PM, 24Mar 9AM-3PM</item>
+        <item>23Mar12–6PM,24Mar9AM-3PM</item>
         <item>Team Event</item>
         <item>SW1,SW2-Lab, CSE Department, MNIT</item>
         <item>22 March \'18</item>
-        <item>NA</item>
+        <item>+91–8239896785, +91–9414580660</item>
         <item>5000</item>
         <item>Time out. . .\n
 \'Hushed voices, silent footsteps, reload of a gun, reviving of engines, a gush of nitrous.\' If all this is music to your ears then you belong here at the ultimate gaming arcade that is WarManga for the maniacs who just can\’t get enough of reality.\n
@@ -157,7 +157,7 @@ Charges : 100 Rs. per team for CS GO, and 50 Rs. per team for Mini Militia.\n
         <item>Team Event</item>
         <item>L-1, Prabha Bhawan, Second Floor</item>
         <item>22 Mar \'18</item>
-        <item>NA</item>
+        <item>+91–8949483339</item>
         <item>2500</item>
         <item>Patience, the big picture will emerge. . .\n
 Observe the audio-visuals, and make supreme sense out of all of them put as one! You need not be Einstein to figure this out!\n
@@ -178,7 +178,7 @@ and common sense and mental aptitude.\n
         <item>Team Event</item>
         <item>L-1, Prabha Bhawan, Second Floor</item>
         <item>22 Mar \'18</item>
-        <item>NA</item>
+        <item>+91–7665517141</item>
         <item>2500</item>
         <item>We came, we quizzed, we conquered. . . \n
 We await the crowning of the next tech wizards. A haven for those with the technical chutzpah to display their skills. Slay your opponents and emerge the winner, in this clash of brain over brawn!\n
@@ -201,8 +201,8 @@ We await the crowning of the next tech wizards. A haven for those with the techn
         <item>Solo Event</item>
         <item>Neeti Sabhagar, Prabha Bhawan, Second Floor</item>
         <item>22 March \'18</item>
-        <item>9911163723</item>
-        <item>NA</item>
+        <item>+91–9911163723</item>
+        <item>2500</item>
         <item>Solo Singing. . .\n
         Singing is a way of releasing an emotion that you sometimes can\'t portray when you are acting and music moves your soul ,so music is the source of most intense emotion you can feel.Singing is something that provides a true sense of lightheartedness. Music is an expression individuality.So CULTURAL CLUB is here with solo singing competition ,which gives you the platform to showcase your talent.\n
         Number of rounds: 2\n
@@ -228,8 +228,8 @@ and objectionable.\n
         <item>Solo Event</item>
         <item>Neeti Sabhagar, Prabha Bhawan, Second Floor</item>
         <item>22 March \'18</item>
-        <item>NA</item>
-        <item>NA</item>
+        <item>+91–9664211015</item>
+        <item>1500</item>
         <item>Instrumental. . .\n
         \‘If music be the food of love, play on. . .\’, DHUN is an instrumental music competition which encourages the contestants to exhibit their musical abilities and regale a captive audience. Calling all Beethoven and Mozart to create some new music that brings not just some amazing tunes, but also move the audience.</item>
         <item>1</item>
@@ -243,7 +243,7 @@ and objectionable.\n
         <item>Neeti Sabhagar, Prabha Bhawan, Second Floor</item>
         <item>22 March \'18</item>
         <item>8740016785</item>
-        <item>NA</item>
+        <item>3000</item>
         <item>Solo Dance Competition. . .\n
         Dance is a language beyond words,expressing that for which we have no words.To dance is to fly so here comes the FLYING SOLO Dance Competition, a chance to show your flight to the world .So get ready and practice like you have never won , and dance like you have never lost.\n
         \nFORMAT AND RULES\:n
@@ -270,7 +270,7 @@ In both the rounds the participants will be judged on the basis of their facial 
         <item>Neeti Sabhagar, Prabha Bhawan, Second Floor</item>
         <item>22 March \'18</item>
         <item>+917355997724</item>
-        <item>NA</item>
+        <item>4000</item>
         <item>Group Dance. . .\n
         The dance is one of the human emotions which cannot be suppressed.Dancing is immortal culture which have existed all times, among all people and races.The objective behind group dance is to come out with new people and new talent which they are unable to come up solo.\n
         \nRULES FOR EVENT\n
@@ -295,8 +295,8 @@ Synchronization,Choreography,Coordination and expressions during performance.\n
         <item>L-1, Prabha Bhawan, Second Floor</item>
         <item>22 March \'18</item>
         <item>+917597263356</item>
-        <item>NA</item>
-        <item>Quiz on Rajasthani Culture. . . \n
+        <item>1500</item>
+        <item>Quiz on Indian Culture. . . \n
         Culture is central to identity. Culture defines who we are, how we think, how we communicate, what we value and what is important to us. C2C (connect to culture) is a quiz that will speak volumes of our connection with the culture.The quiz is an effort to involve the students from different cultures and give them a chance to know more about different culture.\n
         \nFormat and Rules:\n
 ✓ All questions will be related to Indian culture.\n
@@ -320,12 +320,12 @@ festivals.\n
     </string-array>
     <string-array name="event15">
         <item>Informals</item>
-        <item>23 Mar and 24 Mar \'18</item>
-        <item>Team and Solo Events</item>
+        <item>23 Mar,24 Mar \'18</item>
+        <item>Team,Solo Events</item>
         <item>Cafeteria, Prabha Bhawan, Second Floor</item>
         <item>22 March \'18</item>
-        <item>NA</item>
-        <item>NA</item>
+        <item>+91–9664211015</item>
+        <item>5000</item>
         <item>\'Informal Events \' is a category having fun games and will be full of excitement.\nThey help the participants to unwind and make new friends. There will be several games under this category which will test your brawn and wits until there are none left.</item>
         <item>1</item>
         <item>1</item>
@@ -335,12 +335,12 @@ festivals.\n
 <!--Events of Literary and dramatics club-->
     <string-array name="event20">
         <item>Cast a spell</item>
-        <item>23 Mar 12:45 – 1:45 PM</item>
+        <item>23 Mar 12:45 – 2 PM</item>
         <item>Team Event</item>
         <item>L-1, Prabha Bhawan, Second Floor</item>
         <item>22 March \'18</item>
-        <item>NA</item>
-        <item>NA</item>
+        <item>+91–7081797098</item>
+        <item>1500</item>
         <item>Spell Bee\n
         Come on, you all the spelling geeks, test your dictation skills!\n
         Ready to spell \'Euonym\' without google?It is time to show your love fro words your avidity to know their usage through this interesting challenge.
@@ -358,12 +358,12 @@ festivals.\n
     </string-array>
     <string-array name="event21">
         <item>Talesmith</item>
-        <item>24 Mar 12:30 – 2 PM</item>
+        <item>24 Mar 10 – 11 PM</item>
         <item>Solo Event</item>
-        <item>Neeti Sabhagar, Prabha Bhawan, Second Floor</item>
+        <item>L-1, Prabha Bhawan, Second Floor</item>
         <item>22 March \'18</item>
-        <item>NA</item>
-        <item>NA</item>
+        <item>+91–8696438199</item>
+        <item>1000</item>
         <item>4 Words of 1 Story\n
             Writers can brew up a story from just a hint of an idea.Think you can too?
         We give you an expression, you give us a story. Let the best plot win.\n
@@ -379,12 +379,12 @@ festivals.\n
     </string-array>
     <string-array name="event22">
         <item>Mad Ads</item>
-        <item>23 Mar 2:30 – 4 PM</item>
+        <item>23 Mar 2:30 – 4:30 PM</item>
         <item>Team Event</item>
         <item>Neeti Sabhagar, Prabha Bhawan, Second Floor</item>
         <item>22 March \'18</item>
-        <item>NA</item>
-        <item>NA</item>
+        <item>+91–8005057819</item>
+        <item>2500</item>
         <item>Flaunt your creativity and mischiefs in this amusing yet gripping event.\nIt will be the time when you can come up with the most weird ideas and comical performances.
         Showcase what you can do for the marketing world!\n
             \nRULES:\n
@@ -407,12 +407,12 @@ defamation etc. in Advertisement.\n
     </string-array>
     <string-array name="event23">
         <item>Yatharth</item>
-        <item>23 Mar 4 – 5:30 PM</item>
+        <item>23 Mar 6 – 7:30 PM</item>
         <item>Team Event</item>
         <item>Parking Space, Infront of Prabha Bhawan</item>
         <item>22 March \'18</item>
-        <item>NA</item>
-        <item>NA</item>
+        <item>+91–8005344974</item>
+        <item>4000</item>
         <item>Street Play\n
         Unleash your acting skills before an assemblage and arouse discussions on the lesser talked about affairs through this street play.Let\'s enkindle the flame that moves people to work for the enrichment of the society.\n
         Duration: 6 to 10 minutes per act.\n
@@ -430,12 +430,12 @@ defamation etc. in Advertisement.\n
     </string-array>
     <string-array name="event24">
         <item>Tell a Tale</item>
-        <item>NA</item>
+        <item>24Mar 12:30 – 2PM</item>
         <item>Solo Event</item>
-        <item>NA</item>
+        <item>Neeti Sabhagar, Prabha Bhawan, Second Floor</item>
         <item>22 March \'18</item>
-        <item>NA</item>
-        <item>NA</item>
+        <item>+91–9461054547</item>
+        <item>2500</item>
         <item>Slam Poetry\n
         Sometimes syllables, sentences and stanzas are strung so tightly together, you almost shed a tear when the lines bless your ears. SPEAK, SCREAM, HOWL, WHISPER, OR SING YOUR WORDS! The stage is a playground for reciters! The event is open to anyone who wishes to put some power behind their opinion and voice their thoughts.\n
         Duration-  3 to 6 minutes per act.\n
@@ -453,14 +453,14 @@ defamation etc. in Advertisement.\n
 <!--Events of photography club-->
     <string-array name="event30">
         <item>Colour of Halloween</item>
-        <item>23 Mar 5:30 – 6:30 PM</item>
+        <item>23 Mar 4:30 – 6:30 PM</item>
         <item>Team Event</item>
         <item>L-1, Prabha Bhawan, Second FLoor</item>
         <item>22 March \'18</item>
-        <item>NA</item>
-        <item>NA</item>
+        <item>+91–9602529740</item>
+        <item>3000</item>
         <item>Don\'t we all love horror stories?! It\'s your chance to create one! Think of all the scary and gruesome stuff that you can and paint something even scarier.
-Let's face paint Halloween! May the scariest win!\n
+Let\'s face paint Halloween! May the scariest win!\n
 Face painting. . .\n
             \nRULES:\n
 1.A team of 2-3 members shall be made.
@@ -478,8 +478,8 @@ Face painting. . .\n
         <item>Team Event</item>
         <item>L-1, Prabha Bhawan, Second FLoor</item>
         <item>22 March \'18</item>
-        <item>NA</item>
-        <item>NA</item>
+        <item>+91–8249580313</item>
+        <item>3000</item>
         <item>Ink your style. . .\n
             Who doesn\'t love tattoos?Tattoos are a unique form of art, a very personal and meaningful display of individuality and self-expression. Come and wear your heart on your skin for a day sans the pain. Let the creative juices flow as you enjoy the body-art experience.\n
         \nRULES:\n
@@ -489,16 +489,16 @@ Face painting. . .\n
         </item>
         <item>3</item>
         <item>3</item>
-        <item>NA</item>
+        <item>150</item>
     </string-array>
     <string-array name="event32">
         <item>Meme Slay</item>
         <item>14 Mar onwards</item>
         <item>Solo Event</item>
-        <item>NA</item>
+        <item>Online</item>
         <item>22 March \'18</item>
-        <item>NA</item>
-        <item>NA</item>
+        <item>+91–8319713280</item>
+        <item>1500</item>
         <item>Slam It up. . .\n
             We are engineers and we know a good meme when we see one.Not only that, we are pretty good in making them too .
 Challenge your friends in this Meme Slay with your epic mastery in sarcasm and puns! Post your memes with the hashtag #ffmemeslay.\n
@@ -518,10 +518,10 @@ Challenge your friends in this Meme Slay with your epic mastery in sarcasm and p
         <item>Campus Clicks</item>
         <item>14 Mar onwards</item>
         <item>Solo Event</item>
-        <item>NA</item>
+        <item>Online</item>
         <item>22 March \'18</item>
-        <item>NA</item>
-        <item>NA</item>
+        <item>+91–7597846663</item>
+        <item>1500</item>
         <item>The Amazing Eye. . .\n
             There are millions of amazing stories that we hear each day that take place between friends, at awesome hangout places in our college. We are giving you a platform to share the pictures of the popular hang out places inside your campus and if possible caption it with a vivid memory of yours associated with it.\n
             \nRULES:\n
@@ -538,13 +538,13 @@ the competition.\n
         <item>50</item>
     </string-array>
     <string-array name="event34">
-        <item>Vine competition</item>
+        <item>Vine_O_Mania</item>
         <item>14 Mar onwards</item>
         <item>Team Event</item>
-        <item>NA</item>
+        <item>Online</item>
         <item>22 March \'18</item>
-        <item>NA</item>
-        <item>NA</item>
+        <item>+91–8741970805</item>
+        <item>1500</item>
         <item>Vine and win!\n
             It\'s a chance to show off your video making skills and make your vines a trend. Take up any topic , shoot a 2 minutes clip and get a chance to be the vine champ!\n
         RULES:\n
@@ -560,7 +560,7 @@ the competition.\n
         </item>
         <item>3</item>
         <item>5</item>
-        <item>NA</item>
+        <item>150</item>
     </string-array>
     <string-array name="event35">
         <item>Origami Time</item>
@@ -568,8 +568,8 @@ the competition.\n
         <item>Team Event</item>
         <item>L-1, Prabha Bhawan, Second Floor</item>
         <item>22 March \'18</item>
-        <item>NA</item>
-        <item>NA</item>
+        <item>+91–80944230896</item>
+        <item>3000</item>
         <item>Revive Childhood. . .\n
             We have been playing around with paper since we were small kids.Be it a fan, flower or a paper cracker we have done it all. Re-live your childhood with this fun origami competition and show off your paper folding skills!
             \nRULES:\n
@@ -583,6 +583,4 @@ the competition.\n
         <item>150</item>
     </string-array>
 
-    <!-- todo  fill all the NA values
-    -->
 </resources>

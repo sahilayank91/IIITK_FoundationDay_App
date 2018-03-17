@@ -74,7 +74,11 @@ public class Sponsor_adapter extends RecyclerView.Adapter<Sponsor_adapter.ViewHo
         // Get element from your dataset at this position and replace the contents of the view
         // with that element
         viewHolder.getNameView().setText(sponsor_names[pos]);
-        viewHolder.getImageView().setImageResource(sponsor_images[pos]);
+        try{
+            viewHolder.getImageView().setImageResource(sponsor_images[pos]);
+        }catch (OutOfMemoryError e){
+            Log.e("image","ImageError: "+e.getMessage());
+        }
     }
     // END_INCLUDE(recyclerViewOnBindViewHolder)
 

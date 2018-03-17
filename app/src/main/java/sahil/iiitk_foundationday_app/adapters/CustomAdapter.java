@@ -115,7 +115,12 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         // with that element
         viewHolder.getNameView().setText(names[pos]);
         viewHolder.getPositionView().setText(position[pos]);
-        viewHolder.getDPView().setImageResource(images.get(pos));
+        try {
+            viewHolder.getDPView().setImageResource(images.get(pos));
+        }catch(OutOfMemoryError e){
+            Log.e("image","Image Error: "+e.getMessage());
+        }
+
     }
     // END_INCLUDE(recyclerViewOnBindViewHolder)
 
