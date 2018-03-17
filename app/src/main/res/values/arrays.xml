@@ -132,7 +132,7 @@ judged.\n
     </string-array>
     <string-array name="event03">
         <item>War Manga</item>
-        <item>23Mar12–6PM,24Mar9AM-3PM</item>
+        <item>23Mar12–6PM\n24Mar9AM-3PM</item>
         <item>Team Event</item>
         <item>SW1,SW2-Lab, CSE Department, MNIT</item>
         <item>22 March \'18</item>
@@ -358,7 +358,7 @@ festivals.\n
     </string-array>
     <string-array name="event21">
         <item>Talesmith</item>
-        <item>24 Mar 10 – 11 PM</item>
+        <item>24 Mar 10 – 11 AM</item>
         <item>Solo Event</item>
         <item>L-1, Prabha Bhawan, Second Floor</item>
         <item>22 March \'18</item>
