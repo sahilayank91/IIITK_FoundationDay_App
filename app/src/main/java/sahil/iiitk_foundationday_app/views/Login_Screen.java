@@ -85,6 +85,7 @@ public class Login_Screen extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login__screen);
 
+
         back=findViewById(R.id.login_back);
         try{
             back.setBackgroundResource(R.drawable.evstill);
@@ -138,6 +139,7 @@ public class Login_Screen extends AppCompatActivity
                     @Override
                     public void onClick(View v)
                     {
+                        phoneButton.setEnabled(false);
                         callPhoneLogInDialog();
                         phoneButton.setVisibility(View.VISIBLE);
                         ff_login_button.setVisibility(View.VISIBLE);
@@ -151,6 +153,7 @@ public class Login_Screen extends AppCompatActivity
                     @Override
                     public void onClick(View v)
                     {
+                        ff_login_button.setEnabled(false);
                         callLogInDialog();
                         phoneButton.setVisibility(View.VISIBLE);
                         ff_login_button.setVisibility(View.VISIBLE);
@@ -556,7 +559,6 @@ public class Login_Screen extends AppCompatActivity
                     editor.putString("FFID",fetch.getUser_id());
                     editor.putString("status","true");
                     editor.apply();
-
                     Intent i = new Intent(getApplicationContext(),MainActivity.class);
                     startActivity(i);
                     avi.hide();

@@ -125,8 +125,8 @@ public class QuizActivity extends AppCompatActivity {
                         public void onClick(DialogInterface dialog, int which) {
                             dialog.cancel();
                             //go back to home page
-                            Intent intent=new Intent(QuizActivity.this,MainActivity.class);
-                            QuizActivity.this.startActivity(intent);
+                            //Intent intent=new Intent(QuizActivity.this,MainActivity.class);
+                            //QuizActivity.this.startActivity(intent);
                             QuizActivity.this.finish();
                         }
                     });
@@ -173,8 +173,8 @@ public class QuizActivity extends AppCompatActivity {
                 public void onClick(DialogInterface dialog, int which) {
                     dialog.cancel();
                     //go back to home page
-                    Intent intent=new Intent(QuizActivity.this,MainActivity.class);
-                    QuizActivity.this.startActivity(intent);
+                    //Intent intent=new Intent(QuizActivity.this,MainActivity.class);
+                    //QuizActivity.this.startActivity(intent);
                     QuizActivity.this.finish();
                 }
             });
@@ -204,8 +204,8 @@ public class QuizActivity extends AppCompatActivity {
                 public void onClick(DialogInterface dialog, int which) {
                     dialog.cancel();
                     //go back to home page
-                    Intent intent=new Intent(QuizActivity.this,MainActivity.class);
-                    QuizActivity.this.startActivity(intent);
+                    //Intent intent=new Intent(QuizActivity.this,MainActivity.class);
+                    //QuizActivity.this.startActivity(intent);
                     QuizActivity.this.finish();
                 }
             });
@@ -284,8 +284,8 @@ public class QuizActivity extends AppCompatActivity {
                         public void onClick(DialogInterface dialog, int which) {
                             dialog.cancel();
                             //go back to home page
-                            Intent intent=new Intent(QuizActivity.this,MainActivity.class);
-                            QuizActivity.this.startActivity(intent);
+                            //Intent intent=new Intent(QuizActivity.this,MainActivity.class);
+                            //QuizActivity.this.startActivity(intent);
                             QuizActivity.this.finish();
                         }
                     });
@@ -318,8 +318,8 @@ public class QuizActivity extends AppCompatActivity {
                 public void onClick(DialogInterface dialog, int which) {
                     dialog.cancel();
                     //go back to home page
-                    Intent intent=new Intent(QuizActivity.this,MainActivity.class);
-                    QuizActivity.this.startActivity(intent);
+                    //Intent intent=new Intent(QuizActivity.this,MainActivity.class);
+                    //QuizActivity.this.startActivity(intent);
                     QuizActivity.this.finish();
                 }
             });
@@ -360,8 +360,8 @@ public class QuizActivity extends AppCompatActivity {
                 public void onClick(DialogInterface dialog, int which) {
                     dialog.cancel();
                     //go back to home page
-                    Intent intent=new Intent(QuizActivity.this,MainActivity.class);
-                    QuizActivity.this.startActivity(intent);
+                    //Intent intent=new Intent(QuizActivity.this,MainActivity.class);
+                    //QuizActivity.this.startActivity(intent);
                     QuizActivity.this.finish();
                 }
             });
@@ -396,8 +396,8 @@ public class QuizActivity extends AppCompatActivity {
                 public void onClick(DialogInterface dialog, int which) {
                     dialog.cancel();
                     //go back to home page
-                    Intent intent=new Intent(QuizActivity.this,MainActivity.class);
-                    QuizActivity.this.startActivity(intent);
+                    //Intent intent=new Intent(QuizActivity.this,MainActivity.class);
+                    //QuizActivity.this.startActivity(intent);
                     QuizActivity.this.finish();
                 }
             });

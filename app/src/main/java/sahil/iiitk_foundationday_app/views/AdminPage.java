@@ -18,21 +18,26 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.net.UnknownServiceException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import sahil.iiitk_foundationday_app.R;
 import sahil.iiitk_foundationday_app.model.Notif;
+import sahil.iiitk_foundationday_app.model.User;
 
 public class AdminPage extends Activity {
 
@@ -49,7 +54,13 @@ public class AdminPage extends Activity {
     ArrayList<String> team_contact_phone=new ArrayList<>();
     ArrayList<String> team_time=new ArrayList<>();
     ArrayList<String> team_names=new ArrayList<>();
-    FloatingActionButton admin_fab,admin_add_question;
+    List<User> fetch = new ArrayList<>();
+    FloatingActionButton admin_fab,admin_add_question, admin_lifegiver;
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference myRef = database.getReference("Users");
+    DataSnapshot userSnapshot;
+    User user;
+    DatabaseReference ref;
 
     //add number of events of each here
     int[] num={6,6,5,6};
@@ -67,6 +78,7 @@ public class AdminPage extends Activity {
         list=findViewById(R.id.admin_registrations);
         admin_fab=findViewById(R.id.admin_fab);
         admin_add_question=findViewById(R.id.admin_fab_question);
+        admin_lifegiver = findViewById(R.id.admin_lifegiver);
 
         //data for events of every club
         map.put("event00", R.array.event00);
@@ -202,6 +214,45 @@ public class AdminPage extends Activity {
             public void onClick(View v) {
                 Intent intent=new Intent(AdminPage.this,UploadQuestionActivity.class);
                 AdminPage.this.startActivity(intent);
+            }
+        });
+        db = FirebaseDatabase.getInstance();
+        ref=db.getReference().child("Users");
+        admin_lifegiver.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Query query=ref.orderByChild("quiz_lives");
+                query.addChildEventListener(new ChildEventListener() {
+                    @Override
+                    public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                        if (dataSnapshot!=null){
+                            userSnapshot = dataSnapshot;
+                            user = dataSnapshot.getValue(User.class);
+                            user.setQuiz_lives(5);
+                            userSnapshot.getRef().setValue(user);
+                        }
+                    }
+
+                    @Override
+                    public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+                    }
+
+                    @Override
+                    public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+                    }
+
+                    @Override
+                    public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
             }
         });
     }

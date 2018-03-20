@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -42,6 +43,7 @@ import sahil.iiitk_foundationday_app.model.User;
 
 public class Register extends AppCompatActivity
 {
+    Button btn;
     TextView reg_later;
     public FirebaseAuth mAuth;
     public FirebaseDatabase database;
@@ -60,6 +62,7 @@ public class Register extends AppCompatActivity
         setContentView(R.layout.activity_register);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         mAuth = FirebaseAuth.getInstance();
+        btn = (Button)findViewById(R.id.submit);
 
         name = (EditText)findViewById(R.id.name_input);
         college_id = (EditText)findViewById(R.id.college_id_input);
@@ -299,6 +302,7 @@ public class Register extends AppCompatActivity
 
     //this method was coded by tanuj
     public void sendMessage(View view) {
+        btn.setEnabled(false);
         database = FirebaseDatabase.getInstance();
         boolean value = validateInputs();
         if(value){
