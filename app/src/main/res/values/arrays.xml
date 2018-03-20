@@ -538,7 +538,7 @@ the competition.\n
         <item>50</item>
     </string-array>
     <string-array name="event34">
-        <item>Vine competition</item>
+        <item>Vine_O_Mania</item>
         <item>14 Mar onwards</item>
         <item>Team Event</item>
         <item>Online</item>
@@ -560,7 +560,7 @@ the competition.\n
         </item>
         <item>3</item>
         <item>5</item>
-        <item>50</item>
+        <item>150</item>
     </string-array>
     <string-array name="event35">
         <item>Origami Time</item>

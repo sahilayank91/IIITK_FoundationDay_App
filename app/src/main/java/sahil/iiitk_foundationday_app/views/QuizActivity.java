@@ -49,6 +49,7 @@ public class QuizActivity extends AppCompatActivity {
     DataSnapshot userSnapshot;
     User user;
     CountDownTimer timer;
+    final long range=10000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -129,7 +130,8 @@ public class QuizActivity extends AppCompatActivity {
                             QuizActivity.this.finish();
                         }
                     });
-                    builder.show();
+                    AlertDialog dialog=builder.create();
+                    dialog.show();
                 }
             }
             @Override
@@ -176,7 +178,8 @@ public class QuizActivity extends AppCompatActivity {
                     QuizActivity.this.finish();
                 }
             });
-            builder.show();
+            AlertDialog dialog=builder.create();
+            dialog.show();
         }else{
             //delete questions which have been attempted
             if (done_question_ids!=null){
@@ -214,7 +217,8 @@ public class QuizActivity extends AppCompatActivity {
                     showNextQuestion();
                 }
             });
-            builder.show();
+            AlertDialog dialog=builder.create();
+            dialog.show();
         }
     }
 
@@ -224,7 +228,85 @@ public class QuizActivity extends AppCompatActivity {
         int x;
         if (all_question_ids.size()>0){
             x=random.nextInt(all_question_ids.size());
+
+            long y=all_question_ids.get(x);
+            Question a=all_questions.get(y);
+            cur_question=a.getQuestion();
+            cur_correct=a.getCorrect_answer();
+            cur_id=a.getId();
+            question_view.setText(cur_question);
+            List<String> b=a.getOptions();
+            button1.setText(b.get(0));
+            button2.setText(b.get(1));
+            button3.setText(b.get(2));
+            button4.setText(b.get(3));
+            //delete this question from the list
+            if (x>=0) all_question_ids.remove(x);
+            if (y>=0) all_questions.remove(y);
+
+            //add this question's ID to the attempted list
+            done_question_ids.add(y);
+            Log.e("quiz","Updated Done list: "+done_question_ids.toString());
+            //updating done questions list on firebase
+            user.setDone_questions(done_question_ids);
+            userSnapshot.getRef().setValue(user);
+
+            //start a timer to control the time of 10 seconds
+            timer=new CountDownTimer(range, 500) {
+
+                public void onTick(long millisUntilFinished) {
+                    Log.e("quiz","onTick: "+(range-millisUntilFinished));
+                    long elapsed=range-millisUntilFinished;
+                    progress=(float) elapsed/range;
+                    int max=progressBar.getMax();
+                    progressBar.setProgress((int)(progress*max));
+                }
+                public void onFinish() {
+                    Log.e("quiz","Timer completed!");
+                    lives--;
+                    Log.e("quiz","Lives left: "+lives);
+                    //update the number of correct answers  to the firebase
+                    user.setDone_questions(done_question_ids);
+                    user.setQuiz_correct(correct);
+                    user.setQuiz_lives(lives);
+                    userSnapshot.getRef().setValue(user);
+                    //show results to the user
+                    AlertDialog.Builder builder = new AlertDialog.Builder(QuizActivity.this);
+                    builder.setTitle("Time Out!");
+                    String str="";
+                    if (lives>=0){
+                        str="You have lost one life.\n" +
+                                "Lives Left: "+lives;
+                    }
+                    builder.setMessage("Your didn't answer anything!\n"+str);
+                    builder.setNegativeButton("Close Game", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                            //go back to home page
+                            Intent intent=new Intent(QuizActivity.this,MainActivity.class);
+                            QuizActivity.this.startActivity(intent);
+                            QuizActivity.this.finish();
+                        }
+                    });
+                    if (lives>=0){
+                        builder.setPositiveButton("Next Question", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                                showNextQuestion();
+                            }
+                        });
+                    }
+                    AlertDialog dialog=builder.create();
+                    dialog.show();
+                }
+
+            };
+            timer.start();
+            Log.e("quiz","timer started!");
         }else{
+            Log.e("quiz","All questions over!");
             AlertDialog.Builder builder = new AlertDialog.Builder(QuizActivity.this);
             builder.setTitle("All Questions Over");
             builder.setMessage("Congratulations! You have reached the end of Quiz.\n" +
@@ -241,85 +323,14 @@ public class QuizActivity extends AppCompatActivity {
                     QuizActivity.this.finish();
                 }
             });
-            builder.show();
-            return;
+            AlertDialog dialog=builder.create();
+            dialog.show();
         }
-        long y=all_question_ids.get(x);
-        Question a=all_questions.get(y);
-        cur_question=a.getQuestion();
-        cur_correct=a.getCorrect_answer();
-        cur_id=a.getId();
-        question_view.setText(cur_question);
-        List<String> b=a.getOptions();
-        button1.setText(b.get(0));
-        button2.setText(b.get(1));
-        button3.setText(b.get(2));
-        button4.setText(b.get(3));
-        //delete this question from the list
-        if (x>=0) all_question_ids.remove(x);
-        if (y>=0) all_questions.remove(y);
 
-        //add this question's ID to the attempted list
-        done_question_ids.add(y);
-        Log.e("quiz","Updated Done list: "+done_question_ids.toString());
-        //updating done questions list on firebase
-        user.setDone_questions(done_question_ids);
-        userSnapshot.getRef().setValue(user);
-
-        //start a timer to control the time of 10 seconds
-        final long range=10000;
-        timer=new CountDownTimer(range, 500) {
-
-            public void onTick(long millisUntilFinished) {
-                long elapsed=range-millisUntilFinished;
-                progress=(float) elapsed/range;
-                int max=progressBar.getMax();
-                progressBar.setProgress((int)(progress*max));
-            }
-            public void onFinish() {
-                lives--;
-                Log.e("quiz","Lives left: "+lives);
-                //update the number of correct answers  to the firebase
-                user.setDone_questions(done_question_ids);
-                user.setQuiz_correct(correct);
-                user.setQuiz_lives(lives);
-                userSnapshot.getRef().setValue(user);
-                //show results to the user
-                AlertDialog.Builder builder = new AlertDialog.Builder(QuizActivity.this);
-                builder.setTitle("Time Out!");
-                String str="";
-                if (lives>=0){
-                    str="You have lost one life.\n" +
-                            "Lives Left: "+lives;
-                }
-                builder.setMessage("Your didn't answer anything!\n"+str);
-                builder.setNegativeButton("Close Game", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                        //go back to home page
-                        Intent intent=new Intent(QuizActivity.this,MainActivity.class);
-                        QuizActivity.this.startActivity(intent);
-                        QuizActivity.this.finish();
-                    }
-                });
-                if (lives>=0){
-                    builder.setPositiveButton("Next Question", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.cancel();
-                            showNextQuestion();
-                        }
-                    });
-                }
-                builder.show();
-            }
-
-        };
-        timer.start();
     }
 
     public  void check(View view){
+        Log.e("quiz","Checking question!");
         timer.cancel();
         long a=0;
         if (view.getId()==R.id.quiz_option1){
@@ -361,7 +372,8 @@ public class QuizActivity extends AppCompatActivity {
                     showNextQuestion();
                 }
             });
-            builder.show();
+            AlertDialog dialog=builder.create();
+            dialog.show();
         }else{
             lives--;
             Log.e("quiz","Lives left: "+lives);
@@ -398,7 +410,8 @@ public class QuizActivity extends AppCompatActivity {
                     }
                 });
             }
-            builder.show();
+            AlertDialog dialog=builder.create();
+            dialog.show();
         }
 
     }
