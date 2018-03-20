@@ -15,19 +15,27 @@
       },
       "oauth_client": [
         {
-          "client_id": "372414035709-jsno4d9f4o16k6cfnmesi9blh6l1j72t.apps.googleusercontent.com",
+          "client_id": "372414035709-unnq6oj41j3fj2u8o4arnfgv7katgp5i.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "sahil.iiitk_foundationday_app",
-            "certificate_hash": "727f9dae8b3ecf234f3b6d3ef51f57e03c603f00"
+            "certificate_hash": "075441f681ffc8e24fe927a8e25919cd8be446e0"
           }
         },
         {
-          "client_id": "372414035709-lh09rj0og9cbn681dk46osottdjaojdk.apps.googleusercontent.com",
+          "client_id": "372414035709-fmhf5lun02ju42p0euk2et30duq99uns.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "sahil.iiitk_foundationday_app",
-            "certificate_hash": "54c7da7bbe468cd25cbde2ecd3547e0c10ddc8e6"
+            "certificate_hash": "ef05c90c904352037c98f87a6e19a687053acbcb"
+          }
+        },
+        {
+          "client_id": "372414035709-nm37r1rnu8s1olrboemm48aevu9esgvo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "sahil.iiitk_foundationday_app",
+            "certificate_hash": "818725de02bd8ed7962ac8c8add137c7a87e73c9"
           }
         },
         {

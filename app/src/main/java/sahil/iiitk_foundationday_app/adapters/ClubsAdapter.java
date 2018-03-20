@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.List;
 
 import sahil.iiitk_foundationday_app.R;
@@ -20,6 +22,7 @@ public class ClubsAdapter extends RecyclerView.Adapter<ClubsAdapter.ViewHolder> 
 
     private static String[] club_names,club_taglines;
     List<Integer> images;
+    List<String> images_url;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView nameView,tagView;
@@ -58,11 +61,11 @@ public class ClubsAdapter extends RecyclerView.Adapter<ClubsAdapter.ViewHolder> 
      *
      * @param data1 String[] containing the data to populate views to be used by RecyclerView.
      */
-    public ClubsAdapter(Context context, String[] data1, String[] data2,List<Integer> data3) {
+    public ClubsAdapter(Context context, String[] data1, String[] data2,List<String> data3) {
         club_names = data1;
         club_taglines=data2;
         con=context;
-        images=data3;
+        images_url=data3;
     }
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
@@ -80,7 +83,9 @@ public class ClubsAdapter extends RecyclerView.Adapter<ClubsAdapter.ViewHolder> 
         viewHolder.getNameView().setText(club_names[pos]);
         viewHolder.getTagView().setText(club_taglines[pos]);
         try {
-            viewHolder.getBackground().setImageResource(images.get(pos));
+            Glide.with(con).load(images_url.get(pos)).into(viewHolder.getBackground());
+
+            //   viewHolder.getBackground().setImageResource(images.get(pos));
         }catch(OutOfMemoryError e){
             Log.e("image","Image Error: "+e.getMessage());
         }

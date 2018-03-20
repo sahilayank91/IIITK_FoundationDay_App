@@ -19,7 +19,8 @@ public class TeamFragment extends Fragment {
 
     protected String[] names,emails,facebookIDs,linkedinIDs;
     protected String[] positions;
-    List<Integer> images=new ArrayList<>();
+//    List<Integer> images=new ArrayList<>();
+    List<String> images_url = new ArrayList<>();
     protected RecyclerView mRecyclerView;
     protected CustomAdapter mAdapter;
     protected RecyclerView.LayoutManager mLayoutManager;
@@ -36,16 +37,24 @@ public class TeamFragment extends Fragment {
         linkedinIDs=getResources().getStringArray(R.array.linkedin);
 
         // names of display pictures of every team member
-        images.add(R.drawable.sahil);
-        images.add(R.drawable.tanuj);
-        images.add(R.drawable.shashwat);
-        images.add(R.drawable.vipasha);
-        images.add(R.drawable.gaurav);
+//        images.add(R.drawable.sahil);
+//        images.add(R.drawable.tanuj);
+//        images.add(R.drawable.shashwat);
+//        images.add(R.drawable.vipasha);
+//        images.add(R.drawable.gaurav);
+
+        images_url.add("https://firebasestorage.googleapis.com/v0/b/iiitkfoundationdayapp.appspot.com/o/sahil.jpg?alt=media&token=918ba31c-c63c-4422-ab19-73f261dfa4ec");
+        images_url.add("https://firebasestorage.googleapis.com/v0/b/iiitkfoundationdayapp.appspot.com/o/tanuj.jpg?alt=media&token=384b51a7-c665-4ad3-96ad-cd580069bfaf");
+        images_url.add("https://firebasestorage.googleapis.com/v0/b/iiitkfoundationdayapp.appspot.com/o/tanuj.jpg?alt=media&token=384b51a7-c665-4ad3-96ad-cd580069bfaf");
+        images_url.add("https://firebasestorage.googleapis.com/v0/b/iiitkfoundationdayapp.appspot.com/o/vipasha.jpg?alt=media&token=f8434327-cc88-4f8e-a6b2-004a0f15ad94");
+        images_url.add("https://firebasestorage.googleapis.com/v0/b/iiitkfoundationdayapp.appspot.com/o/gaurav.png?alt=media&token=59437c37-11c0-4c38-b5e0-b1ec1157fe62");
+
+
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerView);
         mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        mAdapter = new CustomAdapter(names,positions,emails,facebookIDs,linkedinIDs,images);
+        mAdapter = new CustomAdapter(names,positions,emails,facebookIDs,linkedinIDs,images_url,getContext());
         mRecyclerView.setAdapter(mAdapter);
 
         return rootView;

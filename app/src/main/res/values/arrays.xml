@@ -358,12 +358,12 @@ festivals.\n
     </string-array>
     <string-array name="event21">
         <item>Talesmith</item>
-        <item>24 Mar 10 – 11 PM</item>
+        <item>24 Mar 10 – 11 AM</item>
         <item>Solo Event</item>
         <item>L-1, Prabha Bhawan, Second Floor</item>
         <item>22 March \'18</item>
         <item>+91–8696438199</item>
-        <item>1000</item>
+        <item>1500</item>
         <item>4 Words of 1 Story\n
             Writers can brew up a story from just a hint of an idea.Think you can too?
         We give you an expression, you give us a story. Let the best plot win.\n
@@ -412,7 +412,7 @@ defamation etc. in Advertisement.\n
         <item>Parking Space, Infront of Prabha Bhawan</item>
         <item>22 March \'18</item>
         <item>+91–8005344974</item>
-        <item>4000</item>
+        <item>3500</item>
         <item>Street Play\n
         Unleash your acting skills before an assemblage and arouse discussions on the lesser talked about affairs through this street play.Let\'s enkindle the flame that moves people to work for the enrichment of the society.\n
         Duration: 6 to 10 minutes per act.\n
@@ -582,5 +582,13 @@ the competition.\n
         <item>2</item>
         <item>150</item>
     </string-array>
+
+
+
+
+
+
+
+
 
 </resources>
