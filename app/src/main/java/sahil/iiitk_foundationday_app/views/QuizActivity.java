@@ -385,6 +385,7 @@ public class QuizActivity extends AppCompatActivity {
             //show results to the user
             AlertDialog.Builder builder = new AlertDialog.Builder(QuizActivity.this);
             builder.setTitle("Sorry!");
+            builder.setCancelable(false);
             String str="";
             if (lives>=0){
                 str="You have lost one life.\n" +

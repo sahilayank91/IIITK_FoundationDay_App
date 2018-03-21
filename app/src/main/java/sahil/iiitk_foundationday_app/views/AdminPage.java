@@ -221,38 +221,90 @@ public class AdminPage extends Activity {
         admin_lifegiver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Query query=ref.orderByChild("quiz_lives");
-                query.addChildEventListener(new ChildEventListener() {
-                    @Override
-                    public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                        if (dataSnapshot!=null){
-                            userSnapshot = dataSnapshot;
-                            user = dataSnapshot.getValue(User.class);
-                            user.setQuiz_lives(5);
-                            userSnapshot.getRef().setValue(user);
-                        }
-                    }
 
-                    @Override
-                    public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+                final AlertDialog.Builder mydia  = new AlertDialog.Builder(AdminPage.this);
+                mydia.setMessage("Are you sure, You wanted to give 5 lives to all the users");
+                mydia.setCancelable(true);
 
-                    }
+                mydia.setPositiveButton("Ok",new DialogInterface.OnClickListener() {
+                     public void onClick(DialogInterface dialog, int id) {
+                         Query query=ref.orderByChild("quiz_lives");
+                         query.addChildEventListener(new ChildEventListener() {
+                             @Override
+                             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                                 if (dataSnapshot!=null){
+                                     userSnapshot = dataSnapshot;
+                                     user = dataSnapshot.getValue(User.class);
+                                     user.setQuiz_lives(5);
+                                     userSnapshot.getRef().setValue(user);
+                                 }
+                             }
 
-                    @Override
-                    public void onChildRemoved(DataSnapshot dataSnapshot) {
+                             @Override
+                             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
 
-                    }
+                             }
 
-                    @Override
-                    public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+                             @Override
+                             public void onChildRemoved(DataSnapshot dataSnapshot) {
 
-                    }
+                             }
 
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
+                             @Override
+                             public void onChildMoved(DataSnapshot dataSnapshot, String s) {
 
+                             }
+
+                             @Override
+                             public void onCancelled(DatabaseError databaseError) {
+
+                             }
+                         });
+                         Toast.makeText(AdminPage.this, "Successfull", Toast.LENGTH_LONG).show();
                     }
                 });
+
+                mydia.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                });
+
+//                Query query=ref.orderByChild("quiz_lives");
+//                query.addChildEventListener(new ChildEventListener() {
+//                    @Override
+//                    public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+//                        if (dataSnapshot!=null){
+//                            userSnapshot = dataSnapshot;
+//                            user = dataSnapshot.getValue(User.class);
+//                            user.setQuiz_lives(5);
+//                            userSnapshot.getRef().setValue(user);
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onChildRemoved(DataSnapshot dataSnapshot) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onCancelled(DatabaseError databaseError) {
+//
+//                    }
+//                });
+                AlertDialog alertDialog = mydia.create();
+                alertDialog.show();
             }
         });
     }
