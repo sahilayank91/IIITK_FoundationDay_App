@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="#90a4ae"
+    android:layout_height="match_parent"
+    tools:context="sahil.iiitk_foundationday_app.views.UploadQuestionActivity">
+
+
+    <EditText
+        android:id="@+id/upload_question"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:inputType="textMultiLine"
+        android:hint="Question"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"/>
+    <EditText
+        android:id="@+id/upload_option1"
+        android:layout_below="@+id/upload_question"
+        android:layout_width="match_parent"
+        android:hint="Option 1"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"/>
+    <EditText
+        android:id="@+id/upload_option2"
+        android:layout_below="@+id/upload_option1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Option 2"
+        android:layout_centerHorizontal="true"/>
+    <EditText
+        android:id="@+id/upload_option3"
+        android:layout_below="@+id/upload_option2"
+        android:layout_width="match_parent"
+        android:hint="Option 3"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"/>
+    <EditText
+        android:id="@+id/upload_option4"
+        android:layout_below="@+id/upload_option3"
+        android:layout_width="match_parent"
+        android:hint="Option 4"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:id="@+id/upload_spinner_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="Choose correct option"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:layout_below="@id/upload_option4"/>
+
+    <Spinner
+        android:id="@+id/upload_correct_option"
+        android:layout_width="100dp"
+        android:layout_below="@id/upload_spinner_label"
+        android:layout_height="35dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:spinnerMode="dialog"
+        android:textAlignment="gravity"
+        android:prompt="@string/options"
+        android:layout_centerHorizontal="true"/>
+
+    <Button
+        android:id="@+id/uploadButton"
+        android:layout_below="@id/upload_correct_option"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="Upload Question"
+        android:onClick="uploadQuestion"
+        />
+</RelativeLayout>

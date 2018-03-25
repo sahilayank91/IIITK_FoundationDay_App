@@ -1,17 +1,19 @@
 package sahil.iiitk_foundationday_app.model;
-
-
+//Made by Tanuj
 import android.content.Context;
+
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.List;
+
 public class User {
 
-	private String user_id,name,email,password,salt,phone,otp,department,college,collegeid, gender, year, mos;
-	private int account_level;
-
-
-
+	private String user_id,name,email,phone,department,college,collegeid, gender, year, mos;
+	private long quiz_correct,quiz_lives;
+	private List<Long> done_questions;
+	private JSONArray jsonArray;
 	public User(){
 
 	}
@@ -20,19 +22,22 @@ public class User {
 		if(author.has("name"))this.name=author.getString("name");
 		if(author.has("phone"))this.phone=author.getString("phone");
 		if(author.has("email"))this.email=author.getString("email");
-		if(author.has("account_level"))this.account_level=author.getInt("account_level");
-		if(author.has("otp"))this.otp = author.getString("otp");
+		if(author.has("quiz_correct"))this.quiz_correct=author.getLong("quiz_correct");
+		if(author.has("quiz_lives"))this.quiz_lives=author.getLong("quiz_lives");
 		if(author.has("department"))this.department = author.getString("department");
 		if(author.has("college"))this.college = author.getString("college");
 		if(author.has("collegeid"))this.collegeid = author.getString("collegeid");
 		if(author.has("gender"))this.gender = author.getString("gender");
 		if(author.has("year"))this.year = author.getString("year");
 		if(author.has("mos"))this.mos = author.getString("mos");
+		if (author.has("done_questions")) this.jsonArray=author.getJSONArray("done_questions");
+
+		for (int i=0;i<jsonArray.length();i++){
+			done_questions.add(jsonArray.getLong(i));
+		}
 	}
 
 	public User(Context context){
-
-
 	}
 	@Override
 	public boolean equals(Object obj) {
@@ -42,9 +47,34 @@ public class User {
 		else return false;
 	}
 
+	public List<Long> getDone_questions() {
+		return done_questions;
+	}
+
+	public void setDone_questions(List<Long> done_questions) {
+		this.done_questions = done_questions;
+	}
+
 	public String getUser_id() {
 		return user_id;
 	}
+
+	public long getQuiz_correct() {
+		return quiz_correct;
+	}
+
+	public void setQuiz_correct(long quiz_correct) {
+		this.quiz_correct = quiz_correct;
+	}
+
+	public long getQuiz_lives() {
+		return quiz_lives;
+	}
+
+	public void setQuiz_lives(long quiz_lives) {
+		this.quiz_lives = quiz_lives;
+	}
+
 	public void setUser_id(String user_id) {
 		this.user_id = user_id;
 	}
@@ -55,22 +85,10 @@ public class User {
 		this.name = name;
 	}
 	public String getEmail() {
-		return email;
+		return this.email;
 	}
 	public void setEmail(String email) {
 		this.email = email;
-	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	public String getSalt() {
-		return salt;
-	}
-	public void setSalt(String salt) {
-		this.salt = salt;
 	}
 	public String getPhone() {
 		return phone;
@@ -78,8 +96,6 @@ public class User {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-	public String getOTP(){ return otp;}
-	public void setOtp(String otp){this.otp = otp; }
 	public String getYear(){ return year;}
 	public void setYear(String year){this.year = year; }
 	public String getGender(){ return gender;}
@@ -95,11 +111,4 @@ public class User {
 	public String getCollegeid(){return this.collegeid;}
 	public void setCollegeid(String collegeid){this.collegeid = collegeid;}
 
-	public int getAccount_level() {
-		return account_level;
-	}
-
-	public void setAccount_level(int account_level) {
-		this.account_level = account_level;
-	}
 }

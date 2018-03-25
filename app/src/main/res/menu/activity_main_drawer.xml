@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+
+    <group android:checkableBehavior="none">
+        <item
+            android:id="@+id/nav_register"
+            android:icon="@drawable/icon_reg"
+            android:title="Register" />
+        <item
+            android:id="@+id/nav_reaches"
+            android:icon="@drawable/icon_map"
+            android:title="Places" />
+        <item
+            android:id="@+id/nav_queries"
+            android:icon="@drawable/icon_queries"
+            android:title="Queries" />
+        <item
+            android:id="@+id/nav_quiz"
+            android:icon="@drawable/icon_game"
+            android:title="Game" />
+
+        <item android:id="@+id/nav_fb"
+            android:icon="@drawable/icon_fb_menu"
+            android:title="Facebook Page"/>
+
+        <item android:id="@+id/nav_website"
+            android:icon="@drawable/icon_web"
+            android:title="Website"/>
+
+    <item
+        android:id="@+id/nav_share"
+        android:icon="@drawable/icon_share"
+        android:title="Share" />
+
+        <item
+            android:title="Admin Console"
+            android:icon="@drawable/icon_console"
+            android:id="@+id/nav_admin"
+            />
+    </group>
+
+</menu>

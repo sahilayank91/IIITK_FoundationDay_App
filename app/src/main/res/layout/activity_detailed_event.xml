@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Made by Tanuj
+        -->
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#e0e0e0"
+    android:fitsSystemWindows="true"
+    app:layout_scrollFlags="scroll|enterAlways"
+    tools:context="sahil.iiitk_foundationday_app.views.DetailedEvent">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/event_appbar"
+        android:background="#a5a5a5"
+        android:layout_width="match_parent"
+        android:layout_height="250dp">
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/event_collapsing"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="true"
+            android:theme="@style/AppTheme.AppBarOverlay"
+            app:contentScrim="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+            <ImageView
+                android:id="@+id/event_picture"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:fitsSystemWindows="true"
+                android:scaleType="centerCrop"
+                app:layout_collapseMode="pin" />
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/event_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+        </android.support.design.widget.CollapsingToolbarLayout>
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_height="wrap_content"
+        android:padding="0dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:layout_marginTop="0dp"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="wrap_content">
+
+        <RelativeLayout
+            android:layout_gravity="top"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp">
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/event_overview_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                app:cardBackgroundColor="#ECEFF1"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="10dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp">
+
+                    <TextView
+                        android:id="@+id/event_date_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="left"
+                        android:layout_marginTop="10dp"
+                        android:text="23Mar 9:30 AM"
+                        android:textColor="#000000"
+                        android:textSize="20dp" />
+
+                    <TextView
+                        android:id="@+id/event_venue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/event_date_time"
+                        android:gravity="left"
+                        android:text="Student Activity Centre"
+                        android:textColor="#9C27B0"
+                        android:textSize="18dp" />
+
+                    <TextView
+                        android:id="@+id/event_type"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginTop="10dp"
+                        android:gravity="right"
+                        android:text="Team Event"
+                        android:textColor="#F44336"
+                        android:textSize="18dp" />
+
+                    <TextView
+                        android:id="@+id/event_regfee"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/event_venue"
+                        android:gravity="left"
+                        android:text="Registration fee: 50/-"
+                        android:textColor="#0d02ab"
+                        android:textSize="15dp" />
+
+                    <TextView
+                        android:id="@+id/event_last_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/event_regfee"
+                        android:gravity="left"
+                        android:text="Last date to pay registration fee: 23Mar 18"
+                        android:textColor="#37474F"
+                        android:textSize="15dp" />
+
+                    <TextView
+                        android:id="@+id/event_contact_details"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/event_last_date"
+                        android:gravity="left"
+                        android:text="Contact: +91 1234567890"
+                        android:textColor="#424242"
+                        android:textSize="15dp" />
+
+                    <TextView
+                        android:id="@+id/event_prize"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/event_contact_details"
+                        android:gravity="left"
+                        android:text=" Prizes worth \u20B9 15000/-"
+                        android:textColor="#4CAF50"
+                        android:layout_marginBottom="10dp"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/event_more_details_card"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/event_overview_card"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"
+                app:cardBackgroundColor="#ECEFF1"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="10dp">
+
+                <TextView
+                    android:id="@+id/event_more_details"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:text="jhjkjkvjlvjdlvjdlvjlhjgkhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhvjflvfldgvdflgdfghgfhgfhgfhgxfhgffghgfhgfhgfhjgjgjgfjgfjfgjfgjfjgfhgfhgfjgfjbfdfbdfbdfteger"
+                    android:textColor="#000000"
+                    android:textSize="18dp" />
+            </android.support.v7.widget.CardView>
+        </RelativeLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/event_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        app:layout_anchorGravity="bottom|end"
+        app:srcCompat="@drawable/icon_reg" />
+
+</android.support.design.widget.CoordinatorLayout>

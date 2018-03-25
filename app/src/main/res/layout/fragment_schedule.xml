@@ -1,0 +1,40 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="sahil.iiitk_foundationday_app.views.ScheduleFragment">
+
+    <!--
+    Made by tanuj
+    -->
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#e0e0e0">
+
+            <com.makeramen.roundedimageview.RoundedImageView
+                android:id="@+id/schedule_image1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                app:riv_corner_radius="10dp" />
+
+            <com.makeramen.roundedimageview.RoundedImageView
+                android:id="@+id/schedule_image2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/schedule_image1"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                app:riv_corner_radius="10dp" />
+
+        </RelativeLayout>
+    </android.support.v4.widget.NestedScrollView>
+</RelativeLayout>

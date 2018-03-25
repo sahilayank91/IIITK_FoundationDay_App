@@ -1,8 +1,222 @@
 <resources>
-    <string name="app_name">IIITK_FoundationDay_App</string>
-
+    <string name="app_name">Flair Fiesta \'18</string>
     <string name="year">Year</string>
+    <string name="college">College</string>
+    <string name="options">Options</string>
     <string name="Gender">Gender</string>
     <string name="title">Registration Form</string>
     <string name="iam">I am</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_add_favourite">Add to Favourites</string>
+    <string name="action_play_next">Play Next</string>
+    <string name="backdrop_title">LOVE MUSIC</string>
+    <string name="backdrop_subtitle">This season top 20 albums</string>
+    <string name="title_activity_detailed_event">DetailedEvent</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+
+    <!--theme for google maps activity-->
+
+    <string name="style_json">
+    [
+  {
+    \"featureType\": \"all\",
+    \"elementType\": \"geometry\",
+    \"stylers\": [
+      {
+        \"color\": \"#242f3e\"
+      }
+    ]
+  },
+  {
+    \"featureType\": \"all\",
+    \"elementType\": \"labels.text.stroke\",
+    \"stylers\": [
+      {
+        \"lightness\": -80
+      }
+    ]
+  },
+  {
+    \"featureType\": \"administrative\",
+    \"elementType\": \"labels.text.fill\",
+    \"stylers\": [
+      {
+        \"color\": \"#746855\"
+      }
+    ]
+  },
+  {
+    \"featureType\": \"administrative.locality\",
+    \"elementType\": \"labels.text.fill\",
+    \"stylers\": [
+      {
+        \"color\": \"#d59563\"
+      }
+    ]
+  },
+  {
+    \"featureType\": \"poi\",
+    \"elementType\": \"labels.text.fill\",
+    \"stylers\": [
+      {
+        \"color\": \"#d59563\"
+      }
+    ]
+  },
+  {
+    \"featureType\": \"poi.park\",
+    \"elementType\": \"geometry\",
+    \"stylers\": [
+      {
+        \"color\": \"#263c3f\"
+      }
+    ]
+  },
+  {
+    \"featureType\": \"poi.park\",
+    \"elementType\": \"labels.text.fill\",
+    \"stylers\": [
+      {
+        \"color\": \"#6b9a76\"
+      }
+    ]
+  },
+  {
+    \"featureType\": \"road\",
+    \"elementType\": \"geometry.fill\",
+    \"stylers\": [
+      {
+        \"color\": \"#2b3544\"
+      }
+    ]
+  },
+  {
+    \"featureType\": \"road\",
+    \"elementType\": \"labels.text.fill\",
+    \"stylers\": [
+      {
+        \"color\": \"#9ca5b3\"
+      }
+    ]
+  },
+  {
+    \"featureType\": \"road.arterial\",
+    \"elementType\": \"geometry.fill\",
+    \"stylers\": [
+      {
+        \"color\": \"#38414e\"
+      }
+    ]
+  },
+  {
+    \"featureType\": \"road.arterial\",
+    \"elementType\": \"geometry.stroke\",
+    \"stylers\": [
+      {
+        \"color\": \"#212a37\"
+      }
+    ]
+  },
+  {
+    \"featureType\": \"road.highway\",
+    \"elementType\": \"geometry.fill\",
+    \"stylers\": [
+      {
+        \"color\": \"#746855\"
+      }
+    ]
+  },
+  {
+    \"featureType\": \"road.highway\",
+    \"elementType\": \"geometry.stroke\",
+    \"stylers\": [
+      {
+        \"color\": \"#1f2835\"
+      }
+    ]
+  },
+  {
+    \"featureType\": \"road.highway\",
+    \"elementType\": \"labels.text.fill\",
+    \"stylers\": [
+      {
+        \"color\": \"#f3d19c\"
+      }
+    ]
+  },
+  {
+    \"featureType\": \"road.local\",
+    \"elementType\": \"geometry.fill\",
+    \"stylers\": [
+      {
+        \"color\": \"#38414e\"
+      }
+    ]
+  },
+  {
+    \"featureType\": \"road.local\",
+    \"elementType\": \"geometry.stroke\",
+    \"stylers\": [
+      {
+        \"color\": \"#212a37\"
+      }
+    ]
+  },
+  {
+    \"featureType\": \"transit\",
+    \"elementType\": \"geometry\",
+    \"stylers\": [
+      {
+        \"color\": \"#2f3948\"
+      }
+    ]
+  },
+  {
+    \"featureType\": \"transit.station\",
+    \"elementType\": \"labels.text.fill\",
+    \"stylers\": [
+      {
+        \"color\": \"#d59563\"
+      }
+    ]
+  },
+  {
+    \"featureType\": \"water\",
+    \"elementType\": \"geometry\",
+    \"stylers\": [
+      {
+        \"color\": \"#17263c\"
+      }
+    ]
+  },
+  {
+    \"featureType\": \"water\",
+    \"elementType\": \"labels.text.fill\",
+    \"stylers\": [
+      {
+        \"color\": \"#515c6d\"
+      }
+    ]
+  },
+  {
+    \"featureType\": \"water\",
+    \"elementType\": \"labels.text.stroke\",
+    \"stylers\": [
+      {
+        \"lightness\": -20
+      }
+    ]
+  }
+]
+  </string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="about">Indian Institute of Information Technology Kota (IIIT Kota) is a joint venture of the Ministry of Human Resource Development, Government of India and Rajasthan Government with Industries in Public-Private Partnership model. It is a young institute running under the mentorship of MNIT,Jaipur.\n
+    Our festival marks a 2-day long convergence of unprecedented technological events and extravagant fun and frolic.The FlairFiesta\’18 comes up with a golden opportunity for you to win many exciting prizes worth total Rs 60,000/- and a whole lot of new experiences to grow better in today\’s competitive world.\n
+      So roll up your sleeves, prepare well before time and hit the MNIT Campus on 23-24, March, 2018 to showcase your talent and take back home a huge lot of prizes!\n
+
+    </string>
+
 </resources>

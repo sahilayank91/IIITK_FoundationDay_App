@@ -3,22 +3,33 @@ package sahil.iiitk_foundationday_app.views;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.SystemClock;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.util.Patterns;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 import java.util.regex.Pattern;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -32,53 +43,76 @@ import sahil.iiitk_foundationday_app.model.User;
 
 public class Register extends AppCompatActivity
 {
-
+    Button btn;
+    TextView reg_later;
     public FirebaseAuth mAuth;
     public FirebaseDatabase database;
     public SharedPreferences userdetails;
-    public EditText name, college, college_id, department, phone, email;
+    public EditText name, college_id, department, phone, email, myEditText;
     public RadioGroup radioGroup, mocGroup;
     public RadioButton radioButton, mocButton;
-    public int selectedId, mocID;
+    public int selectedId, mocID, otherstrue = 0;
     public String regphone = "^[6789]\\d{9}$";
-    public String gender = "Female", body = "", bundle_name = "", bundle_email = "", bundle_phone = "", year = "", mos = "Hosteller";
+    public String gender = "Female", body = "", bundle_name = "", bundle_email = "", bundle_phone = "", year = "", college = "", mos = "Hosteller";
     User user = new User();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-
-        if(getSupportActionBar() != null){
-            getSupportActionBar().setTitle("Registration Form");
-            getSupportActionBar().setHomeButtonEnabled(true);
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        }
-
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-
         mAuth = FirebaseAuth.getInstance();
+        btn = (Button)findViewById(R.id.submit);
 
         name = (EditText)findViewById(R.id.name_input);
-        college = (EditText)findViewById(R.id.college_input);
         college_id = (EditText)findViewById(R.id.college_id_input);
         department = (EditText)findViewById(R.id.branch_input);
         phone = (EditText)findViewById(R.id.mobile_input);
         email = (EditText)findViewById(R.id.email_input);
+        reg_later=(TextView)findViewById(R.id.reg_later);
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             if(extras.getString("name") != null) bundle_name=extras.getString("name");
-            if(extras.getString("email") != null) bundle_email=extras.getString("email");
-            if(extras.getString("phone") != null) bundle_phone=extras.getString("phone");
-
+            if(extras.getString("email") != null){
+                bundle_email=extras.getString("email");
+                email.setText(bundle_email);
+                email.setEnabled(false);
+            }
+            if(extras.getString("phone") != null){
+                bundle_phone=extras.getString("phone");
+                phone.setText(bundle_phone);
+                phone.setEnabled(false);
+            }
             name.setText(bundle_name);
-            email.setText(bundle_email);
-            phone.setText(bundle_phone);
         }
+        reg_later.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        SharedPreferences userdetails = getSharedPreferences("userInfo", MODE_PRIVATE);
+                        SharedPreferences.Editor editor=userdetails.edit();
+                        if (!bundle_email.isEmpty()){
+                            editor.putString("email",bundle_email);
+                        }
+                        if(!bundle_name.isEmpty()){
+                            editor.putString("name",bundle_name);
+                        }
+                        if (!bundle_phone.isEmpty()){
+                            editor.putString("phone",bundle_phone);
+                        }
+                        editor.putString("status","true");
+                        editor.apply();
+                        Intent intent=new Intent(getApplicationContext(),MainActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                }
+        );
 
         final String[] arraySpinner = new String[] {
-                "1", "2", "3", "4"
+                "First", "Second", "Third", "Fourth","Fifth","Faculty"
         };
         final Spinner s = (Spinner) findViewById(R.id.Year);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.spinner_item,arraySpinner);
@@ -100,8 +134,48 @@ public class Register extends AppCompatActivity
                 errorText.setText("Please enter the Year");//changes the selected item text to this
             }
         });
+
+        final String[] arraySpinner2 = new String[]{
+                "IIIT KOTA", "MNIT JAIPUR", "Others"
+        };
+        final Spinner col = (Spinner)findViewById(R.id.collegespin);
+        ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(this, R.layout.spinner_item, arraySpinner2);
+        adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        col.setAdapter(adapter1);
+        col.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                int pos = adapterView.getSelectedItemPosition();
+                college = arraySpinner2[pos];
+                if(college.equals("Others")){
+                    otherstrue = 1;
+                    spin();
+                }
+            }
+
+            public void onNothingSelected(AdapterView<?> adapterView){
+                TextView errorText = (TextView)col.getSelectedView();
+                errorText.setError("");
+                errorText.setTextColor(Color.RED);//just to highlight that this is an error
+                errorText.setText("Please enter your College");//changes the selected item text to this
+            }
+        });
     }
 
+    public void spin(){
+        RelativeLayout mRlayout = (RelativeLayout) findViewById(R.id.rel);
+        mRlayout.setVisibility(View.VISIBLE);
+
+        RelativeLayout.LayoutParams mRparams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        myEditText = new EditText(this);
+        myEditText.setLayoutParams(mRparams);
+        myEditText.setHint("Enter your College Name");
+        myEditText.setTextColor(ContextCompat.getColor(this, R.color.offwhite));
+        myEditText.setHintTextColor(ContextCompat.getColor(this, R.color.offwhite));
+        ViewCompat.setBackgroundTintList(myEditText, ColorStateList.valueOf(Color.parseColor("#dddddd")));
+        mRlayout.addView(myEditText);
+    }
 
     public void onRadioButtonClicked(View view){
         radioGroup = (RadioGroup) findViewById(R.id.rad);
@@ -120,6 +194,7 @@ public class Register extends AppCompatActivity
         mos = mocButton.getText().toString();
     }
 
+    //this method was coded by tanuj
     public void getFFid(){
         // Write a message to the database
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -128,9 +203,11 @@ public class Register extends AppCompatActivity
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 long uid=(long)dataSnapshot.getValue();
-                uid++;
+                //to generate random IDs so that user's can never guess what will be new FFID
+                Random rand=new Random();
+                int n=rand.nextInt(3)+1;
+                uid=uid+n;
                 dataSnapshot.getRef().setValue(uid);
-                Toast.makeText(getApplicationContext(),"Your FFID is : "+uid,Toast.LENGTH_SHORT).show();
                 sendEmail(uid);
             }
             @Override
@@ -141,6 +218,7 @@ public class Register extends AppCompatActivity
         });
     }
 
+    //this method was coded by tanuj
     //sending emails automatically
     public void sendEmail(long ffid){
         regSecondStage(ffid);
@@ -186,8 +264,8 @@ public class Register extends AppCompatActivity
             flag = 1;
         }
 
-        if( college.getText().toString().length() == 0 ) {
-            college.setError("College name is required!");
+        if(college.length() == 0){
+            Toast.makeText(this, "Enter appropriate College", Toast.LENGTH_SHORT).show();
             flag = 1;
         }
 
@@ -222,7 +300,9 @@ public class Register extends AppCompatActivity
             return false;
     }
 
+    //this method was coded by tanuj
     public void sendMessage(View view) {
+        btn.setEnabled(false);
         database = FirebaseDatabase.getInstance();
         boolean value = validateInputs();
         if(value){
@@ -230,7 +310,12 @@ public class Register extends AppCompatActivity
             user.setDepartment(department.getText().toString());
             user.setPhone(phone.getText().toString());
             user.setEmail(email.getText().toString());
-            user.setCollege(college.getText().toString());
+            if(otherstrue == 1){
+                user.setCollege(myEditText.getText().toString());
+            }
+            else{
+                user.setCollege(college);
+            }
             user.setCollegeid(college_id.getText().toString());
             user.setGender(gender);
             user.setYear(year);
@@ -240,15 +325,18 @@ public class Register extends AppCompatActivity
         else{
             Toast.makeText(this, "Enter correct details", Toast.LENGTH_SHORT).show();
         }
-
-
-
     }
+
+    //this method was coded by tanuj
     public void regSecondStage(long id){
         user.setUser_id("FF"+id);
+        List<Long> empty_list=new ArrayList<>();
+        user.setDone_questions(empty_list);
+        user.setQuiz_lives(5);
+        user.setQuiz_correct(0);
         DatabaseReference mRef = database.getReference().child("Users");
         mRef.push().setValue(user);
-        Toast.makeText(this, "Registration Successfull", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(),"Your FFID is : FF"+id,Toast.LENGTH_LONG).show();
 
         userdetails = getSharedPreferences("userInfo", MODE_PRIVATE);
         SharedPreferences.Editor editor=userdetails.edit();
@@ -256,19 +344,27 @@ public class Register extends AppCompatActivity
         editor.putString("department",department.getText().toString());
         editor.putString("phone",phone.getText().toString());
         editor.putString("email",email.getText().toString());
-        editor.putString("college",college.getText().toString());
+        if(otherstrue == 1){
+            editor.putString("college", myEditText.getText().toString());
+        }
+        else{
+            editor.putString("college",college);
+        }
         editor.putString("collegeid",college_id.getText().toString());
         editor.putString("gender", gender);
         editor.putString("Year", year);
         editor.putString("MOS", mos);
         editor.putString("FFID", "FF"+id);
+        editor.putString("status","true");
         editor.apply();
+        Intent intent=new Intent(this,MainActivity.class);
+        this.startActivity(intent);
+        finish();
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-
                 // app icon in action bar clicked; goto parent activity.
                 Intent i = new Intent(getApplicationContext(),Login_Screen.class);
                 startActivity(i);
@@ -277,5 +373,10 @@ public class Register extends AppCompatActivity
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+
     }
 }

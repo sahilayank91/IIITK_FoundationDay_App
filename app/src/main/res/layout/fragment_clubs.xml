@@ -1,0 +1,17 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="#424242"
+    android:layout_height="match_parent"
+    tools:context="sahil.iiitk_foundationday_app.views.ClubsFragment">
+    <!--
+    Made by tanuj
+    -->
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerViewClubs"
+        android:background="#424242"
+        android:layout_marginBottom="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</RelativeLayout>
