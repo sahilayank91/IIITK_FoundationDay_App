@@ -73,7 +73,10 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/go"
                 android:layout_gravity="center_horizontal"
-                android:text="Register"/>
+                android:text="Register" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="50dp" />
         </LinearLayout>
     </LinearLayout>
 </ScrollView>

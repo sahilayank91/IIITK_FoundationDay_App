@@ -142,7 +142,7 @@ public class EventRegActivity extends AppCompatActivity
                 String[] strings = new String[allEds.size()];
                 for(int i=0; i < allEds.size(); i++) {
                     strings[i] = allEds.get(i).getText().toString();
-                    if (strings[i].equals("")) {
+                    if (strings[i].trim().equals("")) {
                         allEds.get(i).setError("Enter FFID");
                         flag=1;
                     } else
@@ -151,7 +151,7 @@ public class EventRegActivity extends AppCompatActivity
                     }
                 }
                 if (min>=2){
-                    if (edd.getText().toString().equals("")){
+                    if (edd.getText().toString().trim().equals("")){
                         edd.setError("Empty");
                         flag=1;
                     }

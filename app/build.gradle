@@ -8,8 +8,8 @@ android {
         multiDexEnabled true
         minSdkVersion 19
         targetSdkVersion 26
-        versionCode 5
-        versionName "5"
+        versionCode 6
+        versionName "6"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     //Signing configurations for build variant "release"
