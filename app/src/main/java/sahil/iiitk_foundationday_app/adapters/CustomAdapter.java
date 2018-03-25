@@ -13,9 +13,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.google.firebase.storage.FirebaseStorage;
-
 import java.util.List;
 
 import sahil.iiitk_foundationday_app.R;
@@ -40,7 +37,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
             nameView = (TextView) v.findViewById(R.id.mem_name);
             positionView=(TextView)v.findViewById(R.id.mem_pos);
             ImageView mem_email=(ImageView) v.findViewById(R.id.mem_mail);
-            dp=(ImageView)v.findViewById(R.id.mem_image);
+            dp=v.findViewById(R.id.mem_image);
             mem_email.setOnClickListener(
                     new View.OnClickListener(){
                         @Override
@@ -94,7 +91,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
      *
      * @param data1 String[] containing the data to populate views to be used by RecyclerView.
      */
-    public CustomAdapter(String[] data1,String[] data2,String[] data3,String[] data4,String[] data5,List<String> data6, Context context) {
+    public CustomAdapter(String[] data1,String[] data2,String[] data3,String[] data4,String[] data5,List<Integer> data6) {
         names = data1;
         position=data2;
         emails=data3;

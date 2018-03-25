@@ -153,7 +153,7 @@
                 android:layout_width="140dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tv_name4"
-                android:text="+91-98187 06010"
+                android:text="+91-8696434609"
                 android:gravity="center"
                 android:textColor="#ffffff"/>
             <TextView
@@ -213,7 +213,7 @@
                 android:layout_width="140dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tv_name7"
-                android:text="+91-94149 45395"
+                android:text="+91-9414945395"
                 android:gravity="center"
                 android:textColor="#ffffff"/>
             <TextView
