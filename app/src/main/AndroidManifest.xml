@@ -72,10 +72,12 @@
         <activity
             android:name=".views.EventRegActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".views.AdminPage"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".views.QuizActivity"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".views.AdminPage"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".views.QuizActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

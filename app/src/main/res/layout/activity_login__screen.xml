@@ -72,8 +72,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
-            android:background="@color/btn"
             android:text="Continue with Phone Number"
+            android:background="@drawable/mybutton"
             android:textColor="#dddddd"
             android:textSize="16sp"
             android:textStyle="bold" />
@@ -84,7 +84,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="15dp"
-            android:background="@color/btn"
+            android:background="@drawable/mybutton"
             android:text="LOG IN WITH FF ID"
             android:textColor="#dddddd"
             android:textSize="16sp"

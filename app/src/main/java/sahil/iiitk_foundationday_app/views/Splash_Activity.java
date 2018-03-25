@@ -28,6 +28,13 @@ public class Splash_Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+//        SharedPreferences pref = getSharedPreferences("MyPref",MODE_PRIVATE);
+//        SharedPreferences.Editor edit = pref.edit();
+//        edit.putString("flag","1");
+//        edit.apply();
+        // 1 = first time
+        // 0 = second
+
         //set GIF background
         LinearLayout back=findViewById(R.id.splash_back);
         try{

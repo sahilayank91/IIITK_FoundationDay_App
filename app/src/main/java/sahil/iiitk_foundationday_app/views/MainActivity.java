@@ -13,6 +13,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
@@ -84,6 +85,7 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -293,41 +295,57 @@ public class MainActivity extends AppCompatActivity
                     "mailto","contactus@flairfiesta.com", null));
             this.startActivity(Intent.createChooser(emailIntent, "Send Email via"));
 
-        } else if (id == R.id.nav_quiz) {
+        } else if (id == R.id.nav_quiz)
+        {
             //check if the user has an account in the app or not
             SharedPreferences sharedPreferences=getSharedPreferences("userInfo",MODE_PRIVATE);
-            if (sharedPreferences.getString("FFID","").isEmpty()){
-                Toast.makeText(this,"You have to register in the App to play game.",Toast.LENGTH_SHORT).show();
-            }else{
-                // check if quiz is open or not by using  a value stored on firebase
-                FirebaseDatabase database = FirebaseDatabase.getInstance();
-                final DatabaseReference myRef = database.getReference("start_quiz");
-                listener=new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        if (dataSnapshot.exists()){
-                            Log.e("home","start_quiz variable found.");
-                            long start_quiz=(long)dataSnapshot.getValue();
-                            if (start_quiz==1){
-                                Log.e("home","Starting quiz.");
-                                Intent intent=new Intent(MainActivity.this,QuizActivity.class);
-                                MainActivity.this.startActivity(intent);
-                            }else{
-                                Log.e("home","Quiz not started yet.");
-                                Toast.makeText(getApplicationContext(),"Quiz has not been started yet!\nCome back soon.",Toast.LENGTH_SHORT).show();
-                            }
-                            myRef.removeEventListener(listener);
-                        }
-                    }
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-                        Log.e("home", "Failed to read value: "+ databaseError.getDetails());
-                    }
-                };
-                myRef.addListenerForSingleValueEvent(listener);
-            }
+//            SharedPreferences pref = getSharedPreferences("MyPref",MODE_PRIVATE);
+//            String s = pref.getString("flag","1");
+//            Toast.makeText(getApplicationContext(),s,Toast.LENGTH_SHORT).show();
+//            if(s.equals("1")) {
+//                Toast.makeText(getApplicationContext(),"Finish",Toast.LENGTH_SHORT).show();
+//                SharedPreferences pref2 = getSharedPreferences("MyPref", MODE_PRIVATE);
+//                SharedPreferences.Editor edit1 = pref2.edit();
+//                edit1.putString("flag", "0");
+//                edit1.apply();
+//                finish();
+//            }
 
-        } else if (id == R.id.nav_share) {
+                if (sharedPreferences.getString("FFID", "").isEmpty()) {
+                    Toast.makeText(this, "You have to register in the App to play game.", Toast.LENGTH_SHORT).show();
+                } else {
+                    // check if quiz is open or not by using  a value stored on firebase
+                    FirebaseDatabase database = FirebaseDatabase.getInstance();
+                    final DatabaseReference myRef = database.getReference("start_quiz");
+                    listener = new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            if (dataSnapshot.exists()) {
+                                Log.e("home", "start_quiz variable found.");
+                                long start_quiz = (long) dataSnapshot.getValue();
+                                if (start_quiz == 1) {
+                                    Log.e("home", "Starting quiz.");
+                                    Intent intent = new Intent(MainActivity.this, QuizActivity.class);
+                                    MainActivity.this.startActivity(intent);
+                                } else {
+                                    Log.e("home", "Quiz not started yet.");
+                                    Toast.makeText(getApplicationContext(), "Quiz has not been started yet!\nCome back soon.", Toast.LENGTH_SHORT).show();
+                                }
+                                myRef.removeEventListener(listener);
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+                            Log.e("home", "Failed to read value: " + databaseError.getDetails());
+                        }
+                    };
+                    myRef.addListenerForSingleValueEvent(listener);
+                }
+            }
+            // katam
+
+        else if (id == R.id.nav_share) {
             Intent sharingIntent = new Intent(Intent.ACTION_SEND);
             sharingIntent.setType("text/plain");
             sharingIntent.putExtra(Intent.EXTRA_SUBJECT, "Flair-Fiesta 2k18");

@@ -144,7 +144,7 @@
                 android:id="@+id/tv_name4"
                 android:layout_width="140dp"
                 android:layout_height="wrap_content"
-                android:text="Shrestha"
+                android:text="Shreshtha"
                 android:textSize="20dp"
                 android:gravity="center"
                 android:textColor="#eebe00"/>
@@ -213,7 +213,7 @@
                 android:layout_width="140dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tv_name7"
-                android:text="+91-98187 06010"
+                android:text="+91-94149 45395"
                 android:gravity="center"
                 android:textColor="#ffffff"/>
             <TextView
