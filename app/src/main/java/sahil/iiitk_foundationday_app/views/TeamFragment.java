@@ -45,7 +45,7 @@ public class TeamFragment extends Fragment {
 
         images_url.add("https://firebasestorage.googleapis.com/v0/b/iiitkfoundationdayapp.appspot.com/o/sahil.jpg?alt=media&token=918ba31c-c63c-4422-ab19-73f261dfa4ec");
         images_url.add("https://firebasestorage.googleapis.com/v0/b/iiitkfoundationdayapp.appspot.com/o/tanuj.jpg?alt=media&token=384b51a7-c665-4ad3-96ad-cd580069bfaf");
-        images_url.add("https://firebasestorage.googleapis.com/v0/b/iiitkfoundationdayapp.appspot.com/o/tanuj.jpg?alt=media&token=384b51a7-c665-4ad3-96ad-cd580069bfaf");
+        images_url.add("https://firebasestorage.googleapis.com/v0/b/iiitkfoundationdayapp.appspot.com/o/shashwat.jpg?alt=media&token=4f879755-6fdf-4320-a1cc-a7c34fd67e40");
         images_url.add("https://firebasestorage.googleapis.com/v0/b/iiitkfoundationdayapp.appspot.com/o/vipasha.jpg?alt=media&token=f8434327-cc88-4f8e-a6b2-004a0f15ad94");
         images_url.add("https://firebasestorage.googleapis.com/v0/b/iiitkfoundationdayapp.appspot.com/o/gaurav.png?alt=media&token=59437c37-11c0-4c38-b5e0-b1ec1157fe62");
 
